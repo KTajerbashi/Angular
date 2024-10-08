@@ -1,1 +1,26 @@
-<p>users works!</p>
+<div class="container-fluid">
+  <ul>
+    <li>
+      <span>FirstName : {{ firstName }}</span>
+    </li>
+    <li>
+      <span>LastName : {{ lastName }}</span>
+    </li>
+    <li>
+      <span
+        >Status :
+        <button
+          class="btn"
+          [ngClass]="isActive ? 'btn-success' : 'btn-danger'"
+          (click)="toggleActive()"
+        >
+          {{ isActive ? "فعال" : "غیر فعال" }}
+        </button></span
+      >
+    </li>
+    <li>
+      <span>Date : {{ currentDate }}</span>
+    </li>
+  </ul>
+  <!-- The button element with conditional CSS class and text -->
+</div>
