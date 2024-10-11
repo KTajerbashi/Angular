@@ -1,0 +1,46 @@
+<div
+  class="container-fluid d-flex flex-column justify-content-center align-items-center"
+>
+  <div class="row">
+    <div class="col-12">
+      <div class="w-100">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Family</th>
+              <th>Phone</th>
+              <th>Email</th>
+              <th colspan="3">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of dataList">
+              <td>{{ item.id }}</td>
+              <td>{{ item.name }}</td>
+              <td>{{ item.family }}</td>
+              <td>{{ item.phone }}</td>
+              <td>{{ item.email }}</td>
+              <td>
+                <button (click)="remove(item)" class="btn btn-danger">
+                  Remove
+                </button>
+              </td>
+              <td>
+                <button (click)="edit(item)" class="btn btn-warning">
+                  Edit
+                </button>
+              </td>
+              <td>
+                <button (click)="read(item)" class="btn btn-primary">
+                  Read
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
