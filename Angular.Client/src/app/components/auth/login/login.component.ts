@@ -1,8 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { ApiService } from '../../../services/api.service';
 
 interface IUserDTO {
   id: number;
@@ -11,7 +11,13 @@ interface IUserDTO {
   phone: string;
   email: string;
 }
-
+interface ApiResponse<T> {
+  success: boolean;
+  data: T;
+  message: string;
+  error: any;
+  token?: string;
+}
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -22,13 +28,10 @@ interface IUserDTO {
 export class LoginComponent {
   userName: string = '';
 
+  constructor(private httpClient: HttpClient) {}
   http = inject(HttpClient);
+  baseService = inject(ApiService);
   dataList: IUserDTO[] = [];
-
-  ngOnInit(): void {
-    console.log('Run ...');
-    this.loadAllUser();
-  }
 
   // Action Methods
   remove(model: IUserDTO): void {
@@ -44,21 +47,30 @@ export class LoginComponent {
   }
   // Fetch Users from API
   loadAllUser(): void {
-    this.http
-      .get<IUserDTO[]>('https://localhost:7100/api/User/Read')
-      .subscribe({
-        next: (res: IUserDTO[]) => {
-          this.dataList = res;
-          console.log('Response: ', res);
-        },
-        error: (error: HttpErrorResponse) => {
-          console.error('Error loading users:', error.message, error);
-          if (error.status === 0) {
-            console.error(
-              'The server might not be reachable or CORS is not configured properly.'
-            );
-          }
-        },
+    this.baseService.get<ApiResponse<IUserDTO[]>>('User/Read').subscribe({
+      next: (response) => {
+        if (response.success) {
+          console.log('Data successfully fetched:', response.data);
+          this.dataList = response.data; // Extract the `data` array from the response
+        } else {
+          console.error('Error: ', response.message);
+        }
+      },
+      error: (error) => {
+        console.error('Error fetching users:', error);
+      },
+    });
+  }
+  loadHttp(): void {
+    this.httpClient
+      .get('https://localhost:7100/api/User/Read')
+      .subscribe((res) => {
+        console.log('Http : ', res);
       });
+  }
+  ngOnInit(): void {
+    console.log('Run ...');
+    this.loadAllUser();
+    // this.loadHttp();
   }
 }
