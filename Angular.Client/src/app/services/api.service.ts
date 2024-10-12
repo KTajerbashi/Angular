@@ -2,6 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+
+interface ApiResponse<T> {
+  success: boolean;
+  data: T;
+  message: string;
+  error: any;
+  token?: string;
+}
+
 @Injectable({
   providedIn: 'root', // No need for AppModule with standalone services
 })
@@ -10,16 +19,28 @@ export class ApiService {
 
   constructor(private http: HttpClient) {}
 
-  get<T>(endpoint: string): Observable<T> {
+  get<T>(endpoint: string): Observable<ApiResponse<T>> {
     return this.http
-      .get<T>(`${this.baseUrl}/${endpoint}`)
+      .get<ApiResponse<T>>(`${this.baseUrl}/${endpoint}`)
       .pipe(catchError(this.handleError));
   }
 
-  post<T>(endpoint: string, data: any): Observable<T> {
+  post<T>(endpoint: string, data: any): Observable<ApiResponse<T>> {
     return this.http
-      .post<T>(`${this.baseUrl}/${endpoint}`, data)
-      .pipe(retry(2), catchError(this.handleError));
+      .post<ApiResponse<T>>(`${this.baseUrl}/${endpoint}`, data)
+      .pipe(retry(1), catchError(this.handleError));
+  }
+
+  delete<T>(endpoint: string, id: number): Observable<ApiResponse<T>> {
+    return this.http
+      .delete<ApiResponse<T>>(`${this.baseUrl}/${endpoint}/${id}`)
+      .pipe(retry(1), catchError(this.handleError));
+  }
+
+  put<T>(endpoint: string, data: any): Observable<ApiResponse<T>> {
+    return this.http
+      .put<ApiResponse<T>>(`${this.baseUrl}/${endpoint}/${data.id}`, data)
+      .pipe(retry(1), catchError(this.handleError));
   }
 
   // Add more methods like PUT and DELETE as needed
@@ -57,7 +78,6 @@ export class ApiService {
       }
     }
 
-    console.error('Error occurred:', errorMessage);
     return throwError(errorMessage); // Throw an observable with a user-facing error message
   }
 }
