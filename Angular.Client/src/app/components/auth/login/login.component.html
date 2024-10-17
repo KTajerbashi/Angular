@@ -25,9 +25,7 @@
               </button>
             </td>
             <td>
-              <button (click)="openUserDialog(item)" class="btn btn-warning">
-                Edit
-              </button>
+              <button (click)="edit(item)" class="btn btn-warning">Edit</button>
             </td>
             <td>
               <button (click)="read(item)" class="btn btn-primary">Read</button>
@@ -127,14 +125,3 @@
     </div>
   </div>
 </div>
-<!-- <app-user-modal [user]="selectedUser"></app-user-modal> -->
-<app-dialog #myModal>
-  <p>Your dynamic content goes here!klsmjdv;lksmdv;lk</p>
-</app-dialog>
-
-<button
-  class="btn btn-outline-info shadow m-1"
-  (click)="myModal.toggleDialog()"
->
-  Open Custom Modal
-</button>

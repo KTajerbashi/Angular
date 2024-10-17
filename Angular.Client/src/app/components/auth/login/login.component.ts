@@ -12,8 +12,6 @@ import { HttpClient } from '@angular/common/http';
 import { ApiService } from '../../../services/api.service';
 import bootstrap from 'bootstrap';
 import { Renderer2 } from '@angular/core';
-import { UserModalComponent } from '../../security/user-modal/user-modal.component';
-import { DialogComponent } from '../../component/dialog/dialog.component';
 
 export interface IUserDTO {
   id: number;
@@ -26,7 +24,7 @@ export interface IUserDTO {
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, DialogComponent],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
@@ -54,20 +52,8 @@ export class LoginComponent {
     });
   }
 
-  openUserDialog(user: IUserDTO): void {
-    const dialogRef = this.dialog.open(UserModalComponent, {
-      data: user,
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('Dialog closed');
-    });
-  }
-
   // Action Methods
   remove(model: IUserDTO): void {
-    console.log('Remove => Model :', model);
-    console.log('Edit => Model :', model);
     this.baseService.delete<Boolean>('User', model.id).subscribe({
       next: (response) => {
         this.loadAllUser();

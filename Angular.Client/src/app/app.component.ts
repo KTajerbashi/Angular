@@ -1,21 +1,21 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { UsersComponent } from './components/security/users/users.component';
-import { FooterComponent } from './components/layout/footer/footer.component';
-import { HeaderComponent } from './components/layout/header/header.component';
+import { RouterOutlet, Routes } from '@angular/router';
 import { LoginComponent } from './components/auth/login/login.component';
-import { MatDialogModule } from '@angular/material/dialog';
+import { HeaderComponent } from './components/layout/header/header.component';
+import { FooterComponent } from './components/layout/footer/footer.component';
+import { NavbarComponent } from './components/layout/navbar/navbar.component';
+import { MainLayoutComponent } from './components/layout/main-layout/main-layout.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
     RouterOutlet,
-    UsersComponent,
-    FooterComponent,
-    HeaderComponent,
     LoginComponent,
-    MatDialogModule,
+    HeaderComponent,
+    NavbarComponent,
+    MainLayoutComponent,
+    FooterComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
