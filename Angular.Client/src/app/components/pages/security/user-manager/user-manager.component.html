@@ -1,0 +1,52 @@
+<div class="contianer-fluid">
+  <div class="row">
+    <div class="col-12">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Family</th>
+            <th>Email</th>
+            <th>NationalCode</th>
+            <th>Phone</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of dataList">
+            <td>{{ user.id }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.family }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.nationalCode }}</td>
+            <td>{{ user.phone }}</td>
+            <td>
+              <a
+                class="icon-link-hover me-3 text-warning"
+                href="javascript:void(0)"
+                (click)="showEditDialog(user)"
+              >
+                <i class="bi bi-pencil-square"></i>
+              </a>
+              <a
+                class="icon-link-hover me-3 text-primary"
+                href="javascript:void(0)"
+                (click)="showReadDialog(user)"
+              >
+                <i class="bi bi-bar-chart-steps"></i>
+              </a>
+              <a
+                class="icon-link-hover me-3 text-danger"
+                href="javascript:void(0)"
+                (click)="showDeleteDialog(user)"
+              >
+                <i class="bi bi-trash-fill"></i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

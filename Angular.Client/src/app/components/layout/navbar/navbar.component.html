@@ -15,10 +15,15 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav text-light">
-          <a class="nav-link" aria-current="page" href="/home">Home</a>
-          <a class="nav-link" href="/features">Features</a>
-          <a class="nav-link" href="/pricing">Pricing</a>
-          <a class="nav-link" href="/about" aria-disabled="true">About</a>
+          <!-- Dynamic Navigation Links -->
+          <a
+            *ngFor="let link of menuLinks"
+            class="nav-link"
+            [href]="link.url"
+            [attr.aria-disabled]="link.url === '#' ? 'true' : null"
+          >
+            {{ link.title }}
+          </a>
         </div>
       </div>
     </div>
