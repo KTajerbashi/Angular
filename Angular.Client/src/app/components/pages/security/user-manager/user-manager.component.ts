@@ -20,13 +20,17 @@ export class UserManagerComponent {
   currentPage: number = 1;
   totalPages: number = 0;
   pages: number[] = [];
+
   constructor(private fb: FormBuilder) {
     this.userForm = this.fb.group({
-      name: ['', Validators.required],
-      family: ['', Validators.required],
-      phone: ['', Validators.required],
-      nationalCode: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
-      email: ['', [Validators.required, Validators.email]],
+      name: ['Name Require ...!', Validators.required],
+      family: ['Family Require ...!', Validators.required],
+      phone: ['Phone Require ...!', Validators.required],
+      nationalCode: [
+        'NationalCode Require ...!',
+        [Validators.required, Validators.pattern(/^\d{10}$/)],
+      ],
+      email: ['Email Require ...!', [Validators.required, Validators.email]],
     });
   }
 
