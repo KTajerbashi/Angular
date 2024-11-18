@@ -3,6 +3,7 @@ import { HomeComponent } from './components/pages/main/home/home.component';
 import { AboutComponent } from './components/pages/main/about/about.component';
 import { PageNotFoundComponent } from './components/pages/response/page-not-found/page-not-found.component';
 import { UserManagerComponent } from './components/pages/security/user-manager/user-manager.component';
+import { FeatureComponent } from './components/pages/main/feature/feature.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -10,5 +11,6 @@ export const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'about', component: AboutComponent },
   { path: 'users', component: UserManagerComponent },
+  { path: 'features', component: FeatureComponent },
   { path: '**', component: PageNotFoundComponent },
 ];
