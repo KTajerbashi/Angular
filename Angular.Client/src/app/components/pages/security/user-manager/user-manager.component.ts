@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IUserModel } from '../../../../Models/generalModels';
+import { IUserModel } from '../../../../models/generalModels';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';

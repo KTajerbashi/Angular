@@ -1,0 +1,90 @@
+When structuring an Angular 18 project for a real-world application, it's crucial to follow best practices for scalability, maintainability, and modularity. Below is a commonly used folder structure for large-scale Angular applications. This structure adheres to feature-first organization and clean architecture principles.
+=======================================================
+src/
+├── app/
+│   ├── core/
+│   │   ├── guards/             # Route guards (e.g., AuthGuard)
+│   │   ├── interceptors/       # HTTP interceptors
+│   │   ├── services/           # Singleton services used app-wide
+│   │   ├── models/             # Application-wide interfaces/models
+│   │   └── core.module.ts      # Import/export of core providers
+│   ├── shared/
+│   │   ├── components/         # Shared/reusable components (e.g., Buttons, Modals)
+│   │   ├── directives/         # Reusable directives
+│   │   ├── pipes/              # Reusable pipes (e.g., date formatter)
+│   │   ├── utilities/          # Utility functions/helpers
+│   │   └── shared.module.ts    # Shared module
+│   ├── features/
+│   │   ├── feature1/           # Example: Authentication
+│   │   │   ├── components/     # Feature-specific components
+│   │   │   ├── services/       # Feature-specific services
+│   │   │   ├── models/         # Feature-specific models
+│   │   │   ├── pages/          # Pages (views) for the feature
+│   │   │   ├── feature1-routing.module.ts
+│   │   │   └── feature1.module.ts
+│   │   ├── feature2/           # Another feature
+│   │   │   ├── components/
+│   │   │   ├── services/
+│   │   │   ├── models/
+│   │   │   ├── pages/
+│   │   │   ├── feature2-routing.module.ts
+│   │   │   └── feature2.module.ts
+│   ├── layouts/                # Application layouts
+│   │   ├── main-layout/        # Main layout components (e.g., Navbar, Sidebar)
+│   │   ├── auth-layout/        # Login/registration layout
+│   │   └── layouts.module.ts
+│   ├── state/                  # Global state management (e.g., NgRx or Akita)
+│   │   ├── actions/
+│   │   ├── reducers/
+│   │   ├── selectors/
+│   │   └── effects/
+│   ├── app-routing.module.ts   # Application-wide routing
+│   ├── app.component.html      # Root component template
+│   ├── app.component.ts        # Root component logic
+│   └── app.module.ts           # Root module
+├── assets/                     # Static assets (images, fonts, etc.)
+├── environments/               # Environment configurations (dev/prod)
+│   ├── environment.ts
+│   └── environment.prod.ts
+├── styles/                     # Global stylesheets (e.g., SCSS)
+│   ├── _variables.scss         # SCSS variables
+│   └── main.scss               # Main stylesheet
+├── index.html                  # Main HTML entry point
+├── main.ts                     # Application bootstrap
+└── angular.json                # Angular CLI configuration
+=======================================================
+Detailed Explanation
+core/
+
+This folder contains singleton services, interceptors, and guards used across the entire app.
+Example: AuthGuard, ErrorInterceptor.
+shared/
+
+A library of reusable components, directives, and pipes that do not depend on a specific feature.
+Example: A ButtonComponent or a DatePipe.
+features/
+
+Organize by feature modules to isolate concerns and make the app scalable.
+Each feature (e.g., Auth, Dashboard, UserManagement) has its own folder with components, services, and routes.
+layouts/
+
+Contains reusable layout templates (e.g., main layout with a sidebar, or an authentication layout for login pages).
+state/
+
+For applications using state management libraries (e.g., NgRx, Akita), this folder organizes actions, reducers, selectors, and effects.
+styles/
+
+Keep global SCSS/CSS styles, variables, and theme-related files here.
+Example: SCSS variables for colors or mixins.
+assets/
+
+For static files like images, fonts, or JSON data files.
+environments/
+
+Environment-specific configurations (e.g., API URLs for dev and prod).
+Benefits of This Structure
+Scalability: Adding new features is straightforward, with self-contained modules.
+Maintainability: Feature-first organization ensures a clear separation of concerns.
+Reusability: Shared components, directives, and pipes are centralized.
+Testing: Unit testing is easier with clearly defined module boundaries.
+Would you like help setting up specific modules or components for your project?
