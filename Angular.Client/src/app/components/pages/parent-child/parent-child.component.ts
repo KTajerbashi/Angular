@@ -1,26 +1,22 @@
-import { Component, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { DataGridComponent } from '../data-grid/data-grid.component';
 import { SearchDataComponent } from '../search-data/search-data.component';
+import { IAccountProfile } from '../../../interfaces/IAccountProfile';
 
 @Component({
   selector: 'app-parent-child',
   standalone: true,
   imports: [SearchDataComponent],
   templateUrl: './parent-child.component.html',
-  styleUrl: './parent-child.component.css'
+  styleUrl: './parent-child.component.css',
 })
 export class ParentChildComponent {
+  constructor() {}
 
-  count: number = 0;
+  @Output() getDataFromChild = new EventEmitter<IAccountProfile>();
 
-  emitter = new EventEmitter<number>();
-
-  addCount = (): void => {
-    this.count++;
-    this.emitter.emit(this.count);
+  getData = (model: IAccountProfile) => {
+    console.log('Parent Log : ', model);
   };
-  removeCount = (): void => {
-    this.count--;
-    this.emitter.emit(this.count);
-  };
+  pushData = () => {};
 }

@@ -1,4 +1,4 @@
-<!-- <div class="container-fluid">
+<div class="container-fluid">
   <div class="row p-1 shadow rounded-3">
     <div class="col-12">
       <form>
@@ -58,6 +58,15 @@
           </div>
           <div class="row my-1">
             <input
+              (click)="
+                submit(
+                  name.value,
+                  family.value,
+                  email.value,
+                  password.value,
+                  $event
+                )
+              "
               type="submit"
               class="btn btn-outline-success"
             />
@@ -66,8 +75,4 @@
       </form>
     </div>
   </div>
-</div> -->
-
-<div class="alert alert-dark d-flex flex-row justify-content-center">
-  <div class="bg-dark badge text-center p-3">{{ count }}</div>
 </div>

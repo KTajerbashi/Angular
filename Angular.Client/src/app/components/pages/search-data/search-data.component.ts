@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, output } from '@angular/core';
+import { IAccountProfile } from '../../../interfaces/IAccountProfile';
 
 @Component({
   selector: 'app-search-data',
@@ -9,4 +10,21 @@ import { Component, EventEmitter, Input, output } from '@angular/core';
 })
 export class SearchDataComponent {
   @Input() count: number = 0;
+  @Output() onPassModel = new EventEmitter<IAccountProfile>();
+  submit = (
+    name: string,
+    family: string,
+    email: string,
+    password: string,
+    event: Event
+  ) => {
+    event.preventDefault();
+    let model: IAccountProfile = {
+      name: name,
+      family: family,
+      email: email,
+      password: password,
+    };
+    this.onPassModel.emit(model);
+  };
 }
