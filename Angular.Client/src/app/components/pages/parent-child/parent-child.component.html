@@ -1,0 +1,11 @@
+<div class="container-fluid">
+  <div
+    class="row p-3 shadow rounded-3 my-5 bg-dark bg-gradient text-light text-center d-flex flex-row justify-content-between"
+  >
+    <button (click)="addCount()" class="btn btn-primary w-25">+</button>
+    <button (click)="removeCount()" class="btn btn-danger w-25">-</button>
+  </div>
+
+  <app-search-data [count]="count"></app-search-data>
+  <!-- <div class="row"><app-data-grid></app-data-grid></div> -->
+</div>

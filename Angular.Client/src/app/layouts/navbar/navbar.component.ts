@@ -28,6 +28,7 @@ export class NavbarComponent implements OnInit {
       { icon: 'pricing', title: 'Pricing', url: '/pricing' },
       { icon: 'about', title: 'About', url: '/about' },
       { icon: 'users', title: 'Users', url: '/users' },
+      { icon: 'parent', title: 'Parent-Child', url: '/parent-child' },
     ];
   }
 }

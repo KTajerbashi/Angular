@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UserManagerComponent } from './user-manager.component';
+import { SearchDataComponent } from './search-data.component';
 
-describe('UserManagerComponent', () => {
-  let component: UserManagerComponent;
-  let fixture: ComponentFixture<UserManagerComponent>;
+describe('SearchDataComponent', () => {
+  let component: SearchDataComponent;
+  let fixture: ComponentFixture<SearchDataComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UserManagerComponent]
+      imports: [SearchDataComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(UserManagerComponent);
+    fixture = TestBed.createComponent(SearchDataComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
