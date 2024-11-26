@@ -1,6 +1,7 @@
-export interface IAccountProfile{
-    name: string,
-    family: string,
-    email: string,
-    password: string,
-} 
+export interface IAccountProfile {
+  id: number;
+  name: string;
+  family: string;
+  email: string;
+  password: string;
+}

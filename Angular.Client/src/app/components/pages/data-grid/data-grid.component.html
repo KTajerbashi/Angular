@@ -1,7 +1,7 @@
 <div class="container-fluid my-3">
   <div class="row shadow p-3 rounded-3">
     <div class="col-12">
-      <table class="table table-hover table-striped">
+      <table class="table table-hover table-striped text-center">
         <thead>
           <tr class="rounded-3 table-dark">
             <th scope="col">#</th>
@@ -9,15 +9,30 @@
             <th scope="col">Family</th>
             <th scope="col">Email</th>
             <th scope="col">Password</th>
+            <th scope="col">Actions</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>Otto</td>
-            <td>&#64;</td>
+          <tr *ngFor="let item of dataSource; let i = index">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ item.name }}</td>
+            <td>{{ item.family }}</td>
+            <td>{{ item.email }}</td>
+            <td>{{ item.password }}</td>
+            <td>
+              <button
+                (click)="deleteRow(item)"
+                class="btn btn-outline-danger mx-1"
+              >
+                Remove
+              </button>
+              <button
+                (click)="updateRow(item)"
+                class="btn btn-outline-warning mx-1"
+              >
+                Edit
+              </button>
+            </td>
           </tr>
         </tbody>
       </table>

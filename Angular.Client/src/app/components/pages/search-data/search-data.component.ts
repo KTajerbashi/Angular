@@ -20,6 +20,7 @@ export class SearchDataComponent {
   ) => {
     event.preventDefault();
     let model: IAccountProfile = {
+      id: 0,
       name: name,
       family: family,
       email: email,
