@@ -1,23 +1,12 @@
 import { Component } from '@angular/core';
-import { HeaderComponent } from './layouts/header/header.component';
-import { FooterComponent } from './layouts/footer/footer.component';
-import { NavbarComponent } from './layouts/navbar/navbar.component';
-import { MainLayoutComponent } from './layouts/main/main.component';
-import { SharedModule } from './modules/sharedModule';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [
-    SharedModule,
-    HeaderComponent,
-    NavbarComponent,
-    MainLayoutComponent,
-    FooterComponent,
-  ],
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
+  styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'angular-Tajer';
+  title = 'angular.client';
 }
