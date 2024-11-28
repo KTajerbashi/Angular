@@ -1,0 +1,27 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Family</th>
+      <th>Email</th>
+      <th>Password</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of dataSourceEvent; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td>{{ item.name }}</td>
+      <td>{{ item.family }}</td>
+      <td>{{ item.email }}</td>
+      <td>{{ item.password }}</td>
+      <td>
+        <button (click)="onEdit(item)" class="btn btn-warning mx-3">
+          Edit
+        </button>
+        <button (click)="onRemove(item)" class="btn btn-danger">Remove</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

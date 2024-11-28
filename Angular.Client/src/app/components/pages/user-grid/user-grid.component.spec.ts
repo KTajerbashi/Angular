@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ParentChildComponent } from './parent-child.component';
+import { UserGridComponent } from './user-grid.component';
 
-describe('ParentChildComponent', () => {
-  let component: ParentChildComponent;
-  let fixture: ComponentFixture<ParentChildComponent>;
+describe('UserGridComponent', () => {
+  let component: UserGridComponent;
+  let fixture: ComponentFixture<UserGridComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ParentChildComponent]
+      imports: [UserGridComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ParentChildComponent);
+    fixture = TestBed.createComponent(UserGridComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
