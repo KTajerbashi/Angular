@@ -1,1 +1,72 @@
 /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.app-container {
+  padding: 1rem;
+}
+.app-container-content {
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 1rem;
+}
+
+.app-alert {
+  padding: 1rem;
+  border-radius: 1rem;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+  margin: 1rem;
+}
+
+.app-alert-danger {
+  background: red;
+  color: white;
+}
+.app-alert-info {
+  background: rgb(59, 146, 187);
+  color: white;
+}
+
+.app-alert-primary {
+  background: rgb(70, 82, 255);
+  color: white;
+}
+
+.app-btn {
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+  padding: 10px 20px;
+  margin: 5px 3px;
+  cursor: pointer;
+}
+
+.app-btn:hover {
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.7);
+  transform: scale(1.1);
+}
+.app-btn-primary {
+  background: rgb(57, 57, 255);
+  color: white;
+}
+
+.app-input-text {
+  border: none;
+  box-shadow: 0 5px 3px 0 rgba(0, 0, 0, 0.336);
+  border-bottom: 1px solid teal;
+  outline: none;
+  padding: 10px 1rem ;
+  margin: 1rem;
+}
