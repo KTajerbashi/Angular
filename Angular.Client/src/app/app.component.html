@@ -1,4 +1,10 @@
-<router-outlet />
+<div class="app-container">
+  <div class="app-container-content">
+    <app-navbar></app-navbar>
+    <hr />
+    <router-outlet />
+  </div>
+</div>
 
 <div class="app-container">
   <div class="app-container-content">
@@ -10,6 +16,7 @@
           {{ dateTime | date : "yyyy/MM/dd hh:mm:ss" }}
         </div>
       </mat-card-header>
+      <hr />
       <mat-card-content>
         <app-home></app-home>
         <app-about></app-about>
@@ -33,6 +40,7 @@
         <input type="checkbox" checked="{{ isDisable }}" />
         <br />
         <input
+          class="app-input-text"
           (keydown)="changeKeyDown($event)"
           type="text"
           [value]="isDisable"
@@ -41,8 +49,9 @@
       </mat-card-content>
       <hr />
       <mat-card-content>
-        <div>
-          <input (keypress)="printChangeValue($event)" class="app-input-text" />
+        <div style="text-align: center; margin: 10px">
+          <h6>Ng Model</h6>
+          <input [(ngModel)]="printValue" class="app-input-text" />
           <div class="app-alert app-alert-info">{{ printValue }}</div>
         </div>
       </mat-card-content>

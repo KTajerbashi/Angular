@@ -6,6 +6,8 @@ import { HomeComponent } from './components/pages/home/home.component';
 import { AboutComponent } from './components/pages/about/about.component';
 import { CommonModule } from '@angular/common';
 import { ReversPipe } from './pipes/revers.pipe';
+import { FormsModule } from '@angular/forms';
+import { NavbarComponent } from './components/shared/navbar/navbar.component';
 @Component({
   selector: 'app-root',
   imports: [
@@ -16,6 +18,8 @@ import { ReversPipe } from './pipes/revers.pipe';
     AboutComponent,
     CommonModule,
     ReversPipe,
+    FormsModule,
+    NavbarComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
@@ -45,7 +49,4 @@ export class AppComponent {
 
   //  Two Way Binding
   printValue: string = '';
-  printChangeValue = (e: any) => {
-    this.printValue = e.target.value;
-  };
 }

@@ -3,8 +3,6 @@
 html,
 body {
   height: 100%;
-}
-body {
   margin: 0;
   padding: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
@@ -20,6 +18,7 @@ body {
 .app-container-content {
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
   border: none;
+  padding: 1rem;
   border-radius: 1rem;
 }
 
@@ -67,6 +66,6 @@ body {
   box-shadow: 0 5px 3px 0 rgba(0, 0, 0, 0.336);
   border-bottom: 1px solid teal;
   outline: none;
-  padding: 10px 1rem ;
+  padding: 10px 1rem;
   margin: 1rem;
 }
