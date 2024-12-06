@@ -1,0 +1,56 @@
+<div class="app-container">
+  <div class="app-container-content">
+    <mat-card appearance="outlined">
+      <mat-card-header>
+        <mat-card-title>{{ title }}</mat-card-title>
+        <mat-card-subtitle>{{ info | lowercase }}</mat-card-subtitle>
+        <div class="app-float-right">
+          {{ dateTime | date : "yyyy/MM/dd hh:mm:ss" }}
+        </div>
+      </mat-card-header>
+      <hr />
+      <mat-card-content>
+        <app-home></app-home>
+        <app-about></app-about>
+      </mat-card-content>
+      <hr />
+      <mat-card-content>
+        <button (click)="isDisable = !isDisable" [disabled]="isDisable">
+          {{ isDisable ? "Disabled" : "Enable" }}
+        </button>
+
+        <br />
+        <button (click)="isDisable = !isDisable" [disabled]="!isDisable">
+          {{ !isDisable ? "Disabled" : "Enable" }}
+        </button>
+      </mat-card-content>
+      <hr />
+      <mat-card-content>
+        <span>[checked]</span> : <input type="checkbox" [checked]="isDisable" />
+        <br />
+        <span>checked</span> :
+        <input type="checkbox" checked="{{ isDisable }}" />
+        <br />
+        <input
+          class="app-input-text"
+          (keydown)="changeKeyDown($event)"
+          type="text"
+          [value]="isDisable"
+        />
+        <p class="app-alert app-alert-info">{{ eventBindingInput }}</p>
+      </mat-card-content>
+      <hr />
+      <mat-card-content>
+        <div style="text-align: center; margin: 10px">
+          <h6>Ng Model</h6>
+          <input [(ngModel)]="printValue" class="app-input-text" />
+          <div class="app-alert app-alert-info">{{ printValue }}</div>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button>Learn More ...</button>
+        <p>{{ "This is a Revers Setences..." | revers }}</p>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

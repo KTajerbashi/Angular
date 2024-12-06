@@ -1,0 +1,64 @@
+<div class="app-page-component">
+  <div class="app-page-component-content">
+    <div>
+      <button mat-button (click)="onSetAdminAccess()">Set Admin</button>
+      <button mat-button (click)="onRemoveAdminAccess()">Remove Admin</button>
+    </div>
+    <div>
+      <table class="app-table app-table-hover">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Family</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="dataList && dataList.length; else noData">
+          <tr *ngFor="let item of dataList; let index = index">
+            <td>{{ index + 1 }}</td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.family }}</td>
+            <td>{{ item.email }}</td>
+            <td>{{ item.phone }}</td>
+            <td>
+              <button
+                mat-button
+                [routerLink]="['/users/update', item.id]"
+                routerLinkActive="router-link-active"
+                class="app-color-warning"
+              >
+                Update
+              </button>
+              <button
+                mat-button
+                [routerLink]="['/users/delete', item.id]"
+                class="app-color-danger"
+              >
+                Delete
+              </button>
+              <button
+                mat-button
+                [routerLink]="['/users/read', item.id]"
+                routerLinkActive="router-link-active"
+                class="app-color-primary"
+              >
+                Read
+              </button>
+            </td>
+          </tr>
+        </tbody>
+        <ng-template #noData>
+          <tr>
+            <td colspan="6" class="text-center">No data available</td>
+          </tr>
+        </ng-template>
+      </table>
+    </div>
+
+    <!-- This is where child components will be displayed -->
+    <router-outlet></router-outlet>
+  </div>
+</div>
