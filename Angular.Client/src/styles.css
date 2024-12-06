@@ -12,7 +12,7 @@ body {
   padding: 0;
 }
 .app-page-component {
-  height: 80%;
+  height: 79%;
   padding: 1rem;
 }
 .app-page-component-content {
@@ -23,13 +23,12 @@ body {
   overflow: auto;
 }
 .app-container {
+  border-radius: 1rem;
   padding: 1rem;
 }
 .app-container-content {
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
   border: none;
   padding: 1rem;
-  border-radius: 1rem;
 }
 
 .app-alert {
@@ -70,6 +69,11 @@ body {
   background: rgb(57, 57, 255);
   color: white;
 }
+.app-bg-dark {
+  background: rgb(48, 48, 48) !important;
+  color: white;
+  box-shadow: 0px 8px 7px 0px rgba(0, 0, 0, 0.5) !important;
+}
 .app-input {
   width: 50%;
 }
@@ -82,7 +86,13 @@ body {
   padding: 10px 1rem;
   margin: 1rem;
 }
-
+.app-align-center {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: center;
+}
 /* ----------------------------------- */
 .app-color-white {
   color: white;
@@ -199,6 +209,29 @@ body {
 }
 
 /* ----------------------------------- */
+.app-title {
+  border-radius: 10px;
+  margin: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1px !important;
+}
+
+.app-title-primary {
+  background: #005485 !important;
+  color: rgb(255, 255, 255);
+}
+
+.app-title-danger {
+  background: #ac1717 !important;
+}
+.app-title-dark {
+  background: #1d1d1d !important;
+  color: rgb(255, 255, 255);
+}
+/* ----------------------------------- */
+/* ----------------------------------- */
 /* Custom scrollbar styles */
 
 /* Webkit-based browsers (Chrome, Safari, Opera) */
@@ -222,5 +255,35 @@ body {
 }
 
 /* ----------------------------------- */
+.app-pb-1 {
+  padding-bottom: 5px;
+}
+.app-pb-2 {
+  padding-bottom: 10px;
+}
+.app-pb-3 {
+  padding-bottom: 15px;
+}
+.app-pb-4 {
+  padding-bottom: 20px;
+}
+.app-pb-5 {
+  padding-bottom: 25px;
+}
+.app-mt-1 {
+  margin-top: 5px;
+}
+.app-mt-2 {
+  margin-top: 10px;
+}
+.app-mt-3 {
+  margin-top: 15px;
+}
+.app-mt-4 {
+  margin-top: 20px;
+}
+.app-mt-5 {
+  margin-top: 25px;
+}
 
 /* ----------------------------------- */

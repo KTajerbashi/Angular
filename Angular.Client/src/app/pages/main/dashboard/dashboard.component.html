@@ -1,1 +1,99 @@
-<p>dashboard works!</p>
+<div class="dashboard-container">
+  <div class="header">
+    <mat-card class="live-clock-card">
+      <mat-card-header class="app-align-center dashboard-text-underline">
+        <mat-card-title class="app-p-1">Live Clock</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <h3>{{ currentTime | date : "yyyy/MM/dd hh:mm:ss" }}</h3>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div class="cards-grid">
+    <mat-card class="dashboard-card">
+      <mat-card-header
+        class="app-title app-align-center app-title-bottom-border"
+      >
+        <mat-card-title>Card 1</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="app-mt-1">
+        <p>Content of Card 1</p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="dashboard-card">
+      <mat-card-header
+        class="app-title app-align-center app-title-bottom-border"
+      >
+        <mat-card-title>Card 2</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="app-mt-1">
+        <p>Content of Card 2</p>
+        <p>Content of Card 2</p>
+        <p>Content of Card 2</p>
+        <p>Content of Card 2</p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="dashboard-card">
+      <mat-card-header
+        class="app-align-center app-title app-title-bottom-border"
+      >
+        <mat-card-title>Card 3</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="app-mt-1">
+        <p>Content of Card 3</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="cards-grid">
+    <mat-card class="dashboard-card" appearance="outlined">
+      <mat-card-header class="app-align-center app-title-bottom-border">
+        <mat-card-title>Chihuahua</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="app-mt-5">
+        <p>{{ longText }}</p>
+      </mat-card-content>
+      <mat-card-footer class="example-card-footer">
+        <mat-chip-set aria-label="Chihuahua traits">
+          <mat-chip>charming</mat-chip>
+          <mat-chip>graceful</mat-chip>
+          <mat-chip>sassy</mat-chip>
+        </mat-chip-set>
+      </mat-card-footer>
+    </mat-card>
+
+    <mat-card class="dashboard-card" appearance="outlined">
+      <mat-card-header class="app-align-center app-title-bottom-border">
+        <mat-card-title>Chihuahua</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="app-mt-5">
+        <p>{{ longText }}</p>
+      </mat-card-content>
+      <mat-card-footer class="example-card-footer">
+        <mat-chip-set aria-label="Chihuahua traits">
+          <mat-chip>charming</mat-chip>
+          <mat-chip>graceful</mat-chip>
+          <mat-chip>sassy</mat-chip>
+        </mat-chip-set>
+      </mat-card-footer>
+    </mat-card>
+
+    <mat-card class="dashboard-card" appearance="outlined">
+      <mat-card-header class="app-align-center app-title-bottom-border">
+        <mat-card-title>Chihuahua</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="app-mt-5">
+        <p>{{ longText }}</p>
+      </mat-card-content>
+      <mat-card-footer class="example-card-footer">
+        <mat-chip-set aria-label="Chihuahua traits">
+          <mat-chip>charming</mat-chip>
+          <mat-chip>graceful</mat-chip>
+          <mat-chip>sassy</mat-chip>
+        </mat-chip-set>
+      </mat-card-footer>
+    </mat-card>
+  </div>
+</div>

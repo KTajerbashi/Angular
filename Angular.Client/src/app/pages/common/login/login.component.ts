@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import { NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -21,6 +22,7 @@ import { MatInputModule } from '@angular/material/input';
     FormsModule,
     MatButtonModule,
     MatIconModule,
+    NgIf,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
