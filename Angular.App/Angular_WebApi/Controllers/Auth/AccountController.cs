@@ -1,12 +1,12 @@
 ﻿using Angular_WebApi.Controllers.BaseControllers;
-using Microsoft.AspNetCore.Mvc;
+using MediatR;
 
 namespace Angular_WebApi.Controllers.Auth;
 
 public class AccountController : AuthController
 {
-    public override async Task<IActionResult> Index()
+    public AccountController(IMediator mediator) : base(mediator)
     {
-        return Ok("");
     }
+
 }

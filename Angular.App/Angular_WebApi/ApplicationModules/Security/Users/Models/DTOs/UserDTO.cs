@@ -1,4 +1,4 @@
-﻿using Angular_WebApi.Models.BaseModels;
+﻿using Angular_WebApi.ApplicationBases.Models;
 
 namespace Angular_WebApi.ApplicationModules.Security.Users.Models.DTOs;
 

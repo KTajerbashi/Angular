@@ -1,12 +1,11 @@
 ﻿using Angular_WebApi.Controllers.BaseControllers;
-using Microsoft.AspNetCore.Mvc;
+using MediatR;
 
 namespace Angular_WebApi.ApplicationModules.Security.Users.Contollers;
 
 public class UserReportController : AuthController
 {
-    public override async Task<IActionResult> Index()
+    public UserReportController(IMediator mediator) : base(mediator)
     {
-        return Ok("");
     }
 }

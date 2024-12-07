@@ -7,9 +7,24 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="Extensions.ObjectMappers.Abstractions" Version="1.0.0" />
+    <PackageReference Include="MediatR" Version="12.4.1" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.11" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.11" />
+    <PackageReference Include="Microsoft.Extensions.DependencyModel" Version="9.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ApplicationModules\Security\Users\Handlers\UserReport\Commands\" />
+    <Folder Include="ApplicationModules\Security\Users\Handlers\UserReport\Queries\" />
+    <Folder Include="ApplicationModules\Security\Users\Handlers\UserPrivilge\Commands\" />
+    <Folder Include="ApplicationModules\Security\Users\Handlers\UserPrivilge\Queries\" />
+    <Folder Include="ApplicationModules\Security\Users\Handlers\UserRoles\Commands\" />
+    <Folder Include="ApplicationModules\Security\Users\Handlers\UserRoles\Queries\" />
+    <Folder Include="ApplicationModules\Security\Users\Handlers\Users\Queries\" />
+    <Folder Include="Models\" />
   </ItemGroup>
 
 </Project>

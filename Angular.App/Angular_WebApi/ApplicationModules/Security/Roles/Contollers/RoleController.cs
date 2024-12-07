@@ -1,12 +1,11 @@
 ﻿using Angular_WebApi.Controllers.BaseControllers;
-using Microsoft.AspNetCore.Mvc;
+using MediatR;
 
 namespace Angular_WebApi.ApplicationModules.Security.Roles.Contollers;
 
 public class RoleController : AuthController
 {
-    public override async Task<IActionResult> Index()
+    public RoleController(IMediator mediator) : base(mediator)
     {
-        return Ok("");
     }
 }
