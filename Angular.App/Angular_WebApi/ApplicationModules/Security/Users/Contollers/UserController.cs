@@ -1,9 +1,9 @@
-﻿using Angular_WebApi.ContextDB;
+﻿using Angular_WebApi.ApplicationModules.Security.Users.Models.DTOs;
+using Angular_WebApi.ContextDB;
 using Angular_WebApi.Controllers.BaseControllers;
-using Angular_WebApi.Models.Security.User;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Angular_WebApi.Controllers.Security;
+namespace Angular_WebApi.ApplicationModules.Security.Users.Contollers;
 
 public class UserController : AuthController
 {

@@ -1,9 +1,9 @@
 ﻿using Angular_WebApi.Controllers.BaseControllers;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Angular_WebApi.Controllers.Privilege;
+namespace Angular_WebApi.ApplicationModules.Security.Roles.Contollers;
 
-public class UserPrivilgeController : AuthController
+public class RolePrivilgeController : AuthController
 {
     public override async Task<IActionResult> Index()
     {

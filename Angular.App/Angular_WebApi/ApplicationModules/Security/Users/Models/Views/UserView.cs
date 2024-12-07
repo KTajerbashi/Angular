@@ -1,10 +1,10 @@
 ﻿using Angular_WebApi.Models.BaseModels;
 
-namespace Angular_WebApi.Models.Security.User;
+namespace Angular_WebApi.ApplicationModules.Security.Users.Models.Views;
 
-public class UserDTO : BaseDTO
+public class UserView : BaseView
 {
-    public UserDTO()
+    public UserView()
     {
         var random = new Random();
         if (Id == 0)
