@@ -51,7 +51,10 @@ body {
   background: rgb(70, 82, 255);
   color: white;
 }
-
+.app-alert-warning{
+  background: rgb(170, 119, 9);
+  color: white;
+}
 .app-btn {
   border: none;
   border-radius: 10px;
@@ -285,5 +288,7 @@ body {
 .app-mt-5 {
   margin-top: 25px;
 }
-
+.app-mx-1{
+  margin: 5px;
+}
 /* ----------------------------------- */

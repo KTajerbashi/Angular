@@ -25,6 +25,7 @@ export class UserComponent implements OnInit {
         email: 'user1@mail.com',
         phone: '+1 5165 123 894',
         isActive: true,
+        
       },
       {
         id: 2,
