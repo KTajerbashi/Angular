@@ -1,8 +1,10 @@
 ﻿using Angular_WebApi.Middlewares.ExceptionHandler.Middleware;
+using Angular_WebApi.Providers.Application.DI;
 using Angular_WebApi.Providers.HttpContexts.DI;
 using Angular_WebApi.Providers.Identity.DI;
 using Angular_WebApi.Providers.Mapper.DI;
 using Angular_WebApi.Providers.MediatR.DI;
+using System.Reflection;
 
 namespace Angular_WebApi.ApplicationStarter.Extensions;
 
@@ -16,6 +18,7 @@ public static class StartApplicationServices
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
+
         // Add CORS policy
         builder.Services.AddCors(options =>
         {
@@ -26,6 +29,9 @@ public static class StartApplicationServices
         });
 
         builder.Services.AddCommonProviders();
+
+        builder.Services.AddRepositoriesAndServices(Assembly.GetExecutingAssembly());
+        builder.Services.AddDatabaseServices(configuration);
 
         //  Provider
         builder.Services.AddMapperProvider();
