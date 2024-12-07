@@ -1,6 +1,4 @@
-﻿using Angular_WebApi.ContextDB;
-
-namespace Angular_WebApi.ApplicationBases.Patterns;
+﻿namespace Angular_WebApi.ApplicationBases.Patterns;
 
 public interface IUnitOfWork
 {
@@ -8,33 +6,4 @@ public interface IUnitOfWork
     Task BeginTransactionAsync();
     Task CommitTransactionAsync();
     Task RollbackTransactionAsync();
-}
-
-public abstract class UnitOfWork<TContext> : IUnitOfWork
-    where TContext : BaseDatabaseContext
-{
-    protected TContext Context;
-    protected UnitOfWork(TContext context)
-    {
-        Context = context;
-    }
-    public async Task BeginTransactionAsync()
-    {
-        await Context.Database.BeginTransactionAsync();
-    }
-
-    public Task CommitTransactionAsync()
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task RollbackTransactionAsync()
-    {
-        throw new NotImplementedException();
-    }
-
-    public Task<int> SaveChangesAsync()
-    {
-        throw new NotImplementedException();
-    }
 }
