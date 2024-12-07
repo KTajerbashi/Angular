@@ -28,7 +28,7 @@ public static class ApplicationExtensions
     {
         services.AddDbContext<DatabaseContext>(option =>
         {
-            option.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+            option.UseSqlServer(configuration.GetConnectionString("ConnectionString"));
         });
 
        
