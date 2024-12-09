@@ -1,3 +1,13 @@
 .example-spacer {
   flex: 1 1 auto;
 }
+.app-page-component {
+  padding: 1rem;
+  margin: 0 0 3rem 0 !important;
+}
+.app-page-component-content {
+  box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.24);
+  padding: 1rem;
+  border-radius: 5px;
+  overflow: auto;
+}

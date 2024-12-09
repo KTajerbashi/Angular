@@ -2,33 +2,22 @@
 
 html,
 body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+
+  width: 100vw;
+  height: 100vh;
 }
 * {
   margin: 0;
   padding: 0;
 }
-.app-page-component {
-  height: 79%;
-  padding: 1rem;
-}
-.app-page-component-content {
-  box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.24);
-  padding: 1rem;
-  height: 100%;
-  border-radius: 5px;
-  overflow: auto;
-}
 .app-container {
-  border-radius: 1rem;
-  padding: 1rem;
+  margin: 1rem 0;
 }
 .app-container-content {
-  border: none;
-  padding: 1rem;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+  border-radius: 1rem;
+  padding: 0.5px;
 }
 
 .app-alert {
@@ -51,7 +40,7 @@ body {
   background: rgb(70, 82, 255);
   color: white;
 }
-.app-alert-warning{
+.app-alert-warning {
   background: rgb(170, 119, 9);
   color: white;
 }
@@ -239,22 +228,20 @@ body {
 
 /* Webkit-based browsers (Chrome, Safari, Opera) */
 ::-webkit-scrollbar {
-  width: 8px; /* Set the width of the scrollbar */
-  height: 8px; /* Set the height of the horizontal scrollbar */
+  width: 0px; /* Set the width of the scrollbar */
+  height: 0px; /* Set the height of the horizontal scrollbar */
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #0066ff52; /* Color of the scroll thumb */
-  border-radius: 10px; /* Rounded corners */
+  border-radius: 0px; /* Rounded corners */
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #000b6962; /* Color of the scroll thumb on hover */
 }
 
 ::-webkit-scrollbar-track {
   background: #f1f1f1; /* Background color of the track */
-  border-radius: 10px;
+  border-radius: 0px;
 }
 
 /* ----------------------------------- */
@@ -288,7 +275,7 @@ body {
 .app-mt-5 {
   margin-top: 25px;
 }
-.app-mx-1{
+.app-mx-1 {
   margin: 5px;
 }
 /* ----------------------------------- */

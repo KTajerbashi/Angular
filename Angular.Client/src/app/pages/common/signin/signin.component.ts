@@ -55,7 +55,7 @@ export class SigninComponent implements OnInit {
       const { username, password } = this.signinForm.value;
       // Here we are calling the login method from the AuthService
       if (username === 'admin' && password === 'admin123') {
-        this.authService.login(username);
+        this.authService.login(username, password);
         this.router.navigate(['/dashboard']);
       } else {
         alert('Invalid credentials');

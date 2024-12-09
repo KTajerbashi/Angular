@@ -1,54 +1,74 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { IUser } from '../../interfaces/models/IUser';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   private readonly TOKEN_KEY = 'token';
-  private isLoggedIn = false;
+  private readonly apiUrl = 'http://localhost:8000/users';
+  private readonly defaultExpireDays = 1; // Default token expiration in days
 
-  constructor(private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   /**
-   * Logs the user in by saving the token and other details in localStorage.
-   * @param username - The username or token for login.
+   * Logs the user in by validating the credentials and saving a token in localStorage.
+   * @param username - The username (or email) of the user.
+   * @param password - The password of the user.
+   * @returns Observable<boolean> - Emits true if login is successful, false otherwise.
    */
-  login(username: string): void {
-    if (username) {
-      const user: ITokenModel = {
-        token: username,
-        expireDate: this.calculateExpireDate(1), // Default to 1 day expiration
-        isLoggedIn: true,
-      };
-
-      this.isLoggedIn = true;
-      localStorage.setItem(this.TOKEN_KEY, JSON.stringify(user));
+  login(username: string, password: string): Observable<boolean> {
+    if (!username || !password) {
+      return new Observable((observer) => observer.next(false));
     }
+
+    return this.http.get<IUser[]>(this.apiUrl).pipe(
+      map((users) => {
+        const user = users.find(
+          (u) => u.username === username && u.password === password
+        );
+
+        if (user) {
+          const token: ITokenModel = {
+            token: JSON.stringify(user),
+            expireDate: this.calculateExpireDate(this.defaultExpireDays),
+            isLoggedIn: true,
+          };
+
+          // Save user info in localStorage for session persistence
+          localStorage.setItem(this.TOKEN_KEY, JSON.stringify(token));
+          return true;
+        }
+
+        return false;
+      })
+    );
   }
 
   /**
    * Logs the user out by clearing the token from localStorage and navigating to the login page.
    */
   logout(): void {
-    this.isLoggedIn = false;
     localStorage.removeItem(this.TOKEN_KEY);
     this.router.navigate(['/login']);
   }
 
   /**
-   * Checks if the user is authenticated by verifying the token and expiration date.
-   * @returns true if authenticated, false otherwise.
+   * Checks if the user is authenticated by verifying the token and its expiration date.
+   * @returns boolean - True if authenticated, false otherwise.
    */
   isAuthenticated(): boolean {
     const tokenData = this.getTokenData();
-    console.log(tokenData);
     if (tokenData && tokenData.isLoggedIn) {
       const isTokenExpired = new Date(tokenData.expireDate) < new Date();
       if (!isTokenExpired) {
         return true;
       } else {
-        this.logout(); // Logout if the token is expired
+        this.logout(); // Auto-logout if the token is expired
       }
     }
     return false;

@@ -1,9 +1,11 @@
 <div class="app-container">
-  <div class="app-container-content">
+  <div class="app-container">
     <router-outlet></router-outlet>
   </div>
-  <div class="app-container-content">
-    <button [routerLink]="['create']" mat-button color="primary">New User</button>
+  <div class="app-container">
+    <button [routerLink]="['create']" mat-button color="primary">
+      New User
+    </button>
     <table class="app-table app-table-hover">
       <thead>
         <tr>
@@ -51,5 +53,4 @@
       </tbody>
     </table>
   </div>
-
 </div>

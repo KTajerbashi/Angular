@@ -8,7 +8,7 @@ import { IApiResponse } from '../models/IApiResponse';
   providedIn: 'root', // No need for AppModule with standalone services
 })
 export class ApiService {
-  private baseUrl: string = 'https://localhost:7100/api'; // API base URL
+  private baseUrl: string = 'https://localhost:3000'; // API base URL
 
   constructor(private http: HttpClient) {}
 

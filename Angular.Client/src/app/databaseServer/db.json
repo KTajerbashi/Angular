@@ -1,0 +1,76 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Kamran",
+      "family": "Tajerbashi",
+      "email": "Tajerbashi@yahoo.com",
+      "phone": "+1 1501 456 879",
+      "username": "admin",
+      "password": "admin",
+      "isActive": true,
+      "roles": ["admin", "user"]
+    },
+    {
+      "id": 2,
+      "name": "Mohammad",
+      "family": "Javadi",
+      "email": "Javadi@yahoo.com",
+      "phone": "+1 1501 456 879",
+      "username": "user2",
+      "password": "user",
+      "isActive": true,
+      "roles": ["user"]
+    },
+    {
+      "id": 3,
+      "name": "User3",
+      "family": "User3",
+      "email": "User3@yahoo.com",
+      "phone": "+1 1501 456 879",
+      "username": "user3",
+      "password": "user",
+      "isActive": true,
+      "roles": ["user"]
+    },
+    {
+      "id": 4,
+      "name": "User4",
+      "family": "User4",
+      "email": "User@yahoo.com",
+      "phone": "+1 1501 456 879",
+      "username": "user4",
+      "password": "user",
+      "isActive": true,
+      "roles": ["user"]
+    },
+    {
+      "id": 5,
+      "name": "Main Admin 5",
+      "family": "Admin 5",
+      "email": "admin@yahoo.com",
+      "phone": "+1 1501 456 879",
+      "username": "user5",
+      "password": "user",
+      "isActive": true,
+      "roles": ["user"]
+    }
+  ],
+  "roles": [
+    {
+      "id": 1,
+      "name": "admin",
+      "key": "admin"
+    },
+    {
+      "id": 2,
+      "name": "user",
+      "key": "user"
+    },
+    {
+      "id": 3,
+      "name": "karshnas",
+      "key": "karshnas"
+    }
+  ]
+}

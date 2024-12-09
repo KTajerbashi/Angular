@@ -9,4 +9,5 @@
   box-shadow: 0px -2px 4px rgba(0, 0, 0, 0.575);
   background: rgb(62, 59, 190);
   color: white;
+  z-index: 1;
 }

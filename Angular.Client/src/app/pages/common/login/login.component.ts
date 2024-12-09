@@ -11,21 +11,19 @@ import { NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-login',
+  standalone: true, // Standalone component
   imports: [
     MatCardModule,
     MatFormFieldModule,
     FormsModule,
     MatButton,
     MatButtonModule,
-    MatFormFieldModule,
     MatInputModule,
-    FormsModule,
-    MatButtonModule,
     MatIconModule,
     NgIf,
   ],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css',
+  styleUrls: ['./login.component.css'], // Fixed `styleUrl` to `styleUrls`
 })
 export class LoginComponent {
   username: string = '';
@@ -35,13 +33,26 @@ export class LoginComponent {
 
   login() {
     if (this.username && this.password) {
-      // Perform authentication logic (mocked for now)
-      this.authService.login(this.username);
-      this.router.navigate(['/dashboard']);
+      this.authService.login(this.username, this.password).subscribe(
+        (isLoggedIn) => {
+          console.log('Login : ', isLoggedIn);
+          if (isLoggedIn) {
+            console.log('Login successful');
+            this.router.navigate(['/dashboard']); // Navigate to dashboard on success
+          } else {
+            alert('Invalid credentials');
+          }
+        },
+        (error) => {
+          console.error('Error during login:', error);
+          alert('An error occurred. Please try again later.');
+        }
+      );
     } else {
       alert('Please enter valid credentials');
     }
   }
+
   navigateToSignup() {
     this.router.navigate(['/signin']);
   }
