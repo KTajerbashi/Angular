@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { AuthService } from '../../../services/security/auth.service';
 import { Router } from '@angular/router';
@@ -25,11 +25,15 @@ import { NgFor, NgIf } from '@angular/common';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'], // Fixed `styleUrl` to `styleUrls`
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   username: string = '';
   password: string = '';
 
   constructor(private authService: AuthService, private router: Router) {}
+
+  ngOnInit(): void {
+    localStorage.clear();
+  }
 
   login() {
     if (this.username && this.password) {

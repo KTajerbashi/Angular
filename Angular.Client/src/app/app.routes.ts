@@ -14,6 +14,7 @@ import { UserReadComponent } from './pages/user/user-read/user-read.component';
 import { UserDeleteComponent } from './pages/user/user-delete/user-delete.component';
 import { PanelComponent } from './pages/admin/panel/panel.component';
 import { ProfileComponent } from './pages/admin/profile/profile.component';
+import { InternalServerComponent } from './pages/common/internal-server/internal-server.component';
 export const routes: Routes = [
   {
     path: '',
@@ -29,7 +30,10 @@ export const routes: Routes = [
     component: DashboardLayoutComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: 'dashboard', component: DashboardComponent },
+      {
+        path: 'dashboard',
+        component: DashboardComponent,
+      },
       {
         path: 'admin',
         component: PanelComponent,
@@ -46,6 +50,7 @@ export const routes: Routes = [
           { path: 'delete/:id', component: UserDeleteComponent },
         ],
       },
+      { path: 'internalServer', component: InternalServerComponent },
       { path: '**', component: NotFoundComponent },
     ],
   },
