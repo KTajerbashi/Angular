@@ -56,7 +56,23 @@ export class AuthService {
     localStorage.removeItem(this.TOKEN_KEY);
     this.router.navigate(['/login']);
   }
-
+  currentUserInfo = (): IUser => {
+    let infoLocal = localStorage.getItem(this.TOKEN_KEY) ?? '';
+    let infoModel = JSON.parse(infoLocal);
+    let tokenModel = JSON.parse(infoModel.token);
+    console.log('Current Info : ', tokenModel);
+    let info: IUser = {
+      id: tokenModel.id,
+      name: tokenModel.name,
+      family: tokenModel.family,
+      email: tokenModel.email,
+      username: tokenModel.username,
+      password: tokenModel.password,
+      isActive: true,
+      phone: tokenModel.phone,
+    };
+    return info;
+  };
   /**
    * Checks if the user is authenticated by verifying the token and its expiration date.
    * @returns boolean - True if authenticated, false otherwise.

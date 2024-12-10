@@ -15,9 +15,10 @@ body {
   margin: 1rem 0;
 }
 .app-container-content {
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
-  border-radius: 1rem;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
+  border-radius: 5px;
   padding: 0.5rem;
+  margin: 15px 5px;
 }
 
 .app-alert {
@@ -245,6 +246,21 @@ body {
 }
 
 /* ----------------------------------- */
+.app-p-1 {
+  padding: 5px;
+}
+.app-p-2 {
+  padding: 10px;
+}
+.app-p-3 {
+  padding: 15px;
+}
+.app-p-4 {
+  padding: 20px;
+}
+.app-p-5 {
+  padding: 25px;
+}
 .app-pb-1 {
   padding-bottom: 5px;
 }

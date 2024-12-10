@@ -1,3 +1,5 @@
 json-server --watch db.json
 
 json-server --watch db.json --port 8000
+
+json-server --watch src/app/databaseServer/db.json --port 8000

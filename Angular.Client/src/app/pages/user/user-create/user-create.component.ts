@@ -9,9 +9,7 @@ import { MatInput } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { IUser } from '../../../interfaces/models/IUser';
 import { FormsModule } from '@angular/forms';
-import { convertCompilerOptionsFromJson } from 'typescript';
 import { RouterLink } from '@angular/router';
-import { NgIf } from '@angular/common';
 @Component({
   selector: 'app-user-create',
   imports: [
@@ -24,7 +22,6 @@ import { NgIf } from '@angular/common';
     MatButtonModule,
     FormsModule,
     RouterLink,
-    NgIf,
   ],
   templateUrl: './user-create.component.html',
   styleUrl: './user-create.component.css',
@@ -42,6 +39,7 @@ export class UserCreateComponent {
   onSubmit = (form: any) => {
     if (form.valid) {
       console.log('Submit', this._formModel);
+      alert(JSON.stringify(this._formModel));
     } else {
       console.log('Model is Not Valid ...');
     }

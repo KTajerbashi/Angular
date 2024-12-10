@@ -39,7 +39,7 @@
       rgb(98, 0, 255),
       rgb(22, 0, 75)
     );
-    border: 3px solid white;
+    border: 1px solid white;
   }
 
   .cards-grid {
@@ -52,14 +52,15 @@
 
   .dashboard-card {
     background-color: #ffffff;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     margin: 1rem 0;
+    border-radius: 1rem;
   }
 
   .dashboard-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 8px 16px rgb(0, 0, 0) !important;
+    cursor: pointer;
   }
 }
 .dashboard-text-underline {
@@ -78,6 +79,9 @@
   .cards-grid {
     grid-template-columns: 1fr;
   }
+}
+.app-title {
+  border-radius: 1rem;
 }
 .app-title-bottom-border {
   border-bottom: 3px solid rgb(54, 0, 180);
@@ -125,4 +129,14 @@
       rgb(22, 0, 75)
     );
   }
+}
+
+.app-shadow-danger {
+  box-shadow: 0 0 10px 1px rgb(255, 11, 11) !important;
+}
+.app-shadow-success {
+  box-shadow: 0 0 10px 1px rgb(0, 255, 76) !important;
+}
+.app-shadow-primary {
+  box-shadow: 0 0 10px 1px rgb(0, 81, 255) !important;
 }

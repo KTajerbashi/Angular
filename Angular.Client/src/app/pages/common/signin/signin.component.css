@@ -2,16 +2,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  background-color: #f5f5f5;
 }
 
 .signin-card {
   width: 100%;
   max-width: 400px;
   padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background-color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+.signin-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0);
 }
 
 .full-width {
@@ -22,4 +22,12 @@
   display: flex;
   justify-content: center;
   margin-top: 20px;
+}
+
+.app-title {
+  background: linear-gradient(45deg, rgb(41, 5, 71), rgb(1, 0, 77));
+  color: white;
+  padding: 1rem !important;
+  font-size: 1.5rem;
+  font-family: "Courier New", Courier, monospace;
 }

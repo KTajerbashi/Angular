@@ -7,8 +7,8 @@
       (ngSubmit)="onSubmit(createUserForm)"
     >
       <mat-card>
-        <mat-card-content>
-          <mat-form-field class="full-width app-mx-1">
+        <mat-card-content class="app-form-container">
+          <mat-form-field class="full-width app-p-1">
             <mat-label>Name</mat-label>
             <input
               required
@@ -19,11 +19,11 @@
               type="text"
               matInput
             />
-            <div class="app-color-danger" *ngIf="name.invalid && name.touched">
+            <!-- <div class="app-color-danger" *ngIf="name.invalid && name.touched">
               Name Is Required ...!
-            </div>
+            </div> -->
           </mat-form-field>
-          <mat-form-field class="full-width app-mx-1">
+          <mat-form-field class="full-width app-p-1">
             <mat-label>Family</mat-label>
             <input
               matInput
@@ -34,14 +34,14 @@
               placeholder="Family"
               type="text"
             />
-            <div
+            <!-- <div
               class="app-color-danger"
               *ngIf="family.invalid && family.touched"
             >
               Family Is Required ...!
-            </div>
+            </div> -->
           </mat-form-field>
-          <mat-form-field class="full-width app-mx-1">
+          <mat-form-field class="full-width app-p-1">
             <mat-label>Email</mat-label>
             <input
               [(ngModel)]="_formModel.email"
@@ -52,14 +52,14 @@
               name="email"
               type="email"
             />
-            <div
+            <!-- <div
               class="app-color-danger"
               *ngIf="email.invalid && email.touched"
             >
               Email Is Required ...!
-            </div>
+            </div> -->
           </mat-form-field>
-          <mat-form-field class="full-width app-mx-1">
+          <mat-form-field class="full-width app-p-1">
             <mat-label>Phone</mat-label>
             <input
               required
@@ -70,14 +70,14 @@
               placeholder="Phone"
               type="text"
             />
-            <div
+            <!-- <div
               class="app-color-danger"
               *ngIf="phone.invalid && phone.touched"
             >
               Phone Is Required ...!
-            </div>
+            </div> -->
           </mat-form-field>
-          <mat-form-field class="full-width app-mx-1">
+          <mat-form-field class="full-width app-p-1">
             <mat-label>Password</mat-label>
             <input
               [(ngModel)]="_formModel.password"
@@ -88,12 +88,12 @@
               placeholder="Password"
               type="password"
             />
-            <div
+            <!-- <div
               class="app-color-danger"
               *ngIf="password.invalid && password.touched"
             >
               Password Is Required ...!
-            </div>
+            </div> -->
           </mat-form-field>
         </mat-card-content>
         <mat-card-actions>

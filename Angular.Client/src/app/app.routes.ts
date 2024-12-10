@@ -15,6 +15,8 @@ import { UserDeleteComponent } from './pages/user/user-delete/user-delete.compon
 import { PanelComponent } from './pages/admin/panel/panel.component';
 import { ProfileComponent } from './pages/admin/profile/profile.component';
 import { InternalServerComponent } from './pages/common/internal-server/internal-server.component';
+import { UserProfileComponent } from './pages/user/user-profile/user-profile.component';
+import { ServiceExampleComponent } from './pages/exmaples/service-example/service-example.component';
 export const routes: Routes = [
   {
     path: '',
@@ -40,6 +42,8 @@ export const routes: Routes = [
         children: [{ path: 'profile', component: ProfileComponent }],
       },
       { path: 'about', component: AboutComponent },
+      { path: 'profile', component: UserProfileComponent },
+      { path: 'example-service', component: ServiceExampleComponent },
       {
         path: 'users',
         component: UserComponent,
