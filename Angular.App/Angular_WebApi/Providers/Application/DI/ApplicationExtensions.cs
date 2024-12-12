@@ -18,9 +18,6 @@ public static class ApplicationExtensions
             .AddClasses(classes => classes.AssignableTo(typeof(IUnitOfWork))) // Scan for interfaces that implement IBaseRepository<,>
             .AsImplementedInterfaces() // Register the class as its implemented interfaces
             .WithTransientLifetime()); // Set the desired lifetime (Transient in this case)
-
-     
-
         return services;
     }
 

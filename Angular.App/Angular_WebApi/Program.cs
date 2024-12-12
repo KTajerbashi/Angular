@@ -4,8 +4,8 @@ using Angular_WebApi.ApplicationStarter.Extensions;
 
 ApplicationStart.Start(() =>
 {
-    var builder = WebApplication.CreateBuilder(args);
-    builder
+    WebApplication
+    .CreateBuilder(args)
     .AddApplicationServices()
     .UseApplicationPipline()
     .Run();
