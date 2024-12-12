@@ -1,76 +1,119 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { Observable, of, throwError } from 'rxjs';
+import { catchError, concatMap, map, retry, tap } from 'rxjs/operators';
 import { IApiResponse } from '../models/IApiResponse';
 
 @Injectable({
-  providedIn: 'root', // No need for AppModule with standalone services
+  providedIn: 'root', // Provides the service at the root level
 })
 export class ApiService {
-  private baseUrl: string = 'https://localhost:3000'; // API base URL
+  private readonly baseUrl: string = 'http://localhost:8000'; // Base URL for API calls
 
   constructor(private http: HttpClient) {}
 
+  /**
+   * Generic GET method
+   * @param endpoint - API endpoint
+   * @returns Observable of type IApiResponse<T>
+   */
   get<T>(endpoint: string): Observable<IApiResponse<T>> {
-    return this.http
-      .get<IApiResponse<T>>(`${this.baseUrl}/${endpoint}`)
-      .pipe(catchError(this.handleError));
+    let result = this.http.get<T>(this.getFullUrl(endpoint)).pipe(
+      map((item) => {
+        return {
+          data: item,
+          success: true,
+          message: 'Success',
+          error: null,
+          token: 'Tajerbashi',
+        };
+      }),
+      catchError(this.handleError)
+    );
+    return result;
   }
 
+  /**
+   * Generic POST method
+   * @param endpoint - API endpoint
+   * @param data - Data to be sent in the request body
+   * @returns Observable of type IApiResponse<T>
+   */
   post<T>(endpoint: string, data: any): Observable<IApiResponse<T>> {
     return this.http
-      .post<IApiResponse<T>>(`${this.baseUrl}/${endpoint}`, data)
+      .post<IApiResponse<T>>(this.getFullUrl(endpoint), data)
       .pipe(retry(1), catchError(this.handleError));
   }
 
+  /**
+   * Generic DELETE method
+   * @param endpoint - API endpoint
+   * @param id - ID of the resource to delete
+   * @returns Observable of type IApiResponse<T>
+   */
   delete<T>(endpoint: string, id: number): Observable<IApiResponse<T>> {
     return this.http
-      .delete<IApiResponse<T>>(`${this.baseUrl}/${endpoint}/${id}`)
+      .delete<IApiResponse<T>>(this.getFullUrl(`${endpoint}/${id}`))
       .pipe(retry(1), catchError(this.handleError));
   }
 
+  /**
+   * Generic PUT method
+   * @param endpoint - API endpoint
+   * @param data - Data to be updated
+   * @returns Observable of type IApiResponse<T>
+   */
   put<T>(endpoint: string, data: any): Observable<IApiResponse<T>> {
     return this.http
-      .put<IApiResponse<T>>(`${this.baseUrl}/${endpoint}/${data.id}`, data)
+      .put<IApiResponse<T>>(this.getFullUrl(`${endpoint}/${data.id}`), data)
       .pipe(retry(1), catchError(this.handleError));
   }
 
-  // Add more methods like PUT and DELETE as needed
+  /**
+   * Constructs the full API URL
+   * @param endpoint - API endpoint
+   * @returns Full API URL
+   */
+  private getFullUrl(endpoint: string): string {
+    return `${this.baseUrl}/${endpoint}`;
+  }
 
-  // Enhanced error handling method
-  private handleError(error: HttpErrorResponse) {
+  /**
+   * Handles HTTP errors
+   * @param error - HttpErrorResponse
+   * @returns Observable that throws a user-friendly error message
+   */
+  private handleError(error: HttpErrorResponse): Observable<never> {
     let errorMessage = 'An unknown error occurred!';
-
     if (error.status === 0) {
-      // A client-side or network error occurred.
-      errorMessage = `Network error occurred. Please check your internet connection or try again later.`;
+      // Client-side or network error
+      errorMessage = 'Network error occurred. Please check your connection.';
     } else {
-      // Backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong.
-      switch (error.status) {
-        case 400:
-          errorMessage = 'Bad Request';
-          break;
-        case 401:
-          errorMessage = 'Unauthorized: Please log in again.';
-          break;
-        case 403:
-          errorMessage =
-            'Forbidden: You don’t have permission to access this resource.';
-          break;
-        case 404:
-          errorMessage = `Not Found: The requested resource could not be found.`;
-          break;
-        case 500:
-          errorMessage = 'Internal Server Error';
-          break;
-        default:
-          errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-          break;
-      }
+      // Server-side error
+      errorMessage = this.getErrorMessage(error);
     }
+    return throwError(errorMessage);
+  }
 
-    return throwError(errorMessage); // Throw an observable with a user-facing error message
+  /**
+   * Generates user-friendly error messages
+   * @param error - HttpErrorResponse
+   * @returns Error message string
+   */
+  private getErrorMessage(error: HttpErrorResponse): string {
+    switch (error.status) {
+      case 400:
+        return 'Bad Request';
+      case 401:
+        return 'Unauthorized: Please log in again.';
+      case 403:
+        return 'Forbidden: You don’t have permission to access this resource.';
+      case 404:
+        return 'Not Found: The requested resource could not be found.';
+      case 500:
+        return 'Internal Server Error';
+      default:
+        return `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
   }
 }

@@ -60,7 +60,6 @@ export class AuthService {
     let infoLocal = localStorage.getItem(this.TOKEN_KEY) ?? '';
     let infoModel = JSON.parse(infoLocal);
     let tokenModel = JSON.parse(infoModel.token);
-    console.log('Current Info : ', tokenModel);
     let info: IUser = {
       id: tokenModel.id,
       name: tokenModel.name,
