@@ -1,0 +1,46 @@
+<table class="app-table app-table-hover">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Family</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>IsActive</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of dataList; let index = index">
+      <td>{{ index + 1 }}</td>
+      <td>{{ user.name }}</td>
+      <td>{{ user.family }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.phoneNumber }}</td>
+      <td>{{ user.isActive }}</td>
+      <td>
+        <button
+          class="app-color-primary"
+          mat-button
+          [routerLink]="['/users/read/' + user.id]"
+        >
+          Read
+        </button>
+        <button
+          class="app-color-warning"
+          mat-button
+          [routerLink]="['/users/update/' + user.id]"
+        >
+          Update
+        </button>
+        <button
+          class="app-color-danger"
+          mat-button
+          [routerLink]="['/users/delete/' + user.id]"
+        >
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

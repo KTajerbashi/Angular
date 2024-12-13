@@ -8,14 +8,14 @@ import { AuthGuard } from './guards/auth.guard';
 import { AboutComponent } from './pages/main/about/about.component';
 import { NotFoundComponent } from './pages/common/not-found/not-found.component';
 import { UserComponent } from './pages/user/user.component';
-import { UserCreateComponent } from './pages/user/user-create/user-create.component';
-import { UserUpdateComponent } from './pages/user/user-update/user-update.component';
-import { UserReadComponent } from './pages/user/user-read/user-read.component';
-import { UserDeleteComponent } from './pages/user/user-delete/user-delete.component';
+import { UserCreateComponent } from './pages/user/children/user-create/user-create.component';
+import { UserUpdateComponent } from './pages/user/children/user-update/user-update.component';
+import { UserReadComponent } from './pages/user/children/user-read/user-read.component';
+import { UserDeleteComponent } from './pages/user/children/user-delete/user-delete.component';
 import { PanelComponent } from './pages/admin/panel/panel.component';
 import { ProfileComponent } from './pages/admin/profile/profile.component';
 import { InternalServerComponent } from './pages/common/internal-server/internal-server.component';
-import { UserProfileComponent } from './pages/user/user-profile/user-profile.component';
+import { UserProfileComponent } from './pages/user/children/user-profile/user-profile.component';
 import { ServiceExampleComponent } from './pages/exmaples/service-example/service-example.component';
 export const routes: Routes = [
   {

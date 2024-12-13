@@ -1,0 +1,19 @@
+.full-width {
+  width: 300px;
+}
+.app-container {
+  padding: 1rem !important;
+}
+
+.app-form-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.app-container-user-create {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
