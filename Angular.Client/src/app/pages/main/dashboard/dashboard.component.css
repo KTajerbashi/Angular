@@ -44,10 +44,11 @@
 
   .cards-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 3fr));
     gap: 20px;
     width: 100%;
     max-width: 1200px;
+    justify-content: center;
   }
 
   .dashboard-card {
@@ -139,4 +140,9 @@
 }
 .app-shadow-primary {
   box-shadow: 0 0 10px 1px rgb(0, 81, 255) !important;
+}
+.app-mat-chip:hover {
+  cursor: pointer;
+  background: rgb(131, 131, 131) !important;
+  color: #ffffff !important;
 }

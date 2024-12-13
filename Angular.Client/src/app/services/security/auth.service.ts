@@ -68,7 +68,8 @@ export class AuthService {
       username: tokenModel.username,
       password: tokenModel.password,
       isActive: true,
-      phone: tokenModel.phone,
+      phoneNumber: tokenModel.phone,
+      roleId: 1,
     };
     return info;
   };

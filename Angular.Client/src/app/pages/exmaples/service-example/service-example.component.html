@@ -9,7 +9,7 @@
   <div class="app-container-content">
     <div class="app-alert app-alert-primary">Create New User</div>
     <div>
-      <form>
+      <form (submit)="onSubmite()">
         <mat-card>
           <mat-card-content>
             <mat-form-field class="full-width app-p-1">
@@ -49,13 +49,23 @@
               <mat-label>Phone</mat-label>
               <input
                 required
-                [(ngModel)]="userModel.phone"
-                name="phone"
-                placeholder="Phone ... "
+                [(ngModel)]="userModel.phoneNumber"
+                name="phoneNumber"
+                placeholder="Phone Number ... "
                 type="text"
                 matInput
               />
             </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Favorite food</mat-label>
+              <mat-select [(ngModel)]="userModel.roleId" name="roleId">
+                @for (role of roles; track role) {
+                <mat-option [value]="role.id">{{ role.title }}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+
             <mat-form-field class="full-width app-p-1">
               <mat-label>Username</mat-label>
               <input
@@ -80,7 +90,7 @@
               />
             </mat-form-field>
           </mat-card-content>
-          <mat-card-actions>
+          <mat-card-actions class="app-flex">
             <button mat-button color="primary">Create</button>
             <button mat-button color="accent">Update</button>
           </mat-card-actions>
@@ -90,6 +100,9 @@
   </div>
   <div class="app-container-content">
     <table class="app-table app-table-hover">
+      <caption>
+        User Data
+      </caption>
       <thead>
         <tr>
           <th>#</th>
@@ -106,7 +119,35 @@
           <td>{{ item.name }}</td>
           <td>{{ item.family }}</td>
           <td>{{ item.email }}</td>
-          <td>{{ item.phone }}</td>
+          <td>{{ item.phoneNumber }}</td>
+          <td>{{ item.username }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="app-container-content">
+    <table class="app-table app-table-hover">
+      <caption>
+        User Data
+      </caption>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Family</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Username</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of users; let index = index">
+          <td>{{ index + 1 }}</td>
+          <td>{{ item.name }}</td>
+          <td>{{ item.family }}</td>
+          <td>{{ item.email }}</td>
+          <td>{{ item.phoneNumber }}</td>
           <td>{{ item.username }}</td>
         </tr>
       </tbody>

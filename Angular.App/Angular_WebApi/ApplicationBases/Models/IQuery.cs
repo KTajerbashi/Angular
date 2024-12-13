@@ -6,7 +6,6 @@ public interface IQuery<TModel> : IRequest<TModel>
 {
 }
 public abstract class Query<TModel> : IQuery<TModel>
-    where TModel : BaseView
 {
 }
 

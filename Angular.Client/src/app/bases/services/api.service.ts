@@ -1,16 +1,22 @@
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, of, throwError } from 'rxjs';
-import { catchError, concatMap, map, retry, tap } from 'rxjs/operators';
+import { catchError, Observable, of, retry, throwError } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 import { IApiResponse } from '../models/IApiResponse';
 
 @Injectable({
   providedIn: 'root', // Provides the service at the root level
 })
 export class ApiService {
-  private readonly baseUrl: string = 'http://localhost:8000'; // Base URL for API calls
+  // private readonly baseUrl: string = 'http://localhost:8000'; // Base URL for API calls
+  private readonly baseUrl: string = 'https://localhost:7100/api/'; // Base URL for API calls
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private toastr: ToastrService,
+    private snackBar: MatSnackBar
+  ) {}
 
   /**
    * Generic GET method
@@ -18,19 +24,9 @@ export class ApiService {
    * @returns Observable of type IApiResponse<T>
    */
   get<T>(endpoint: string): Observable<IApiResponse<T>> {
-    let result = this.http.get<T>(this.getFullUrl(endpoint)).pipe(
-      map((item) => {
-        return {
-          data: item,
-          success: true,
-          message: 'Success',
-          error: null,
-          token: 'Tajerbashi',
-        };
-      }),
-      catchError(this.handleError)
-    );
-    return result;
+    return this.http
+      .get<IApiResponse<T>>(this.getFullUrl(endpoint))
+      .pipe(catchError(this.handleError));
   }
 
   /**
@@ -75,7 +71,7 @@ export class ApiService {
    * @returns Full API URL
    */
   private getFullUrl(endpoint: string): string {
-    return `${this.baseUrl}/${endpoint}`;
+    return `${this.baseUrl}${endpoint}`;
   }
 
   /**
@@ -90,30 +86,22 @@ export class ApiService {
       errorMessage = 'Network error occurred. Please check your connection.';
     } else {
       // Server-side error
-      errorMessage = this.getErrorMessage(error);
+      this.showAlert(error.error.message);
     }
     return throwError(errorMessage);
   }
 
-  /**
-   * Generates user-friendly error messages
-   * @param error - HttpErrorResponse
-   * @returns Error message string
-   */
-  private getErrorMessage(error: HttpErrorResponse): string {
-    switch (error.status) {
-      case 400:
-        return 'Bad Request';
-      case 401:
-        return 'Unauthorized: Please log in again.';
-      case 403:
-        return 'Forbidden: You don’t have permission to access this resource.';
-      case 404:
-        return 'Not Found: The requested resource could not be found.';
-      case 500:
-        return 'Internal Server Error';
-      default:
-        return `Error Code: ${error.status}\nMessage: ${error.message}`;
-    }
-  }
+  showAlert = (message: string) => {
+    // Show a toast notification
+    this.toastr.error(message, 'Error', {
+      closeButton: true,
+      progressBar: true,
+    });
+
+    this.snackBar.open(message, 'Close', {
+      duration: 5000,
+      horizontalPosition: 'center', // 'start' | 'center' | 'end' | 'left' | 'right'
+      verticalPosition: 'top', // 'top' | 'bottom'
+    });
+  };
 }

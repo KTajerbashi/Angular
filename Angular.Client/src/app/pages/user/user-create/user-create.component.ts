@@ -32,7 +32,7 @@ export class UserCreateComponent {
     name: '',
     family: '',
     email: '',
-    phone: '',
+    phoneNumber: '',
     password: '',
     isActive: false,
   };

@@ -22,15 +22,20 @@ public static class StartApplicationServices
         // Add CORS policy
         builder.Services.AddCors(options =>
         {
-            options.AddPolicy("AllowAngularApp",
-                policy => policy.WithOrigins("http://localhost:4200")
-                                .AllowAnyHeader()
-                                .AllowAnyMethod());
+            options.AddPolicy("AllowAngularApp", policy =>
+            {
+                policy.WithOrigins("http://localhost:4200") // Angular's development server
+                      .AllowAnyMethod()
+                      .AllowAnyHeader();
+            });
         });
+
+        builder.Services.AddIdentityServices();
 
         builder.Services.AddCommonProviders();
 
         builder.Services.AddRepositoriesAndServices(Assembly.GetExecutingAssembly());
+        
         builder.Services.AddDatabaseServices(configuration);
 
         //  Provider
@@ -55,6 +60,8 @@ public static class StartApplicationServices
         }
 
         app.UseMiddleware<ExceptionHandlerMiddleware>();
+
+        app.UseIdentity();
 
         app.UseCors("AllowAngularApp");
 

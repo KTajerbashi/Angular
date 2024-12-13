@@ -23,16 +23,15 @@ export class UserComponent implements OnInit {
         name: 'User 1',
         family: 'Family 1',
         email: 'user1@mail.com',
-        phone: '+1 5165 123 894',
+        phoneNumber: '+1 5165 123 894',
         isActive: true,
-        
       },
       {
         id: 2,
         name: 'User 2',
         family: 'Family 2',
         email: 'user2@mail.com',
-        phone: '+1 5165 123 894',
+        phoneNumber: '+1 5165 123 894',
         isActive: true,
       },
       {
@@ -40,7 +39,7 @@ export class UserComponent implements OnInit {
         name: 'User 3',
         family: 'Family 3',
         email: 'user3@mail.com',
-        phone: '+1 5165 123 894',
+        phoneNumber: '+1 5165 123 894',
         isActive: true,
       },
       {
@@ -48,7 +47,7 @@ export class UserComponent implements OnInit {
         name: 'User 4',
         family: 'Family 4',
         email: 'user4@mail.com',
-        phone: '+1 5165 123 894',
+        phoneNumber: '+1 5165 123 894',
         isActive: true,
       },
       {
@@ -56,7 +55,7 @@ export class UserComponent implements OnInit {
         name: 'User 5',
         family: 'Family 5',
         email: 'user5@mail.com',
-        phone: '+1 5165 123 894',
+        phoneNumber: '+1 5165 123 894',
         isActive: true,
       },
       {
@@ -64,7 +63,7 @@ export class UserComponent implements OnInit {
         name: 'User 6',
         family: 'Family 6',
         email: 'user6@mail.com',
-        phone: '+1 5165 123 894',
+        phoneNumber: '+1 5165 123 894',
         isActive: true,
       },
       {
@@ -72,7 +71,7 @@ export class UserComponent implements OnInit {
         name: 'User 7',
         family: 'Family 7',
         email: 'user7@mail.com',
-        phone: '+1 5165 123 894',
+        phoneNumber: '+1 5165 123 894',
         isActive: true,
       },
       {
@@ -80,7 +79,7 @@ export class UserComponent implements OnInit {
         name: 'User 8',
         family: 'Family 8',
         email: 'user8@mail.com',
-        phone: '+1 5165 123 894',
+        phoneNumber: '+1 5165 123 894',
         isActive: true,
       },
       {
@@ -88,7 +87,7 @@ export class UserComponent implements OnInit {
         name: 'User 9',
         family: 'Family 9',
         email: 'user9@mail.com',
-        phone: '+1 5165 123 894',
+        phoneNumber: '+1 5165 123 894',
         isActive: true,
       },
     ];

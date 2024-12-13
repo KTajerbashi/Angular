@@ -9,8 +9,8 @@ public interface IBaseEntity<TId>
 public abstract class BaseEntity<TId> : IBaseEntity<TId>
 {
     public TId Id { get; set; }
-    public bool IsDeleted { get; set; }
-    public bool IsActive { get; set; }
+    public bool IsDeleted { get; set; } = false;
+    public bool IsActive { get; set; } = true;
 }
 
 public abstract class BaseEntity : BaseEntity<long>
@@ -19,5 +19,10 @@ public abstract class BaseEntity : BaseEntity<long>
     {
         IsActive = false;
         IsDeleted = true;
+    }
+    public void UnDelete()
+    {
+        IsActive = true;
+        IsDeleted = false;
     }
 }

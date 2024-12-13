@@ -26,6 +26,8 @@ public abstract class BaseRepository<TEntity, TId>
     /// <returns>The ID of the created entity.</returns>
     public async Task<TId> CreateAsync(TEntity entity, CancellationToken token)
     {
+        entity.IsActive = true;
+        entity.IsDeleted = true;
         var result = await _dbSet.AddAsync(entity, token);
         await Context.SaveChangesAsync(token);
         return result.Entity.Id; // Assuming `Id` is the TId property

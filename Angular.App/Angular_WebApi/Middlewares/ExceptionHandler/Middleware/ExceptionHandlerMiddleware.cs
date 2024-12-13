@@ -1,4 +1,5 @@
-﻿using Angular_WebApi.Middlewares.ExceptionHandler.Exceptions;
+﻿using Angular_WebApi.Exceptions;
+using Angular_WebApi.Middlewares.ExceptionHandler.Exceptions;
 using System.Net;
 using System.Text.Json;
 
@@ -50,6 +51,11 @@ public class ExceptionHandlerMiddleware
                 message = exception.Message;
                 break;
 
+            case IdentityLogicException:
+                statusCode = (int)HttpStatusCode.BadRequest;
+                message = exception.Message;
+                break;
+
             default:
                 statusCode = (int)HttpStatusCode.InternalServerError;
                 message = "An unexpected error occurred. Please try again later.";
@@ -58,8 +64,12 @@ public class ExceptionHandlerMiddleware
 
         var response = new
         {
-            StatusCode = statusCode,
-            Message = message
+            statusCode = statusCode,
+            message = message,
+            success = false,
+            data = "",
+            token = ""
+
         };
 
         context.Response.ContentType = "application/json";

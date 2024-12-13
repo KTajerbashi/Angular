@@ -137,10 +137,19 @@ body {
   border-collapse: collapse;
   margin: 20px 0;
   border-radius: 12px; /* Rounded corners for the entire table */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Adds a subtle shadow */
   font-size: 16px;
   background-color: #f8f9fa;
   text-align: center;
+}
+.app-table > caption {
+  background: linear-gradient(90deg, rgb(78, 40, 182), rgb(33, 4, 112));
+  border-radius: 10px 10px 0 0;
+  padding: 10px;
+  margin: 0 1px;
+  color: white;
+  font-size: 21px;
+  box-shadow: 0 -3px 10px 0 rgba(2, 0, 122, 0.8);
 }
 
 .app-table thead {
@@ -293,5 +302,13 @@ body {
 }
 .app-mx-1 {
   margin: 5px;
+}
+/* ----------------------------------- */
+.toast-center-center {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: fixed;
+  z-index: 1055; /* Ensure it appears above other elements */
 }
 /* ----------------------------------- */
