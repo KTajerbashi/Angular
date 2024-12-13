@@ -3,3 +3,33 @@
   flex-direction: row;
   justify-content: center;
 }
+
+.example-container {
+  height: 100%;
+  max-width: 100%;
+  overflow: auto;
+  border-radius: 5px;
+  border: 1px solid rgb(170, 183, 255);
+}
+
+table {
+  width: 800px;
+}
+
+td.mat-column-star {
+  width: 20px;
+  padding-right: 8px;
+}
+
+th.mat-column-position,
+td.mat-column-position {
+  padding-left: 8px;
+}
+
+.mat-mdc-table-sticky-border-elem-right {
+  border-left: 1px solid #e0e0e0;
+}
+
+.mat-mdc-table-sticky-border-elem-left {
+  border-right: 1px solid #e0e0e0;
+}

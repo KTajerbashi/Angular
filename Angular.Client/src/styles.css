@@ -22,10 +22,10 @@ body {
 }
 
 .app-alert {
-  padding: 1rem;
-  border-radius: 1rem;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
-  margin: 1rem;
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.7);
+  margin: 2px 0;
 }
 
 .app-alert-danger {
@@ -303,6 +303,20 @@ body {
 .app-mx-1 {
   margin: 5px;
 }
+
+.app-width-100 {
+  width: 80%;
+}
+.app-width-75 {
+  width: 75%;
+}
+.app-width-50 {
+  width: 50%;
+}
+.app-width-25 {
+  width: 25%;
+}
+
 /* ----------------------------------- */
 .toast-center-center {
   top: 50%;
