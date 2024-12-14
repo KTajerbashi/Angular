@@ -12,7 +12,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class AuthService {
   private readonly TOKEN_KEY = 'token';
-  private readonly apiUrl = 'http://localhost:8000/users';
+  // private readonly apiUrl = 'http://localhost:8000/users';
+  private readonly apiUrl = 'https://localhost:7100/api/'; // Base URL for API calls
   private readonly defaultExpireDays = 1; // Default token expiration in days
 
   constructor(
@@ -34,7 +35,7 @@ export class AuthService {
     }
 
     return this.http
-      .get<IUser[]>(this.apiUrl)
+      .get<IUser[]>(this.getUrl('Account','Login'))
       .pipe(catchError(this.handleError))
       .pipe(
         map((users) => {
@@ -99,6 +100,13 @@ export class AuthService {
     }
     return false;
   }
+
+  getUrl = (controller: string, method: string): string => {
+    if(method === null){
+      return `${this.apiUrl}${controller}`;
+    }else{}
+    return `${this.apiUrl}${controller}/${method}`;
+  };
 
   /**
    * Retrieves token data from localStorage.

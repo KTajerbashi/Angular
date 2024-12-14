@@ -34,7 +34,6 @@
     <Folder Include="ApplicationModules\Security\Users\Handlers\UserPrivilge\Queries\" />
     <Folder Include="ApplicationModules\Security\Users\Handlers\UserRoles\Commands\" />
     <Folder Include="ApplicationModules\Security\Users\Handlers\UserRoles\Queries\" />
-    <Folder Include="Models\" />
   </ItemGroup>
 
 </Project>
