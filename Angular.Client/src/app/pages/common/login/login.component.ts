@@ -8,6 +8,7 @@ import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { NgFor, NgIf } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -29,7 +30,11 @@ export class LoginComponent implements OnInit {
   username: string = '';
   password: string = '';
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {
     localStorage.clear();
@@ -41,19 +46,19 @@ export class LoginComponent implements OnInit {
         (isLoggedIn) => {
           console.log('Login : ', isLoggedIn);
           if (isLoggedIn) {
-            console.log('Login successful');
+            this.toastr.success('Login Successfuly', 'Success');
             this.router.navigate(['/dashboard']); // Navigate to dashboard on success
           } else {
-            alert('Invalid credentials');
+            this.toastr.error('Login Faild !!!', 'Faild');
           }
         },
         (error) => {
+          this.toastr.error('Error during login', 'Faild');
           console.error('Error during login:', error);
-          alert('An error occurred. Please try again later.');
         }
       );
     } else {
-      alert('Please enter valid credentials');
+      this.toastr.error('Please enter valid credentials', 'Faild');
     }
   }
 

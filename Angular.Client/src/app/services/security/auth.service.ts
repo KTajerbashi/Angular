@@ -1,9 +1,11 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { IUser } from '../../interfaces/models/IUser';
+import { ToastrService } from 'ngx-toastr';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +15,12 @@ export class AuthService {
   private readonly apiUrl = 'http://localhost:8000/users';
   private readonly defaultExpireDays = 1; // Default token expiration in days
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private toastr: ToastrService,
+    private snackBar: MatSnackBar
+  ) {}
 
   /**
    * Logs the user in by validating the credentials and saving a token in localStorage.
@@ -26,27 +33,30 @@ export class AuthService {
       return new Observable((observer) => observer.next(false));
     }
 
-    return this.http.get<IUser[]>(this.apiUrl).pipe(
-      map((users) => {
-        const user = users.find(
-          (u) => u.username === username && u.password === password
-        );
+    return this.http
+      .get<IUser[]>(this.apiUrl)
+      .pipe(catchError(this.handleError))
+      .pipe(
+        map((users) => {
+          const user = users.find(
+            (u) => u.username === username && u.password === password
+          );
 
-        if (user) {
-          const token: ITokenModel = {
-            token: JSON.stringify(user),
-            expireDate: this.calculateExpireDate(this.defaultExpireDays),
-            isLoggedIn: true,
-          };
+          if (user) {
+            const token: ITokenModel = {
+              token: JSON.stringify(user),
+              expireDate: this.calculateExpireDate(this.defaultExpireDays),
+              isLoggedIn: true,
+            };
 
-          // Save user info in localStorage for session persistence
-          localStorage.setItem(this.TOKEN_KEY, JSON.stringify(token));
-          return true;
-        }
+            // Save user info in localStorage for session persistence
+            localStorage.setItem(this.TOKEN_KEY, JSON.stringify(token));
+            return true;
+          }
 
-        return false;
-      })
-    );
+          return false;
+        })
+      );
   }
 
   /**
@@ -108,6 +118,23 @@ export class AuthService {
     const date = new Date();
     date.setDate(date.getDate() + days);
     return date;
+  }
+
+  /**
+   * Handles HTTP errors
+   * @param error - HttpErrorResponse
+   * @returns Observable that throws a user-friendly error message
+   */
+  private handleError(error: HttpErrorResponse): Observable<never> {
+    let errorMessage = 'An unknown error occurred!';
+    if (error.status === 0) {
+      // Client-side or network error
+      errorMessage = 'Network error occurred. Please check your connection.';
+    } else if (!error.error.success) {
+      // Server-side error
+      alert(error.error.message);
+    }
+    return throwError(errorMessage);
   }
 }
 

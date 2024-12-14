@@ -81,23 +81,23 @@ export class ApiService {
    */
   private handleError(error: HttpErrorResponse): Observable<never> {
     let errorMessage = 'An unknown error occurred!';
+    console.log('handleError : ', errorMessage);
     if (error.status === 0) {
       // Client-side or network error
       errorMessage = 'Network error occurred. Please check your connection.';
     } else if (!error.error.success) {
       // Server-side error
-      alert(error.error.message);
       this.showAlert(error.error.message);
+      alert(error.error.message);
     }
     return throwError(errorMessage);
   }
 
   showAlert = (message: string) => {
     // Show a toast notification
-    this.toastr.error(message, 'Error', {
-      closeButton: true,
-      progressBar: true,
-    });
+    console.log('NE : ', message);
+    alert('ERROR //// Alert');
+    this.toastr.error(message, 'Error');
 
     this.snackBar.open(message, 'Close', {
       duration: 5000,

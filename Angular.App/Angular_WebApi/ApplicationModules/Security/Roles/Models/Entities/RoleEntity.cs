@@ -22,4 +22,10 @@ public class RoleEntity : IdentityRole<long>, IBaseEntity<long>
         Title = title;
     }
 
+    public void Update(string name, string title)
+    {
+        Name = name;
+        Title = title;
+    }
+
 }

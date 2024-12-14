@@ -1,7 +1,8 @@
-﻿using Angular_WebApi.ApplicationModules.Security.Roles.Handlers.Roles.Queries.GetAll;
-using Angular_WebApi.ApplicationModules.Security.Users.Handlers.Users.Commands.CreateUser;
-using Angular_WebApi.ApplicationModules.Security.Users.Handlers.Users.Queries.GetAll;
-using Angular_WebApi.ApplicationModules.Security.Users.Models.DTOs;
+﻿using Angular_WebApi.ApplicationModules.Security.Roles.Handlers.Roles.Commands.Create;
+using Angular_WebApi.ApplicationModules.Security.Roles.Handlers.Roles.Commands.Delete;
+using Angular_WebApi.ApplicationModules.Security.Roles.Handlers.Roles.Commands.Update;
+using Angular_WebApi.ApplicationModules.Security.Roles.Handlers.Roles.Queries.GetAll;
+using Angular_WebApi.ApplicationModules.Security.Roles.Handlers.Roles.Queries.RoleGetById;
 using Angular_WebApi.Controllers.BaseControllers;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -16,31 +17,20 @@ public class RoleController : AuthController
 
 
 
-    //[HttpPost]
-    //public async Task<IActionResult> Create(UserCreateCommand model)
-    //    => await base.Create<UserCreateCommand, long>(model);
+    [HttpPost]
+    public async Task<IActionResult> Create(RoleCreateCommand command) => await base.Create<RoleCreateCommand, long>(command);
 
 
     [HttpGet]
-    public async Task<IActionResult> ReadAll()
-        => await QueryList<RoleGetAllQuery, RoleGetAllView>(new RoleGetAllQuery());
+    public async Task<IActionResult> ReadAll() => await QueryList<RoleGetAllQuery, RoleGetAllView>(new RoleGetAllQuery());
 
-    //[HttpGet("{id}")]
-    //public async Task<IActionResult> Read()
-    //{
-    //    return Ok(true);
-    //}
+    [HttpGet("{id}")]
+    public async Task<IActionResult> Read(long id) => await Query<RoleGetByIdQuery, RoleGetByIdDTO>(new RoleGetByIdQuery(id));
 
 
-    //[HttpDelete("{id}")]
-    //public async Task<IActionResult> Delete(long id)
-    //{
-    //    return Ok(true);
-    //}
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(long id) => await Command<RoleDeleteCommand, bool>(new RoleDeleteCommand(id));
 
-    //[HttpPut("{id}")]
-    //public async Task<IActionResult> Update(long id, UserDTO model)
-    //{
-    //    return Ok(true);
-    //}
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Update(long id, RoleUpdateCommand command) => await Command<RoleUpdateCommand, bool>(command);
 }
