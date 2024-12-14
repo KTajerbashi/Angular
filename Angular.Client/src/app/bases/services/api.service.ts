@@ -84,7 +84,7 @@ export class ApiService {
     if (error.status === 0) {
       // Client-side or network error
       errorMessage = 'Network error occurred. Please check your connection.';
-    } else {
+    } else if (!error.error.success) {
       // Server-side error
       alert(error.error.message);
       this.showAlert(error.error.message);

@@ -4,12 +4,12 @@ public class ApplicationStart
 {
     public static void Start(Action action)
     {
-		try
-		{
-			action();
-		}
-		catch (Exception ex)
-		{
-		}
+        try
+        {
+            action();
+        }
+        catch (Exception ex)
+        {
+        }
     }
 }

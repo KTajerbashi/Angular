@@ -22,7 +22,7 @@ public class UserController : AuthController
     
     [HttpGet]
     public async Task<IActionResult> ReadAll()
-        => await QueryList<UserGetAllQuery, UserGetAllDTO>(new UserGetAllQuery());
+        => await QueryList<UserGetAllQuery, UserGetAllView>(new UserGetAllQuery());
 
     [HttpGet("{id}")]
     public async Task<IActionResult> Read()

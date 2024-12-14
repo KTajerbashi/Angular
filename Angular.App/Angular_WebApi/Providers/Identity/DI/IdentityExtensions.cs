@@ -1,6 +1,8 @@
-﻿using Angular_WebApi.ApplicationModules.Security.Users.Models.Entities;
+﻿using Angular_WebApi.ApplicationModules.Security.Roles.Models.Entities;
+using Angular_WebApi.ApplicationModules.Security.Users.Models.Entities;
 using Angular_WebApi.ContextDB;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 
 namespace Angular_WebApi.Providers.Identity.DI;
@@ -10,6 +12,20 @@ public static class IdentityExtensions
     public static IServiceCollection AddIdentityServices(this IServiceCollection services)
     {
 
+        // Configure Identity
+        services.AddIdentity<UserEntity, RoleEntity>()
+            .AddEntityFrameworkStores<DatabaseContext>()
+            .AddRoles<RoleEntity>()
+            .AddDefaultTokenProviders()
+            .AddApiEndpoints()
+            ;
+
+
+        // Configure SignInManager, RoleManager, and UserManager (auto-configured with AddIdentity)
+        //services.AddScoped<SignInManager<UserEntity>>();
+        //services.AddScoped<RoleManager<RoleEntity>>();
+        //services.AddScoped<UserManager<UserEntity>>();
+
         // Add Authentication
         services.AddAuthentication()
             //.AddBearerToken(IdentityConstants.BearerScheme)
@@ -18,12 +34,6 @@ public static class IdentityExtensions
         // Add Authorization
         services.AddAuthorization();
 
-        // Add IdentityCore
-        services
-            .AddIdentityCore<UserEntity>()
-            .AddEntityFrameworkStores<DatabaseContext>()
-            .AddApiEndpoints();
-
         return services;
     }
 
@@ -31,6 +41,7 @@ public static class IdentityExtensions
     {
 
         app.UseAuthentication();
+
         app.UseAuthorization();
 
         return app;

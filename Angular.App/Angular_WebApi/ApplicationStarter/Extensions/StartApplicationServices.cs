@@ -15,22 +15,10 @@ public static class StartApplicationServices
         IConfiguration configuration = builder.Configuration;
 
         builder.Services.AddControllers();
+        
         builder.Services.AddEndpointsApiExplorer();
+        
         builder.Services.AddSwaggerGen();
-
-
-        // Add CORS policy
-        builder.Services.AddCors(options =>
-        {
-            options.AddPolicy("AllowAngularApp", policy =>
-            {
-                policy.WithOrigins("http://localhost:4200") // Angular's development server
-                      .AllowAnyMethod()
-                      .AllowAnyHeader();
-            });
-        });
-
-        builder.Services.AddIdentityServices();
 
         builder.Services.AddCommonProviders();
 
@@ -43,9 +31,21 @@ public static class StartApplicationServices
 
         //  Provider
         builder.Services.AddMediatRService();
-       
+
         //  Provider
         builder.Services.AddIdentityServices();
+
+
+        // Add CORS policy
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy("AllowAngularApp", policy =>
+            {
+                policy.WithOrigins("http://localhost:4200") // Angular's development server
+                      .AllowAnyMethod()
+                      .AllowAnyHeader();
+            });
+        });
 
         return builder.Build();
     }
@@ -66,8 +66,6 @@ public static class StartApplicationServices
         app.UseCors("AllowAngularApp");
 
         app.UseHttpsRedirection();
-
-        app.UseAuthorization();
 
         app.MapControllers();
 

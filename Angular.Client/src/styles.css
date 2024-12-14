@@ -25,11 +25,12 @@ body {
   padding: 5px;
   border-radius: 5px;
   box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.7);
-  margin: 2px 0;
+  margin: 5px 0;
+  text-align: center;
 }
 
 .app-alert-danger {
-  background: red;
+  background: linear-gradient(45deg, rgb(253, 50, 36), rgb(207, 31, 0));
   color: white;
 }
 .app-alert-info {
@@ -303,6 +304,18 @@ body {
 .app-mx-1 {
   margin: 5px;
 }
+.app-mx-2 {
+  margin: 10px;
+}
+.app-mx-3 {
+  margin: 15px;
+}
+.app-mx-4 {
+  margin: 20px;
+}
+.app-mx-5 {
+  margin: 25px;
+}
 
 .app-width-100 {
   width: 80%;
@@ -325,4 +338,32 @@ body {
   position: fixed;
   z-index: 1055; /* Ensure it appears above other elements */
 }
+/* ----------------------------------- */
+/* ----------------------------------- */
+/* ----------------------------------- */
+/* ----------------------------------- */
+/* ----------------------------------- */
+/* ----------------------------------- */
+/* ----------------------------------- */
+.mat-elevation-z8,
+.mat-mdc-elevation-specific.mat-elevation-z8 {
+  /* box-shadow: var(--mat-app-elevation-shadow-level-8, none); */
+  border-radius: 5px;
+  box-shadow: 0px 1px 10px 0px #000000;
+  border: 5px double rgb(105, 105, 105);
+  width: 100%;
+  overflow: auto;
+}
+.mat-mdc-paginator {
+  background: #c5c5c5;
+  box-shadow: 0px -3px 5px 0 #00000063;
+  border-top: 5px double rgb(124, 124, 124);
+}
+th {
+  background: rgb(219, 219, 219) !important;
+  color: rgb(0, 0, 0);
+  box-shadow: 1px 0 5px 1px #0000009d;
+  border-bottom: 5px double rgb(124, 124, 124);
+}
+
 /* ----------------------------------- */

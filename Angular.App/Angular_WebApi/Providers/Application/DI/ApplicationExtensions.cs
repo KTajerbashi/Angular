@@ -27,8 +27,6 @@ public static class ApplicationExtensions
         {
             option.UseSqlServer(configuration.GetConnectionString("ConnectionString"));
         });
-
-       
         return services;
     }
 

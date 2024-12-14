@@ -4,7 +4,7 @@ using Angular_WebApi.Utilities.Extensions;
 
 namespace Angular_WebApi.ApplicationModules.Security.Users.Handlers.Users.Queries.GetAll;
 
-public class UserGetAllDTO : BaseView
+public class UserGetAllView : BaseView
 {
     public string UserName { get; set; }
     public string NormalizedUserName { get; set; }

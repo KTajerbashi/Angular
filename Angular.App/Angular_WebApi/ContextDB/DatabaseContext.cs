@@ -12,13 +12,13 @@ public class DatabaseContext : BaseDatabaseContext
 
     #region DbSet
     
-    public virtual DbSet<UserEntity> UserEntities { get; set; }
-    public virtual DbSet<UserClaimEntity> UserClaimEntities { get; set; }
-    public virtual DbSet<UserLoginEntity> UserLoginEntities { get; set; }
-    public virtual DbSet<UserTokenEntity> UserTokenEntities { get; set; }
-    public virtual DbSet<RoleEntity> RoleEntities { get; set; }
-    public virtual DbSet<RoleClaimEntity> RoleClaimEntities { get; set; }
-    public virtual DbSet<UserRoleEntity> UserRoleEntities { get; set; }
+    public virtual DbSet<UserEntity> UserEntities => Set<UserEntity>();
+    public virtual DbSet<UserClaimEntity> UserClaimEntities => Set<UserClaimEntity>();
+    public virtual DbSet<UserLoginEntity> UserLoginEntities => Set<UserLoginEntity>();
+    public virtual DbSet<UserTokenEntity> UserTokenEntities => Set<UserTokenEntity>();
+    public virtual DbSet<RoleEntity> RoleEntities => Set<RoleEntity>();
+    public virtual DbSet<RoleClaimEntity> RoleClaimEntities => Set<RoleClaimEntity>();
+    public virtual DbSet<UserRoleEntity> UserRoleEntities => Set<UserRoleEntity>();
 
 
     #endregion
