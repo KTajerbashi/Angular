@@ -1,6 +1,9 @@
 ﻿using Angular_WebApi.ApplicationModules.Security.Users.Models.Entities;
 using Angular_WebApi.Controllers.BaseControllers;
+using Angular_WebApi.Exceptions;
+using Angular_WebApi.Middlewares.ExceptionHandler.Exceptions;
 using Angular_WebApi.Models.Auth;
+using Angular_WebApi.Utilities.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -25,7 +28,17 @@ public class AccountController : AuthController
     {
         if (ModelState.IsValid)
         {
+            var userEntity = await _userManager.FindByNameAsync(model.Username);
+            if (userEntity is null)
+                throw new IdentityLogicException("User Not Found");
 
+            var result = await _signInManager.PasswordSignInAsync(model.Username,model.Password,true,false);
+            return Ok(new
+            {
+                token = userEntity,
+                expireDate = DateTime.Now.AddMinutes(100),
+                isLoggedIn = true
+            });
         }
         return Ok();
     }
@@ -33,7 +46,20 @@ public class AccountController : AuthController
     [HttpPost("signin")]
     public async Task<IActionResult> Signin(SigninDTO model)
     {
-        return Ok();
+        var userEntity = new UserEntity()
+        {
+            Name = model.Name,
+            Family = model.Family,
+            Email = model.Email,
+            PhoneNumber = model.PhoneNumber,
+            UserName = model.Username,
+        };
+        var result = await _userManager.CreateAsync(userEntity,model.Password);
+        if (!result.Succeeded)
+        {
+            throw new IdentityLogicException(result.GetIdentityErrors());
+        }
+        return Ok(result);
     }
 
 

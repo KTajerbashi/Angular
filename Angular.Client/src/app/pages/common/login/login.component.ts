@@ -42,25 +42,35 @@ export class LoginComponent implements OnInit {
 
   login() {
     if (this.username && this.password) {
-      this.authService.login(this.username, this.password).subscribe(
-        (isLoggedIn) => {
-          console.log('Login : ', isLoggedIn);
-          if (isLoggedIn) {
-            this.toastr.success('Login Successfuly', 'Success');
-            this.router.navigate(['/dashboard']); // Navigate to dashboard on success
-          } else {
-            this.toastr.error('Login Faild !!!', 'Faild');
-          }
+      this.authService.login(this.username, this.password).subscribe({
+        next: (res) => {
+          const { data } = res;
+          localStorage.setItem('token', JSON.stringify(data));
+          this.router.navigate(['/dashboard']);
         },
-        (error) => {
-          this.toastr.error('Error during login', 'Faild');
-          console.error('Error during login:', error);
-        }
-      );
+        error: (err) => {
+          console.log('login Error : ', err);
+          this.toastr.error(err, 'Login Faild');
+        },
+      });
     } else {
       this.toastr.error('Please enter valid credentials', 'Faild');
     }
   }
+
+  loginAs = () => {
+    this.authService.login('Tajerbashi', '@Kaihan123').subscribe({
+      next: (res) => {
+        const { data } = res;
+        localStorage.setItem('token', JSON.stringify(data));
+        this.router.navigate(['/dashboard']);
+      },
+      error: (err) => {
+        console.log('login Error : ', err);
+        this.toastr.error(err, 'Login Faild');
+      },
+    });
+  };
 
   navigateToSignup() {
     this.router.navigate(['/signin']);

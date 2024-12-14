@@ -1,14 +1,11 @@
 .signin-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  height: 100vh;
 }
-
 .signin-card {
-  width: 100%;
   max-width: 400px;
-  padding: 20px;
+  padding: 40px 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  margin: 0 !important;
 }
 .signin-card:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0);

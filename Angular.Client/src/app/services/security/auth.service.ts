@@ -1,11 +1,17 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
-import { IUser } from '../../interfaces/models/IUser';
+import { Observable, of, throwError } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
+import {
+  ITokenModel,
+  IUser,
+  ISignInModel,
+} from '../../interfaces/models/IUser';
 import { ToastrService } from 'ngx-toastr';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ApiService } from '../../bases/services/api.service';
+import { IApiResponse } from '../../bases/models/IApiResponse';
 
 @Injectable({
   providedIn: 'root',
@@ -17,6 +23,7 @@ export class AuthService {
   private readonly defaultExpireDays = 1; // Default token expiration in days
 
   constructor(
+    private apiService: ApiService,
     private http: HttpClient,
     private router: Router,
     private toastr: ToastrService,
@@ -29,48 +36,55 @@ export class AuthService {
    * @param password - The password of the user.
    * @returns Observable<boolean> - Emits true if login is successful, false otherwise.
    */
-  login(username: string, password: string): Observable<boolean> {
-    if (!username || !password) {
-      return new Observable((observer) => observer.next(false));
-    }
+  login(username: string, password: string): Observable<IApiResponse<boolean>> {
+    const model = { username, password };
 
-    return this.http
-      .get<IUser[]>(this.getUrl('Account','Login'))
-      .pipe(catchError(this.handleError))
-      .pipe(
-        map((users) => {
-          const user = users.find(
-            (u) => u.username === username && u.password === password
-          );
+    return this.apiService.post<boolean>('Account/login', model).pipe(
+      tap({
+        next: (res) => {
+          console.log('Response:', res);
+          this.toastr.success('Successful', 'Login');
+        },
+        error: (err) => {
+          console.log('Error:', err);
+          this.toastr.error('Login Failed', 'Login');
+        },
+        complete: () => {
+          console.log('Login Complete');
+        },
+      })
+    );
+  }
 
-          if (user) {
-            const token: ITokenModel = {
-              token: JSON.stringify(user),
-              expireDate: this.calculateExpireDate(this.defaultExpireDays),
-              isLoggedIn: true,
-            };
-
-            // Save user info in localStorage for session persistence
-            localStorage.setItem(this.TOKEN_KEY, JSON.stringify(token));
-            return true;
-          }
-
-          return false;
-        })
-      );
+  signin(model: ISignInModel): Observable<IApiResponse<boolean>> {
+    return this.apiService.post<boolean>('Account/signin', model).pipe(
+      tap({
+        next: (res) => {
+          console.log('Response:', res);
+          this.toastr.success('Successful', 'Sign In');
+        },
+        error: (err) => {
+          console.log('Error:', err);
+          this.toastr.error('Sign In failed', 'Sign In');
+        },
+        complete: () => {
+          console.log('Sign In Complete');
+        },
+      })
+    );
   }
 
   /**
    * Logs the user out by clearing the token from localStorage and navigating to the login page.
    */
   logout(): void {
-    localStorage.removeItem(this.TOKEN_KEY);
+    // localStorage.removeItem(this.TOKEN_KEY);
     this.router.navigate(['/login']);
   }
   currentUserInfo = (): IUser => {
     let infoLocal = localStorage.getItem(this.TOKEN_KEY) ?? '';
     let infoModel = JSON.parse(infoLocal);
-    let tokenModel = JSON.parse(infoModel.token);
+    let tokenModel = infoModel.token;
     let info: IUser = {
       id: tokenModel.id,
       name: tokenModel.name,
@@ -102,9 +116,10 @@ export class AuthService {
   }
 
   getUrl = (controller: string, method: string): string => {
-    if(method === null){
+    if (method === null) {
       return `${this.apiUrl}${controller}`;
-    }else{}
+    } else {
+    }
     return `${this.apiUrl}${controller}/${method}`;
   };
 
@@ -127,30 +142,4 @@ export class AuthService {
     date.setDate(date.getDate() + days);
     return date;
   }
-
-  /**
-   * Handles HTTP errors
-   * @param error - HttpErrorResponse
-   * @returns Observable that throws a user-friendly error message
-   */
-  private handleError(error: HttpErrorResponse): Observable<never> {
-    let errorMessage = 'An unknown error occurred!';
-    if (error.status === 0) {
-      // Client-side or network error
-      errorMessage = 'Network error occurred. Please check your connection.';
-    } else if (!error.error.success) {
-      // Server-side error
-      alert(error.error.message);
-    }
-    return throwError(errorMessage);
-  }
-}
-
-/**
- * Token model interface for user authentication details.
- */
-interface ITokenModel {
-  token: string;
-  expireDate: Date;
-  isLoggedIn: boolean;
 }

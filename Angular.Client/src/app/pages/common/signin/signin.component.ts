@@ -17,6 +17,7 @@ import { NgIf } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { MatButton } from '@angular/material/button';
+import { ISignInModel } from '../../../interfaces/models/IUser';
 
 @Component({
   selector: 'app-signin',
@@ -41,6 +42,10 @@ export class SigninComponent implements OnInit {
     private router: Router
   ) {
     this.signinForm = this.fb.group({
+      name: ['', Validators.required],
+      family: ['', Validators.required],
+      email: ['', Validators.required],
+      phoneNumber: ['', Validators.required],
       username: ['', Validators.required],
       password: ['', Validators.required],
     });
@@ -50,14 +55,26 @@ export class SigninComponent implements OnInit {
 
   onSubmit(): void {
     if (this.signinForm.valid) {
-      const { username, password } = this.signinForm.value;
-      // Here we are calling the login method from the AuthService
-      if (username === 'admin' && password === 'admin123') {
-        this.authService.login(username, password);
-        this.router.navigate(['/dashboard']);
-      } else {
-        alert('Invalid credentials');
-      }
+      let parameter: ISignInModel = {
+        name: this.signinForm.value.name as string,
+        family: this.signinForm.value.family as string,
+        email: this.signinForm.value.email as string,
+        phoneNumber: this.signinForm.value.phoneNumber as string,
+        userName: this.signinForm.value.username as string,
+        password: this.signinForm.value.password as string,
+        rePassword: this.signinForm.value.password as string,
+      };
+      this.authService.signin(parameter).subscribe({
+        next: (res) => {
+          console.log('Res On : ', res);
+        },
+        complete: () => {
+          console.log('Complete On : ');
+        },
+        error: (err) => {
+          console.log('Error On : ', err);
+        },
+      });
     }
   }
 }

@@ -57,11 +57,7 @@ export class UserCreateComponent implements AfterViewInit {
         validators: [Validators.required, Validators.minLength(5)],
       }),
       email: this.builder.control('', {
-        validators: [
-          Validators.required,
-          Validators.minLength(3),
-          Validators.email,
-        ],
+        validators: [Validators.required, Validators.email],
       }),
       password: this.builder.control('', {
         validators: [Validators.required, Validators.minLength(5)],
@@ -70,10 +66,10 @@ export class UserCreateComponent implements AfterViewInit {
         validators: [Validators.required, Validators.minLength(5)],
       }),
       roleId: this.builder.control('', {
-        validators: [Validators.required],
+        // validators: [Validators.required],
       }),
       isActive: this.builder.control('', {
-        validators: [Validators.required],
+        // validators: [Validators.required],
       }),
     });
   }
@@ -106,14 +102,11 @@ export class UserCreateComponent implements AfterViewInit {
         isActive: this.userForm.value.isActive as boolean,
       };
       console.log('OnSubmit : ', _data);
-      this.apiservice
-        .post('User', _data)
-        .pipe(tap(console.log))
-        .subscribe({
-          next: (value) => console.log('Value : ', value), // Handle emitted values
-          error: (err) => console.error('Error : ', err), // Handle errors
-          complete: () => console.log('Observable completed!'), // Handle completion
-        });
+      this.apiservice.post('User', _data).subscribe({
+        next: (value) => console.log('Value : ', value), // Handle emitted values
+        error: (err) => console.error('Error : ', err), // Handle errors
+        complete: () => console.log('Observable completed!'), // Handle completion
+      });
     }
   };
 }

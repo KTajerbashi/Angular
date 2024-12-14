@@ -12,27 +12,6 @@
             <div class="app-form-control">
               <div>
                 <mat-form-field appearance="fill">
-                  <mat-label>Username</mat-label>
-                  <input
-                    matInput
-                    formControlName="username"
-                    placeholder="Enter username"
-                  />
-                  <mat-error
-                    *ngIf="userForm.get('username')?.hasError('required')"
-                  >
-                    Username is required
-                  </mat-error>
-                  <mat-error
-                    *ngIf="userForm.get('username')?.hasError('minlength')"
-                  >
-                    Minimum 5 characters required
-                  </mat-error>
-                </mat-form-field>
-              </div>
-
-              <div>
-                <mat-form-field appearance="fill">
                   <mat-label>Name</mat-label>
                   <input
                     matInput
@@ -56,7 +35,7 @@
                   <input
                     matInput
                     formControlName="family"
-                    placeholder="Enter Family Name ..."
+                    placeholder="Enter Family ..."
                   />
                   <mat-error
                     *ngIf="userForm.get('family')?.hasError('required')"
@@ -92,28 +71,6 @@
 
               <div>
                 <mat-form-field appearance="fill">
-                  <mat-label>Password</mat-label>
-                  <input
-                    matInput
-                    formControlName="password"
-                    type="password"
-                    placeholder="Enter Password ..."
-                  />
-                  <mat-error
-                    *ngIf="userForm.get('password')?.hasError('required')"
-                  >
-                    Password is required
-                  </mat-error>
-                  <mat-error
-                    *ngIf="userForm.get('password')?.hasError('minlength')"
-                  >
-                    Minimum 5 characters required
-                  </mat-error>
-                </mat-form-field>
-              </div>
-
-              <div>
-                <mat-form-field appearance="fill">
                   <mat-label>Phone Number</mat-label>
                   <input
                     matInput
@@ -136,7 +93,7 @@
               <div>
                 <mat-form-field>
                   <mat-label>Role</mat-label>
-                  <mat-select>
+                  <mat-select formControlName="roleId">
                     @for (role of roles; track role) {
                     <mat-option [value]="role.id">{{ role.name }}</mat-option>
                     }
@@ -158,6 +115,49 @@
                   </mat-error>
                 </mat-form-field>
               </div>
+
+              <div>
+                <mat-form-field appearance="fill">
+                  <mat-label>Username</mat-label>
+                  <input
+                    matInput
+                    formControlName="username"
+                    placeholder="Enter username"
+                  />
+                  <mat-error
+                    *ngIf="userForm.get('username')?.hasError('required')"
+                  >
+                    Username is required
+                  </mat-error>
+                  <mat-error
+                    *ngIf="userForm.get('username')?.hasError('minlength')"
+                  >
+                    Minimum 5 characters required
+                  </mat-error>
+                </mat-form-field>
+              </div>
+
+              <div>
+                <mat-form-field appearance="fill">
+                  <mat-label>Password</mat-label>
+                  <input
+                    matInput
+                    formControlName="password"
+                    type="password"
+                    placeholder="Enter Password ..."
+                  />
+                  <mat-error
+                    *ngIf="userForm.get('password')?.hasError('required')"
+                  >
+                    Password is required
+                  </mat-error>
+                  <mat-error
+                    *ngIf="userForm.get('password')?.hasError('minlength')"
+                  >
+                    Minimum 5 characters required
+                  </mat-error>
+                </mat-form-field>
+              </div>
             </div>
 
             <div>
@@ -169,9 +169,6 @@
               >
                 Submit
               </button>
-              <div class="app-alert app-alert-danger">
-                {{ userForm.errors }}
-              </div>
             </div>
           </form>
         </mat-card-content>
