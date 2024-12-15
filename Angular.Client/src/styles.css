@@ -305,18 +305,33 @@ body {
   margin-top: 25px;
 }
 .app-mx-1 {
-  margin: 5px;
+  margin: 0 5px;
 }
 .app-mx-2 {
-  margin: 10px;
+  margin: 0 10px;
 }
 .app-mx-3 {
-  margin: 15px;
+  margin: 0 15px;
 }
 .app-mx-4 {
-  margin: 20px;
+  margin: 0 20px;
 }
 .app-mx-5 {
+  margin: 0 25px;
+}
+.app-m-1 {
+  margin: 5px;
+}
+.app-m-2 {
+  margin: 10px;
+}
+.app-m-3 {
+  margin: 15px;
+}
+.app-m-4 {
+  margin: 20px;
+}
+.app-m-5 {
   margin: 25px;
 }
 

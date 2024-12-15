@@ -1,0 +1,64 @@
+<div class="app-container">
+  <div class="app-container-content">
+    <div class="app-container-content">
+      <div class="app-alert app-alert-danger">Parent</div>
+      <div class="app-container-content">
+        <button (click)="childToggle()" mat-button color="primary">
+          Child
+        </button>
+        <button (click)="dialogToggle()" mat-button color="primary">
+          Dialog
+        </button>
+        <button (click)="snackToggle()" mat-button color="primary">
+          Snack
+        </button>
+        <button (click)="gridToggle()" mat-button color="primary">Grid</button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="config.child" class="app-container-content">
+    <div class="app-container-content">
+      <mat-form-field class="full-width">
+        <mat-label>Pass to Child</mat-label>
+        <input matInput [(ngModel)]="passToChild" />
+      </mat-form-field>
+      <button class="app-bg-primary app-m-4" mat-flat-button>Basic</button>
+    </div>
+    <div class="app-container-content">
+      <app-service-example-child
+        [parentPassValueForMe]="passToChild"
+        (passDate)="getEventDataFromChild($event)"
+      ></app-service-example-child>
+    </div>
+  </div>
+  <div *ngIf="config.dialog" class="app-container-content">
+    <button mat-button color="primary" (click)="openDialog()">
+      Open dialog
+    </button>
+  </div>
+
+  <div *ngIf="config.snack" class="app-container-content">
+    <mat-form-field>
+      <mat-label>Snack bar duration (seconds)</mat-label>
+      <input type="number" [(ngModel)]="durationInSeconds" matInput />
+    </mat-form-field>
+
+    <button
+      class="app-m-3 app-bg-danger"
+      mat-stroked-button
+      (click)="openSnackBar()"
+      aria-label="Show an example snack-bar"
+    >
+      Pizza party
+    </button>
+  </div>
+
+  <div *ngIf="config.grid" class="app-container-content">
+    <mat-grid-list cols="4" rowHeight="1:2">
+      <mat-grid-tile class="bg-slate-500">1</mat-grid-tile>
+      <mat-grid-tile class="bg-slate-700">2</mat-grid-tile>
+      <mat-grid-tile class="bg-slate-950">3</mat-grid-tile>
+      <mat-grid-tile class="bg-slate-700">4</mat-grid-tile>
+    </mat-grid-list>
+  </div>
+</div>

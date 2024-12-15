@@ -1,0 +1,25 @@
+<div class="app-container">
+  <div class="app-alert app-alert-info">Child</div>
+  <div class="app-container-content">
+    <mat-list>
+      <mat-list-item
+        >From Parent Input : {{ parentPassValueForMe }}</mat-list-item
+      >
+      <mat-divider></mat-divider>
+      <mat-list-item
+        >Parent Click To Replace Parent Value to Child Row 2 :
+
+        <mat-form-field class="full-width">
+          <mat-label>Pass to Child</mat-label>
+          <input matInput [(ngModel)]="passValueToParent" />
+        </mat-form-field>
+
+        <button (click)="clickToPassOutput()" mat-button color="primary">
+          Click To Output
+        </button>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>Item 3</mat-list-item>
+    </mat-list>
+  </div>
+</div>

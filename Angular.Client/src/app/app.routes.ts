@@ -16,7 +16,7 @@ import { PanelComponent } from './pages/admin/panel/panel.component';
 import { ProfileComponent } from './pages/admin/profile/profile.component';
 import { InternalServerComponent } from './pages/common/internal-server/internal-server.component';
 import { UserProfileComponent } from './pages/user/children/user-profile/user-profile.component';
-import { ServiceExampleComponent } from './pages/exmaples/service-example/service-example.component';
+import { ServiceExampleParentComponent } from './pages/examples/service-example-parent/service-example-parent.component';
 export const routes: Routes = [
   {
     path: '',
@@ -43,7 +43,7 @@ export const routes: Routes = [
       },
       { path: 'about', component: AboutComponent },
       { path: 'profile', component: UserProfileComponent },
-      { path: 'example-service', component: ServiceExampleComponent },
+      { path: 'example-service', component: ServiceExampleParentComponent },
       {
         path: 'users',
         component: UserComponent,
