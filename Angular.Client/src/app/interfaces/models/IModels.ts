@@ -41,3 +41,13 @@ export interface ISignInModel {
   password: string;
   rePassword: string;
 }
+export interface Shoes {
+  value: string;
+  name: string;
+}
+export interface externalModelApi {
+  id: number;
+  title: string;
+  body: string;
+  userId: number;
+}

@@ -1,0 +1,53 @@
+<div class="app-container">
+  <div class="app-container-content">
+    <button
+      mat-button
+      class="app-btn app-btn-primary"
+      *ngFor="let item of configButtons"
+      (click)="tableToggle(item.index)"
+    >
+      {{ item.title }}
+    </button>
+  </div>
+  <div *ngIf="configButtons[0].visible" class="app-container-content">
+    <button class="app-btn app-btn-primary" (click)="callApi()">
+      Call Api
+    </button>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Id</th>
+          <th>UserId</th>
+          <th>Title</th>
+          <th>Body</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of objects; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ item.id }}</td>
+          <td>{{ item.userId }}</td>
+          <td>{{ item.title }}</td>
+          <td>{{ item.body }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="configButtons[1].visible" class="app-container-content">
+    <div class="app-title-option">Number</div>
+    <div>
+      <ul>
+        <li class="app-item-option" *ngFor="let item of numbers">
+          {{ item }}
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div *ngIf="configButtons[2].visible" class="app-container-content">
+    <div class="app-title-option">String</div>
+  </div>
+  <div *ngIf="configButtons[3].visible" class="app-container-content">
+    <div class="app-title-option">Object</div>
+  </div>
+</div>

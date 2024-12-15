@@ -20,11 +20,3 @@
   justify-content: center;
   margin-top: 20px;
 }
-
-.app-title {
-  background: linear-gradient(45deg, rgb(41, 5, 71), rgb(1, 0, 77));
-  color: white;
-  padding: 1rem !important;
-  font-size: 1.5rem;
-  font-family: "Courier New", Courier, monospace;
-}

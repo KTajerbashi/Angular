@@ -81,13 +81,6 @@
     grid-template-columns: 1fr;
   }
 }
-.app-title {
-  border-radius: 1rem;
-}
-.app-title-bottom-border {
-  border-bottom: 3px solid rgb(54, 0, 180);
-  box-shadow: 0 5px 15px 0 rgba(62, 0, 112, 0.582);
-}
 
 @keyframes rotateColors {
   0% {

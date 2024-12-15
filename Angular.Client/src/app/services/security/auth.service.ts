@@ -7,7 +7,7 @@ import {
   ITokenModel,
   IUser,
   ISignInModel,
-} from '../../interfaces/models/IUser';
+} from '../../interfaces/models/IModels';
 import { ToastrService } from 'ngx-toastr';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ApiService } from '../../bases/services/api.service';

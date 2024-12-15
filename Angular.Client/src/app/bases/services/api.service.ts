@@ -1,5 +1,5 @@
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, Observable, of, retry, throwError } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
@@ -92,4 +92,9 @@ export class ApiService {
     }
     return throwError(() => new Error(errorMessage));
   }
+
+  requestCount = signal(0);
+  getRequestCount = (): number => this.requestCount();
+  addRequestCount = () => this.requestCount.set(this.requestCount() + 1);
+  removeRequestCount = () => this.requestCount.set(this.requestCount() - 1);
 }

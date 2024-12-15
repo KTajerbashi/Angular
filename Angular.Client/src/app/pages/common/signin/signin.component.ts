@@ -17,7 +17,7 @@ import { NgIf } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { MatButton } from '@angular/material/button';
-import { ISignInModel } from '../../../interfaces/models/IUser';
+import { ISignInModel } from '../../../interfaces/models/IModels';
 
 @Component({
   selector: 'app-signin',

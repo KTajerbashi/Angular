@@ -13,10 +13,17 @@
           Snack
         </button>
         <button (click)="gridToggle()" mat-button color="primary">Grid</button>
+        <button (click)="observableToggle()" mat-button color="primary">
+          Observable
+        </button>
+        <button (click)="signalToggle()" mat-button color="primary">
+          Signal
+        </button>
       </div>
     </div>
   </div>
   <div *ngIf="config.child" class="app-container-content">
+    <div class="app-alert app-alert-primary">Children</div>
     <div class="app-container-content">
       <mat-form-field class="full-width">
         <mat-label>Pass to Child</mat-label>
@@ -32,12 +39,13 @@
     </div>
   </div>
   <div *ngIf="config.dialog" class="app-container-content">
+    <div class="app-alert app-alert-primary">Dialog</div>
     <button mat-button color="primary" (click)="openDialog()">
       Open dialog
     </button>
   </div>
-
   <div *ngIf="config.snack" class="app-container-content">
+    <div class="app-alert app-alert-primary">Snack</div>
     <mat-form-field>
       <mat-label>Snack bar duration (seconds)</mat-label>
       <input type="number" [(ngModel)]="durationInSeconds" matInput />
@@ -52,13 +60,45 @@
       Pizza party
     </button>
   </div>
-
   <div *ngIf="config.grid" class="app-container-content">
+    <div class="app-alert app-alert-primary">Grid</div>
     <mat-grid-list cols="4" rowHeight="1:2">
       <mat-grid-tile class="bg-slate-500">1</mat-grid-tile>
       <mat-grid-tile class="bg-slate-700">2</mat-grid-tile>
       <mat-grid-tile class="bg-slate-950">3</mat-grid-tile>
       <mat-grid-tile class="bg-slate-700">4</mat-grid-tile>
     </mat-grid-list>
+  </div>
+  <div *ngIf="config.observable" class="app-container-content">
+    <div class="app-alert app-alert-primary">Observable</div>
+    <mat-grid-list cols="2" rowHeight="1:1">
+      <mat-grid-tile class="bg-slate-500">
+        <form>
+          <mat-selection-list
+            [formControl]="shoesControl"
+            #shoesList
+            name="shoes"
+            [multiple]="false"
+          >
+            @for (shoe of shoes; track shoe) {
+            <mat-list-option [value]="shoe.value">{{
+              shoe.name
+            }}</mat-list-option>
+            }
+          </mat-selection-list>
+          <p>
+            Option selected:
+            {{ shoesControl.value ? shoesControl.value[0] : "None" }}
+          </p>
+        </form>
+      </mat-grid-tile>
+      <mat-grid-tile class="bg-slate-500">
+        <app-observable></app-observable>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  <div *ngIf="config.signal" class="app-container-content">
+    <div class="app-alert app-alert-primary">Signal</div>
+    <app-signal></app-signal>
   </div>
 </div>

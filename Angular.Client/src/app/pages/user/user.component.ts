@@ -7,7 +7,7 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
-import { IUser } from '../../interfaces/models/IUser';
+import { IUser } from '../../interfaces/models/IModels';
 import { ApiService } from '../../bases/services/api.service';
 
 @Component({
