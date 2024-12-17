@@ -87,9 +87,9 @@ export class ServiceExampleParentComponent {
     dialog: false,
     snack: false,
     grid: false,
-    observable: false,
+    observable: true,
     signal: false,
-    defer: true,
+    defer: false,
   };
   @Output() passToChild: string = '';
 
