@@ -19,6 +19,9 @@
         <button (click)="signalToggle()" mat-button color="primary">
           Signal
         </button>
+        <button (click)="signalToggle()" mat-button color="primary">
+          Defer
+        </button>
       </div>
     </div>
   </div>
@@ -100,5 +103,9 @@
   <div *ngIf="config.signal" class="app-container-content">
     <div class="app-alert app-alert-primary">Signal</div>
     <app-signal></app-signal>
+  </div>
+  <div *ngIf="config.defer" class="app-container-content">
+    <div class="app-alert app-alert-primary">Defer</div>
+    <app-defer></app-defer>
   </div>
 </div>

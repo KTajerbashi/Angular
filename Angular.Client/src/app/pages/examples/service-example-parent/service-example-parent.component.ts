@@ -34,6 +34,7 @@ import { IUser, Shoes } from '../../../interfaces/models/IModels';
 import { Observable } from 'rxjs';
 import { ObservableComponent } from '../observable/observable.component';
 import { SignalComponent } from '../signals/signal/signal.component';
+import { DeferComponent } from '../defer/defer.component';
 
 @Component({
   selector: 'app-service-example-parent',
@@ -53,6 +54,7 @@ import { SignalComponent } from '../signals/signal/signal.component';
     ReactiveFormsModule,
     ObservableComponent,
     SignalComponent,
+    DeferComponent,
   ],
   templateUrl: './service-example-parent.component.html',
   styleUrl: './service-example-parent.component.css',
@@ -85,8 +87,9 @@ export class ServiceExampleParentComponent {
     dialog: false,
     snack: false,
     grid: false,
-    observable: true,
+    observable: false,
     signal: false,
+    defer: true,
   };
   @Output() passToChild: string = '';
 

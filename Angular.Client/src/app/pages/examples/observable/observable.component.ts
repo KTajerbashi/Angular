@@ -3,6 +3,7 @@ import {
   catchError,
   filter,
   from,
+  fromEvent,
   map,
   mergeMap,
   Observable,
@@ -25,17 +26,26 @@ import { DataService } from './bases/dataService';
 })
 export class ObservableComponent implements OnInit {
   constructor(private dataServiec: DataService, private http: HttpClient) {}
-  numbers: Number[] = [];
-  strings: string[] = [];
-  objects: externalModelApi[] = [];
+  numbers: Number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  strings: string[] = ['A', 'B', 'C', 'D', 'E'];
+  objects: externalModelApi[] = [
+    { id: 1, body: 'Body 1', title: 'Title 1', userId: 1 },
+    { id: 2, body: 'Body 2', title: 'Title 2', userId: 2 },
+    { id: 3, body: 'Body 3', title: 'Title 3', userId: 3 },
+    { id: 4, body: 'Body 4', title: 'Title 4', userId: 4 },
+    { id: 5, body: 'Body 5', title: 'Title 5', userId: 5 },
+    { id: 6, body: 'Body 6', title: 'Title 6', userId: 6 },
+    { id: 7, body: 'Body 7', title: 'Title 7', userId: 7 },
+    { id: 8, body: 'Body 8', title: 'Title 8', userId: 8 },
+    { id: 9, body: 'Body 9', title: 'Title 9', userId: 9 },
+    { id: 10, body: 'Body 10', title: 'Title 10', userId: 10 },
+  ];
   ngOnInit(): void {
-    this.ofExample();
-    this.fromExamples();
+    // this.ofExample();
+    // this.fromExamples();
+    this.fromEventExample();
   }
-  _logger = (value: any): any => {
-    console.log('Logger : ', value);
-    return value;
-  };
+
   configButtons = [
     {
       title: 'Table',
@@ -70,47 +80,32 @@ export class ObservableComponent implements OnInit {
   };
 
   ofExample = () => {
-    // of([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
-    //   .pipe()
-    //   .subscribe((res) => {
-    //     console.log('Response :', res);
-    //     this.numbers = res;
-    //   });
-    of([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
-      .pipe(mergeMap((item) => this._logger(item)))
-      .subscribe((item) => {
-        // this.numbers = item;
-        console.log('Res : ', item);
-      });
-    of([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
-      .pipe(concatMap((item) => this._logger(item)))
-      .subscribe((item) => {
-        console.log('ConcatMap : ', item);
-      });
+    console.log(':::::::::::::: Of ::::::::::::::');
+    // let data$ = of(10, 20, 30);
+    let data$ = of('Kaihan');
+    console.log('Of : ', data$);
+    data$.subscribe((item) => {
+      console.log('sub : ', item);
+    });
+    console.log('=============================');
   };
-
   fromExamples = () => {
-    // from([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
-    //   .pipe()
-    //   .subscribe((res) => {
-    //     console.log('Response A:', res);
-    //     // this.numbers = res;
-    //   });
-    // from(of([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
-    //   .pipe()
-    //   .subscribe((res) => {
-    //     console.log('Response B:', res);
-    //     this.numbers = res;
-    //   });
-
-    from(of([1, 2, 3]))
-      .pipe(
-        mergeMap((item) => this._logger(item)),
-        tap(console.log)
-      )
+    console.log(':::::::::::::: From ::::::::::::::');
+    // let data$ = from(['A', 'B', 'C']);
+    let data$ = from('Kaihan');
+    console.log('From : ', data$);
+    data$
+      .pipe(concatMap((item) => of(item).pipe(tap(console.log))))
+      .pipe(concatMap((item) => from(item).pipe(tap(console.log))))
       .subscribe((item) => {
-        console.log('Res : ', item);
-        // this.numbers = item;
+        console.log('sub : ', item);
       });
+    console.log('=============================');
+  };
+  fromEventExample = () => {
+    console.log(':::::::::::::: From Event ::::::::::::::');
+    let data$ = fromEvent(document, 'click');
+    data$.subscribe((item) => console.log('From Event : ', item));
+    console.log('=============================');
   };
 }
