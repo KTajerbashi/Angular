@@ -3,3 +3,8 @@ json-server --watch db.json
 json-server --watch db.json --port 8000
 
 json-server --watch src/app/databaseServer/db.json --port 8000
+
+
+NGRX Store : ng add @ngrx/store@latest
+NGRX Effects : ng add @ngrx/effects@latest
+NGRX Store-Devtools : ng add @ngrx/store-devtools@latest

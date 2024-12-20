@@ -51,3 +51,12 @@ export interface externalModelApi {
   body: string;
   userId: number;
 }
+
+export interface INavModel {
+  id: number;
+  title: string;
+  link: string;
+  access: boolean;
+  order: number;
+}
+

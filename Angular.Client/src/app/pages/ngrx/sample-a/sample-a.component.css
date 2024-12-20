@@ -1,0 +1,60 @@
+.app-table {
+  width: 100%;
+  text-align: center;
+  border: 1px solid rgb(107, 107, 107);
+  border-radius: 10px !important;
+}
+
+.app-table > thead {
+  width: 100%;
+  text-align: center;
+  border: 1px solid rgb(107, 107, 107);
+  background: rgb(0, 44, 85);
+  color: white;
+  cursor: pointer;
+}
+
+.app-table > thead > tr {
+  width: 100%;
+  text-align: center;
+  border: 1px solid rgb(107, 107, 107);
+}
+
+.app-table > thead > tr > th {
+  text-align: center;
+  border: 1px solid rgb(107, 107, 107);
+  padding: 5px 5px;
+}
+
+.app-table > thead > tr > th:hover {
+  background: rgb(0, 65, 126);
+}
+
+.app-table > tbody {
+  width: 100%;
+  text-align: center;
+  border: 1px solid rgb(107, 107, 107);
+  border-radius: 10px !important;
+}
+
+.app-table > tbody > tr {
+  width: 100%;
+  text-align: center;
+  border: 1px solid rgb(107, 107, 107);
+  border-radius: 10px !important;
+}
+
+.app-table > tbody > tr:hover {
+  background: rgb(73, 167, 255);
+}
+
+.app-table > tbody > tr > td {
+  text-align: center;
+  border: 1px solid rgb(107, 107, 107);
+  padding: 2px 5px;
+}
+
+.app-table > tbody > tr > td:hover {
+  background: rgb(0, 94, 182);
+  cursor: pointer;
+}
