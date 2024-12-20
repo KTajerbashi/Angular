@@ -22,6 +22,9 @@
         <button (click)="signalToggle()" mat-button color="primary">
           Defer
         </button>
+        <button (click)="radioToggle()" mat-button color="primary">
+          Radio Button
+        </button>
       </div>
     </div>
   </div>
@@ -75,26 +78,7 @@
   <div *ngIf="config.observable" class="app-container-content">
     <div class="app-alert app-alert-primary">Observable</div>
     <mat-grid-list cols="2" rowHeight="1:1">
-      <mat-grid-tile class="bg-slate-500">
-        <form>
-          <mat-selection-list
-            [formControl]="shoesControl"
-            #shoesList
-            name="shoes"
-            [multiple]="false"
-          >
-            @for (shoe of shoes; track shoe) {
-            <mat-list-option [value]="shoe.value">{{
-              shoe.name
-            }}</mat-list-option>
-            }
-          </mat-selection-list>
-          <p>
-            Option selected:
-            {{ shoesControl.value ? shoesControl.value[0] : "None" }}
-          </p>
-        </form>
-      </mat-grid-tile>
+      <mat-grid-tile class="bg-slate-500"> Col1 </mat-grid-tile>
       <mat-grid-tile class="bg-slate-500">
         <app-observable></app-observable>
       </mat-grid-tile>
@@ -107,5 +91,9 @@
   <div *ngIf="config.defer" class="app-container-content">
     <div class="app-alert app-alert-primary">Defer</div>
     <app-defer></app-defer>
+  </div>
+  <div *ngIf="config.radio" class="app-container-content">
+    <div class="app-alert app-alert-primary">Radio Control List</div>
+    <app-contorl-list></app-contorl-list>
   </div>
 </div>

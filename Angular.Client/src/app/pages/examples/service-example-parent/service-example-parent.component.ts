@@ -14,27 +14,13 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInput, MatInputModule } from '@angular/material/input';
 import { SnakbarComponent } from '../dialogs/snakbar/snakbar.component';
-import {
-  MatSnackBar,
-  MatSnackBarAction,
-  MatSnackBarActions,
-  MatSnackBarLabel,
-  MatSnackBarRef,
-} from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { NgIf } from '@angular/common';
-import {
-  FormControl,
-  FormGroup,
-  FormsModule,
-  ReactiveFormsModule,
-} from '@angular/forms';
-import { MatListModule, MatListOption } from '@angular/material/list';
-import { MatList, MatListItem } from '@angular/material/list';
-import { IUser, Shoes } from '../../../interfaces/models/IModels';
-import { Observable } from 'rxjs';
-import { ObservableComponent } from '../observable/observable.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SignalComponent } from '../signals/signal/signal.component';
 import { DeferComponent } from '../defer/defer.component';
+import { ContorlListComponent } from '../contorl-list/contorl-list.component';
+import { ObservableComponent } from '../observable/observable.component';
 
 @Component({
   selector: 'app-service-example-parent',
@@ -48,13 +34,12 @@ import { DeferComponent } from '../defer/defer.component';
     FormsModule,
     MatInputModule,
     MatButtonModule,
-    MatListOption,
     NgIf,
-    MatListModule,
     ReactiveFormsModule,
     ObservableComponent,
     SignalComponent,
     DeferComponent,
+    ContorlListComponent,
   ],
   templateUrl: './service-example-parent.component.html',
   styleUrl: './service-example-parent.component.css',
@@ -62,25 +47,6 @@ import { DeferComponent } from '../defer/defer.component';
 })
 export class ServiceExampleParentComponent {
   readonly dialog = inject(MatDialog);
-  form: FormGroup;
-  shoes: Shoes[] = [
-    { value: 'boots', name: 'Boots' },
-    { value: 'clogs', name: 'Clogs' },
-    { value: 'loafers', name: 'Loafers' },
-    { value: 'moccasins', name: 'Moccasins' },
-    { value: 'sneakers', name: 'Sneakers' },
-  ];
-  shoesControl = new FormControl();
-  constructor() {
-    this.form = new FormGroup({
-      clothes: this.shoesControl,
-    });
-  }
-
-  // Observable Start
-
-  // Observable End
-
   private _snackBar = inject(MatSnackBar);
   config = {
     child: false,
@@ -90,12 +56,12 @@ export class ServiceExampleParentComponent {
     observable: true,
     signal: false,
     defer: false,
+    radio: false,
   };
   @Output() passToChild: string = '';
 
   openDialog() {
     const dialogRef = this.dialog.open(ParentDialogComponent);
-
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
     });
@@ -131,5 +97,8 @@ export class ServiceExampleParentComponent {
   };
   signalToggle = () => {
     this.config.signal = !this.config.signal;
+  };
+  radioToggle = () => {
+    this.config.radio = !this.config.radio;
   };
 }

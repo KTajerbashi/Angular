@@ -18,6 +18,7 @@ import { externalModelApi } from '../../../interfaces/models/IModels';
 import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { MatButton } from '@angular/material/button';
 import { DataService } from './bases/dataService';
+import { TREE_KEY_MANAGER_FACTORY } from '@angular/cdk/a11y';
 
 @Component({
   selector: 'app-observable',
@@ -44,6 +45,7 @@ export class ObservableComponent implements OnInit {
     { id: 10, body: 'Body 10', title: 'Title 10', userId: 10 },
   ];
   dataList$ = of(this.objects);
+  res1 = this.dataList$.pipe();
   ngOnInit(): void {}
   ofMethod = () => {
     this.waiting = true;
