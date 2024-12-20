@@ -21,6 +21,7 @@ import { SignalComponent } from '../signals/signal/signal.component';
 import { DeferComponent } from '../defer/defer.component';
 import { ContorlListComponent } from '../contorl-list/contorl-list.component';
 import { ObservableComponent } from '../observable/observable.component';
+import { SubjectTypesComponent } from "../subject-types/subject-types.component";
 
 @Component({
   selector: 'app-service-example-parent',
@@ -40,7 +41,8 @@ import { ObservableComponent } from '../observable/observable.component';
     SignalComponent,
     DeferComponent,
     ContorlListComponent,
-  ],
+    SubjectTypesComponent
+],
   templateUrl: './service-example-parent.component.html',
   styleUrl: './service-example-parent.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -53,10 +55,11 @@ export class ServiceExampleParentComponent {
     dialog: false,
     snack: false,
     grid: false,
-    observable: true,
+    observable: false,
     signal: false,
     defer: false,
     radio: false,
+    subject: true,
   };
   @Output() passToChild: string = '';
 
@@ -100,5 +103,8 @@ export class ServiceExampleParentComponent {
   };
   radioToggle = () => {
     this.config.radio = !this.config.radio;
+  };
+  subjectsToggle = () => {
+    this.config.subject = !this.config.subject;
   };
 }

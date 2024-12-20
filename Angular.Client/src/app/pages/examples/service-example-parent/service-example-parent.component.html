@@ -25,6 +25,10 @@
         <button (click)="radioToggle()" mat-button color="primary">
           Radio Button
         </button>
+
+        <button (click)="subjectsToggle()" mat-button color="primary">
+          Subjects
+        </button>
       </div>
     </div>
   </div>
@@ -95,5 +99,9 @@
   <div *ngIf="config.radio" class="app-container-content">
     <div class="app-alert app-alert-primary">Radio Control List</div>
     <app-contorl-list></app-contorl-list>
+  </div>
+  <div *ngIf="config.subject" class="app-container-content">
+    <div class="app-alert app-alert-primary">Subject</div>
+    <app-subject-types></app-subject-types>
   </div>
 </div>
