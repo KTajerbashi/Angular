@@ -8,7 +8,7 @@
 .app-table > thead {
   width: 100%;
   text-align: center;
-  border: 1px solid rgb(107, 107, 107);
+  border: 1.7px solid rgb(0, 0, 0);
   background: rgb(0, 44, 85);
   color: white;
   cursor: pointer;
@@ -26,10 +26,6 @@
   padding: 5px 5px;
 }
 
-.app-table > thead > tr > th:hover {
-  background: rgb(0, 65, 126);
-}
-
 .app-table > tbody {
   width: 100%;
   text-align: center;
@@ -45,7 +41,7 @@
 }
 
 .app-table > tbody > tr:hover {
-  background: rgb(73, 167, 255);
+  background: rgb(218, 216, 255);
 }
 
 .app-table > tbody > tr > td {
@@ -55,6 +51,5 @@
 }
 
 .app-table > tbody > tr > td:hover {
-  background: rgb(0, 94, 182);
   cursor: pointer;
 }

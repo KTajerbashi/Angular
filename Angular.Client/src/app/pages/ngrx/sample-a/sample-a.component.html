@@ -2,29 +2,57 @@
   <div class="app-container-content">
     <div class="app-alert app-alert-warning">NGRX : Sample A</div>
     <div class="app-container-content">
+      <button
+        (click)="openDialog('500ms', '100ms')"
+        mat-button
+        color="primary m-2"
+      >
+        New Product
+      </button>
       <table class="app-table app-table-hover">
         <thead>
           <tr>
             <th>#</th>
-            <th>#</th>
-            <th>#</th>
-            <th>#</th>
-            <th>#</th>
-            <th>#</th>
-            <th>#</th>
-            <th>#</th>
+            <th>Title</th>
+            <th>Link</th>
+            <th>Order</th>
+            <th>Access</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>#</td>
-            <td>#</td>
-            <td>#</td>
-            <td>#</td>
-            <td>#</td>
-            <td>#</td>
-            <td>#</td>
-            <td>#</td>
+          <tr *ngFor="let item of dataList; index as i">
+            <td>{{ i }}</td>
+            <td>{{ item.title }}</td>
+            <td>{{ item.link }}</td>
+            <td>{{ item.order }}</td>
+            <td>{{ item.access }}</td>
+            <td>
+              <button
+                (click)="onEdit(item)"
+                mat-button
+                color="accent"
+                class="m-1"
+              >
+                Edit
+              </button>
+              <button
+                (click)="onDelete(item)"
+                mat-button
+                color="warn"
+                class="m-1"
+              >
+                Delete
+              </button>
+              <button
+                (click)="onRead(item)"
+                mat-button
+                color="primary"
+                class="m-1"
+              >
+                Read
+              </button>
+            </td>
           </tr>
         </tbody>
       </table>
