@@ -1,7 +1,6 @@
 ﻿using Angular_WebApi.ApplicationBases.Models;
 using Angular_WebApi.Providers.HttpContexts.DI;
 using Angular_WebApi.Providers.Serializer.Excel.Repository;
-using Angular_WebApi.RequestResponse;
 using Angular_WebApi.Utilities;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -56,9 +55,9 @@ public abstract class BaseController : Controller
         where TQuery : class, IQuery<TQueryResult> => Ok(await mediator.Send(query));
 
     public override OkObjectResult Ok([ActionResultObjectValue] object? value)
-        => base.Ok(_JsonResult.Success(value ?? true));
+        => base.Ok(RequestResponse.JsonResult.Success(value ?? true));
 
-   
+
 
 
 }

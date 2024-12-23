@@ -1,4 +1,4 @@
-﻿namespace Angular_WebApi.ApplicationStarter;
+﻿namespace Angular_WebApi;
 
 public class ApplicationStart
 {

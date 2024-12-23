@@ -1,10 +1,10 @@
 ﻿namespace Angular_WebApi.RequestResponse;
 
-public class _JsonResult
+public class JsonResult
 {
-    public static _JsonResult<T> Success<T>(T data)
+    public static JsonResult<T> Success<T>(T data)
     {
-        return new _JsonResult<T>()
+        return new JsonResult<T>()
         {
             Data = data,
             Error = null,
@@ -16,7 +16,7 @@ public class _JsonResult
 
 }
 
-public class _JsonResult<T> : _JsonResult
+public class JsonResult<T> : JsonResult
 {
     public bool Success { get; set; }
     public T Data { get; set; }

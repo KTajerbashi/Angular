@@ -22,3 +22,4 @@ public abstract class CommandHandler<TRequest, TResponse> : ICommandHandler<TReq
 
     public abstract Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken);
 }
+

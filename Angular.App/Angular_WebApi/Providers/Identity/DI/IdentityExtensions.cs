@@ -46,4 +46,5 @@ public static class IdentityExtensions
 
         return app;
     }
+
 }

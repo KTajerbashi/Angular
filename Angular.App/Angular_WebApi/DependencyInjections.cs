@@ -6,24 +6,25 @@ using Angular_WebApi.Providers.Mapper.DI;
 using Angular_WebApi.Providers.MediatR.DI;
 using System.Reflection;
 
-namespace Angular_WebApi.ApplicationStarter.Extensions;
+namespace Angular_WebApi;
 
-public static class StartApplicationServices
+
+public static class DependencyInjections
 {
     public static WebApplication AddApplicationServices(this WebApplicationBuilder builder)
     {
         IConfiguration configuration = builder.Configuration;
 
         builder.Services.AddControllers();
-        
+
         builder.Services.AddEndpointsApiExplorer();
-        
+
         builder.Services.AddSwaggerGen();
 
         builder.Services.AddCommonProviders();
 
         builder.Services.AddRepositoriesAndServices(Assembly.GetExecutingAssembly());
-        
+
         builder.Services.AddDatabaseServices(configuration);
 
         //  Provider

@@ -25,3 +25,4 @@ public class UserEntity : IdentityUser<long>, IBaseEntity<long>
         UserName = command.UserName;
     }
 }
+
