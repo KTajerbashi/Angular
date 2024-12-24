@@ -18,6 +18,7 @@ import { InternalServerComponent } from './pages/common/internal-server/internal
 import { UserProfileComponent } from './pages/user/children/user-profile/user-profile.component';
 import { ServiceExampleParentComponent } from './pages/examples/service-example-parent/service-example-parent.component';
 import { SampleAComponent } from './pages/ngrx/sample-a/sample-a.component';
+import { ChatRoomComponent } from './pages/examples/chat-room/chat-room.component';
 export const routes: Routes = [
   {
     path: '',
@@ -57,6 +58,7 @@ export const routes: Routes = [
       },
       { path: 'ngrx', component: SampleAComponent },
       { path: 'internalServer', component: InternalServerComponent },
+      { path: 'chat-room', component: ChatRoomComponent },
       { path: '**', component: NotFoundComponent },
     ],
   },

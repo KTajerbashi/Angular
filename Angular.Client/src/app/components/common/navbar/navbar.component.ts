@@ -36,6 +36,7 @@ export class NavbarComponent implements OnInit {
     { id: 4, title: 'NGRX', link: '/ngrx', access: true, order: 4 },
     { id: 5, title: 'Users', link: '/users', access: true, order: 5 },
     { id: 6, title: 'Admin', link: '/admin', access: true, order: 6 },
+    { id: 7, title: 'ChatRoom', link: '/chat-room', access: true, order: 7 },
   ];
   logout() {
     this.authService.logout();

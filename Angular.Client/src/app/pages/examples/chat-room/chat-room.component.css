@@ -1,0 +1,69 @@
+.app-chat-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  scrollbar-width: none; /* Hide scrollbar in Firefox */
+}
+.app-item {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.app-container-users {
+  background: rgb(107, 107, 107);
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.app-item-users {
+  padding: 5px;
+  margin: 10px;
+  border-radius: 10px;
+  background: rgb(54, 54, 54);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.app-item-users :first-child {
+  background: rgb(165, 37, 37);
+  color: white;
+  width: 100%;
+  text-align: center;
+}
+.app-item-users > span {
+  padding: 5px 10px;
+  border-radius: 10px;
+  color: aliceblue;
+  margin: 0 1px;
+}
+.app-container-messages {
+  height: 80%;
+  width: 100%;
+  overflow: auto;
+  scrollbar-width: none; /* Hide scrollbar in Firefox */
+  margin: 0 0 50px 0;
+  display: flex;
+  flex-direction: column !important;
+}
+.app-item-messages {
+  color: aliceblue;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 5px;
+}
+
+::-webkit-scrollbar {
+  display: none; /* Hide scrollbar in Chrome, Edge, and Safari */
+}
