@@ -4,6 +4,7 @@ using Angular_WebApi.Providers.HttpContexts.DI;
 using Angular_WebApi.Providers.Identity.DI;
 using Angular_WebApi.Providers.Mapper.DI;
 using Angular_WebApi.Providers.MediatR.DI;
+using Angular_WebApi.Providers.SignalRHubs.DI;
 using System.Reflection;
 
 namespace Angular_WebApi;
@@ -16,6 +17,8 @@ public static class DependencyInjections
         IConfiguration configuration = builder.Configuration;
 
         builder.Services.AddControllers();
+
+        builder.Services.AddRazorPages();
 
         builder.Services.AddEndpointsApiExplorer();
 
@@ -47,7 +50,7 @@ public static class DependencyInjections
                       .AllowAnyHeader();
             });
         });
-
+        builder.Services.AddSignalRServices();
         return builder.Build();
     }
 
@@ -58,6 +61,11 @@ public static class DependencyInjections
         {
             app.UseSwagger();
             app.UseSwaggerUI();
+        }else
+        {
+            app.UseExceptionHandler("/Error");
+            // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+            app.UseHsts();
         }
 
         app.UseMiddleware<ExceptionHandlerMiddleware>();
@@ -67,8 +75,15 @@ public static class DependencyInjections
         app.UseCors("AllowAngularApp");
 
         app.UseHttpsRedirection();
+        app.UseStaticFiles();
+
+        app.UseRouting();
 
         app.MapControllers();
+
+        app.MapRazorPages();
+
+        app.UserSignalR();
 
         return app;
     }

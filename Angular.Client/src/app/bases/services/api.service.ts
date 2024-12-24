@@ -10,7 +10,7 @@ import { IApiResponse } from '../models/IApiResponse';
 })
 export class ApiService {
   // private readonly baseUrl: string = 'http://localhost:8000'; // Base URL for API calls
-  private readonly baseUrl: string = 'https://localhost:7100/api/'; // Base URL for API calls
+  private readonly baseUrl: string = 'https://localhost:7202/api/'; // Base URL for API calls
 
   constructor(
     private http: HttpClient,

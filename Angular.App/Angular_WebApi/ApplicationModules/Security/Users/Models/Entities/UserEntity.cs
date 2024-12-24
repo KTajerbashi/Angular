@@ -11,6 +11,7 @@ public class UserEntity : IdentityUser<long>, IBaseEntity<long>
     public string Family { get; set; }
     public bool IsDeleted { get; set; }
     public bool IsActive { get; set; }
+    public bool IsOnline { get; set; }
     public UserEntity()
     {
         IsDeleted = false;
@@ -24,5 +25,6 @@ public class UserEntity : IdentityUser<long>, IBaseEntity<long>
         PhoneNumber = command.PhoneNumber;
         UserName = command.UserName;
     }
+    public void ChangeOnline() => IsOnline = !IsOnline;
 }
 
