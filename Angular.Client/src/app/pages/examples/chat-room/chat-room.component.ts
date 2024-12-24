@@ -11,6 +11,7 @@ import {
 import { MatButton } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { AboutComponent } from '../../main/about/about.component';
 
 @Component({
   selector: 'app-chat-room',
@@ -26,6 +27,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatFormFieldModule,
     MatInputModule,
     MatGridListModule,
+    AboutComponent,
   ],
   templateUrl: './chat-room.component.html',
   styleUrl: './chat-room.component.css',
