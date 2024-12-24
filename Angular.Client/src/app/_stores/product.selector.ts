@@ -1,6 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import {
-  IProductModel,
   IProductStateModel,
 } from '../interfaces/store/IProductStateModel';
 

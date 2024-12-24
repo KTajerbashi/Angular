@@ -3,6 +3,8 @@ import {
   inject,
   OnInit,
   ChangeDetectionStrategy,
+  ViewChild,
+  AfterViewInit,
 } from '@angular/core';
 import { IProductModel } from '../../../interfaces/store/IProductStateModel';
 import { NgFor } from '@angular/common';
@@ -17,14 +19,35 @@ import {
   MatDialogTitle,
 } from '@angular/material/dialog';
 import { CreateProductComponent } from './children/create-product/create-product.component';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatSort, MatSortModule } from '@angular/material/sort';
+import { Store } from '@ngrx/store';
+import { loadProducts } from '../../../_stores/product.action';
+import { getProductList } from '../../../_stores/product.selector';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 @Component({
   selector: 'app-sample-a',
-  imports: [NgFor, MatButton],
+  imports: [
+    // NgFor,
+    MatButton,
+    MatButton,
+    MatFormFieldModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatTableModule,
+    MatInputModule,
+  ],
   templateUrl: './sample-a.component.html',
   styleUrl: './sample-a.component.css',
 })
-export class SampleAComponent implements OnInit {
-  dataList: IProductModel[] = [
+export class SampleAComponent implements OnInit, AfterViewInit {
+  displayColumn: string[] = ['id', 'title', 'link', 'access', 'order'];
+  dataSource!: MatTableDataSource<IProductModel>;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+  productList: IProductModel[] = [
     {
       id: 1,
       title: 'Product Title',
@@ -33,11 +56,33 @@ export class SampleAComponent implements OnInit {
       order: 1,
     },
   ];
-  readonly dialog = inject(MatDialog);
-
+  constructor(private dialog: MatDialog, private store: Store) {}
   ngOnInit(): void {
-    console.log('SampleAComponent');
+    console.log('On Init ...');
   }
+
+  ngAfterViewInit(): void {
+    this.loadProduct();
+  }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+  }
+
+  loadProduct = () => {
+    this.store.dispatch(loadProducts());
+    this.store.select(getProductList).subscribe((res) => {
+      console.log('RES : ', res);
+      this.productList = res;
+      this.dataSource = new MatTableDataSource(this.productList);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
+  };
   openDialog(
     enterAnimationDuration: string,
     exitAnimationDuration: string
