@@ -13,6 +13,7 @@ public static class SignalRExtensions
     public static WebApplication UserSignalR(this WebApplication app)
     {
         // Map SignalR hubs
+        app.MapHub<ChatHub>("/chatHub");
         app.MapHub<OnlineUserHub>("/hubs/onlineUsers");
         return app;
     }

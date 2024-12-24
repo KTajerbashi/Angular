@@ -45,9 +45,11 @@ public static class DependencyInjections
         {
             options.AddPolicy("AllowAngularApp", policy =>
             {
-                policy.WithOrigins("http://localhost:4200") // Angular's development server
-                      .AllowAnyMethod()
-                      .AllowAnyHeader();
+                policy
+                    .AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .AllowCredentials()
+                    .WithOrigins("http://localhost:4200"); // Angular's development server
             });
         });
         builder.Services.AddSignalRServices();
