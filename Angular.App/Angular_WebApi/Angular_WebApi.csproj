@@ -28,23 +28,4 @@
     <PackageReference Include="PersianDate" Version="3.5.5" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ApplicationModules\Products\Product\Handlers\ProductDetails\Commands\Create\" />
-    <Folder Include="ApplicationModules\Products\Product\Handlers\ProductDetails\Commands\Delete\" />
-    <Folder Include="ApplicationModules\Products\Product\Handlers\ProductDetails\Commands\Update\" />
-    <Folder Include="ApplicationModules\Products\Product\Handlers\ProductDetails\Queries\GetAll\" />
-    <Folder Include="ApplicationModules\Products\Product\Handlers\ProductDetails\Queries\GetById\" />
-    <Folder Include="ApplicationModules\Products\Product\Handlers\Product\Commands\Create\" />
-    <Folder Include="ApplicationModules\Products\Product\Handlers\Product\Commands\Delete\" />
-    <Folder Include="ApplicationModules\Products\Product\Handlers\Product\Commands\Update\" />
-    <Folder Include="ApplicationModules\Products\Product\Handlers\Product\Queries\GetById\" />
-    <Folder Include="ApplicationModules\Products\Product\Models\Views\" />
-    <Folder Include="ApplicationModules\Security\Users\Handlers\UserReport\Commands\" />
-    <Folder Include="ApplicationModules\Security\Users\Handlers\UserReport\Queries\" />
-    <Folder Include="ApplicationModules\Security\Users\Handlers\UserPrivilge\Commands\" />
-    <Folder Include="ApplicationModules\Security\Users\Handlers\UserPrivilge\Queries\" />
-    <Folder Include="ApplicationModules\Security\Users\Handlers\UserRoles\Commands\" />
-    <Folder Include="ApplicationModules\Security\Users\Handlers\UserRoles\Queries\" />
-  </ItemGroup>
-
 </Project>
