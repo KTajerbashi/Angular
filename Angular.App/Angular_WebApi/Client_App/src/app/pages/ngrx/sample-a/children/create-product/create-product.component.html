@@ -1,16 +1,81 @@
-<div class="app-container">
-  <div class="app-container-content">
-    <div class="app-alert app-alert-danger">Create New Product</div>
+<form [formGroup]="productForm" (ngSubmit)="saveProduct()">
+  <mat-card>
+    <mat-card-header>
+      <h2>Create or Edit Product</h2>
+    </mat-card-header>
 
-    <div class="app-container-content">
-      <div>
-        <mat-form-field>
-          <mat-label>What's your name?</mat-label>
-          <input matInput [(ngModel)]="name" />
-        </mat-form-field>
-      </div>
-      <button mat-button color="success">Save</button>
-      <button mat-button color="warn">Cancel</button>
-    </div>
-  </div>
-</div>
+    <mat-card-content>
+      <!-- ID Field -->
+      <mat-form-field
+        class="full-width"
+        *ngIf="!productForm.get('id') || !(_dialogdata.id <= 0)"
+      >
+        <mat-label>ID</mat-label>
+        <input matInput formControlName="id" />
+      </mat-form-field>
+
+      <!-- Name Field -->
+      <mat-form-field class="full-width">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" required />
+        <mat-error *ngIf="productForm.get('name')?.hasError('required')">
+          Name is required
+        </mat-error>
+        <mat-error *ngIf="productForm.get('name')?.hasError('minlength')">
+          Name must be at least 3 characters long
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Description Field -->
+      <mat-form-field class="full-width">
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description" required></textarea>
+        <mat-error *ngIf="productForm.get('description')?.hasError('required')">
+          Description is required
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Price Field -->
+      <mat-form-field class="full-width">
+        <mat-label>Price</mat-label>
+        <input
+          matInput
+          type="number"
+          formControlName="price"
+          min="1"
+          required
+        />
+        <mat-error *ngIf="productForm.get('price')?.hasError('required')">
+          Price is required
+        </mat-error>
+        <mat-error *ngIf="productForm.get('price')?.hasError('min')">
+          Price must be at least 1
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Status Checkbox -->
+      <mat-checkbox formControlName="status">Active</mat-checkbox>
+    </mat-card-content>
+
+    <mat-card-actions class="app-control">
+      <button
+        class="m-3"
+        type="submit"
+        mat-raised-button
+        color="primary"
+        [disabled]="productForm.invalid"
+      >
+        Save
+      </button>
+      <button
+        class="m-3"
+        type="button"
+        mat-raised-button
+        color="accent"
+        (click)="closeDialog()"
+      >
+        Cancel
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>

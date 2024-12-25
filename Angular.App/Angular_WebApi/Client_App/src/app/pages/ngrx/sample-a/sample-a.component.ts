@@ -43,22 +43,22 @@ import { MatInputModule } from '@angular/material/input';
   styleUrl: './sample-a.component.css',
 })
 export class SampleAComponent implements OnInit, AfterViewInit {
-  displayColumn: string[] = ['id', 'title', 'link', 'access', 'order'];
+  displayColumn: string[] = ['id', 'name', 'description', 'price', 'status'];
   dataSource!: MatTableDataSource<IProductModel>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   productList: IProductModel[] = [
     {
       id: 1,
-      title: 'Product Title',
-      access: true,
-      link: 'Product Link',
-      order: 1,
+      name: 'Product Title',
+      description: 'Poduct desc',
+      price: 25000,
+      status: true,
     },
   ];
   constructor(private dialog: MatDialog, private store: Store) {}
   ngOnInit(): void {
-    console.log('On Init ...');
+    this.dataSource = new MatTableDataSource<IProductModel>([]); // Initialize with empty data
   }
 
   ngAfterViewInit(): void {

@@ -15,12 +15,12 @@ public class ProductGetAllHandler : QueryHandler<ProductGetAllQuery, List<Produc
         await Task.CompletedTask;
         return new List<ProductGetAllView>()
         {
-            new ProductGetAllView(){ Id = 1,Title = "Mobile",Access = true,Link = "/Mobile",Order = 1},
-            new ProductGetAllView(){ Id = 2,Title = "Laptop",Access = false,Link = "/Laptop",Order = 2},
-            new ProductGetAllView(){ Id = 3,Title = "Keyboard",Access = true,Link = "/Keyboard",Order = 3},
-            new ProductGetAllView(){ Id = 4,Title = "Monitor",Access = false,Link = "/Monitor",Order = 4},
-            new ProductGetAllView(){ Id = 5,Title = "Mouse",Access = true,Link = "/Mouse",Order = 5},
-            new ProductGetAllView(){ Id = 6,Title = "Case",Access = true,Link = "/Case",Order = 6},
+            new ProductGetAllView(){ Id = 1,Name = "Mobile",Description= "Mobile Desc",Price = 250000,Status= true},
+            new ProductGetAllView(){ Id = 2,Name = "Laptop",Description= "Laptop Desc",Price = 250000,Status= true},
+            new ProductGetAllView(){ Id = 3,Name = "Keyboard",Description= "Keyboard Desc",Price = 250000,Status= true},
+            new ProductGetAllView(){ Id = 4,Name = "Monitor",Description= "Monitor Desc",Price = 250000,Status= true},
+            new ProductGetAllView(){ Id = 5,Name = "Mouse",Description= "Mouse Desc",Price = 250000,Status= true},
+            new ProductGetAllView(){ Id = 6,Name = "Case",Description= "Case Desc",Price = 250000,Status= true},
         };
     }
 }
@@ -30,8 +30,8 @@ public class ProductGetAllQuery : Query<List<ProductGetAllView>>
 }
 public class ProductGetAllView : BaseView
 {
-    public string Title { get; set; }
-    public string Link { get; set; }
-    public bool Access { get; set; }
-    public byte Order { get; set; }
+    public string Name { get; set; }
+    public string Description { get; set; }
+    public decimal Price { get; set; }
+    public bool Status { get; set; }
 }

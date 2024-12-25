@@ -1,6 +1,8 @@
 import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import {
+  createProducts,
+  createProductsSuccess,
   loadProducts,
   loadProductsFail,
   loadProductsSuccess,
@@ -23,6 +25,23 @@ export class ProductEffct {
           map((response) => {
             const { data } = response;
             return loadProductsSuccess({ list: data });
+          }),
+          catchError((err) =>
+            of(loadProductsFail({ errorMessages: err.message }))
+          )
+        );
+      })
+    )
+  );
+
+  _createproduct = createEffect(() =>
+    this.action$.pipe(
+      ofType(createProducts),
+      exhaustMap((action) => {
+        return this.apiService.post<IProductModel>('Product', action).pipe(
+          map((response) => {
+            const { data } = response;
+            return createProductsSuccess({ model: data });
           }),
           catchError((err) =>
             of(loadProductsFail({ errorMessages: err.message }))
