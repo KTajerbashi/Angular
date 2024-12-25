@@ -1,7 +1,7 @@
 ﻿using Angular_WebApi.ApplicationBases.Models;
 using Angular_WebApi.ApplicationBases.Patterns;
 using Angular_WebApi.ApplicationBases.Repositories;
-using Angular_WebApi.ContextDB;
+using Angular_WebApi.ContextDB.Database;
 using Microsoft.EntityFrameworkCore;
 
 namespace Angular_WebApi.ApplicationBases.Services;

@@ -2,7 +2,7 @@
 using Angular_WebApi.ApplicationModules.Security.Users.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Angular_WebApi.ContextDB;
+namespace Angular_WebApi.ContextDB.Configuration;
 
 public static class DbContextConfiguration
 {

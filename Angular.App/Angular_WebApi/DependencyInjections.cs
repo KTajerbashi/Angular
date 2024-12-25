@@ -1,4 +1,5 @@
-﻿using Angular_WebApi.Middlewares.ExceptionHandler.Middleware;
+﻿using Angular_WebApi.ContextDB.Database;
+using Angular_WebApi.Middlewares.ExceptionHandler.Middleware;
 using Angular_WebApi.Providers.Application.DI;
 using Angular_WebApi.Providers.HttpContexts.DI;
 using Angular_WebApi.Providers.Identity.DI;
@@ -39,7 +40,6 @@ public static class DependencyInjections
         //  Provider
         builder.Services.AddIdentityServices();
 
-
         // Add CORS policy
         builder.Services.AddCors(options =>
         {
@@ -58,6 +58,9 @@ public static class DependencyInjections
 
     public static WebApplication UseApplicationPipline(this WebApplication app)
     {
+
+        Task.WaitAll(app.InitialiseDatabaseAsync());
+
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
         {

@@ -1,8 +1,9 @@
 ﻿using Angular_WebApi.ApplicationModules.Security.Roles.Models.Entities;
 using Angular_WebApi.ApplicationModules.Security.Users.Models.Entities;
+using Angular_WebApi.ContextDB.Bases;
 using Microsoft.EntityFrameworkCore;
 
-namespace Angular_WebApi.ContextDB;
+namespace Angular_WebApi.ContextDB.Database;
 
 public class DatabaseContext : BaseDatabaseContext
 {
@@ -11,7 +12,7 @@ public class DatabaseContext : BaseDatabaseContext
     }
 
     #region DbSet
-    
+
     public virtual DbSet<UserEntity> UserEntities => Set<UserEntity>();
     public virtual DbSet<UserClaimEntity> UserClaimEntities => Set<UserClaimEntity>();
     public virtual DbSet<UserLoginEntity> UserLoginEntities => Set<UserLoginEntity>();

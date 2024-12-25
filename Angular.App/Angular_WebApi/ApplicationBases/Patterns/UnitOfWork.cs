@@ -1,4 +1,4 @@
-﻿using Angular_WebApi.ContextDB;
+﻿using Angular_WebApi.ContextDB.Bases;
 
 namespace Angular_WebApi.ApplicationBases.Patterns;
 

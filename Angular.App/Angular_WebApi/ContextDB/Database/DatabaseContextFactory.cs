@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 
-namespace Angular_WebApi.ContextDB;
+namespace Angular_WebApi.ContextDB.Database;
 
 //public class DatabaseContextFactory : IDesignTimeDbContextFactory<DatabaseContext>
 //{

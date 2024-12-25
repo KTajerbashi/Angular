@@ -1,6 +1,6 @@
 ﻿using Angular_WebApi.ApplicationModules.Security.Roles.Models.Entities;
 using Angular_WebApi.ApplicationModules.Security.Users.Models.Entities;
-using Angular_WebApi.ContextDB;
+using Angular_WebApi.ContextDB.Database;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using System;

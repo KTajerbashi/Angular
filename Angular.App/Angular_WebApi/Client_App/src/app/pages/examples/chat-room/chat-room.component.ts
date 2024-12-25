@@ -27,7 +27,6 @@ import { AboutComponent } from '../../main/about/about.component';
     MatFormFieldModule,
     MatInputModule,
     MatGridListModule,
-    AboutComponent,
   ],
   templateUrl: './chat-room.component.html',
   styleUrl: './chat-room.component.css',

@@ -1,7 +1,7 @@
 ﻿using Angular_WebApi.ApplicationBases.Patterns;
 using Angular_WebApi.ApplicationBases.Repositories;
 using Angular_WebApi.ApplicationBases.Services;
-using Angular_WebApi.ContextDB;
+using Angular_WebApi.ContextDB.Database;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
@@ -23,10 +23,13 @@ public static class ApplicationExtensions
 
     public static IServiceCollection AddDatabaseServices(this IServiceCollection services,IConfiguration configuration)
     {
+        services.AddScoped<DatabaseContextInitialiser>();
+
         services.AddDbContext<DatabaseContext>(option =>
         {
             option.UseSqlServer(configuration.GetConnectionString("ConnectionString"));
         });
+
         return services;
     }
 
