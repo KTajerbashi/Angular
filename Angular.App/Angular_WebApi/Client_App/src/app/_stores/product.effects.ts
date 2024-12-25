@@ -2,6 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import {
   createProducts,
+  createProductsFail,
   createProductsSuccess,
   loadProducts,
   loadProductsFail,
@@ -9,7 +10,7 @@ import {
 } from './product.action';
 import { catchError, exhaustMap, map, of } from 'rxjs';
 import { ApiService } from '../bases/services/api.service';
-import { IProductModel } from '../interfaces/store/IProductStateModel';
+import { IProductModel } from './product.model';
 
 @Injectable()
 export class ProductEffct {
@@ -44,7 +45,7 @@ export class ProductEffct {
             return createProductsSuccess({ model: data });
           }),
           catchError((err) =>
-            of(loadProductsFail({ errorMessages: err.message }))
+            of(createProductsFail({ errorMessages: err.message }))
           )
         );
       })

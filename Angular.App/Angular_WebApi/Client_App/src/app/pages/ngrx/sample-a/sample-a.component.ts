@@ -6,7 +6,6 @@ import {
   ViewChild,
   AfterViewInit,
 } from '@angular/core';
-import { IProductModel } from '../../../interfaces/store/IProductStateModel';
 import { NgFor } from '@angular/common';
 import { MatButton } from '@angular/material/button';
 import { MatButtonModule } from '@angular/material/button';
@@ -27,6 +26,7 @@ import { loadProducts } from '../../../_stores/product.action';
 import { getProductList } from '../../../_stores/product.selector';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { IProductModel } from '../../../_stores/product.model';
 @Component({
   selector: 'app-sample-a',
   imports: [

@@ -9,7 +9,6 @@ import {
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ApiService } from '../../../../../bases/services/api.service';
 import { ToastrService } from 'ngx-toastr';
-import { IProductModel } from '../../../../../interfaces/store/IProductStateModel';
 import { MatCard, MatCardHeader } from '@angular/material/card';
 import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
@@ -28,6 +27,7 @@ import {
   createProducts,
   updateProducts,
 } from '../../../../../_stores/product.action';
+import { IProductModel } from '../../../../../_stores/product.model';
 @Component({
   selector: 'app-create-product',
   imports: [

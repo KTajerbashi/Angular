@@ -1,7 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
-import { productState } from '../interfaces/store/product.state';
 import { loadProductsFail, loadProductsSuccess } from './product.action';
 import { state } from '@angular/animations';
+import { productState } from './product.state';
 
 const _proudctReducer = createReducer(
   productState,
