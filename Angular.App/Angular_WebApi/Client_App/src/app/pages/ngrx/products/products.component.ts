@@ -1,37 +1,20 @@
-import {
-  Component,
-  inject,
-  OnInit,
-  ChangeDetectionStrategy,
-  ViewChild,
-  AfterViewInit,
-} from '@angular/core';
-import { NgFor } from '@angular/common';
-import { MatButton } from '@angular/material/button';
-import { MatButtonModule } from '@angular/material/button';
-import {
-  MatDialog,
-  MatDialogActions,
-  MatDialogClose,
-  MatDialogContent,
-  MatDialogRef,
-  MatDialogTitle,
-} from '@angular/material/dialog';
-import { CreateProductComponent } from './children/create-product/create-product.component';
+import { Component, ViewChild } from '@angular/core';
+import { IProductModel } from '../../../_stores/product.model';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
+import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { loadProducts } from '../../../_stores/product.action';
 import { getProductList } from '../../../_stores/product.selector';
+import { NewProductComponent } from './new-product/new-product.component';
+import { MatButton } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { IProductModel } from '../../../_stores/product.model';
+
 @Component({
-  selector: 'app-sample-a',
+  selector: 'app-products',
   imports: [
-    // NgFor,
-    MatButton,
     MatButton,
     MatFormFieldModule,
     MatPaginatorModule,
@@ -39,10 +22,10 @@ import { IProductModel } from '../../../_stores/product.model';
     MatTableModule,
     MatInputModule,
   ],
-  templateUrl: './sample-a.component.html',
-  styleUrl: './sample-a.component.css',
+  templateUrl: './products.component.html',
+  styleUrl: './products.component.css',
 })
-export class SampleAComponent implements OnInit, AfterViewInit {
+export class ProductsComponent {
   displayColumn: string[] = ['id', 'name', 'description', 'price', 'status'];
   dataSource!: MatTableDataSource<IProductModel>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -87,7 +70,7 @@ export class SampleAComponent implements OnInit, AfterViewInit {
     enterAnimationDuration: string,
     exitAnimationDuration: string
   ): void {
-    this.dialog.open(CreateProductComponent, {
+    this.dialog.open(NewProductComponent, {
       width: '1000px',
       enterAnimationDuration,
       exitAnimationDuration,

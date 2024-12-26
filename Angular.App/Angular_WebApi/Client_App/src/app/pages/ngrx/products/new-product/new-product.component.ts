@@ -1,35 +1,36 @@
+import { NgIf } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import {
   FormBuilder,
-  Validators,
   FormGroup,
-  FormsModule,
   ReactiveFormsModule,
+  Validators,
 } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { ApiService } from '../../../../../bases/services/api.service';
-import { ToastrService } from 'ngx-toastr';
-import { MatCard, MatCardHeader } from '@angular/material/card';
-import { NgModule } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import {
+  MAT_DIALOG_DATA,
+  MatDialogModule,
+  MatDialogRef,
+} from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
-import { MatIconModule } from '@angular/material/icon';
-import { NgFor, NgIf } from '@angular/common';
+import { MatTableModule } from '@angular/material/table';
+import { ApiService } from '../../../../bases/services/api.service';
+import { ToastrService } from 'ngx-toastr';
 import { Store } from '@ngrx/store';
+import { IProductModel } from '../../../../_stores/product.model';
 import {
   createProducts,
   updateProducts,
-} from '../../../../../_stores/product.action';
-import { IProductModel } from '../../../../../_stores/product.model';
+} from '../../../../_stores/product.action';
+
 @Component({
-  selector: 'app-create-product',
+  selector: 'app-new-product',
   imports: [
     MatButtonModule,
     MatCardModule,
@@ -44,10 +45,10 @@ import { IProductModel } from '../../../../../_stores/product.model';
     NgIf,
     ReactiveFormsModule,
   ],
-  templateUrl: './create-product.component.html',
-  styleUrls: ['./create-product.component.css'],
+  templateUrl: './new-product.component.html',
+  styleUrl: './new-product.component.css',
 })
-export class CreateProductComponent implements OnInit {
+export class NewProductComponent implements OnInit {
   productForm!: FormGroup;
   isEditMode: boolean = false;
   _dialogdata: {
@@ -60,7 +61,7 @@ export class CreateProductComponent implements OnInit {
   constructor(
     private apiService: ApiService,
     private formBuilder: FormBuilder,
-    private dialogRef: MatDialogRef<CreateProductComponent>,
+    private dialogRef: MatDialogRef<NewProductComponent>,
     @Inject(MAT_DIALOG_DATA) public dialogData: { id: number },
     private toastr: ToastrService,
     private store: Store

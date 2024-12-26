@@ -17,8 +17,9 @@ import { ProfileComponent } from './pages/admin/profile/profile.component';
 import { InternalServerComponent } from './pages/common/internal-server/internal-server.component';
 import { UserProfileComponent } from './pages/user/children/user-profile/user-profile.component';
 import { ServiceExampleParentComponent } from './pages/examples/service-example-parent/service-example-parent.component';
-import { SampleAComponent } from './pages/ngrx/sample-a/sample-a.component';
 import { ChatRoomComponent } from './pages/examples/chat-room/chat-room.component';
+import { ProductsComponent } from './pages/ngrx/products/products.component';
+import { NgrxManagerComponent } from './pages/ngrx/ngrx-manager/ngrx-manager.component';
 export const routes: Routes = [
   {
     path: '',
@@ -56,7 +57,7 @@ export const routes: Routes = [
           { path: 'delete/:id', component: UserDeleteComponent },
         ],
       },
-      { path: 'ngrx', component: SampleAComponent },
+      { path: 'ngrx', component: NgrxManagerComponent },
       { path: 'internalServer', component: InternalServerComponent },
       { path: 'chat-room', component: ChatRoomComponent },
       { path: '**', component: NotFoundComponent },
