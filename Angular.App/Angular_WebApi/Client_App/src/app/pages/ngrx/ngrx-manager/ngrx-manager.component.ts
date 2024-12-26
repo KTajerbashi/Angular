@@ -1,19 +1,20 @@
 import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatButton } from '@angular/material/button';
+import { ProductsComponent } from '../products/products.component';
 
 @Component({
   selector: 'app-ngrx-manager',
-  imports: [MatButton, NgIf, NgFor, CommonModule],
+  imports: [MatButton, NgIf, NgFor, CommonModule, ProductsComponent],
   templateUrl: './ngrx-manager.component.html',
   styleUrl: './ngrx-manager.component.css',
 })
 export class NgrxManagerComponent {
   config: IOption[] = [
-    { visible: true, code: 1, title: 'State' },
-    { visible: true, code: 2, title: 'Action' },
-    { visible: true, code: 3, title: 'Effect' },
-    { visible: true, code: 4, title: 'Reducer' },
+    { visible: false, code: 1, title: 'State' },
+    { visible: false, code: 2, title: 'Action' },
+    { visible: false, code: 3, title: 'Effect' },
+    { visible: false, code: 4, title: 'Reducer' },
     { visible: true, code: 5, title: 'Product' },
   ];
 

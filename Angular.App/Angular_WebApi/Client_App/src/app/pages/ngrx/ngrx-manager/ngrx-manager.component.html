@@ -1,19 +1,21 @@
-<div class="app-container">
-  <div class="app-container-content">
+<div class="app-card">
+  <div class="app-card-content">
     <div class="app-alert app-alert-primary">NGRX Manager</div>
-    <div class="app-container-content">
-      <button
-        *ngFor="let btn of config"
-        (click)="toggle(btn)"
-        [ngClass]="{
-          'app-active-btn': btn.visible,
-          'app-disActive-btn': !btn.visible
-        }"
-        mat-button
-        color="primary"
-      >
-        {{ btn.title }}
-      </button>
+    <div class="app-card">
+      <div class="app-card-content">
+        <button
+          *ngFor="let btn of config"
+          (click)="toggle(btn)"
+          [ngClass]="{
+            'app-active-btn': btn.visible,
+            'app-disActive-btn': !btn.visible
+          }"
+          mat-button
+          color="primary"
+        >
+          {{ btn.title }}
+        </button>
+      </div>
     </div>
     <div *ngIf="getOptionByCode(1)" class="app-container-content">
       <div>State</div>
@@ -28,7 +30,7 @@
       <div>Reducer</div>
     </div>
     <div *ngIf="getOptionByCode(5)" class="app-container-content">
-      <div>Product</div>
+      <app-products></app-products>
     </div>
   </div>
 </div>
