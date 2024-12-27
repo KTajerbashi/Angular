@@ -1,6 +1,7 @@
 ﻿using Angular_WebApi.ApplicationModules.Security.Roles.Models.Entities;
 using Angular_WebApi.ApplicationModules.Security.Users.Models.Entities;
 using Angular_WebApi.ContextDB.Configuration;
+using Angular_WebApi.ContextDB.Properties;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,5 +19,6 @@ public abstract class BaseDatabaseContext : IdentityDbContext
     {
         base.OnModelCreating(builder);
         builder.AddSecurityConfiguration();
+        builder.AddAuditableShadowProperties<long>();
     }
 }

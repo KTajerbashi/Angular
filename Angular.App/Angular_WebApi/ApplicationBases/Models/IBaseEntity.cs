@@ -1,6 +1,10 @@
 ﻿namespace Angular_WebApi.ApplicationBases.Models;
 
-public interface IBaseEntity<TId>
+public interface IBaseEntity
+{
+
+}
+public interface IBaseEntity<TId>: IBaseEntity
 {
     TId Id { get; set; }
     bool IsDeleted { get; set; }

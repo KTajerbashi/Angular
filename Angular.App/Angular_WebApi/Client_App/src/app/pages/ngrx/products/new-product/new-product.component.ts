@@ -1,4 +1,3 @@
-import { NgIf } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import {
   FormBuilder,
@@ -9,20 +8,15 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import {
-  MAT_DIALOG_DATA,
-  MatDialogModule,
-  MatDialogRef,
-} from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort';
-import { MatTableModule } from '@angular/material/table';
 import { ToastrService } from 'ngx-toastr';
 import { Store } from '@ngrx/store';
 import { IProductModel } from '../../../../_stores/product.model';
+import { ProductActions } from '../../../../_stores/product.action';
+import { getProduct } from '../../../../_stores/product.selector';
 
 @Component({
   selector: 'app-new-product',
@@ -32,55 +26,87 @@ import { IProductModel } from '../../../../_stores/product.model';
     MatCheckboxModule,
     MatFormFieldModule,
     MatInputModule,
-    MatDialogModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
-    MatIconModule,
-    NgIf,
     ReactiveFormsModule,
+    MatIconModule,
   ],
   templateUrl: './new-product.component.html',
-  styleUrl: './new-product.component.css',
+  styleUrls: ['./new-product.component.css'],
 })
 export class NewProductComponent implements OnInit {
-  productForm!: FormGroup;
-  productList: IProductModel[] = [];
+  productForm!: FormGroup; // Use non-null assertion here
   isEditMode: boolean = false;
-  _dialogdata: {
-    id: number;
-    title: string;
-  } = {
-    id: 0,
-    title: '',
-  };
+  _productinfo?: IProductModel;
+  title: string = 'Create';
   constructor(
-    private formBuilder: FormBuilder,
-    private dialogRef: MatDialogRef<NewProductComponent>,
-    @Inject(MAT_DIALOG_DATA) public dialogData: { id: number },
-    private toastr: ToastrService,
-    private store: Store
+    private store: Store,
+    private builder: FormBuilder,
+    private ref: MatDialogRef<NewProductComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: IProductModel,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
-    this.initializeForm();
-    if (this.dialogData?.id) {
+    // Extract dialog data for edit mode
+    console.log('this.data', this.data);
+    this._productinfo = this.data;
+    const editId = this.data.id;
+    // Initialize the form group
+    this.productForm = this.builder.group({
+      id: [{ value: this._productinfo.id, disabled: true }],
+      name: [this._productinfo.name, Validators.required],
+      description: [this._productinfo.description, Validators.required],
+      price: [this._productinfo.price, Validators.required],
+      status: [this._productinfo.status],
+    });
+
+    // If in edit mode, load product details from store
+    if (editId !== 0) {
       this.isEditMode = true;
+      this.store.select(getProduct).subscribe((product) => {
+        if (product) {
+          this._productinfo = product;
+          this.productForm.setValue({
+            id: product.id,
+            name: product.name,
+            description: product.description,
+            price: product.price,
+            status: product.status,
+          });
+        }
+      });
     }
   }
 
-  private initializeForm(): void {
-    this.productForm = this.formBuilder.group({
-      id: [{ value: 0, disabled: true }],
-      name: ['', Validators.required],
-      description: ['', Validators.required],
-      price: [1, [Validators.required, Validators.min(0)]],
-      status: [true],
-    });
-  }
-  saveProduct = () => {};
+  proceedSave(): void {
+    // Check if form is valid
+    if (this.productForm.valid) {
+      const productData: IProductModel = {
+        id: this.productForm.value.id ?? 0,
+        name: this.productForm.value.name,
+        description: this.productForm.value.description,
+        price: this.productForm.value.price,
+        status: this.productForm.value.status,
+      };
 
-  closeDialog(): void {
-    this.dialogRef.close();
+      if (this.isEditMode) {
+        this.store.dispatch(
+          ProductActions.updateProduct({ model: productData })
+        );
+      } else {
+        this.store.dispatch(
+          ProductActions.createProduct({ model: productData })
+        );
+      }
+
+      // Reset the form and close the dialog
+      this.productForm.reset();
+      this.cancelPopup();
+    } else {
+      this.toastr.error('Please fill out all required fields');
+    }
+  }
+
+  cancelPopup(): void {
+    this.ref.close();
   }
 }

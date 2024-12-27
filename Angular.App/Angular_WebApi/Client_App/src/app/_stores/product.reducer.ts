@@ -5,8 +5,6 @@ import { ProductActions } from './product.action';
 const _productReducer = createReducer(
   productState,
   on(ProductActions.loadProductSuccess, (state, action) => {
-    console.log('Reducer Success State: ', state);
-    console.log('Reducer Success Action: ', action);
     return {
       ...state,
       list: action.products,
@@ -14,12 +12,64 @@ const _productReducer = createReducer(
     };
   }),
   on(ProductActions.loadProductFail, (state, action) => {
-    console.log('Reducer Fail State: ', state);
-    console.log('Reducer Fail Action: ', action);
     return {
       ...state,
       list: [],
       errorMessages: action.errorMessage,
+    };
+  }),
+  on(ProductActions.createProductSuccess, (state, action) => {
+    const _newData = { ...action.products };
+    return {
+      ...state,
+      list: [...state.list, ..._newData],
+    };
+  }),
+  on(ProductActions.createProductFail, (state, action) => {
+    return {
+      ...state,
+      list: [],
+      errorMessages: '',
+    };
+  }),
+  on(ProductActions.updateProductSuccess, (state, action) => {
+    const _newData = { ...action.products };
+    return {
+      ...state,
+      list: [...state.list, ..._newData],
+    };
+  }),
+  on(ProductActions.updateProductFail, (state, action) => {
+    return {
+      ...state,
+      list: [],
+      errorMessages: '',
+    };
+  }),
+  on(ProductActions.deleteProductSuccess, (state, action) => {
+    return {
+      ...state,
+      list: [...action.products],
+    };
+  }),
+  on(ProductActions.deleteProductFail, (state, action) => {
+    return {
+      ...state,
+      list: [],
+      errorMessages: '',
+    };
+  }),
+  on(ProductActions.getbyIdProductSuccess, (state, action) => {
+    return {
+      ...state,
+      list: [...state.list],
+    };
+  }),
+  on(ProductActions.getbyIdProductFail, (state, action) => {
+    return {
+      ...state,
+      list: [],
+      errorMessages: '',
     };
   })
 );

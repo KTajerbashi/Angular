@@ -19,8 +19,6 @@ public static class DependencyInjections
 
         builder.Services.AddControllers();
 
-        builder.Services.AddRazorPages();
-
         builder.Services.AddEndpointsApiExplorer();
 
         builder.Services.AddSwaggerGen();
@@ -52,7 +50,12 @@ public static class DependencyInjections
                     .WithOrigins("http://localhost:4200"); // Angular's development server
             });
         });
+        
         builder.Services.AddSignalRServices();
+
+        builder.Services.AddRazorPages();
+
+
         return builder.Build();
     }
 

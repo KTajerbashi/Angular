@@ -38,6 +38,11 @@ body {
   box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.7);
   margin: 5px 0;
   text-align: center;
+  width: 100%;
+}
+.app-alert:hover {
+  transform: translateY(-5px);
+  cursor: grabbing;
 }
 
 .app-alert-danger {

@@ -42,7 +42,7 @@ public abstract class BaseController : Controller
         where TCommand : ICommand
     {
         await mediator.Send(command);
-        return Ok();
+        return Ok(true);
     }
 
     protected virtual async Task<IActionResult> EditAsync<TCommand, TCommandResult>(TCommand command)
@@ -52,7 +52,7 @@ public abstract class BaseController : Controller
       where TCommand : ICommand
     {
         await mediator.Send(command);
-        return Ok();
+        return Ok(true);
     }
 
 
@@ -64,7 +64,7 @@ public abstract class BaseController : Controller
         where TCommand : ICommand
     {
         await mediator.Send(command);
-        return Ok();
+        return Ok(true);
     }
 
     protected async Task<IActionResult> CommandAsync<TCommand, TCommandResult>(TCommand command)

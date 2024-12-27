@@ -2,7 +2,6 @@
 using Angular_WebApi.ApplicationBases.Patterns;
 
 namespace Angular_WebApi.ApplicationBases.Repositories;
-
 public interface IBaseRepository<TEntity, TId> : IUnitOfWork
     where TEntity : IBaseEntity<TId>, new()
 {
