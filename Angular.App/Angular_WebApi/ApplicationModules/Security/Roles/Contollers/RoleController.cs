@@ -18,19 +18,24 @@ public class RoleController : AuthController
 
 
     [HttpPost]
-    public async Task<IActionResult> Create(RoleCreateCommand command) => await base.Create<RoleCreateCommand, long>(command);
+    public async Task<IActionResult> Create(RoleCreateCommand command) 
+        => await CreateAsync<RoleCreateCommand, long>(command);
 
 
     [HttpGet]
-    public async Task<IActionResult> ReadAll() => await QueryList<RoleGetAllQuery, RoleGetAllView>(new RoleGetAllQuery());
+    public async Task<IActionResult> ReadAll() 
+        => await QueryListAsync<RoleGetAllQuery, RoleGetAllView>(new RoleGetAllQuery());
 
     [HttpGet("{id}")]
-    public async Task<IActionResult> Read(long id) => await Query<RoleGetByIdQuery, RoleGetByIdDTO>(new RoleGetByIdQuery(id));
+    public async Task<IActionResult> Read(long id) 
+        => await QueryAsync<RoleGetByIdQuery, RoleGetByIdDTO>(new RoleGetByIdQuery(id));
 
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> Delete(long id) => await Command<RoleDeleteCommand, bool>(new RoleDeleteCommand(id));
+    public async Task<IActionResult> Delete(long id) 
+        => await CommandAsync<RoleDeleteCommand, bool>(new RoleDeleteCommand(id));
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> Update(long id, RoleUpdateCommand command) => await Command<RoleUpdateCommand, bool>(command);
+    public async Task<IActionResult> Update(long id, RoleUpdateCommand command) 
+        => await CommandAsync<RoleUpdateCommand, bool>(command);
 }

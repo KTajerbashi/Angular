@@ -17,12 +17,12 @@ public class UserController : AuthController
 
     [HttpPost]
     public async Task<IActionResult> Create(UserCreateCommand model)
-        => await base.Create<UserCreateCommand, long>(model);
+        => await CreateAsync<UserCreateCommand, long>(model);
 
 
     [HttpGet]
     public async Task<IActionResult> ReadAll()
-        => await QueryList<UserGetAllQuery, UserGetAllView>(new UserGetAllQuery());
+        => await QueryListAsync<UserGetAllQuery, UserGetAllView>(new UserGetAllQuery());
 
     [HttpGet("{id}")]
     public async Task<IActionResult> Read()
@@ -43,11 +43,9 @@ public class UserController : AuthController
         return Ok(true);
     }
 
-
-
     [HttpGet("onlineUsers")]
     public async Task<IActionResult> OnlineUsers()
-        => await QueryList<OnlineUsersQuery, OnlineUsersView>(new OnlineUsersQuery());
+        => await QueryListAsync<OnlineUsersQuery, OnlineUsersView>(new OnlineUsersQuery());
 
 
 }

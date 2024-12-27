@@ -9,6 +9,11 @@ public interface ICommandHandler<TRequest, TResponse> : IRequestHandler<TRequest
 {
 }
 
+public interface ICommandHandler<TRequest> : IRequestHandler<TRequest>
+    where TRequest : ICommand
+{
+}
+
 
 public abstract class CommandHandler<TRequest, TResponse> : ICommandHandler<TRequest, TResponse>
     where TRequest : ICommand<TResponse>
@@ -21,5 +26,19 @@ public abstract class CommandHandler<TRequest, TResponse> : ICommandHandler<TReq
     }
 
     public abstract Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken);
+}
+
+
+public abstract class CommandHandler<TRequest> : ICommandHandler<TRequest>
+    where TRequest : ICommand
+{
+    protected readonly UtilitiesServices UtilitiesServices;
+
+    protected CommandHandler(UtilitiesServices utilitiesServices)
+    {
+        UtilitiesServices = utilitiesServices;
+    }
+
+    public abstract Task Handle(TRequest request, CancellationToken cancellationToken);
 }
 

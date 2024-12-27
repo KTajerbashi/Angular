@@ -1,4 +1,5 @@
-﻿using Angular_WebApi.ApplicationModules.Security.Roles.Models.Entities;
+﻿using Angular_WebApi.ApplicationModules.Products.Product.Models.Entities;
+using Angular_WebApi.ApplicationModules.Security.Roles.Models.Entities;
 using Angular_WebApi.ApplicationModules.Security.Users.Models.Entities;
 using Angular_WebApi.ContextDB.Bases;
 using Microsoft.EntityFrameworkCore;
@@ -12,7 +13,6 @@ public class DatabaseContext : BaseDatabaseContext
     }
 
     #region DbSet
-
     public virtual DbSet<UserEntity> UserEntities => Set<UserEntity>();
     public virtual DbSet<UserClaimEntity> UserClaimEntities => Set<UserClaimEntity>();
     public virtual DbSet<UserLoginEntity> UserLoginEntities => Set<UserLoginEntity>();
@@ -20,8 +20,7 @@ public class DatabaseContext : BaseDatabaseContext
     public virtual DbSet<RoleEntity> RoleEntities => Set<RoleEntity>();
     public virtual DbSet<RoleClaimEntity> RoleClaimEntities => Set<RoleClaimEntity>();
     public virtual DbSet<UserRoleEntity> UserRoleEntities => Set<UserRoleEntity>();
-
-
+    public virtual DbSet<ProductEntity> ProductEntities => Set<ProductEntity>();
     #endregion
 
 }

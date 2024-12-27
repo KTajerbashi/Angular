@@ -6,3 +6,4 @@ namespace Angular_WebApi.ApplicationModules.Products.Product.Interfaces;
 public interface IProductService : IBaseRepository<ProductEntity, long>
 {
 }
+
