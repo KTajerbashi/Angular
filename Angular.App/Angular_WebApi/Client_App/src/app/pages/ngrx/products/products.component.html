@@ -51,20 +51,29 @@
             <!-- Status Column -->
             <ng-container matColumnDef="status">
               <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
-              <td mat-cell *matCellDef="let row">{{ row.status }}</td>
+              <td mat-cell *matCellDef="let row">
+                <span
+                  [ngClass]="{
+                    'app-badge-success': row.status,
+                    'app-badge-danger': !row.status
+                  }"
+                >
+                  {{ row.status == true ? "Active" : "DisActive" }}
+                </span>
+              </td>
             </ng-container>
 
             <ng-container matColumnDef="action">
               <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
               <td mat-cell *matCellDef="let row">
-                <button class="app-mx-2" mat-raised-button color="primary">
+                <button class="app-btn-primary app-mx-2" mat-raised-button>
                   Edit
                 </button>
                 <button class="app-mx-2" mat-raised-button color="accent">
                   Delete
                 </button>
                 <button class="app-mx-2" mat-flat-button color="primary">
-                  Login
+                  Read
                 </button>
               </td>
             </ng-container>

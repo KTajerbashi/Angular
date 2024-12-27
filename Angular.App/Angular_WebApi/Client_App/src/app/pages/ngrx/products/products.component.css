@@ -53,3 +53,21 @@
 .app-table > tbody > tr > td:hover {
   cursor: pointer;
 }
+
+.app-badge-success {
+  border-radius: 5px;
+  background: rgb(0, 255, 0);
+  padding: 5px 10px;
+}
+.app-badge-danger {
+  border-radius: 5px;
+  background: rgb(255, 107, 107);
+  padding: 5px 10px;
+}
+.app-mx-2 {
+  margin: 0 2px;
+}
+.app-btn-primary {
+  background: rgb(49, 97, 201);
+  color: white;
+}

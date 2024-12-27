@@ -1,17 +1,17 @@
-import { Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { IProductModel } from '../../../_stores/product.model';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
-import { loadProducts } from '../../../_stores/product.action';
-import { getProductList } from '../../../_stores/product.selector';
 import { NewProductComponent } from './new-product/new-product.component';
 import { MatButton } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-
+import { loadProductsData } from '../../../_stores/product.selector';
+import { ProductActions } from '../../../_stores/product.action';
+import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-products',
   imports: [
@@ -21,12 +21,20 @@ import { MatInputModule } from '@angular/material/input';
     MatSortModule,
     MatTableModule,
     MatInputModule,
+    CommonModule,
   ],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css',
 })
-export class ProductsComponent {
-  displayColumn: string[] = ['id', 'name', 'description', 'price', 'status'];
+export class ProductsComponent implements OnInit, AfterViewInit {
+  displayColumn: string[] = [
+    'id',
+    'name',
+    'description',
+    'price',
+    'status',
+    'action',
+  ];
   dataSource!: MatTableDataSource<IProductModel>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -42,11 +50,10 @@ export class ProductsComponent {
   constructor(private dialog: MatDialog, private store: Store) {}
   ngOnInit(): void {
     this.dataSource = new MatTableDataSource<IProductModel>([]); // Initialize with empty data
+    this.loadData();
   }
 
-  ngAfterViewInit(): void {
-    this.loadProduct();
-  }
+  ngAfterViewInit(): void {}
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -56,14 +63,10 @@ export class ProductsComponent {
     }
   }
 
-  loadProduct = () => {
-    this.store.dispatch(loadProducts());
-    this.store.select(getProductList).subscribe((res) => {
-      console.log('RES : ', res);
-      this.productList = res;
-      this.dataSource = new MatTableDataSource(this.productList);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
+  loadData = () => {
+    this.store.dispatch(ProductActions.loadProduct());
+    this.store.select(loadProductsData).subscribe((response) => {
+      this.loadDataSource(response);
     });
   };
   openDialog(
@@ -84,5 +87,13 @@ export class ProductsComponent {
   };
   onRead = (item: IProductModel) => {
     console.log('onRead : ', item);
+  };
+
+  loadDataSource = (data: IProductModel[]) => {
+    console.log('loadDataSource : ', data);
+    this.productList = data;
+    this.dataSource = new MatTableDataSource(this.productList);
+    this.dataSource.paginator = this.paginator;
+    this.sort = this.sort;
   };
 }

@@ -1,25 +1,29 @@
 import { createReducer, on } from '@ngrx/store';
-import { loadProductsFail, loadProductsSuccess } from './product.action';
-import { state } from '@angular/animations';
 import { productState } from './product.state';
+import { ProductActions } from './product.action';
 
-const _proudctReducer = createReducer(
+const _productReducer = createReducer(
   productState,
-  on(loadProductsSuccess, (state, action) => {
+  on(ProductActions.loadProductSuccess, (state, action) => {
+    console.log('Reducer Success State: ', state);
+    console.log('Reducer Success Action: ', action);
     return {
       ...state,
-      list: action.list,
+      list: action.products,
       errorMessages: '',
     };
   }),
-  on(loadProductsFail, (state, action) => {
+  on(ProductActions.loadProductFail, (state, action) => {
+    console.log('Reducer Fail State: ', state);
+    console.log('Reducer Fail Action: ', action);
     return {
       ...state,
       list: [],
-      errorMessages: action.errorMessages,
+      errorMessages: action.errorMessage,
     };
   })
 );
+
 export function ProductReducer(state: any, action: any) {
-  return _proudctReducer(state, action);
+  return _productReducer(state, action);
 }
