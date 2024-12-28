@@ -1,6 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import { productState } from './product.state';
 import { ProductActions } from './product.action';
+import { model } from '@angular/core';
 
 const _productReducer = createReducer(
   productState,
@@ -19,10 +20,13 @@ const _productReducer = createReducer(
     };
   }),
   on(ProductActions.createProductSuccess, (state, action) => {
-    const _newData = { ...action.products };
+    const _maxid = Math.max(...state.list.map((o) => o.id));
+    const _newdata = { ...action.products };
+    _newdata.id = _maxid + 1;
     return {
       ...state,
-      list: [...state.list, ..._newData],
+      list: [...state.list, _newdata],
+      errormessage: '',
     };
   }),
   on(ProductActions.createProductFail, (state, action) => {
@@ -33,10 +37,13 @@ const _productReducer = createReducer(
     };
   }),
   on(ProductActions.updateProductSuccess, (state, action) => {
-    const _newData = { ...action.products };
+    const _newdata = state.list.map((o) => {
+      return o.id === action.model.id ? action.model : o;
+    });
     return {
       ...state,
-      list: [...state.list, ..._newData],
+      list: _newdata,
+      errormessage: '',
     };
   }),
   on(ProductActions.updateProductFail, (state, action) => {

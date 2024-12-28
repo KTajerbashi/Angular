@@ -35,12 +35,12 @@ export class ProductEffects {
       switchMap((action) => {
         console.log('Create Action Effect: ', action.model);
         return this.apiService
-          .post<IProductModel[]>('Product', action.model)
+          .post<IProductModel>('Product', action.model)
           .pipe(
             switchMap((response) => {
               console.log('Create Res : ', response);
               if (response.success) {
-                this.apiService.get<IProductModel[]>('Product').subscribe({
+                this.apiService.get<IProductModel>('Product').subscribe({
                   next: (res) => {
                     return of(
                       ProductActions.createProductSuccess({
@@ -53,7 +53,7 @@ export class ProductEffects {
               }
               return of(
                 ProductActions.createProductSuccess({
-                  products: [],
+                  products: response.data,
                 }),
                 this.showAlert('Created Successfully', 'pass')
               );
@@ -70,17 +70,15 @@ export class ProductEffects {
       ofType(ProductActions.updateProduct),
       exhaustMap((action) => {
         console.log('Update Action Effect: ', action.model);
-        return this.apiService
-          .put<IProductModel[]>('Product', action.model)
-          .pipe(
-            map((response) => {
-              console.log('Update Res : ', response);
-              return ProductActions.updateProductSuccess({
-                products: response.data,
-              });
-            }),
-            catchError((err) => of(this.showAlert(err.meesage, 'fail')))
-          );
+        return this.apiService.put<IProductModel>('Product', action.model).pipe(
+          map((response) => {
+            console.log('Update Res : ', response);
+            return ProductActions.updateProductSuccess({
+              model: response.data,
+            });
+          }),
+          catchError((err) => of(this.showAlert(err.meesage, 'fail')))
+        );
       })
     )
   );

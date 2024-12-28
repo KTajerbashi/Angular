@@ -10,4 +10,11 @@ public class ProductEntity : BaseEntity
     public string Description { get; set; }
     public decimal Price { get; set; }
     public bool Status { get; set; }
+    public void Update(string name,string desc,decimal price,bool status)
+    {
+        Name = name;
+        Description = desc;
+        Price = price;
+        Status = status;
+    }
 }

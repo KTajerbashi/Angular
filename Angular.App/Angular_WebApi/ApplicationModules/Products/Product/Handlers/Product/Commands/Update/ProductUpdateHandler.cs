@@ -22,7 +22,7 @@ public class ProductUpdateHandler : CommandHandler<ProductUpdateCommand>
         ProductEntity entity = await _service.GetAsync(request.Id,cancellationToken);
         if (entity == null)
             throw new AppException("Entity Not Found ... !");
-        entity = UtilitiesServices.MapperFacade.Map<ProductUpdateCommand,ProductEntity>(request);
+        entity.Update(request.Name,request.Description,request.Price,request.Status);
         await _service.SaveChangesAsync();
     }
 }

@@ -40,7 +40,7 @@ export const ProductActions = {
   ),
   createProductSuccess: createAction(
     ProductAction.CREATE_PRODUCT_SUCCESS,
-    props<{ products: IProductModel[] }>()
+    props<{ products: IProductModel }>()
   ),
   createProductFail: createAction(
     ProductAction.CREATE_PRODUCT_FAIL,
@@ -53,7 +53,7 @@ export const ProductActions = {
   ),
   updateProductSuccess: createAction(
     ProductAction.UPDATE_PRODUCT_SUCCESS,
-    props<{ products: IProductModel[] }>()
+    props<{ model: IProductModel }>()
   ),
   updateProductFail: createAction(
     ProductAction.UPDATE_PRODUCT_FAIL,

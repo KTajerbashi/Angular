@@ -66,7 +66,7 @@ export class NewProductComponent implements OnInit {
         if (product) {
           this._productinfo = product;
           this.productForm.setValue({
-            id: product.id,
+            id: editId,
             name: product.name,
             description: product.description,
             price: product.price,
@@ -81,7 +81,7 @@ export class NewProductComponent implements OnInit {
     // Check if form is valid
     if (this.productForm.valid) {
       const productData: IProductModel = {
-        id: this.productForm.value.id ?? 0,
+        id: this._productinfo?.id!,
         name: this.productForm.value.name,
         description: this.productForm.value.description,
         price: this.productForm.value.price,
