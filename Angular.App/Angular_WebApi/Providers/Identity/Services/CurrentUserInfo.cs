@@ -12,7 +12,7 @@ public class CurrentUserInfo : IUser
         _contextAccessor = contextAccessor;
     }
 
-    private ClaimsPrincipal CurrentUser => _contextAccessor.HttpContext.User;
+    private ClaimsPrincipal CurrentUser => _contextAccessor.HttpContext?.User!;
 
     public long? Id => GetClaimValue<long?>("UserId") ?? 0;
 
@@ -28,12 +28,12 @@ public class CurrentUserInfo : IUser
 
     public string GetUserAgent()
     {
-        return _contextAccessor.HttpContext.Request.Headers["User-Agent"];
+        return _contextAccessor.HttpContext?.Request.Headers["User-Agent"]!;
     }
 
     public string GetUserIp()
     {
-        return _contextAccessor.HttpContext.Connection.RemoteIpAddress?.ToString();
+        return _contextAccessor.HttpContext?.Connection.RemoteIpAddress?.ToString()!;
     }
 
     private T GetClaimValue<T>(string claimType)

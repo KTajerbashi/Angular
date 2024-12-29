@@ -18,7 +18,13 @@
       </div>
     </div>
     <div *ngIf="getOptionByCode(1)" class="app-container-content">
-      <div>State</div>
+      <app-card>
+        <app-card-content>
+          <div>This is Header</div>
+          <div>This is Content</div>
+          <div>This is Footer</div>
+        </app-card-content>
+      </app-card>
     </div>
     <div *ngIf="getOptionByCode(2)" class="app-container-content">
       <div>Action</div>
