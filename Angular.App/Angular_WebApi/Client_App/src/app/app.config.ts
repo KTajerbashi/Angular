@@ -8,12 +8,10 @@ import { provideToastr } from 'ngx-toastr';
 import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { authInterceptor } from './interceptors/auth.interceptor';
 import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
-import { ProductReducer } from './_stores/product.reducer';
-import { ProductEffects } from './_stores/product.effects';
+import { authInterceptor } from './core/interceptors/auth.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -25,10 +23,10 @@ export const appConfig: ApplicationConfig = {
       closeButton: true,
       preventDuplicates: true,
     }),
-    provideStore({
-      product: ProductReducer,
-    }),
-    provideEffects([ProductEffects]),
+    // provideStore({
+    //   product: ProductReducer,
+    // }),
+    // provideEffects([ProductEffects]),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
   ],
 };
