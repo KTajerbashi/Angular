@@ -1,4 +1,0 @@
-{
-  "Add": "Add-Migration Initial_Database -OutputDir \"ContextDB/Migrations\"",
-  "Update": "Update-Database"
-}
