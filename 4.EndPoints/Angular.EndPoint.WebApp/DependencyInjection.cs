@@ -12,6 +12,10 @@ public static class DependencyInjection
     }
     public static WebApplication UseWebAppPipeline(this WebApplication app)
     {
+
+        app.UseDefaultFiles();
+        app.MapStaticAssets();
+
         app.UseWebApiPipeline();
         app.UseHttpsRedirection();
         app.UseRouting();
@@ -19,6 +23,9 @@ public static class DependencyInjection
         app.MapStaticAssets();
         app.MapRazorPages()
            .WithStaticAssets();
+        
+        app.MapFallbackToFile("/index.html");
+
         return app;
     }
 }
