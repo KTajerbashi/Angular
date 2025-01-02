@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Angular.InfrastructureLibra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Angular.EndPoint.WebApi", "4.EndPoints\Angular.EndPoint.WebApi\Angular.EndPoint.WebApi.csproj", "{3BFA88F8-809E-43BD-807C-5A0806745121}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Angular.EndPoint.WebApp", "4.EndPoints\Angular.EndPoint.WebApp\Angular.EndPoint.WebApp.csproj", "{4249F371-3336-43D1-8398-76979E87D8F2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{3BFA88F8-809E-43BD-807C-5A0806745121}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3BFA88F8-809E-43BD-807C-5A0806745121}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3BFA88F8-809E-43BD-807C-5A0806745121}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4249F371-3336-43D1-8398-76979E87D8F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4249F371-3336-43D1-8398-76979E87D8F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4249F371-3336-43D1-8398-76979E87D8F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4249F371-3336-43D1-8398-76979E87D8F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,5 +56,6 @@ Global
 		{5CA5B746-E15F-434C-A2DD-E184FCE0F239} = {CC7199A3-85B2-4638-8BC8-3D20F0933737}
 		{52FABF3F-EDC3-4FF0-BE6C-C06ED211B903} = {A7A74FAD-1D15-4AF9-A4A1-CCE9082E44EC}
 		{3BFA88F8-809E-43BD-807C-5A0806745121} = {BA2D5107-5AA6-4A47-81F7-894791EF2F39}
+		{4249F371-3336-43D1-8398-76979E87D8F2} = {BA2D5107-5AA6-4A47-81F7-894791EF2F39}
 	EndGlobalSection
 EndGlobal
