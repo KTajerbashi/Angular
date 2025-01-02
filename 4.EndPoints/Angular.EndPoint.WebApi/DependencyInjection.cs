@@ -1,4 +1,6 @@
 using Microsoft.OpenApi.Models;
+using Angular.InfrastructureLibrary;
+using Angular.ApplicationLibrary;
 
 namespace Angular.EndPoint.WebApi;
 
@@ -6,6 +8,11 @@ public static class DependencyInjection
 {
     public static WebApplicationBuilder AddWebApiService(this WebApplicationBuilder builder)
     {
+
+        //builder.Services.AddInfrastructureServices(builder.Configuration);
+
+        //builder.Services.AddApplicationServices(builder.Configuration);
+
         // Add services to the container.
         builder.Services.AddControllers();
         // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
