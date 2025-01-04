@@ -1,0 +1,31 @@
+<app-tk-card>
+  <app-tk-card-content>
+    <mat-toolbar>
+      <button [routerLink]="['/']" class="tk-btn animated-border">CRM</button>
+
+      <span class="spacer"></span>
+      <div class="tk-btn-ctrl"><button [routerLink]="['/admin/user-management']" mat-button>Admin</button></div>
+      <div class="tk-btn-ctrl"><button mat-button>Dashboard</button></div>
+      <div class="tk-btn-ctrl"><button mat-button>Dashboard</button></div>
+      <div class="tk-btn-ctrl"><button mat-button>Dashboard</button></div>
+      <div class="tk-btn-ctrl"><button mat-button>Dashboard</button></div>
+      <div class="tk-btn-ctrl"><button mat-button>Dashboard</button></div>
+      <div class="tk-btn-ctrl"><button mat-button>Dashboard</button></div>
+      <div class="tk-btn-ctrl"><button mat-button>Dashboard</button></div>
+      <mat-slide-toggle></mat-slide-toggle>
+      <button mat-icon-button>
+        <mat-icon color="primary">favorite</mat-icon>
+      </button>
+
+      <button mat-icon-button>
+        <mat-icon>favorite</mat-icon>
+      </button>
+      <button mat-icon-button>
+        <mat-icon>share</mat-icon>
+      </button>
+      <button mat-icon-button (click)="logout()">
+        <mat-icon>logout</mat-icon>
+      </button>
+    </mat-toolbar>
+  </app-tk-card-content>
+</app-tk-card>

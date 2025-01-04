@@ -1,28 +1,6 @@
-.app-page-container {
-    background: url('../../public/img/background (2).jpg');
-    background-repeat: no-repeat; /* Prevents the background from repeating */
-    background-size: cover; /* Ensures the image covers the entire viewport */
-    background-position: center; /* Centers the image within the viewport */
-    color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: 10rem;
-    height: 100vh; /* Makes the section fill the viewport height */
-    overflow: hidden; /* Prevents any internal scrolling within the element */
-    position: fixed; /* Keeps the background fixed and the element in place */
-    width: 100vw; /* Ensures the width spans the entire viewport */
-}
-.app-page-container-content{
-    background-color: rgba(0, 0, 0, 0.61);
-    border-radius: 10px;
-}
-h1 {
-    box-shadow: 0 5px 10px 0 black;
-    padding: 3rem;
-    border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(10px);
-    color: rgb(180, 180, 180);
-}
+
+.tk-app {
+    min-height: calc(100vh - 120px); /* Adjust based on header/footer heights */
+    overflow: auto;
+    height: 100vh;
+  }
