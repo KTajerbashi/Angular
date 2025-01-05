@@ -15,10 +15,16 @@ public static class DepenedencyInjection
         services.AddMediatR((option) =>
         {
             option.RegisterServicesFromAssemblies(assemblies.ToArray());
-            option.NotificationPublisher = new TaskWhenAllPublisher();
             option.AddOpenBehavior(typeof(ValidationBehavior<,>));
+            option.AddOpenBehavior(typeof(LoggingBehavior<,>));
+            option.AddOpenBehavior(typeof(PerformanceBehavior<,>));
+            option.AddOpenBehavior(typeof(AuthorizationBehavior<,>));
         });
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(PerformanceBehavior<,>));
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(AuthorizationBehavior<,>));
+
         return services;
     }
 }

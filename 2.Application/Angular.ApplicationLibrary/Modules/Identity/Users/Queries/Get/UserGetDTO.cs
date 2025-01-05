@@ -1,4 +1,6 @@
 ﻿using Angular.ApplicationLibrary.BaseApplication.Pattern.MediatR.Queries;
+using MediatR;
+using System.Diagnostics;
 
 namespace Angular.ApplicationLibrary.Modules.Identity.Users.Queries.Get;
 
@@ -26,18 +28,51 @@ public class UserGetHandler : QueryHandler<UserGetQuery, List<UserGetDTO>>
     {
         try
         {
+            // Start timing
+            var startTime = DateTimeOffset.Now;
+            var stopwatch = Stopwatch.StartNew();
+
+            // Log start performance
+            Console.Clear();
+            Console.BackgroundColor = ConsoleColor.Gray;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine($"Start PerformanceBehavior {startTime.Second}: executing...");
+
+            // Simulate workload
             var result = new List<UserGetDTO>();
-            for (int i = 1; i <= 10; i++)
+          
+
+
+            for (int j = 1; j <= 5; j++)
             {
-                result.Add(new UserGetDTO() { FirstName = $"Name {i}", LastName = $"Family {i}", Username = $"Username {i}" });
+                for (int i = 1; i <= 5; i++)
+                {
+                    result.Add(new UserGetDTO
+                    {
+                        FirstName = $"Name {i}",
+                        LastName = $"Family {i}",
+                        Username = $"Username {i}"
+                    });
+                    await Task.Delay(1000);
+                }
             }
-            await Task.CompletedTask;
+
+            // Stop timing
+            stopwatch.Stop();
+            var endTime = DateTimeOffset.Now;
+
+            // Log end performance
+            Console.WriteLine($"End PerformanceBehavior {endTime.Second}: executed in {stopwatch.ElapsedMilliseconds}ms");
+            Console.ResetColor();
+
             return result;
         }
-        catch
+        catch (Exception ex)
         {
-
+            Console.ResetColor();
+            Console.WriteLine($"An error occurred: {ex.Message}");
             throw;
         }
     }
+
 }
