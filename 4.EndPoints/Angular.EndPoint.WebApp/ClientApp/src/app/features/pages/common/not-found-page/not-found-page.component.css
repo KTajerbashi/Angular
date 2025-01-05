@@ -5,7 +5,6 @@ h1 {
   border-radius: 10px;
   padding: 10px;
   color: white;
-  width: 30vw;
   height: 20vh;
   display: flex;
   flex-direction: column;
@@ -15,8 +14,10 @@ h1 {
 .tk-control-btn {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
+  width: 100vw;
   margin: 20px 0;
 }
 .tk-control-btn-login {
