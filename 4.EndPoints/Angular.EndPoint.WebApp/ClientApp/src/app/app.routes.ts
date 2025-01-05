@@ -7,7 +7,9 @@ import { LoginComponent } from './features/auth/login/login.component';
 import { SigninComponent } from './features/auth/signin/signin.component';
 import { AuthGuard } from './core/guards/auth.guard';
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
-import { UserManagerComponent } from './layouts/adminLayout/user-manager/user-manager.component';
+import { UserManagerComponent } from './layouts/admin-layout/user-manager/user-manager.component';
+import { NotFoundPageComponent } from './features/pages/common/not-found-page/not-found-page.component';
+import { InternalServerComponent } from './features/pages/common/internal-server/internal-server.component';
 
 export const routes: Routes = [
   {
@@ -52,10 +54,20 @@ export const routes: Routes = [
         component: SigninComponent,
         // loadChildren: () => import('../features/auth/signin/signin.module').then((m) => m.SigninModule),
       },
+      {
+        path: 'not-found',
+        component: NotFoundPageComponent,
+        // loadChildren: () => import('../features/profile/profile.module').then((m) => m.ProfileModule),
+      },
+      {
+        path: 'internal-server',
+        component: InternalServerComponent,
+        // loadChildren: () => import('../features/profile/profile.module').then((m) => m.ProfileModule),
+      },
     ],
   },
   {
     path: '**',
-    redirectTo: 'login',
+    redirectTo: 'not-found',
   },
 ];

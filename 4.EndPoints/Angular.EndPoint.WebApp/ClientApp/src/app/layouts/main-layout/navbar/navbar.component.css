@@ -75,3 +75,39 @@
   transform: rotate(360deg);
   border-color: #000000;
 }
+
+
+.navbar {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.menu-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.menu-icon {
+  display: none;
+}
+
+.utility-icons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .menu-buttons {
+    display: none;
+  }
+  .menu-icon {
+    display: inline-flex;
+  }
+}

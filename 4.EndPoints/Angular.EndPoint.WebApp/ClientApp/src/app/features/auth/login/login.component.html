@@ -1,5 +1,76 @@
 <app-tk-card>
   <app-tk-card-content>
-    <button mat-button (click)="login()">Login</button>
+    <div class="login-container">
+      <div class="login-box">
+        <mat-card class="login-card">
+          <mat-card-header>
+            <mat-card-title class="tk-title">Login to Your Account</mat-card-title>
+          </mat-card-header>
+
+          <mat-card-content>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+              <!-- Username Field -->
+              <mat-form-field
+                appearance="outline"
+                class="full-width colorful-field"
+              >
+                <mat-label>Username</mat-label>
+                <input
+                  matInput
+                  formControlName="username"
+                  placeholder="Enter your username"
+                />
+                <mat-icon matSuffix>person</mat-icon>
+                <mat-error
+                  *ngIf="loginForm.get('username')?.hasError('required')"
+                >
+                  Username is required
+                </mat-error>
+              </mat-form-field>
+
+              <!-- Password Field -->
+              <mat-form-field
+                appearance="outline"
+                class="full-width colorful-field"
+              >
+                <mat-label>Password</mat-label>
+                <input
+                  matInput
+                  type="password"
+                  formControlName="password"
+                  placeholder="Enter your password"
+                />
+                <mat-icon matSuffix>lock</mat-icon>
+                <mat-error
+                  *ngIf="loginForm.get('password')?.hasError('required')"
+                >
+                  Password is required
+                </mat-error>
+              </mat-form-field>
+
+              <mat-checkbox formControlName="rememberMe"
+                >Remember Me</mat-checkbox
+              >
+
+              <!-- Submit Button -->
+              <button
+                mat-button
+                class="full-width colorful-button"
+                type="submit"
+                [disabled]="loginForm.invalid"
+              >
+                Log In
+              </button>
+            </form>
+          </mat-card-content>
+
+          <mat-card-actions>
+            <a mat-button color="accent" routerLink="/forgot-password"
+              >Forgot Password?</a
+            >
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
   </app-tk-card-content>
 </app-tk-card>
