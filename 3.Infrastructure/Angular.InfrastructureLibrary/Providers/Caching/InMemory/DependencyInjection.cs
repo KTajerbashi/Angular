@@ -6,6 +6,6 @@ namespace Angular.InfrastructureLibrary.Providers.Caching.InMemory;
 public static class DependencyInjection
 {
     public static IServiceCollection AddInMemoryCaching(this IServiceCollection services)
-        => services.AddMemoryCache().AddTransient<ICacheAdapter, InMemoryCacheAdapter>();
+        => services.AddMemoryCache().AddSingleton<ICacheAdapter, InMemoryCacheAdapter>();
 }
 

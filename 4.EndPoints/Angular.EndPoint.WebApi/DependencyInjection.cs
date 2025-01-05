@@ -1,6 +1,7 @@
 using Microsoft.OpenApi.Models;
 using Angular.InfrastructureLibrary;
 using Angular.ApplicationLibrary;
+using Angular.ApplicationLibrary.Extensions;
 
 namespace Angular.EndPoint.WebApi;
 
@@ -9,10 +10,13 @@ public static class DependencyInjection
     public static WebApplicationBuilder AddWebApiService(this WebApplicationBuilder builder)
     {
         IConfiguration configuration = builder.Configuration;
+        var assemblies = ("Angular").GetAssemblies();
 
-        //builder.Services.AddInfrastructureServices(builder.Configuration);
+        builder.Services.AddHttpContextAccessor();
 
-        //builder.Services.AddApplicationServices(builder.Configuration);
+        builder.Services.AddInfrastructureServices(builder.Configuration);
+
+        builder.Services.AddApplicationServices(builder.Configuration, assemblies);
 
         // Add services to the container.
         builder.Services.AddControllers();
@@ -39,7 +43,6 @@ public static class DependencyInjection
             }
         });
 
-        builder.Services.AddApplicationServices(configuration);
 
         return builder;
     }

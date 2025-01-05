@@ -1,0 +1,8 @@
+﻿namespace Angular.ApplicationLibrary.Modules.Identity.Users.Queries.GetById;
+public class UserGetByIdDTO
+{
+    public string Username { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+}
+

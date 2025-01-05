@@ -1,5 +1,6 @@
-﻿namespace Angular.ApplicationLibrary.BaseApplication.Interfaces;
+﻿using Angular.ApplicationLibrary.BaseApplication.Pattern.MediatR.Commands;
+using MediatR;
 
-public interface IService
-{
-}
+namespace Angular.ApplicationLibrary.BaseApplication.Interfaces;
+
+

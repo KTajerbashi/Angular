@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Angular.EndPoint.WebApi.Controllers.Bases;
 
@@ -8,4 +9,7 @@ namespace Angular.EndPoint.WebApi.Controllers.Bases;
 public abstract class BaseApiController : BaseController
 {
     // Common API logic can be added here if needed in future
+    protected BaseApiController(IMediator mediator) : base(mediator)
+    {
+    }
 }

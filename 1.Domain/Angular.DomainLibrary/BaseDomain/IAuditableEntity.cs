@@ -3,8 +3,6 @@
 public interface IEntity
 {
 }
-
-
 public interface IAuditableEntity<TId> : IEntity
      where TId : struct,
               IComparable,
@@ -17,7 +15,6 @@ public interface IAuditableEntity<TId> : IEntity
 
 public abstract class BaseEntity<TId> : IEntity
 {
-
 }
 
 public abstract class AuditableEntity<TId> : BaseEntity<TId>, IAuditableEntity<TId>
@@ -28,5 +25,4 @@ public abstract class AuditableEntity<TId> : BaseEntity<TId>, IAuditableEntity<T
               IEquatable<TId>,
               IFormattable
 {
-
 }

@@ -1,8 +1,10 @@
 ﻿using Angular.ApplicationLibrary.Providers.Serializers;
+using Angular.InfrastructureLibrary.Providers.Caching.InMemory;
 using Angular.InfrastructureLibrary.Providers.ObjectMapper;
 using Angular.InfrastructureLibrary.Providers.Serializers.EPPlus;
 using Angular.InfrastructureLibrary.Providers.Serializers.Microsoft;
 using Angular.InfrastructureLibrary.Providers.Serializers.NewtonSoft;
+using Angular.InfrastructureLibrary.Providers.UsersManagement;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -10,16 +12,32 @@ namespace Angular.InfrastructureLibrary;
 
 public static class DepenedencyInjection
 {
-    public static IServiceCollection AddInfrastructureServices(
-        this IServiceCollection services,
-        IConfiguration configuration
-        )
+    public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
     {
+        /// AddDbContext
         services.AddDbContext(configuration);
+
+        /// AddIdentity
         services.AddIdentity(configuration);
+
+        /// AddIdentitySession
         services.AddIdentitySession(configuration);
+
+        /// AddIdentityJwt
         services.AddIdentityJwt(configuration);
-        services.AddAutoMapperProfiles(configuration, "Angular");
+
+        /// AddAutoMapperProfiles
+        services.AddAutoMapperProfiles(configuration, "AutoMapper");
+
+        /// AddInMemoryCaching
+        services.AddInMemoryCaching();
+
+        /// AddMicrosoftSerializer
+        services.AddMicrosoftSerializer();
+
+        /// AddWebUserInfoService
+        services.AddWebUserInfoService(configuration, false);
+
         return services;
     }
     private static IServiceCollection AddDbContext(this IServiceCollection services, IConfiguration configuration)

@@ -5,40 +5,40 @@ using Microsoft.Extensions.DependencyInjection;
 namespace Angular.InfrastructureLibrary.Providers.UsersManagement;
 public static class DepenedencyInjection
 {
-    public static IServiceCollection AddZaminWebUserInfoService(this IServiceCollection services, IConfiguration configuration, bool useFake = false)
+    public static IServiceCollection AddWebUserInfoService(this IServiceCollection services, IConfiguration configuration, bool useFake = false)
     {
         if (useFake)
         {
-            services.AddSingleton<IUserInfoService, FakeUserInfoService>();
+            services.AddScoped<IUserInfoService, FakeUserInfoService>();
 
         }
         else
         {
             services.Configure<UserManagementOptions>(configuration);
-            services.AddSingleton<IUserInfoService, WebUserInfoService>();
+            services.AddScoped<IUserInfoService, WebUserInfoService>();
 
         }
         return services;
     }
 
 
-    public static IServiceCollection AddZaminWebUserInfoService(this IServiceCollection services, IConfiguration configuration, string sectionName, bool useFake = false)
+    public static IServiceCollection AddWebUserInfoService(this IServiceCollection services, IConfiguration configuration, string sectionName, bool useFake = false)
     {
-        services.AddZaminWebUserInfoService(configuration.GetSection(sectionName), useFake);
+        services.AddWebUserInfoService(configuration.GetSection(sectionName), useFake);
         return services;
     }
 
-    public static IServiceCollection AddZaminWebUserInfoService(this IServiceCollection services, Action<UserManagementOptions> setupAction, bool useFake = false)
+    public static IServiceCollection AddWebUserInfoService(this IServiceCollection services, Action<UserManagementOptions> setupAction, bool useFake = false)
     {
         if (useFake)
         {
-            services.AddSingleton<IUserInfoService, FakeUserInfoService>();
+            services.AddScoped<IUserInfoService, FakeUserInfoService>();
 
         }
         else
         {
             services.Configure(setupAction);
-            services.AddSingleton<IUserInfoService, WebUserInfoService>();
+            services.AddScoped<IUserInfoService, WebUserInfoService>();
 
         }
         return services;

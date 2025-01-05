@@ -1,5 +1,4 @@
 using Angular.EndPoint.WebApi;
-
 StartApp.Run(() =>
 {
     Console.ForegroundColor = ConsoleColor.Blue;
