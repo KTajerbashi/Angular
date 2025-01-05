@@ -28,49 +28,29 @@ public class UserGetHandler : QueryHandler<UserGetQuery, List<UserGetDTO>>
     {
         try
         {
-            // Start timing
-            var startTime = DateTimeOffset.Now;
-            var stopwatch = Stopwatch.StartNew();
-
-            // Log start performance
             Console.Clear();
-            Console.BackgroundColor = ConsoleColor.Gray;
-            Console.ForegroundColor = ConsoleColor.Black;
-            Console.WriteLine($"Start PerformanceBehavior {startTime.Second}: executing...");
-
-            // Simulate workload
-            var result = new List<UserGetDTO>();
-          
-
-
-            for (int j = 1; j <= 5; j++)
-            {
-                for (int i = 1; i <= 5; i++)
-                {
-                    result.Add(new UserGetDTO
-                    {
-                        FirstName = $"Name {i}",
-                        LastName = $"Family {i}",
-                        Username = $"Username {i}"
-                    });
-                    await Task.Delay(1000);
-                }
-            }
-
-            // Stop timing
-            stopwatch.Stop();
-            var endTime = DateTimeOffset.Now;
-
-            // Log end performance
-            Console.WriteLine($"End PerformanceBehavior {endTime.Second}: executed in {stopwatch.ElapsedMilliseconds}ms");
-            Console.ResetColor();
-
-            return result;
+            var dataList = new List<UserGetDTO>();
+            Console.Write("ILoggerFactory : ");
+            Providers.LoggerFactory.CreateLogger("Start UserGetHandler");
+            Console.WriteLine("============================================");
+            Console.Write("ICacheAdapter : ");
+            Providers.CacheAdapter.Add("Tajerbashi", "Kamrantajerbashi@gmail.com", null, null);
+            var StartDate = Providers.CacheAdapter.Get<string>("Tajerbashi");
+            Console.WriteLine($"==================| {StartDate} |==================");
+            Console.Write("IJsonSerializer : ");
+            var model = new UserGetDTO{Username = "Tajerbashi",FirstName="Kaihan",LastName="Tajer"};
+            var json = Providers.JsonSerializer.Serialize(model);
+            model = Providers.JsonSerializer.Deserialize<UserGetDTO>(json);
+            Console.WriteLine($"==================| {json} |==================");
+            Console.WriteLine("============================================");
+            Console.Write("IUserInfoService : ");
+            Console.WriteLine("============================================");
+            await Task.Delay(1000);
+            return dataList;
         }
-        catch (Exception ex)
+        catch
         {
-            Console.ResetColor();
-            Console.WriteLine($"An error occurred: {ex.Message}");
+
             throw;
         }
     }

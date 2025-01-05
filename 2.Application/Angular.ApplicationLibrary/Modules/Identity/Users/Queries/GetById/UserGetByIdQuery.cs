@@ -20,6 +20,10 @@ public class UserGetByIdHandler : QueryHandler<UserGetByIdQuery, UserGetByIdDTO>
     public override async Task<UserGetByIdDTO> Handle(UserGetByIdQuery request, CancellationToken cancellationToken)
     {
         await Task.CompletedTask;
+        Console.ForegroundColor = ConsoleColor.Red;
+        Providers.CacheAdapter.Add("Tajerbashi", "UserGetByIdQuery", null,null);
+        var StartDate = Providers.CacheAdapter.Get<string>("Tajerbashi");
+        Console.WriteLine($"UserGetByIdHandler => {StartDate} |==================");
         return new UserGetByIdDTO()
         {
             FirstName = $"FirstName {request.Id}",
