@@ -1,7 +1,4 @@
-﻿using Angular.EndPoint.WebApi;
-using Microsoft.OpenApi.Models;
-
-public static class DependencyInjection
+﻿public static class DependencyInjection
 {
     public static WebApplicationBuilder AddWebAppService(this WebApplicationBuilder builder)
     {
@@ -12,18 +9,21 @@ public static class DependencyInjection
     }
     public static WebApplication UseWebAppPipeline(this WebApplication app)
     {
-
         app.UseDefaultFiles();
+
         app.MapStaticAssets();
 
-        app.UseWebApiPipeline();
         app.UseHttpsRedirection();
+
         app.UseRouting();
+
         app.UseAuthorization();
+
         app.MapStaticAssets();
+
         app.MapRazorPages()
            .WithStaticAssets();
-        
+
         app.MapFallbackToFile("/index.html");
 
         return app;

@@ -8,6 +8,7 @@ public static class DependencyInjection
 {
     public static WebApplicationBuilder AddWebApiService(this WebApplicationBuilder builder)
     {
+        IConfiguration configuration = builder.Configuration;
 
         //builder.Services.AddInfrastructureServices(builder.Configuration);
 
@@ -37,6 +38,9 @@ public static class DependencyInjection
                 options.IncludeXmlComments(xmlPath);
             }
         });
+
+        builder.Services.AddApplicationServices(configuration);
+
         return builder;
     }
     public static WebApplication UseWebApiPipeline(this WebApplication app)

@@ -1,3 +1,5 @@
+using Angular.ApplicationLibrary.Providers;
+using Angular.EndPoint.WebApi.Extensions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Angular.EndPoint.WebApi.Controllers.Bases;
@@ -6,6 +8,7 @@ namespace Angular.EndPoint.WebApi.Controllers.Bases;
 [Route("app/[controller]")]
 public abstract class BaseController : Controller
 {
+    protected ProviderServices ApplicationContext => HttpContext.ApplicationContext();
     // Return method simplified with a non-async version.
     // Async behavior is unnecessary since the result is a static value.
     protected virtual IActionResult Return(object? obj)

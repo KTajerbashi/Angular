@@ -1,4 +1,4 @@
-﻿using Angular.ApplicationLibrary.BaseApplication.Interfaces;
+﻿using Angular.ApplicationLibrary.Providers.UsersManagement;
 using Angular.InfrastructureLibrary.Database.Extensions;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.EntityFrameworkCore.Infrastructure;

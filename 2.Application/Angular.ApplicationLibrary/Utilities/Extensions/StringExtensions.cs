@@ -1,9 +1,9 @@
-﻿using System.Security.Cryptography;
-using System.Text.RegularExpressions;
+﻿using System.Data;
+using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Angular.ApplicationLibrary.Utilities.Extensions;
-
 public static class StringExtensions
 {
     public const char ArabicYeChar = (char)1610;

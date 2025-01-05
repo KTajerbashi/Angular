@@ -1,4 +1,4 @@
-﻿using Angular.ApplicationLibrary.BaseApplication.Interfaces;
+﻿using Angular.ApplicationLibrary.Providers.UsersManagement;
 using Angular.DomainLibrary.BaseDomain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -79,10 +79,10 @@ public static class AuditableShadowProperties
         IUserInfoService userInfoService)
     {
 
-        var userAgent = userInfoService.UserAgent;
-        var userIp = userInfoService.UserIp;
+        var userAgent = userInfoService.GetUserAgent();
+        var userIp = userInfoService.GetUserIp();
         var now = DateTime.Now;
-        var userId = userInfoService.UserId.ToString();
+        var userId = userInfoService.UserId().ToString();
 
         var modifiedEntries = changeTracker.Entries().Where(x => x.State == EntityState.Modified);
         foreach (var modifiedEntry in modifiedEntries)
