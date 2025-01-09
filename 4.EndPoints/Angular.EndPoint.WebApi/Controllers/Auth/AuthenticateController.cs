@@ -1,6 +1,5 @@
 ﻿using Angular.ApplicationLibrary.Modules.Identity.Auth.Login;
 using Angular.ApplicationLibrary.Modules.Identity.Auth.SignIn;
-using Angular.ApplicationLibrary.Providers;
 using Angular.DomainLibrary.Identity;
 using Angular.EndPoint.WebApi.Controllers.Bases;
 using MediatR;
@@ -50,6 +49,6 @@ public class AuthenticateController : BaseApiController
         return Return("SignIn");
     }
 
-    
+
 
 }

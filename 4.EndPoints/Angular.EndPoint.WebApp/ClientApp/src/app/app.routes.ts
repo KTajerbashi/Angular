@@ -64,6 +64,11 @@ export const routes: Routes = [
         component: InternalServerComponent,
         // loadChildren: () => import('../features/profile/profile.module').then((m) => m.ProfileModule),
       },
+      {
+        path: '',
+        component: NotFoundPageComponent,
+        // loadChildren: () => import('../features/profile/profile.module').then((m) => m.ProfileModule),
+      },
     ],
   },
   {

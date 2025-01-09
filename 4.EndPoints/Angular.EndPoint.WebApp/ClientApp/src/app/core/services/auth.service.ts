@@ -1,23 +1,21 @@
 import { Injectable } from '@angular/core';
+import { BaseEntityApiService } from './base-entity-api.service';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService {
+export class AuthService extends BaseEntityApiService<any, any, any, any, any> {
   private tokenKey = 'authToken';
   private tokenExpiryKey = 'authTokenExpiry';
 
-  login(username: string, password: string): boolean {
-    // Simulate successful login
-    if (username === 'admin' && password === 'password') {
-      const token = btoa(`${username}:${password}`); // Simulated token (use a better method in production)
-      const expiryTime = Date.now() + 12 * 60 * 60 * 1000; // 12 hours from now
+  constructor(http: HttpClient) {
+    super(http, 'Authenticate');
+  }
 
-      localStorage.setItem(this.tokenKey, token);
-      localStorage.setItem(this.tokenExpiryKey, expiryTime.toString());
-      return true;
-    }
-    return false;
+  login(parameter: ILoginCommand): Observable<IJsonPromise<string>> {
+    return this.post<string>('/login', parameter);
   }
 
   getToken(): string | null {

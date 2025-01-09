@@ -16,6 +16,7 @@ import {
 import { MatIcon } from '@angular/material/icon';
 import { NgIf } from '@angular/common';
 import { AuthService } from '../../../core/services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -41,12 +42,13 @@ export class LoginComponent {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private toastr: ToastrService
   ) {
     this.loginForm = this.fb.group({
-      username: ['admin', Validators.required],
-      password: ['password', Validators.required],
-      rememberMe: ['true'],
+      username: ['tajerbashi', Validators.required],
+      password: ['@Tajerbashi123', Validators.required],
+      rememberMe: [true],
     });
   }
 
@@ -55,13 +57,34 @@ export class LoginComponent {
       console.log('Login successful!', this.loginForm.value);
       let username = this.loginForm.value['username'];
       let password = this.loginForm.value['password'];
-      let rememberMe = this.loginForm.value['rememberMe'];
+      let rememberMe = this.loginForm.value['rememberMe'] as boolean;
+      let params: ILoginCommand = {
+        userName: username,
+        password: password,
+        returnUrl: '',
+        isRemember: rememberMe as boolean,
+      };
       // Add your login logic here
-      if (this.authService.login(username, password)) {
-        this.router.navigate(['/']);
-      } else {
-        alert('Login Faild Creaditional Not Correct !!!');
-      }
+      this.authService.login(params).subscribe({
+        next: (res) => {
+          if (res.success) {
+            this.router.navigate(['/']);
+            this.toastr.success(res.message, 'Success');
+          } else {
+            this.toastr.success(
+              'Login Faild Creaditional Not Correct !!!',
+              'Error'
+            );
+          }
+        },
+        error: (err) => {
+          console.error('Error:', err);
+          this.toastr.error(
+            'Login Faild Creaditional Not Correct !!!',
+            'Error'
+          );
+        },
+      });
     }
   }
 }
