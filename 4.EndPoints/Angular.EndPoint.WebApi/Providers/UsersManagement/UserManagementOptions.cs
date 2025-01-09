@@ -1,4 +1,4 @@
-﻿namespace Angular.InfrastructureLibrary.Providers.UsersManagement;
+﻿namespace Angular.EndPoint.WebApi.Providers.UsersManagement;
 
 public sealed class UserManagementOptions
 {

@@ -1,8 +1,6 @@
 ﻿using Angular.ApplicationLibrary.Providers.UsersManagement;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 
-namespace Angular.InfrastructureLibrary.Providers.UsersManagement;
+namespace Angular.EndPoint.WebApi.Providers.UsersManagement;
 public static class DepenedencyInjection
 {
     public static IServiceCollection AddWebUserInfoService(this IServiceCollection services, IConfiguration configuration, bool useFake = false)

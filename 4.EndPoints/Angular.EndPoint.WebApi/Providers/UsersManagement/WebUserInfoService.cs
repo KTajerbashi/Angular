@@ -1,19 +1,11 @@
 ﻿using Angular.ApplicationLibrary.Providers.UsersManagement;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using System.Security.Claims;
 
-namespace Angular.InfrastructureLibrary.Providers.UsersManagement;
+namespace Angular.EndPoint.WebApi.Providers.UsersManagement;
 
-public static class ClaimExtensions
-{
-    public static string GetClaim(this ClaimsPrincipal userClaimsPrincipal, string claimType)
-    {
-        return userClaimsPrincipal.Claims.FirstOrDefault((Claim x) => x.Type == claimType)?.Value;
-    }
-}
 public class WebUserInfoService(
-    IHttpContextAccessor httpContextAccessor, 
+    IHttpContextAccessor httpContextAccessor,
     IOptions<UserManagementOptions> configuration) : IUserInfoService
 {
     private readonly UserManagementOptions _configuration = configuration.Value;
