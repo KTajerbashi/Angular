@@ -1,18 +1,21 @@
-﻿StartApp.Run(() =>
+﻿
+await StartApp.Run(async () =>
 {
+    await Task.CompletedTask;
     Console.WriteLine($"Angular.EndPoint.WebApi Run ...{DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")}");
 });
+
+
 public class StartApp
 {
-    public static void Run(Action action)
+    public static async Task Run(Func<Task> action)
     {
         try
         {
-            action();
+            await action();
         }
-        catch 
+        catch
         {
-
             throw;
         }
     }

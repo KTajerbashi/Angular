@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.Mvc.Infrastructure;
 namespace Angular.EndPoint.WebApi.Controllers.Bases;
 
 // Abstract base controller with general functionality
-[Route("app/[controller]")]
 public abstract class BaseController : Controller
 {
     protected IMediator mediator;

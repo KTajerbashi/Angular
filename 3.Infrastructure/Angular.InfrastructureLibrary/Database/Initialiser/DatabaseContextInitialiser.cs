@@ -88,6 +88,7 @@ public class DatabaseContextInitialiser
             FirstName = username,
             LastName = username,
             PhoneNumber = username,
+            DisplayName = username,
         };
 
         if (await _userManager.Users.AllAsync(u => u.UserName != administrator.UserName))

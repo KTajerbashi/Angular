@@ -1,7 +1,8 @@
-using Microsoft.OpenApi.Models;
-using Angular.InfrastructureLibrary;
 using Angular.ApplicationLibrary;
 using Angular.ApplicationLibrary.Extensions;
+using Angular.EndPoint.WebApi.Providers.Swagger;
+using Angular.EndPoint.WebApi.Providers.UsersManagement;
+using Angular.InfrastructureLibrary;
 
 namespace Angular.EndPoint.WebApi;
 
@@ -14,35 +15,19 @@ public static class DependencyInjection
 
         builder.Services.AddHttpContextAccessor();
 
-        builder.Services.AddInfrastructureServices(builder.Configuration);
-
-        builder.Services.AddApplicationServices(builder.Configuration, assemblies);
-
-        // Add services to the container.
         builder.Services.AddControllers();
-        // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+        
         builder.Services.AddOpenApi();
 
         builder.Services.AddEndpointsApiExplorer();
 
-        builder.Services.AddSwaggerGen(options =>
-        {
-            options.SwaggerDoc("v1", new OpenApiInfo
-            {
-                Title = "Clean Architecture API",
-                Version = "v1",
-                Description = "API documentation for the Clean Architecture application."
-            });
+        builder.Services.AddSwaggerConfigs();
 
-            // Add XML comments if available
-            var xmlFile = $"{System.Reflection.Assembly.GetExecutingAssembly().GetName().Name}.xml";
-            var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-            if (File.Exists(xmlPath))
-            {
-                options.IncludeXmlComments(xmlPath);
-            }
-        });
+        builder.Services.AddInfrastructureServices(builder.Configuration);
 
+        builder.Services.AddApplicationServices(builder.Configuration, assemblies);
+
+        builder.Services.AddWebUserInfoService(configuration, false);
 
         return builder;
     }
@@ -70,6 +55,8 @@ public static class DependencyInjection
         }
 
         app.UseHttpsRedirection();
+
+        app.UseAuthentication();
 
         app.UseAuthorization();
 

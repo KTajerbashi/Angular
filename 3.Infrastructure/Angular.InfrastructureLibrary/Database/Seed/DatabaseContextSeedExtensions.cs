@@ -1,5 +1,4 @@
 ﻿using Angular.InfrastructureLibrary.Database.Initialiser;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Angular.InfrastructureLibrary.Database.Seed;
 

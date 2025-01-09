@@ -1,5 +1,7 @@
 using Angular.EndPoint.WebApi;
-StartApp.Run(() =>
+using Angular.InfrastructureLibrary.Database.Seed;
+
+await StartApp.Run(async () =>
 {
     Console.ForegroundColor = ConsoleColor.Blue;
     Console.WriteLine($"Start: Angular.EndPoint.WebApp Run ...\nTime: {DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss")}");
@@ -8,10 +10,9 @@ StartApp.Run(() =>
         .AddWebAppService()
         .AddWebApiService();
 
-    builder .Build()
-            .UseWebAppPipeline()
-            .UseWebApiPipeline()
-            .Run();
+    var app = builder.Build();
+    await DatabaseContextSeedExtensions.InitialiseDatabaseAsync(app.Services);
+    app.UseWebAppPipeline().UseWebApiPipeline().Run();
 });
 
 
