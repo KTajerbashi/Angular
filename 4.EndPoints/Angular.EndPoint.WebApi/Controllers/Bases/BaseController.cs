@@ -79,15 +79,32 @@ public abstract class BaseController : Controller
     public override OkObjectResult Ok([ActionResultObjectValue] object? value)
         => base.Ok(Models.ApiResponse.JsonResult.Success(value ?? true));
 
+    public OkObjectResult OkWithMessage<T>(T data, string message)
+        => base.Ok(Models.ApiResponse.JsonResult.Success(data, message));
+
+    public ObjectResult Error(string message, Exception ex = null)
+        => base.BadRequest(Models.ApiResponse.JsonResult.Failure<object>(message, ex));
+
+    public ObjectResult CustomError(string message, Exception ex = null, string token = "")
+        => base.BadRequest(Models.ApiResponse.JsonResult.FromException(ex, message, token));
+
+
     // Return method simplified with a non-async version.
     // Async behavior is unnecessary since the result is a static value.
-    protected virtual IActionResult Return(object? obj)
+    protected virtual ObjectResult Return<T>(T data, string message, ApiResultType type, Exception exception = null)
     {
-        if (obj == null)
+        switch (type)
         {
-            return Ok("");  // Return an empty string if obj is null
+            case ApiResultType.Success:
+                return base.Ok(Models.ApiResponse.JsonResult.Success(data, message));
+            case ApiResultType.Failed:
+                return base.BadRequest(Models.ApiResponse.JsonResult.Failure<object>(message, exception)); ;
+            case ApiResultType.FromException:
+                return base.BadRequest(Models.ApiResponse.JsonResult.FromException(exception, message));
+            case ApiResultType.UnAuthorize:
+                return base.Unauthorized(Models.ApiResponse.JsonResult.Failure<object>(message,new UnauthorizedAccessException("You Have Not Access !!!")));
+            default:
+                return base.NotFound("Not Found Data");
         }
-
-        return Ok(obj);  // Return the object as an OK result
     }
 }

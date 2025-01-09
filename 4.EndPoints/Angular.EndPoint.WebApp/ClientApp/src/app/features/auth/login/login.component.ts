@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TkCardComponent } from '../../../shared/components/tk-card/tk-card.component';
 import { TkCardContentComponent } from '../../../shared/components/tk-card-content/tk-card-content.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -17,6 +17,9 @@ import { MatIcon } from '@angular/material/icon';
 import { NgIf } from '@angular/common';
 import { AuthService } from '../../../core/services/auth.service';
 import { ToastrService } from 'ngx-toastr';
+import { Store } from '@ngrx/store';
+import { checkAuth } from '../../../store/auth/auth.actions';
+import { selectIsAuthenticated } from '../../../store/auth/auth.selectors';
 
 @Component({
   selector: 'app-login',
@@ -36,19 +39,28 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   loginForm: FormGroup;
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private authService: AuthService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private store: Store
   ) {
     this.loginForm = this.fb.group({
       username: ['tajerbashi', Validators.required],
       password: ['@Tajerbashi123', Validators.required],
       rememberMe: [true],
+    });
+  }
+  ngOnInit(): void {
+    this.store.dispatch(checkAuth());
+    this.store.select(selectIsAuthenticated).subscribe((item) => {
+      if (item) {
+        this.router.navigate(['/']);
+      }
     });
   }
 

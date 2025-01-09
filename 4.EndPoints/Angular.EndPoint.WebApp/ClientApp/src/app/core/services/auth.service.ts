@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BaseEntityApiService } from './base-entity-api.service';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { catchError, map, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -27,19 +27,37 @@ export class AuthService extends BaseEntityApiService<any, any, any, any, any> {
     return expiry ? parseInt(expiry, 10) : null;
   }
 
-  isLoggedIn(): boolean {
-    const token = this.getToken();
-    const expiry = this.getTokenExpiry();
+  isLoggedIn(): Observable<boolean> {
+    return this.checkAuth().pipe(
+      map((response) => {
+        if (response.success) {
+          const token = this.getToken();
+          const expiry = this.getTokenExpiry();
 
-    if (!token || !expiry) {
-      return false;
-    }
+          if (!token || !expiry) {
+            return false;
+          }
 
-    return Date.now() < expiry;
+          return Date.now() < expiry;
+        } else {
+          return false;
+        }
+      }),
+      catchError(() => of(false)) // Handle errors gracefully
+    );
   }
 
-  logout(): void {
+  signout(): Observable<IJsonPromise<boolean>> {
     localStorage.removeItem(this.tokenKey);
     localStorage.removeItem(this.tokenExpiryKey);
+    return this.get<boolean>('/signout');
+  }
+
+  checkAuth(): Observable<IJsonPromise<boolean>> {
+    return this.get<boolean>('/isAuthenticated');
+  }
+
+  readCurrentUserInfo(): Observable<boolean> {
+    return this.http.get<boolean>('/CurrentUserInfo');
   }
 }

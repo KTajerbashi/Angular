@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Angular.DomainLibrary.BaseDomain;
+using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Angular.DomainLibrary.Identity;
 
 [Table("Roles", Schema = "Identity")]
-public class RoleEntity : IdentityRole<int>
+public class RoleEntity : IdentityRole<int>, IAuditableEntity<int>
 {
     public string Title { get; set; }
     public RoleEntity()
@@ -15,5 +16,30 @@ public class RoleEntity : IdentityRole<int>
     {
         Name = name;
         Title = title;
+    }
+
+    public int Id { get; private set; }
+
+    public Guid KeyRecord { get; private set; }
+    public DateTime CreateDate { get; private set; }
+
+    public int CreatedByUserId { get; private set; }
+
+    public DateTime? UpdateDate { get; private set; }
+
+    public int? UpdateByUserId { get; private set; }
+
+    public bool IsActive { get; private set; }
+
+    public bool IsDeleted { get; private set; }
+
+    public void Delete() => IsDeleted = true;
+    public void Acive() => IsActive = true;
+    public void DisActive() => IsActive = false;
+    public void UndoDelete() => IsDeleted = false;
+    public void DeleteRecord()
+    {
+        IsDeleted = true;
+        IsActive = false;
     }
 }

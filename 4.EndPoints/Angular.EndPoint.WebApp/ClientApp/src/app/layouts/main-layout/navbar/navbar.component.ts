@@ -1,4 +1,4 @@
-import { Component,HostListener  } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { TkCardComponent } from '../../../shared/components/tk-card/tk-card.component';
 import { TkCardContentComponent } from '../../../shared/components/tk-card-content/tk-card-content.component';
@@ -8,6 +8,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { Router, RouterLink } from '@angular/router';
 import { MatMenuModule } from '@angular/material/menu';
 import { NgIf } from '@angular/common';
+import { AuthService } from '../../../core/services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-navbar',
@@ -20,17 +22,29 @@ import { NgIf } from '@angular/common';
     MatIconModule,
     RouterLink,
     MatMenuModule,
-    NgIf
+    NgIf,
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css',
 })
 export class NavbarComponent {
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private toastr: ToastrService
+  ) {}
 
-  logout(): void {
-    localStorage.removeItem('authToken');
-    this.router.navigate(['/login']);
+  signout(): void {
+    this.authService.signout().subscribe({
+      next: (response) => {
+        this.toastr.success('User Logout Success', 'LogOut');
+        localStorage.removeItem('authToken');
+        this.router.navigate(['/login']);
+      },
+      error: (error) => {
+        this.toastr.success('User Logout Faild', 'Faild');
+      },
+    });
   }
   isSmallScreen = false;
 

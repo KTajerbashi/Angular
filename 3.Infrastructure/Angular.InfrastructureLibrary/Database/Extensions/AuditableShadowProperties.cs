@@ -23,17 +23,17 @@ public static class AuditableShadowProperties
                                     entity => EF.Property<string>(entity, CreatedByUserId);
     public static readonly string CreatedByUserId = nameof(CreatedByUserId);
 
-    public static readonly Func<object, string> EFPropertyModifiedByUserId =
-                                    entity => EF.Property<string>(entity, ModifiedByUserId);
-    public static readonly string ModifiedByUserId = nameof(ModifiedByUserId);
+    public static readonly Func<object, string> EFPropertyUpdateByUserId =
+                                    entity => EF.Property<string>(entity, UpdateByUserId);
+    public static readonly string UpdateByUserId = nameof(UpdateByUserId);
 
     public static readonly Func<object, DateTime?> EFPropertyCreatedDateTime =
                                     entity => EF.Property<DateTime?>(entity, CreatedDateTime);
     public static readonly string CreatedDateTime = nameof(CreatedDateTime);
 
-    public static readonly Func<object, DateTime?> EFPropertyModifiedDateTime =
-                                    entity => EF.Property<DateTime?>(entity, ModifiedDateTime);
-    public static readonly string ModifiedDateTime = nameof(ModifiedDateTime);
+    public static readonly Func<object, DateTime?> EFPropertyUpdateDate =
+                                    entity => EF.Property<DateTime?>(entity, UpdateDate);
+    public static readonly string UpdateDate = nameof(UpdateDate);
 
     /// <summary>
     /// 
@@ -60,11 +60,11 @@ public static class AuditableShadowProperties
             modelBuilder.Entity(entityType.ClrType)
                         .Property<string>(CreatedByUserId).HasMaxLength(50);
             modelBuilder.Entity(entityType.ClrType)
-                        .Property<string>(ModifiedByUserId).HasMaxLength(50);
+                        .Property<string>(UpdateByUserId).HasMaxLength(50);
             modelBuilder.Entity(entityType.ClrType)
                         .Property<DateTime?>(CreatedDateTime);
             modelBuilder.Entity(entityType.ClrType)
-                        .Property<DateTime?>(ModifiedDateTime);
+                        .Property<DateTime?>(UpdateDate);
         }
         return modelBuilder;
     }
@@ -87,8 +87,8 @@ public static class AuditableShadowProperties
         var modifiedEntries = changeTracker.Entries().Where(x => x.State == EntityState.Modified);
         foreach (var modifiedEntry in modifiedEntries)
         {
-            modifiedEntry.Property(ModifiedDateTime).CurrentValue = now;
-            modifiedEntry.Property(ModifiedByUserId).CurrentValue = userId;
+            modifiedEntry.Property(UpdateDate).CurrentValue = now;
+            modifiedEntry.Property(UpdateByUserId).CurrentValue = userId;
         }
 
         var addedEntries = changeTracker.Entries().Where(x => x.State == EntityState.Added);

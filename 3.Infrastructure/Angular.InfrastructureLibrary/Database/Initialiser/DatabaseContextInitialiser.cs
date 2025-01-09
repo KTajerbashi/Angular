@@ -15,13 +15,13 @@ public class DatabaseContextInitialiser
     private readonly RoleManager<RoleEntity> _roleManager;
 
     public DatabaseContextInitialiser(
-        DatabaseContext context,
         ILogger<DatabaseContextInitialiser> logger,
+        DatabaseContext context,
         UserManager<UserEntity> userManager,
         RoleManager<RoleEntity> roleManager)
     {
-        _context = context;
         _logger = logger;
+        _context = context;
         _userManager = userManager;
         _roleManager = roleManager;
     }
@@ -38,7 +38,6 @@ public class DatabaseContextInitialiser
             throw;
         }
     }
-
 
     public async Task SeedAsync()
     {
@@ -57,13 +56,7 @@ public class DatabaseContextInitialiser
 
     private async Task SeedRolesAsync()
     {
-        await createRolesAsync("Admin");
-        await createRolesAsync("User");
-    }
-
-    private async Task createRolesAsync(string name)
-    {
-        var administratorRole = new RoleEntity(Roles.Administrator, name);
+        var administratorRole = new RoleEntity(Roles.Administrator, "Admin");
 
         if (await _roleManager.Roles.AllAsync(r => r.Name != administratorRole.Name))
         {
@@ -78,44 +71,50 @@ public class DatabaseContextInitialiser
         await createUser("mirzaie", "@Mirzaie123");
         await createUser("saied_sayed", "@Saied123");
     }
-
     private async Task createUser(string username, string password)
     {
-        var administrator = new UserEntity
-        {
-            UserName = username,
-            Email = $"{username}@mail.com",
-            FirstName = username,
-            LastName = username,
-            PhoneNumber = username,
-            DisplayName = username,
-        };
+        var administrator = new UserEntity($"FullName : {username}", $"Desc : {username}");
+        administrator.UserName = username;
+        administrator.Email = $"{username}@manmail.ir";
+        administrator.FirstName = $"{username}";
+        administrator.LastName= $"{username}";
+        administrator.DisplayName= $"{username} {username}";
 
-        if (await _userManager.Users.AllAsync(u => u.UserName != administrator.UserName))
+        // Check if the username or email already exists
+        if (!await _userManager.Users.AnyAsync(u => u.UserName == administrator.UserName && u.Email == administrator.Email))
         {
             var createResult = await _userManager.CreateAsync(administrator, password);
             if (createResult.Succeeded)
             {
-                await _userManager.AddToRolesAsync(administrator, new[] { Roles.Administrator });
+                // Manually create a UserRoleEntity
+                var userRoleEntity = new UserRoleEntity();
+                var role = _context.Set<RoleEntity>().Single(item => item.Name == Roles.Administrator);
+                userRoleEntity.Create(administrator.Id, role.Id, true);
+                // Add the user role entity to your context
+                _context.UserRoles.Add(userRoleEntity);
+                await _context.SaveChangesAsync();  // Save changes to commit the role assignment
+
+                _logger.LogInformation($"User {administrator.UserName} assigned to Administrator role.");
             }
             else
             {
-                _logger.LogError($"Failed to create {username} user: {{Errors}}", string.Join(", ", createResult.Errors.Select(e => e.Description)));
+                _logger.LogError($"Failed to create {username} user. Errors: {string.Join(", ", createResult.Errors.Select(e => e.Description))}");
             }
         }
+        else
+        {
+            _logger.LogWarning($"User with username '{username}' or email '{administrator.Email}' already exists.");
+        }
     }
+
 
     private async Task SeedDefaultDataAsync()
     {
         if (!await _context.Users.AnyAsync())
         {
-            _context.Users.Add(new UserEntity
-            {
-                UserName = "Todo List",
-            });
+
 
             await _context.SaveChangesAsync();
         }
     }
-
 }

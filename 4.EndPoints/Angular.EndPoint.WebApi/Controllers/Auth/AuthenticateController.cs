@@ -27,7 +27,7 @@ public class AuthenticateController : BaseApiController
     public async Task<IActionResult> Login([FromBody] LoginCommand command)
     {
         if (!ModelState.IsValid)
-            return BadRequest(ModelState);
+            return Return(ModelState, "Login Fail !!!", ApiResultType.Failed);
 
         var result = await _signInManager.PasswordSignInAsync(
             command.Username,
@@ -37,16 +37,33 @@ public class AuthenticateController : BaseApiController
 
         if (result.Succeeded)
         {
-            return Ok(new { Message = "Login successful!" });
+            return Return(result, "Login Successfully Data", ApiResultType.Success);
         }
 
-        return Unauthorized(new { Message = "Invalid credentials." });
+        return Return(result, "Login Fail !!!", ApiResultType.UnAuthorize);
     }
 
     [HttpPost("SignIn")]
     public IActionResult SignIn([FromBody] SignInCommand command)
     {
-        return Return("SignIn");
+        return Return(true, "SignIn Successfully", ApiResultType.Success);
+    }
+
+    [HttpGet("Signout")]
+    public async Task<IActionResult> Signout()
+    {
+        await _signInManager.SignOutAsync();
+        return Return(true, "Signout Successfully", ApiResultType.Success);
+    }
+
+
+    [HttpGet("IsAuthenticated")]
+    public IActionResult IsAuthenticated()
+    {
+        if (User.Identity!.IsAuthenticated)
+            return Return(User.Identity.IsAuthenticated, "User Is Login", ApiResultType.Success);
+        return Return(User.Identity.IsAuthenticated, "User Is Not Login", ApiResultType.Failed);
+
     }
 
 
