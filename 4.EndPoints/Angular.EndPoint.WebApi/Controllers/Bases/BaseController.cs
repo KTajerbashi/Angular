@@ -72,20 +72,16 @@ public abstract class BaseController : Controller
     //    where TKey : struct, IComparable, IComparable<TKey>, IConvertible, IEquatable<TKey>, IFormattable
     //    => Ok(await mediator.Send(query));
 
-    protected async Task<IActionResult> ReturnResponse<TModel>(TModel model)
-        => await Task.FromResult(Ok(model));
-
-
     public override OkObjectResult Ok([ActionResultObjectValue] object? value)
         => base.Ok(Models.ApiResponse.JsonResult.Success(value ?? true));
 
-    public OkObjectResult OkWithMessage<T>(T data, string message)
+    protected virtual OkObjectResult OkWithMessage<T>(T data, string message)
         => base.Ok(Models.ApiResponse.JsonResult.Success(data, message));
 
-    public ObjectResult Error(string message, Exception ex = null)
+    protected virtual ObjectResult Error(string message, Exception ex = null)
         => base.BadRequest(Models.ApiResponse.JsonResult.Failure<object>(message, ex));
 
-    public ObjectResult CustomError(string message, Exception ex = null, string token = "")
+    protected virtual ObjectResult CustomError(string message, Exception ex = null, string token = "")
         => base.BadRequest(Models.ApiResponse.JsonResult.FromException(ex, message, token));
 
 

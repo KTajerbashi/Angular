@@ -20,25 +20,25 @@ public static class DepenedencyInjection
     }
 
 
-    public static IServiceCollection AddWebUserInfoService(this IServiceCollection services, IConfiguration configuration, string sectionName, bool useFake = false)
-    {
-        services.AddWebUserInfoService(configuration.GetSection(sectionName), useFake);
-        return services;
-    }
+    //public static IServiceCollection AddWebUserInfoService(this IServiceCollection services, IConfiguration configuration, string sectionName, bool useFake = false)
+    //{
+    //    services.AddWebUserInfoService(configuration.GetSection(sectionName), useFake);
+    //    return services;
+    //}
 
-    public static IServiceCollection AddWebUserInfoService(this IServiceCollection services, Action<UserManagementOptions> setupAction, bool useFake = false)
-    {
-        if (useFake)
-        {
-            services.AddScoped<IUserInfoService, FakeUserInfoService>();
+    //public static IServiceCollection AddWebUserInfoService(this IServiceCollection services, Action<UserManagementOptions> setupAction, bool useFake = false)
+    //{
+    //    if (useFake)
+    //    {
+    //        services.AddScoped<IUserInfoService, FakeUserInfoService>();
 
-        }
-        else
-        {
-            services.Configure(setupAction);
-            services.AddScoped<IUserInfoService, WebUserInfoService>();
+    //    }
+    //    else
+    //    {
+    //        services.Configure(setupAction);
+    //        services.AddScoped<IUserInfoService, WebUserInfoService>();
 
-        }
-        return services;
-    }
+    //    }
+    //    return services;
+    //}
 }

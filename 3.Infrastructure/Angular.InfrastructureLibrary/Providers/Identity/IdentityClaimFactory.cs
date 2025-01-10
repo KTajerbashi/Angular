@@ -2,28 +2,12 @@
 using Angular.ApplicationLibrary.Providers.UsersManagement;
 using Angular.ApplicationLibrary.Utilities.Extensions;
 using Angular.DomainLibrary.Identity;
-using Angular.InfrastructureLibrary.Database;
 using Angular.InfrastructureLibrary.Database.Contants;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using System.Security.Claims;
 
 namespace Angular.InfrastructureLibrary.Providers.Identity;
-
-public static class IdentityConfiguration
-{
-    public static IServiceCollection AddIdentityService(this IServiceCollection services, IConfiguration configuration)
-    {
-        services.AddIdentity<UserEntity, RoleEntity>()
-            .AddEntityFrameworkStores<DatabaseContext>()
-            .AddDefaultTokenProviders();
-        ;
-        return services;
-    }
-
-}
-
 
 public class IdentityClaimFactory : UserClaimsPrincipalFactory<UserEntity, RoleEntity>
 {

@@ -48,10 +48,10 @@ public static class DependencyInjection
         else
         {
             // Secure Swagger in production
-            app.UseSwagger(options =>
-            {
-                options.RouteTemplate = "docs/{documentName}/swagger.json";
-            });
+            //app.UseSwagger(options =>
+            //{
+            //    options.RouteTemplate = "docs/{documentName}/swagger.json";
+            //});
         }
 
         app.UseHttpsRedirection();
