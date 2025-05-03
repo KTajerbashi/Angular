@@ -40,8 +40,4 @@
     <ProjectReference Include="..\..\2.Application\Angular.ApplicationLibrary\Angular.ApplicationLibrary.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Modules\Identity\Auth\" />
-  </ItemGroup>
-
 </Project>
