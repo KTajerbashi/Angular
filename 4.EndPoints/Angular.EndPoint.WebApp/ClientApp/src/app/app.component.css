@@ -1,6 +1,0 @@
-
-.tk-app {
-    min-height: calc(100vh - 120px); /* Adjust based on header/footer heights */
-    overflow: auto;
-    height: 100vh;
-  }
