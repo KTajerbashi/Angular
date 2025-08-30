@@ -1,6 +1,0 @@
-@Angular.EndPoint.WebApi_HostAddress = http://localhost:5114
-
-GET {{Angular.EndPoint.WebApi_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
