@@ -1,6 +1,15 @@
 <Solution>
   <Folder Name="/SRC/" />
-  <Folder Name="/SRC/1.Core/" />
-  <Folder Name="/SRC/2.Infrastructure/" />
-  <Folder Name="/SRC/3.EndPoint/" />
+  <Folder Name="/SRC/1.Core/">
+    <Project Path="SRC/1.Core/AngularApp.Core.Application/AngularApp.Core.Application.csproj" Id="234d3c8e-a465-4bc5-ad26-c0f5dc164ccc" />
+    <Project Path="SRC/1.Core/AngularApp.Core.Domain/AngularApp.Core.Domain.csproj" Id="3b46e646-d488-4b14-9a4c-2dc952f27ed0" />
+  </Folder>
+  <Folder Name="/SRC/2.Infrastructure/">
+    <Project Path="SRC/2.Infrastructure/AngularApp.Infrastructure.Data/AngularApp.Infrastructure.Data.csproj" Id="7b923c24-4be4-4930-9989-e99c897bb360" />
+  </Folder>
+  <Folder Name="/SRC/3.EndPoint/">
+    <Project Path="SRC/3.EndPoint/AngularApp.AppHost/AngularApp.AppHost.csproj" />
+    <Project Path="SRC/3.EndPoint/AngularApp.EndPoint.WebApi/AngularApp.EndPoint.WebApi.csproj" />
+    <Project Path="SRC/3.EndPoint/AngularApp.ServiceDefaults/AngularApp.ServiceDefaults.csproj" />
+  </Folder>
 </Solution>
