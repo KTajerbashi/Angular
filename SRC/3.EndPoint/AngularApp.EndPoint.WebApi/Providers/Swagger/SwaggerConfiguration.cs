@@ -1,34 +1,77 @@
-﻿namespace AngularApp.EndPoint.WebApi.Providers.Swagger;
+﻿using Microsoft.OpenApi;
 
-public static class SwaggerConfiguration
+namespace AngularApp.EndPoint.WebApi.Providers.Swagger
 {
-    public static IServiceCollection AddSwaggerConfiguration(this IServiceCollection services)
+    public static class SwaggerConfiguration
     {
-        services.AddSwaggerGen();
-
-        return services;
-    }
-
-    public static WebApplication UseSwaggerConfiguration(this WebApplication app)
-    {
-
-        // Enable Swagger UI
-        app.UseSwagger();
-
-        // Configure Swagger UI with custom options
-        app.UseSwaggerUI(c =>
+        public static IServiceCollection AddSwaggerConfiguration(this IServiceCollection services)
         {
-            // Add multiple services with dropdowns for JSON files
-            //c.SwaggerEndpoint("serviceA.json", "Service A API");
-            //c.SwaggerEndpoint("serviceB.json", "Service B API");
+            services.AddSwaggerGen(c =>
+            {
+                // تعریف سند اصلی Swagger
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "AngularApp API",
+                    Version = "v1",
+                    Description = "Professional Swagger configuration for AngularApp",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Kamran Tajerbashi",
+                        Email = "kamran@example.com"
+                    },
+                    License = new OpenApiLicense
+                    {
+                        Name = "MIT",
+                        Url = new Uri("https://opensource.org/licenses/MIT")
+                    }
+                });
 
-            // Customize the UI (optional)
-            c.EnableDeepLinking();
-            c.DisplayOperationId();
+                // افزودن JWT Bearer Authentication
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer",
+                    BearerFormat = "JWT",
+                    In = ParameterLocation.Header,
+                    Description = "Enter 'Bearer' [space] and then your valid token in the text input below.\nExample: \"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI...\""
+                });
 
-       
-        });
 
-        return app;
+                // افزودن توضیحات XML (اگر فعال باشد)
+                var xmlFile = $"{System.Reflection.Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                if (File.Exists(xmlPath))
+                {
+                    c.IncludeXmlComments(xmlPath);
+                }
+            });
+
+            return services;
+        }
+
+        public static WebApplication UseSwaggerConfiguration(this WebApplication app)
+        {
+            // فعال‌سازی Swagger Middleware
+            app.UseSwagger();
+
+            // فعال‌سازی Swagger UI با گزینه‌های پیشرفته
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "AngularApp API V1");
+
+                // اگر چند سرویس داریم
+                // c.SwaggerEndpoint("/swagger/serviceA.json", "Service A API");
+                // c.SwaggerEndpoint("/swagger/serviceB.json", "Service B API");
+
+                c.EnableDeepLinking();
+                c.DisplayOperationId();
+                c.DefaultModelsExpandDepth(-1); // مخفی کردن مدل‌ها در پایین صفحه
+                c.ShowExtensions();
+                c.DocExpansion(Swashbuckle.AspNetCore.SwaggerUI.DocExpansion.None);
+            });
+
+            return app;
+        }
     }
 }
