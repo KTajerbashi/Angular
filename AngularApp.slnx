@@ -10,6 +10,7 @@
   <Folder Name="/SRC/3.EndPoint/">
     <Project Path="SRC/3.EndPoint/AngularApp.AppHost/AngularApp.AppHost.csproj" />
     <Project Path="SRC/3.EndPoint/AngularApp.EndPoint.WebApi/AngularApp.EndPoint.WebApi.csproj" />
+    <Project Path="SRC/3.EndPoint/AngularApp.EndPoint.WebApp/AngularApp.EndPoint.WebApp.csproj" />
     <Project Path="SRC/3.EndPoint/AngularApp.ServiceDefaults/AngularApp.ServiceDefaults.csproj" />
   </Folder>
 </Solution>

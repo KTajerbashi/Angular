@@ -7,7 +7,7 @@
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <UserSecretsId>65fdad35-bc4c-4d6a-a260-5a4e80efdd7c</UserSecretsId>
+    <UserSecretsId>d67d8e7d-ca1b-4d04-a575-2941dc3e1137</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,7 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AngularApp.EndPoint.WebApi\AngularApp.EndPoint.WebApi.csproj" />
+    <ProjectReference Include="..\AngularApp.EndPoint.WebApp\AngularApp.EndPoint.WebApp.csproj" />
   </ItemGroup>
-
 
 </Project>

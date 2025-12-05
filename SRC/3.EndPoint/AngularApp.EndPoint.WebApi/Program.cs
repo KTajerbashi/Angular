@@ -1,6 +1,4 @@
 
-using AngularApp.ServiceDefaults;
-
 namespace AngularApp.EndPoint.WebApi;
 
 public class Program
