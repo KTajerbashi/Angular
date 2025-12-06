@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AngularApp.EndPoint.WebApi\AngularApp.EndPoint.WebApi.csproj" />
     <ProjectReference Include="..\AngularApp.ServiceDefaults\AngularApp.ServiceDefaults.csproj" />
   </ItemGroup>
 

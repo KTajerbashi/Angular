@@ -4,14 +4,14 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        var builder = WebApplication.CreateBuilder(args);
-        IConfiguration configuration = builder.Configuration;
-        builder.AddWebApi();
+        //var builder = WebApplication.CreateBuilder(args);
+        //IConfiguration configuration = builder.Configuration;
+        //builder.AddWebApi();
 
-        var app = builder.Build();
-        app.UseWebApi();
+        //var app = builder.Build();
+        //app.UseWebApi();
 
-        app.Run();
+        //app.Run();
 
     }
 }

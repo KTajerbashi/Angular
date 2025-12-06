@@ -1,8 +1,4 @@
-using AngularApp.EndPoint.WebApp.Components;
-using AngularApp.EndPoint.WebApp;
-//using AngularApp.EndPoint.WebApi;
-//using AngularApp.Infrastructure.Data;
-//using AngularApp.Core.Application;
+using AngularApp.EndPoint.WebApi;
 
 namespace AngularApp.EndPoint.WebApp;
 
@@ -14,11 +10,11 @@ public class Program
         IConfiguration configuration = builder.Configuration;
         //builder.Services.AddApplication();
         //builder.Services.AddInfrastructure(configuration);
-        //builder.AddWebApi();
+        builder.AddWebApi();
         builder.AddWebApp();
 
         var app = builder.Build();
-        //app.UseWebApi();
+        app.UseWebApi();
         app.UseWebApp();
 
         app.Run();

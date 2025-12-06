@@ -7,7 +7,7 @@ public static class DependencyInjection
 {
     public static WebApplicationBuilder AddWebApi(this WebApplicationBuilder builder)
     {
-        builder.AddServiceDefaults();
+        //builder.AddServiceDefaults();
 
         // Add services to the container.
 
