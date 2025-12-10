@@ -1,0 +1,15 @@
+<Solution>
+  <Folder Name="/Src/" />
+  <Folder Name="/Src/1.Core/">
+    <Project Path="Src/1.Core/AngularApp.Core.Application/AngularApp.Core.Application.csproj" Id="747e1eba-8400-4dfe-88ad-0b37809908ac" />
+    <Project Path="Src/1.Core/AngularApp.Core.Domain/AngularApp.Core.Domain.csproj" Id="aa36ba8d-fda5-42a7-be3e-e4649cb97c93" />
+  </Folder>
+  <Folder Name="/Src/2.Infra/">
+    <Project Path="Src/2.Infra/AngularApp.Infra.Data/AngularApp.Infra.Data.csproj" Id="4a15899b-0fef-4745-a966-b0efc98b0d5d" />
+  </Folder>
+  <Folder Name="/Src/3.EndPoints/">
+    <Project Path="Src/3.EndPoints/AngularApp.AppHost/AngularApp.AppHost.csproj" />
+    <Project Path="Src/3.EndPoints/AngularApp.EndPoint.WebApi/AngularApp.EndPoint.WebApi.csproj" />
+    <Project Path="Src/3.EndPoints/AngularApp.ServiceDefaults/AngularApp.ServiceDefaults.csproj" />
+  </Folder>
+</Solution>
