@@ -2,9 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AngularApp.EndPoint.WebApi.Controllers;
 
-[ApiController]
-[Route("[controller]")]
-public class WeatherForecastController : ControllerBase
+public class WeatherForecastController : BaseController
 {
     private static readonly string[] Summaries =
     [
