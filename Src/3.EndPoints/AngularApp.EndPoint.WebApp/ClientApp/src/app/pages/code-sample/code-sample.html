@@ -1,10 +1,27 @@
 <div>
-  {{ message || "Hello" }}
+  {{ message || 'Hello' }}
   <hr />
   <input class="app-input" [value]="message" />
   <button (click)="show()" class="app-btn">Show Value</button>
   <p [title]="message">Hover to see the title</p>
   <hr />
   <input class="app-input" [(ngModel)]="message" placeholder="Type here" />
+  <button class="app-btn" (click)="add()">Add</button>
   <p>You typed: {{ message }}</p>
+  <hr />
+  @if (message) {
+  <p>Message exists!</p>
+  }
+
+  <ul class="app-list">
+    @for (item of itemlist; track $index) {
+    <li>
+      {{ item }}
+      <button class="app-btn app-btn-danger" (click)="remove(item)">Remove</button>
+    </li>
+    }
+  </ul>
+  <hr />
+  <p [class.highlight]="message === 'Hello'">Highlight if Hello</p>
+  <hr />
 </div>

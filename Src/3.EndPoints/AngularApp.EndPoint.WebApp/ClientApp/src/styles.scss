@@ -167,6 +167,14 @@ h2 {
 .app-btn:hover {
   background: #1d4ed8;
 }
+.app-btn-danger {
+  background: #ef4444;
+  border-color: #ef4444;
+}
+.app-btn-danger:hover {
+  background: #922626;
+  border-color: #5c1212;
+}
 
 .app-input {
   padding: 0.5rem;
@@ -174,4 +182,23 @@ h2 {
   border-radius: 4px;
   font-size: 1rem;
   margin: 5px;
+}
+
+.app-list {
+  list-style-type: none;
+  padding: 0;
+}
+.app-list li {
+  background: #e0e7ff;
+  margin: 5px;
+  padding: 8px;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.app-list li:hover {
+  background: #c7d2fe;
+  cursor: pointer;
 }
