@@ -1,30 +1,39 @@
+using AngularApp.EndPoint.WebApi.Providers.Swagger;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
 
-// Add services to the container.
+builder.Services.AddControllers();
+builder.Services.AddOpenApi();  // <-- OpenAPI enabled
 builder.Services.AddRazorPages();
+builder.Services.AddSwaggerApi();
 
 var app = builder.Build();
 
 app.MapDefaultEndpoints();
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
+}
+
+if (app.Environment.IsDevelopment())
+{
+    app.MapOpenApi();           // <-- Swagger/OpenAPI UI
 }
 
 app.UseHttpsRedirection();
 
 app.UseRouting();
-
 app.UseAuthorization();
 
+app.MapControllers();
 app.MapStaticAssets();
-app.MapRazorPages()
-   .WithStaticAssets();
+app.MapRazorPages().WithStaticAssets();
+app.UseSwaggerApi();
+
+app.MapFallbackToFile("/index.html");
 
 app.Run();

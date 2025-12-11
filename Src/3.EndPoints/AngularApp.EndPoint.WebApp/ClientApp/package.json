@@ -3,8 +3,12 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "prestart": "node aspnetcore-https",
+    "start": "run-script-os",
+    "start:windows": "ng serve --port 44447 --ssl --ssl-cert \"%APPDATA%\\ASP.NET\\https\\%npm_package_name%.pem\" --ssl-key \"%APPDATA%\\ASP.NET\\https\\%npm_package_name%.key\"",
+    "start:default": "ng serve --port 44447 --ssl --ssl-cert \"$HOME/.aspnet/https/${npm_package_name}.pem\" --ssl-key \"$HOME/.aspnet/https/${npm_package_name}.key\"",
     "build": "ng build",
+    "build:ssr": "ng run RG.Coding.WebApp:server:dev",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -36,6 +40,7 @@
     "@angular/build": "^21.0.3",
     "@angular/cli": "^21.0.3",
     "@angular/compiler-cli": "^21.0.0",
+    "run-script-os": "^1.1.6",
     "typescript": "~5.9.2"
   }
 }

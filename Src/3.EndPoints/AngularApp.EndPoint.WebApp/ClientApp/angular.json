@@ -87,6 +87,7 @@
               "buildTarget": "ClientApp:build:production"
             },
             "development": {
+              "proxyConfig": "proxy.conf.js",
               "buildTarget": "ClientApp:build:development"
             }
           },
