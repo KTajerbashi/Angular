@@ -1,0 +1,10 @@
+<div>
+  {{ message || "Hello" }}
+  <hr />
+  <input class="app-input" [value]="message" />
+  <button (click)="show()" class="app-btn">Show Value</button>
+  <p [title]="message">Hover to see the title</p>
+  <hr />
+  <input class="app-input" [(ngModel)]="message" placeholder="Type here" />
+  <p>You typed: {{ message }}</p>
+</div>

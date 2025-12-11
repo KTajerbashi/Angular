@@ -1,17 +1,10 @@
-<header>Angular 21 Dashboard</header>
-
+<app-header></app-header>
 <main>
-  <nav>
-    <a href="#">Home</a>
-    <a href="#">Users</a>
-    <a href="#">Reports</a>
-    <a href="#">Settings</a>
-  </nav>
-
+  <app-nav />
   <section>
     <h2>Dashboard Overview</h2>
 
-    <div class="card-grid">
+    <!-- <div class="card-grid">
       <div class="card">
         <h3>Total Users</h3>
         <p>1,245</p>
@@ -28,10 +21,10 @@
         <h3>System Health</h3>
         <p>Good</p>
       </div>
-    </div>
-
+    </div> -->
+    <app-code-sample></app-code-sample>
     <router-outlet></router-outlet>
   </section>
 </main>
 
-<footer>Dashboard Footer © 2025</footer>
+<app-footer></app-footer>
