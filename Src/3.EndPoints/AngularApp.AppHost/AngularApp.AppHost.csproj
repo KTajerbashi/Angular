@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AngularApp.EndPoint.WebApi\AngularApp.EndPoint.WebApi.csproj" />
+    <ProjectReference Include="..\AngularApp.EndPoint.WebApp\AngularApp.EndPoint.WebApp.csproj" />
   </ItemGroup>
 
 </Project>
