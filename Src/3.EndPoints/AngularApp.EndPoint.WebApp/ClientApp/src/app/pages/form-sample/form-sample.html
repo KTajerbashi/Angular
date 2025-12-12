@@ -1,0 +1,90 @@
+<div class="app-container">
+  <div class="app-content">
+    <div class="app-card">
+      <div class="app-header">Template-Driven Form Sample</div>
+      <div class="app-content">
+        <form #loginForm="ngForm" (ngSubmit)="submit_TD(loginForm)">
+          <input class="app-input" name="username" ngModel required placeholder="Username" />
+          <input
+            class="app-input"
+            name="password"
+            ngModel
+            type="password"
+            required
+            placeholder="Password"
+          />
+
+          <button class="app-btn" type="submit">Login</button>
+        </form>
+      </div>
+      <div class="app-footer"></div>
+    </div>
+  </div>
+
+  <div class="app-content">
+    <div class="app-card">
+      <div class="app-header">Reactive Form Sample</div>
+      <div class="app-content">
+        <form [formGroup]="registerForm" (ngSubmit)="submit_RA()">
+          <input class="app-input" formControlName="name" placeholder="Full Name" />
+          @if(registerForm.get('name')?.invalid && registerForm.get('name')?.touched){
+          <div>Name is required</div>
+          }
+
+          <input class="app-input" formControlName="email" placeholder="Email" />
+          @if(registerForm.get('email')?.invalid && registerForm.get('email')?.touched){
+          <div>Email is invalid</div>
+          }
+
+          <input
+            class="app-input"
+            formControlName="password"
+            type="password"
+            placeholder="Password"
+          />
+          @if(registerForm.get('password')?.invalid && registerForm.get('password')?.touched){
+          <div>Password must be at least 6 characters</div>
+          }
+
+          <button class="app-btn app-btn-success" type="submit" [disabled]="registerForm.invalid">
+            Register
+          </button>
+        </form>
+      </div>
+      <div class="app-footer"></div>
+    </div>
+  </div>
+  <div class="app-content">
+    <div class="app-card">
+      <div class="app-header">Reactive Form Best Practices (Enterprise) Form Sample</div>
+      <div class="app-content">
+        <form [formGroup]="form" (ngSubmit)="submit()">
+          <input class="app-input" formControlName="name" placeholder="Full Name" />
+          @if(form.get('name')?.invalid && form.get('name')?.touched){
+          <div>Name is required</div>
+          }
+
+          <input class="app-input" formControlName="email" placeholder="Email" />
+          @if(form.get('email')?.invalid && form.get('email')?.touched){
+          <div>Email is invalid</div>
+          }
+
+          <input
+            class="app-input"
+            formControlName="password"
+            type="password"
+            placeholder="Password"
+          />
+          @if(form.get('password')?.invalid && form.get('password')?.touched){
+          <div>Password must be at least 6 characters</div>
+          }
+
+          <button class="app-btn app-btn-success" type="submit" [disabled]="form.invalid">
+            Register
+          </button>
+        </form>
+      </div>
+      <div class="app-footer"></div>
+    </div>
+  </div>
+</div>
