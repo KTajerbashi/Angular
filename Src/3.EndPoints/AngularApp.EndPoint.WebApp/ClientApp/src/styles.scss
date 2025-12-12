@@ -1,3 +1,7 @@
+::-webkit-scrollbar {
+  display: none;
+}
+
 /* ===================================================================
    BASE RESET & TYPOGRAPHY
 =================================================================== */
@@ -233,6 +237,8 @@ h2 {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  height: 500px;
+  overflow: auto;
 }
 
 .app-footer {
@@ -246,18 +252,42 @@ h2 {
 /* ===================================================================
    MODERN TABLE
 =================================================================== */
+
+/* Wrapper for scrollable area */
+.app-table-wrapper {
+  max-height: 500px;
+  overflow-y: auto;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  background: #ffffff;
+}
+
+/* Table Base */
 .app-table {
   width: 100%;
   border-collapse: collapse;
-  background: #ffffff;
-  border-radius: 12px;
-  overflow: hidden;
   font-family: system-ui, sans-serif;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
 }
 
+/* Sticky Caption */
+.app-table caption {
+  position: sticky;
+  top: -10px;
+  background: rgba(255, 255, 255, 0);
+  padding: 10px;
+  z-index: 999999;
+}
+
+/* Sticky Header */
 .app-table thead {
-  background: #f5f7fa;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: #f8fafc;
+  backdrop-filter: blur(4px);
+  border-bottom: 1px solid #e2e8f0;
+  background: rgba(210, 218, 255, 0.448);
 }
 
 .app-table th {
@@ -265,25 +295,37 @@ h2 {
   text-align: left;
   font-size: 14px;
   font-weight: 600;
-  color: #333;
-  border-bottom: 1px solid #e5e7eb;
+  color: #334155;
+}
+
+/* Body */
+.app-table tbody {
+  background: #ffffff;
 }
 
 .app-table td {
   padding: 12px 16px;
   font-size: 14px;
-  color: #444;
-  border-bottom: 1px solid #f0f0f0;
+  color: #475569;
+  border-bottom: 1px solid #c0c0c0;
 }
 
+/* Hover Rows */
 .app-table-hover tbody tr {
-  transition: background 0.2s ease, transform 0.1s ease;
+  transition: background 0.25s ease, transform 0.1s ease-in-out;
 }
 
 .app-table-hover tbody tr:hover {
-  background: #f0f6ff;
+  background: #f0f7ff;
+  transform: scale(1.002);
 }
 
+/* Zebra Rows (optional) */
+.app-table tbody tr:nth-child(even) {
+  background: #fafafa;
+}
+
+/* Responsive */
 @media (max-width: 640px) {
   .app-table th,
   .app-table td {
@@ -291,6 +333,7 @@ h2 {
     font-size: 13px;
   }
 }
+
 
 /* ===================================================================
    BUTTON SYSTEM (Full variants)
