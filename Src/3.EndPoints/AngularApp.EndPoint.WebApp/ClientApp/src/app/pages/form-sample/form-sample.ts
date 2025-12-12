@@ -13,51 +13,58 @@ import {
   selector: 'app-form-sample',
   imports: [FormsModule, ReactiveFormsModule, CommonModule],
   templateUrl: './form-sample.html',
-  styleUrl: './form-sample.scss',
+  styleUrls: ['./form-sample.scss'],
 })
 export class FormSample {
-  // Form Modult With Template-Driven Approach
+  // ================================
+  // 1️⃣ Template-Driven Form
+  // ================================
   submit_TD(form: any) {
-    console.log('Form Values:', form.value);
+    console.log('Template-Driven Form Values:', form.value);
   }
 
-  //  Form Modult With Reactive Approach
+  // ================================
+  // 2️⃣ Reactive Form (Basic)
+  // ================================
   registerForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.minLength(6)]),
   });
+
   submit_RA() {
-    {
-      if (this.registerForm.valid) {
-        console.log('Reactive Form Values:', this.registerForm.value);
-      } else {
-        console.log('Reactive Form is invalid');
-      }
+    if (this.registerForm.valid) {
+      console.log('Reactive Form Values:', this.registerForm.value);
+    } else {
+      console.log('Reactive Form is invalid');
     }
   }
-  //  Reactive Form Best Practices (Enterprise) Form Sample
+
+  // ================================
+  // 3️⃣ Enterprise-Style Reactive Form (Best Practices)
+  // ================================
   form!: FormGroup;
+
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
       name: ['', [Validators.required, noSpaceValidator]],
-      email: ['', [Validators.required, noSpaceValidator]],
-      // username: ['', Validators.required],
-      password: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
 
   submit() {
-    console.log("Submit : ",this.form);
+    console.log('Enterprise Form Values:', this.form.value);
     if (this.form.invalid) return;
     alert('Form Submitted Successfully');
-    // this.authService.login(this.form.value).subscribe({
-    //   next: (res) => console.log('Success', res),
-    //   error: (err) => console.log('Error', err)
-    // });
+    // Example: Call your authentication or API service
+    // this.authService.login(this.form.value).subscribe(...)
   }
 }
 
+// ================================
+// Custom Validator Function
+// ================================
 export function noSpaceValidator(control: FormControl) {
   return control.value?.includes(' ') ? { noSpace: true } : null;
 }

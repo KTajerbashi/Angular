@@ -1,29 +1,13 @@
 <div class="app-card">
-  <div class="app-header">Use Message Service</div>
+  <div class="app-header">Sample</div>
   <div class="app-content">
-    <table class="app-table app-table-hover">
-      <caption>{{posts.length}}</caption>
-      <thead>
-        <tr>
-          <th>Id</th>
-          <th>UserId</th>
-          <th>Title</th>
-          <th>Body</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (item of posts; track $index) {
-          <tr>
-            <td>{{ item.id }}</td>
-            <td>{{ item.userId }}</td>
-            <td>{{ item.title }}</td>
-            <td>{{ item.body }}</td>
-          </tr>
-        }
-      </tbody>
-    </table>
+<h2>Count: {{ count() }}</h2>
+<h3>Double: {{ double() }}</h3>
+
+<button class="app-btn app-btn-info" (click)="inc()">+</button>
+
   </div>
   <div class="app-footer">
-    <button class="app-btn">Click</button>
+    <!-- <button (click)="addCount()" class="app-btn app-btn-info">Click</button> -->
   </div>
 </div>

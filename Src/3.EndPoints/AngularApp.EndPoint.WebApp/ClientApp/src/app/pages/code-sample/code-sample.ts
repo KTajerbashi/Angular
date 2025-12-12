@@ -1,5 +1,14 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, signal } from '@angular/core';
+import {
+  Component,
+  computed,
+  effect,
+  OnChanges,
+  OnDestroy,
+  OnInit,
+  signal,
+  SimpleChanges,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MessageService } from '../../services/message.service';
 import { DataService } from '../../services/data.service';
@@ -9,17 +18,18 @@ import { DataService } from '../../services/data.service';
   templateUrl: './code-sample.html',
   styleUrl: './code-sample.scss',
 })
-export class CodeSample implements OnInit {
-  constructor(private messageService: MessageService, private dataService: DataService) {}
-  posts: any[] = [];
-  ngOnInit(): void {
-    this.dataService.getPosts().subscribe({
-      next: (data) => {
-        //  Take 10 row
-        this.posts = data.slice(0, 10);
-        console.log("Data : ",data);
-      },
-      error: (err) => console.error(err),
+export class CodeSample {
+  count = signal(0);
+
+  double = computed(() => this.count() * 2);
+
+  constructor() {
+    effect(() => {
+      console.log('Count changed:', this.count());
     });
+  }
+
+  inc() {
+    this.count.update((c) => c + 1);
   }
 }
