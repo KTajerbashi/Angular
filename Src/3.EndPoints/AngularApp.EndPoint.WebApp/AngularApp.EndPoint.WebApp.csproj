@@ -8,7 +8,7 @@
 
 		<!--#if (!UseApiOnly)-->
 		<SpaRoot>ClientApp\</SpaRoot>
-		<SpaProxyServerUrl>https://localhost:44447</SpaProxyServerUrl>
+		<SpaProxyServerUrl>https://localhost:42500</SpaProxyServerUrl>
 		<SpaProxyLaunchCommand>npm start</SpaProxyLaunchCommand>
 		<!--#endif-->
 		<RootNamespace>RG.Coding.WebApp</RootNamespace>
