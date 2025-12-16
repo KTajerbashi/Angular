@@ -192,14 +192,15 @@ h2 {
    CARD CONTAINER
 =================================================================== */
 .app-container {
-  margin: 2rem auto;
-  padding: 0 1rem;
+  margin: 1rem auto;
+  padding: 11px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: flex-start;
   gap: 5px;
+  align-content: flex-start;
 }
 .app-container > .app-content {
   flex: 1;
@@ -333,7 +334,6 @@ h2 {
     font-size: 13px;
   }
 }
-
 
 /* ===================================================================
    BUTTON SYSTEM (Full variants)
