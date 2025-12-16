@@ -141,6 +141,24 @@ h2 {
 .text-right {
   text-align: right;
 }
+.app-text-primary {
+  color: #3b82f6;
+}
+.app-text-primary:hover {
+  color: #1c3f79;
+}
+.app-text-secondary {
+  color: #6b7280;
+}
+.app-text-secondary:hover {
+  color: #2d2f33;
+}
+.app-text-info {
+  color: #06b6d4;
+}
+.app-text-info:hover {
+  color: #074652;
+}
 .rounded {
   border-radius: 12px;
 }
@@ -156,6 +174,25 @@ h2 {
   justify-content: center;
 }
 
+.app-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #fff;
+  background: #cadeff;
+  border-radius: 12px;
+}
+.app-badge-primary {
+  color: #fff;
+  background: #3b82f6;
+}
+.app-badge-primary:hover {
+  background: #224e96;
+}
+.app-badge-primary:active {
+  background: #000102;
+}
 /* ===================================================================
    INPUTS & LISTS
 =================================================================== */
