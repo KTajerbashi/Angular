@@ -13,4 +13,13 @@
   </app-child>
   <button class="app-btn app-btn-danger" (click)="addItem()">Add Item</button>
 </div>
-<div class="app-card">Parent ◀─(@Output)── Child</div>
+<div class="app-card">
+  Parent ◀─(@Output)── Child
+
+  <app-child
+    [childName]="'Test Child Component'"
+    (click)="onSaveClick()"
+    (userSelected)="onUserSelected($event)"
+  >
+  </app-child>
+</div>

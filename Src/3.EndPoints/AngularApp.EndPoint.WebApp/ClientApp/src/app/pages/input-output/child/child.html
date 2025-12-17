@@ -13,4 +13,12 @@
       }
     </ul>
   </div>
+  <div>
+    <ul class="app-list">
+      @for (item of users; track $index) {
+        <li (click)="select(item)">{{ item.name }}</li>
+      }
+    </ul>
+  </div>
+  <button class="app-btn app-btn-primary" (click)="onSaveClick()">Save</button>
 </div>
