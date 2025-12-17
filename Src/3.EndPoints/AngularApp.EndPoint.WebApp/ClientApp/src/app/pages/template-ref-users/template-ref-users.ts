@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormsModule } from "@angular/forms";
 
 @Component({
@@ -8,13 +8,13 @@ import { FormsModule } from "@angular/forms";
   styleUrl: './template-ref-users.scss',
 })
 export class TemplateRefUsers {
-  showName(name: string) {
-    alert(`Hello, ${name}!`);
+  showName(name: Input) {
+    console.log(name);
   }
   submit(form: any) {
     console.log(form.value);
   }
-  showDate(date: string) {
+  showDate(date: any) {
     console.log('Selected Date:', date);
   }
   convertDate(dateValue: string) {

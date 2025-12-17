@@ -1,7 +1,7 @@
 <div class="app-flex app-flex-row">
   <label for="userNameInput">UserNameInput</label>
   <input id="userNameInput" class="app-input" #userNameInput placeholder="Enter your name" />
-  <button class="app-btn app-btn-primary" (click)="showName(userNameInput.value)">
+  <button class="app-btn app-btn-primary" (click)="showName(userNameInput)">
     Show Name
   </button>
 </div>
@@ -56,6 +56,6 @@
 <div class="app-flex app-flex-row">
   <div class="form-group">
     <label for="dateOfBirth">Date of Birth</label>
-    <input id="dateOfBirth" type="date" class="app-input" />
-  </div>
+    <input #dateOfBirth id="dateOfBirth" type="date" class="app-input" />
+    <button (click)="showDate(dateOfBirth)">Show</button>
 </div>
