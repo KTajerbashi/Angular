@@ -153,6 +153,12 @@ h2 {
 .app-text-secondary:hover {
   color: #2d2f33;
 }
+.app-text-danger {
+  color: #dc2626;
+}
+.app-text-danger:hover {
+  color: #791c1c;
+}
 .app-text-info {
   color: #06b6d4;
 }
@@ -220,10 +226,12 @@ h2 {
 }
 
 .app-list li {
-  background: #e0e7ff;
+  background: #ccd8ff;
   margin: 5px;
   padding: 8px;
   border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #a0b4ff;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -232,6 +240,7 @@ h2 {
 .app-list li:hover {
   background: #c7d2fe;
   cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
 /* ===================================================================
@@ -263,6 +272,7 @@ h2 {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   min-width: 400px;
   min-height: 300px;
+  margin: 5px 0;
 }
 
 .app-card:hover {

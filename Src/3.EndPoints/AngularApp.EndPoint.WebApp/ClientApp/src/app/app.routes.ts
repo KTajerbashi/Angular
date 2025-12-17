@@ -8,6 +8,7 @@ import { NotFound } from './pages/common/not-found/not-found';
 import { InternalServer } from './pages/common/internal-server/internal-server';
 import { TemplateSyntax } from './pages/template-syntax/template-syntax';
 import { TemplateRefUsers } from './pages/template-ref-users/template-ref-users';
+import { InputOutput } from './pages/input-output/input-output';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -18,6 +19,7 @@ export const routes: Routes = [
   { path: 'form-sample', component: FormSample },
   { path: 'template-syntax', component: TemplateSyntax },
   { path: 'template-ref-users', component: TemplateRefUsers },
+  { path: 'input-output', component: InputOutput },
   { path: 'not-found', component: NotFound },
   { path: 'internal-server', component: InternalServer },
   { path: '**', redirectTo: 'not-found' },
