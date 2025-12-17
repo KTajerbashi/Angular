@@ -679,3 +679,13 @@ hr {
   border: none;
   border-top: 1px solid #e5e7eb;
 }
+
+// app-flex app-flex-row
+.app-flex {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.app-flex-row{
+  flex-direction: row;
+}

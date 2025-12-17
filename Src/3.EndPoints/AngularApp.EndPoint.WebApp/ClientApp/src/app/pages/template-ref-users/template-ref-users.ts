@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { FormsModule } from "@angular/forms";
 
 @Component({
   selector: 'app-template-ref-users',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './template-ref-users.html',
   styleUrl: './template-ref-users.scss',
 })
