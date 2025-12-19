@@ -1,10 +1,20 @@
-<app-header></app-header>
+<div class="app-root">
 
-<main>
-  <app-nav />
-  <section>
-    <router-outlet></router-outlet>
-  </section>
-</main>
+  <app-header></app-header>
+  <!-- Body -->
+  <div class="app-body">
+    <!-- Sidebar -->
+    <aside class="app-sidebar">
+      <app-nav></app-nav>
+    </aside>
 
-<app-footer></app-footer>
+    <!-- Main Content -->
+    <main class="app-main">
+      <!-- Routed pages render here -->
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+
+  <app-footer></app-footer>
+
+</div>

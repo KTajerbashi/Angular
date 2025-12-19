@@ -1,661 +1,441 @@
+/* =========================================================
+   DESIGN TOKENS (Theme)
+========================================================= */
+:root {
+  --color-dark: #0f172a;
+  --color-white: #ffffff;
+  --color-border: #ffffff;
+
+  --color-primary: #2563eb;
+  --color-primary-hover: #1d4ed8;
+  --color-danger: #dc2626;
+  --color-danger-hover: #b91c1c;
+  --color-success: #16a34a;
+  --color-warning: #f59e0b;
+  --color-muted: #6b7280;
+
+  --text-main: #111827;
+  --text-secondary: #374151;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 8px 20px rgba(0, 0, 0, 0.08);
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+}
+
+/* =========================================================
+   RESET
+========================================================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 ::-webkit-scrollbar {
   display: none;
 }
-
-/* ===================================================================
-   BASE RESET & TYPOGRAPHY
-=================================================================== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 html,
 body {
-  font-family: 'Inter', Arial, sans-serif;
-  background: #f4f6f9;
-  color: #333;
   height: 100%;
 }
 
-/* Layout */
 body {
+  margin: 0;
+  font-family: system-ui, -apple-system, 'Inter', sans-serif;
+  background: var(--color-bg);
+  color: var(--text-main);
+}
+
+/* =========================================================
+   APP LAYOUT
+========================================================= */
+.app-root {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
 }
 
-/* Header / Footer */
-header,
-footer {
-  background: linear-gradient(90deg, rgb(2, 53, 95), red);
-  padding: 1rem 2rem;
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #ffffff;
-  text-align: center;
-  border-bottom: 1px solid #e5e7eb;
-}
 
-footer {
-  margin-top: auto;
-  border-top: 1px solid #e5e7eb;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  font-size: 0.95rem;
-}
-
-/* ===================================================================
-   NAVIGATION SIDEBAR
-=================================================================== */
-main {
+.app-body {
+  flex: 1;
   display: flex;
-  min-height: calc(100vh - 140px);
+  height: 50vh;
 }
 
-nav {
-  width: 220px;
-  background: #203250;
-  padding: 2rem 1rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  position: sticky;
-  top: 0;
-  height: 90vh;
-}
-
-nav a {
+.app-sidebar {
+  width: 240px;
+  background: #0f172a;
   color: #cbd5e1;
-  text-decoration: none;
-  padding: 0.75rem 1rem;
-  border-radius: 5px;
-  font-size: 1rem;
-  transition: 0.25s ease;
-}
-
-nav a:hover,
-nav a.active {
-  background: #1e4b94;
-  color: #ffffff;
-  box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.4);
-}
-
-/* ===================================================================
-   MAIN CONTENT
-=================================================================== */
-section {
-  flex: 1;
-  padding: 2rem;
-}
-
-h2 {
-  font-size: 1.8rem;
-  margin-bottom: 1.5rem;
-}
-
-/* ===================================================================
-   CARD GRID
-=================================================================== */
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  gap: 1.5rem;
-  margin-bottom: 2.5rem;
-}
-
-.card {
-  background: #ffffff;
-  padding: 1.5rem;
-  border-radius: 14px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-}
-
-.card h3 {
-  font-size: 1.2rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-  color: #374151;
-}
-
-.card p {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: #1d4ed8;
-}
-
-/* ===================================================================
-   UTILITY CLASSES
-=================================================================== */
-.text-center {
-  text-align: center;
-}
-.text-right {
-  text-align: right;
-}
-.app-text-primary {
-  color: #3b82f6;
-}
-.app-text-primary:hover {
-  color: #1c3f79;
-}
-.app-text-secondary {
-  color: #6b7280;
-}
-.app-text-secondary:hover {
-  color: #2d2f33;
-}
-.app-text-danger {
-  color: #dc2626;
-}
-.app-text-danger:hover {
-  color: #791c1c;
-}
-.app-text-info {
-  color: #06b6d4;
-}
-.app-text-info:hover {
-  color: #074652;
-}
-.rounded {
-  border-radius: 12px;
-}
-.shadow {
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-}
-.flex {
-  display: flex;
-}
-.flex-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.app-badge {
-  display: inline-block;
-  padding: 0.25rem 0.75rem;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #fff;
-  background: #cadeff;
-  border-radius: 12px;
-}
-.app-badge-primary {
-  color: #fff;
-  background: #3b82f6;
-}
-.app-badge-primary:hover {
-  background: #224e96;
-}
-.app-badge-primary:active {
-  background: #000102;
-}
-/* ===================================================================
-   INPUTS & LISTS
-=================================================================== */
-.app-input {
-  padding: 0.3rem;
-  border: 1px solid #c4c4c4;
-  border-radius: 4px;
-  font-size: 1rem;
-  margin: 5px 0;
-  display: block;
-  min-width: 200px;
-}
-.app-input:focus {
-  outline: none;
-  border-color: #3b82f6;
-  box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
-}
-
-.app-input::placeholder {
-  color: #b4b4b4;
-}
-.app-list {
-  list-style: none;
-  padding: 0;
-}
-
-.app-list li {
-  background: #ccd8ff;
-  margin: 5px;
-  padding: 8px;
-  border-radius: 6px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  border: 1px solid #a0b4ff;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.app-list li:hover {
-  background: #c7d2fe;
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-}
-
-/* ===================================================================
-   CARD CONTAINER
-=================================================================== */
-.app-container {
-  margin: 1rem auto;
-  padding: 11px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-items: flex-start;
-  gap: 5px;
-  align-content: flex-start;
-}
-.app-container > .app-content {
-  flex: 1;
-  margin: 0.5rem;
-}
-.app-card {
-  background: #ffffff;
-  padding: 1.5rem;
-  border-radius: 14px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  min-width: 400px;
-  min-height: 300px;
-  margin: 5px 0;
-}
-
-.app-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-}
-
-.app-header {
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: #1e293b;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid #e5e7eb;
-}
-
-.app-content {
-  font-size: 1.1rem;
-  color: #374151;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  height: 500px;
+  padding: var(--space-5);
+  height: 90vh;
   overflow: auto;
 }
 
-.app-footer {
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: #1e293b;
-  padding-top: 0.5rem;
-  border-top: 1px solid #e5e7eb;
+.app-sidebar a {
+  display: block;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-sm);
+  color: inherit;
+  text-decoration: none;
 }
 
-/* ===================================================================
-   MODERN TABLE
-=================================================================== */
-
-/* Wrapper for scrollable area */
-.app-table-wrapper {
-  max-height: 500px;
-  overflow-y: auto;
-  border-radius: 12px;
-  border: 1px solid #e5e7eb;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-  background: #ffffff;
+.app-sidebar a:hover,
+.app-sidebar a.active {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
 }
 
-/* Table Base */
-.app-table {
+.app-main {
+  flex: 1;
+  overflow: auto;
+}
+
+
+/* =========================================================
+   APP CONTAINER (Page Wrapper)
+========================================================= */
+.app-container {
   width: 100%;
-  border-collapse: collapse;
-  font-family: system-ui, sans-serif;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding: var(--space-6);
+}
+/* =========================================================
+   APP CONTENT (Layout Helper)
+========================================================= */
+.app-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
 }
 
-/* Sticky Caption */
-.app-table caption {
-  position: sticky;
-  top: -10px;
-  background: rgba(255, 255, 255, 0);
-  padding: 10px;
-  z-index: 999999;
+/* Row layout */
+.app-content-row {
+  display: flex;
+  gap: var(--space-5);
+  align-items: flex-start;
 }
 
-/* Sticky Header */
-.app-table thead {
-  position: sticky;
-  top: 0;
-  z-index: 2;
-  background: #f8fafc;
-  backdrop-filter: blur(4px);
-  border-bottom: 1px solid #e2e8f0;
-  background: rgba(210, 218, 255, 0.448);
+/* Grid layout */
+.app-content-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-5);
 }
 
-.app-table th {
-  padding: 14px 16px;
-  text-align: left;
-  font-size: 14px;
+/* =========================================================
+   APP CARD SYSTEM
+========================================================= */
+.app-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  border: 1px solid var(--color-muted);
+}
+
+/* Header */
+.app-card-header {
+  font-size: 1.1rem;
   font-weight: 600;
-  color: #334155;
+  color: var(--text-main);
 }
 
 /* Body */
-.app-table tbody {
-  background: #ffffff;
+.app-card-body {
+  flex: 1;
+  color: var(--text-secondary);
 }
 
-.app-table td {
-  padding: 12px 16px;
-  font-size: 14px;
-  color: #475569;
-  border-bottom: 1px solid #c0c0c0;
+/* Footer */
+.app-card-footer {
+  margin-top: auto;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border);
 }
 
-/* Hover Rows */
-.app-table-hover tbody tr {
-  transition: background 0.25s ease, transform 0.1s ease-in-out;
+/* Hoverable card */
+.app-card-hover {
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+.app-card-hover:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
 }
 
-.app-table-hover tbody tr:hover {
-  background: #f0f7ff;
-  transform: scale(1.002);
+/* Card sizes */
+.app-card-sm {
+  padding: var(--space-4);
+}
+.app-card-lg {
+  padding: var(--space-6);
 }
 
-/* Zebra Rows (optional) */
-.app-table tbody tr:nth-child(even) {
-  background: #fafafa;
+/* =========================================================
+   TYPOGRAPHY
+========================================================= */
+h1 {
+  font-size: 1.75rem;
+}
+h2 {
+  font-size: 1.5rem;
+}
+h3 {
+  font-size: 1.25rem;
 }
 
-/* Responsive */
-@media (max-width: 640px) {
-  .app-table th,
-  .app-table td {
-    padding: 10px;
-    font-size: 13px;
-  }
+p {
+  margin: 0;
+  color: var(--text-secondary);
 }
 
-/* ===================================================================
-   BUTTON SYSTEM (Full variants)
-=================================================================== */
+/* =========================================================
+   FORM ELEMENTS
+========================================================= */
+.input {
+  width: 100%;
+  padding: var(--space-3);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  font-size: 1rem;
+}
 
-/* --- Base Button --- */
+.input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+}
+
+/* =========================================================
+   BUTTON SYSTEM – BASE
+========================================================= */
 .app-btn {
+  --btn-bg: transparent;
+  --btn-bg-hover: rgba(0, 0, 0, 0.1);
+  --btn-bg-active: transparent;
+  --btn-text: var(--text-main);
+  --btn-border: transparent;
+
+  appearance: none;
+  border: 1px solid var(--btn-border);
+  border-radius: var(--radius-sm);
+  padding: var(--space-3) var(--space-5);
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.6rem 1rem;
-  font-size: 1rem;
-  font-weight: 500;
-  border-radius: 6px;
-  cursor: pointer;
-  border: none;
-  width: fit-content;
-  gap: 0.35rem;
-  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease,
-    transform 0.15s ease, opacity 0.25s ease;
-  margin: 0 5px;
+  gap: var(--space-2);
+
+  background: var(--btn-bg);
+  color: var(--btn-text);
+
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.2s ease,
+    transform 0.15s ease;
 }
 
-.app-btn:hover {
-  transform: translateY(-2px);
-}
-.app-btn:active {
-  transform: translateY(0px);
+/* Hover */
+.app-btn:hover:not(:disabled) {
+  background: var(--btn-bg-hover);
+  transform: translateY(-1px);
 }
 
+/* Active */
+.app-btn:active:not(:disabled) {
+  background: var(--btn-bg-active);
+  transform: translateY(0);
+}
+
+/* Focus */
+.app-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.25);
+}
+
+/* Disabled */
 .app-btn:disabled,
 .app-btn.disabled {
-  opacity: 0.5;
+  opacity: 0.55;
   cursor: not-allowed;
-  transform: none !important;
+  pointer-events: none;
 }
 
-/* --- Filled Variants --- */
+/* =========================================================
+   FILLED VARIANTS
+========================================================= */
 .app-btn-primary {
-  background: #3b82f6;
-  color: #fff;
-}
-.app-btn-primary:hover {
-  background: #1d4ed8;
-}
-.app-btn-primary:active {
-  background: #1e40af;
-}
-
-.app-btn-secondary {
-  background: #6b7280;
-  color: #fff;
-}
-.app-btn-secondary:hover {
-  background: #4b5563;
-}
-.app-btn-secondary:active {
-  background: #374151;
+  --btn-bg: var(--color-primary);
+  --btn-bg-hover: var(--color-primary-hover);
+  --btn-bg-active: var(--color-primary-active, #1e40af);
+  --btn-text: #fff;
 }
 
 .app-btn-success {
-  background: #22c55e;
-  color: #fff;
-}
-.app-btn-success:hover {
-  background: #15803d;
-}
-.app-btn-success:active {
-  background: #166534;
+  --btn-bg: var(--color-success);
+  --btn-bg-hover: #15803d;
+  --btn-bg-active: #166534;
+  --btn-text: #fff;
 }
 
 .app-btn-warning {
-  background: #f59e0b;
-  color: #fff;
-}
-.app-btn-warning:hover {
-  background: #b45309;
-}
-.app-btn-warning:active {
-  background: #92400e;
+  --btn-bg: var(--color-warning);
+  --btn-bg-hover: #b45309;
+  --btn-bg-active: #92400e;
+  --btn-text: #fff;
 }
 
 .app-btn-danger {
-  background: #ef4444;
-  color: #fff;
-}
-.app-btn-danger:hover {
-  background: #b91c1c;
-}
-.app-btn-danger:active {
-  background: #7f1d1d;
+  --btn-bg: var(--color-danger);
+  --btn-bg-hover: #b91c1c;
+  --btn-bg-active: #7f1d1d;
+  --btn-text: #fff;
 }
 
 .app-btn-info {
-  background: #06b6d4;
-  color: #fff;
-}
-.app-btn-info:hover {
-  background: #0e7490;
-}
-.app-btn-info:active {
-  background: #164e63;
+  --btn-bg: #06b6d4;
+  --btn-bg-hover: #0e7490;
+  --btn-bg-active: #164e63;
+  --btn-text: #fff;
 }
 
 .app-btn-dark {
-  background: #111827;
-  color: #fff;
-}
-.app-btn-dark:hover {
-  background: #1f2937;
-}
-.app-btn-dark:active {
-  background: #0f172a;
+  --btn-bg: #111827;
+  --btn-bg-hover: #1f2937;
+  --btn-bg-active: #020617;
+  --btn-text: #fff;
 }
 
-/* --- Outline Variants --- */
+/* =========================================================
+   OUTLINE VARIANTS
+========================================================= */
 .app-btn-outline {
   background: transparent;
-  border: 2px solid;
+  color: var(--btn-text);
 }
 
 .app-btn-primary-outline {
-  border-color: #3b82f6;
-  color: #3b82f6;
-}
-.app-btn-primary-outline:hover {
-  background: #3b82f6;
-  color: #fff;
-}
-
-.app-btn-secondary-outline {
-  border-color: #6b7280;
-  color: #6b7280;
-}
-.app-btn-secondary-outline:hover {
-  background: #6b7280;
-  color: #fff;
+  --btn-border: var(--color-primary);
+  --btn-text: var(--color-primary);
+  --btn-bg-hover: var(--color-primary);
+  --btn-text-hover: #fff;
 }
 
 .app-btn-success-outline {
-  border-color: #22c55e;
-  color: #22c55e;
-}
-.app-btn-success-outline:hover {
-  background: #22c55e;
-  color: #fff;
+  --btn-border: var(--color-success);
+  --btn-text: var(--color-success);
+  --btn-bg-hover: var(--color-success);
 }
 
 .app-btn-warning-outline {
-  border-color: #f59e0b;
-  color: #f59e0b;
-}
-.app-btn-warning-outline:hover {
-  background: #f59e0b;
-  color: #fff;
+  --btn-border: var(--color-warning);
+  --btn-text: var(--color-warning);
+  --btn-bg-hover: var(--color-warning);
 }
 
 .app-btn-danger-outline {
-  border-color: #ef4444;
-  color: #ef4444;
-}
-.app-btn-danger-outline:hover {
-  background: #ef4444;
-  color: #fff;
+  --btn-border: var(--color-danger);
+  --btn-text: var(--color-danger);
+  --btn-bg-hover: var(--color-danger);
 }
 
 .app-btn-info-outline {
-  border-color: #06b6d4;
-  color: #06b6d4;
-}
-.app-btn-info-outline:hover {
-  background: #06b6d4;
-  color: #fff;
+  --btn-border: #06b6d4;
+  --btn-text: #06b6d4;
+  --btn-bg-hover: #06b6d4;
 }
 
 .app-btn-dark-outline {
-  border-color: #111827;
-  color: #111827;
-}
-.app-btn-dark-outline:hover {
-  background: #111827;
-  color: #fff;
+  --btn-border: #111827;
+  --btn-text: #111827;
+  --btn-bg-hover: #111827;
 }
 
-/* --- Ghost Buttons --- */
+/* Outline hover text fix */
+.app-btn-outline:hover:not(:disabled) {
+  color: #757575;
+  border: 1px solid #00000098;
+  background: var(--btn-bg-hover);
+}
+
+/* =========================================================
+   GHOST VARIANTS
+========================================================= */
 .app-btn-ghost {
   background: transparent;
-  border: none;
+  border-color: transparent;
 }
 
 .app-btn-primary-ghost:hover {
-  background: rgba(59, 130, 246, 0.1);
-}
-.app-btn-secondary-ghost:hover {
-  background: rgba(107, 114, 128, 0.1);
+  background: rgba(37, 99, 235, 0.12);
 }
 .app-btn-success-ghost:hover {
-  background: rgba(34, 197, 94, 0.1);
+  background: rgba(22, 163, 74, 0.12);
 }
 .app-btn-warning-ghost:hover {
-  background: rgba(245, 158, 11, 0.1);
+  background: rgba(245, 158, 11, 0.15);
 }
 .app-btn-danger-ghost:hover {
-  background: rgba(239, 68, 68, 0.1);
+  background: rgba(220, 38, 38, 0.12);
 }
 .app-btn-info-ghost:hover {
-  background: rgba(6, 182, 212, 0.1);
+  background: rgba(6, 182, 212, 0.15);
 }
 .app-btn-dark-ghost:hover {
-  background: rgba(17, 24, 39, 0.1);
+  background: rgba(17, 24, 39, 0.15);
 }
 
-/* --- Sizes --- */
+/* =========================================================
+   SIZES
+========================================================= */
 .app-btn-sm {
-  padding: 0.35rem 0.7rem;
+  padding: 0.35rem 0.75rem;
   font-size: 0.85rem;
 }
-.app-btn-md {
-  padding: 0.55rem 1rem;
-  font-size: 1rem;
-}
+
 .app-btn-lg {
-  padding: 0.8rem 1.3rem;
-  font-size: 1.1rem;
-  border-radius: 8px;
+  padding: 0.8rem 1.4rem;
+  font-size: 1.05rem;
+  border-radius: var(--radius-md);
 }
 
-/* --- Shapes --- */
-.app-btn-rounded {
-  border-radius: 10px;
-}
-.app-btn-pill {
-  border-radius: 999px;
-}
-
-/* --- Block Button --- */
-.app-btn-block {
-  width: 100%;
-  display: block;
-  text-align: center;
-}
-
-/* --- Icon Buttons --- */
+/* =========================================================
+   ICON BUTTONS
+========================================================= */
 .app-btn-icon {
   padding: 0.6rem;
-  width: 42px;
-  height: 42px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  width: 40px;
+  height: 40px;
 }
 
-.app-btn-icon-sm {
-  width: 32px;
-  height: 32px;
-}
-.app-btn-icon-lg {
-  width: 52px;
-  height: 52px;
+.app-btn-icon svg {
+  width: 18px;
+  height: 18px;
 }
 
-/* --- Loading State --- */
+/* =========================================================
+   LOADING STATE
+========================================================= */
 .app-btn.loading {
   position: relative;
   pointer-events: none;
-  opacity: 0.75;
+  color: transparent !important;
 }
 
 .app-btn.loading::after {
@@ -663,39 +443,71 @@ h2 {
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  border: 3px solid transparent;
-  border-top-color: white;
-  animation: spin 0.7s linear infinite;
+  border: 2px solid transparent;
+  border-top-color: currentColor;
+  animation: app-btn-spin 0.7s linear infinite;
   position: absolute;
-  right: 10px;
 }
 
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
+@keyframes app-btn-spin {
   to {
     transform: rotate(360deg);
   }
 }
 
-/* --- Active / Selected --- */
-.app-btn-active {
-  box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.2);
-  transform: none !important;
-}
-hr {
-  margin: 1rem 0;
-  border: none;
-  border-top: 1px solid #e5e7eb;
+/* =========================================================
+   RIPPLE (OPTIONAL, PURE CSS)
+========================================================= */
+.app-btn.ripple {
+  position: relative;
+  overflow: hidden;
 }
 
-// app-flex app-flex-row
-.app-flex {
+.app-btn.ripple::after {
+  content: '';
+  position: absolute;
+  width: 120%;
+  height: 120%;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  transform: scale(0);
+  transition: transform 0.5s ease;
+}
+
+.app-btn.ripple:active::after {
+  transform: scale(1);
+}
+
+/* =========================================================
+   UTILITIES (LIMITED & CLEAN)
+========================================================= */
+.flex {
   display: flex;
-  gap: 5px;
+}
+.flex-between {
+  justify-content: space-between;
+}
+.flex-center {
   align-items: center;
 }
-.app-flex-row{
-  flex-direction: row;
+
+.gap-sm {
+  gap: var(--space-2);
+}
+.gap-md {
+  gap: var(--space-4);
+}
+
+.mt-md {
+  margin-top: var(--space-4);
+}
+.mb-md {
+  margin-bottom: var(--space-4);
+}
+
+.text-muted {
+  color: var(--color-muted);
+}
+.text-center {
+  text-align: center;
 }
