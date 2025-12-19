@@ -7,5 +7,21 @@ import { Component } from '@angular/core';
   styleUrl: './component-intro.scss',
 })
 export class ComponentIntro {
+activities: string[] = [
+    'User John created a record',
+    'Order #1203 completed',
+    'Settings updated',
+  ];
 
+  onCreate() {
+    console.log('Create clicked');
+  }
+
+  onView() {
+    console.log('View clicked');
+  }
+
+  onExport() {
+    console.log('Export clicked');
+  }
 }

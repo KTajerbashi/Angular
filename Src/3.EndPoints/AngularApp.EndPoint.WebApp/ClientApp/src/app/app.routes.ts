@@ -5,6 +5,7 @@ import { Setting } from './page/setting/setting';
 import { ComponentIntro } from './page/component-intro/component-intro';
 import { ModuleIntro } from './page/module-intro/module-intro';
 import { TemplateIntro } from './page/template-intro/template-intro';
+import { InputOutput } from './page/input-output/input-output';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -12,6 +13,7 @@ export const routes: Routes = [
   { path: 'components', component: ComponentIntro },
   { path: 'modules', component: ModuleIntro },
   { path: 'templates', component: TemplateIntro },
+  { path: 'input-output', component: InputOutput },
   { path: 'users', component: User },
   { path: 'settings', component: Setting },
   { path: '**', redirectTo: 'not-found' },

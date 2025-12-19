@@ -63,7 +63,6 @@ body {
   flex-direction: column;
 }
 
-
 .app-body {
   flex: 1;
   display: flex;
@@ -97,7 +96,6 @@ body {
   flex: 1;
   overflow: auto;
 }
-
 
 /* =========================================================
    APP CONTAINER (Page Wrapper)
@@ -243,12 +241,8 @@ p {
   background: var(--btn-bg);
   color: var(--btn-text);
 
-  transition:
-    background-color 0.25s ease,
-    color 0.25s ease,
-    border-color 0.25s ease,
-    box-shadow 0.2s ease,
-    transform 0.15s ease;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease,
+    box-shadow 0.2s ease, transform 0.15s ease;
 }
 
 /* Hover */
@@ -369,7 +363,6 @@ p {
 
 /* Outline hover text fix */
 .app-btn-outline:hover:not(:disabled) {
-  color: #757575;
   border: 1px solid #00000098;
   background: var(--btn-bg-hover);
 }
@@ -511,3 +504,73 @@ p {
 .text-center {
   text-align: center;
 }
+/* =========================================================
+   Badge (LIMITED & CLEAN)
+========================================================= */
+.app-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  background: var(--color-muted);
+  color: #fff;
+}
+.app-badge-primary {
+  background: var(--color-primary);
+}
+.app-badge-success {
+  background: var(--color-success);
+}
+.app-badge-warning {
+  background: var(--color-warning);
+}
+.app-badge-danger {
+  background: var(--color-danger);
+}
+.app-badge-info {
+  background: #06b6d4;
+}
+.app-badge-dark {
+  background: #111827;
+}
+/* =========================================================
+   MODAL (BASIC STYLES)
+========================================================= */
+.app-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.app-modal {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  width: 90%;
+  max-width: 500px;
+  padding: var(--space-5);
+  position: relative;
+}
+.app-modal-close {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  background: transparent;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  color: var(--text-secondary);
+}
+.app-modal-close:hover {
+  color: var(--text-main);
+}
+/* =========================================================
+   THEME VARIABLES
+========================================================= */

@@ -1,27 +1,43 @@
 <div class="app-container">
   <div class="app-content">
 
-
-    <!-- Main Action Card -->
+    <!-- Quick Actions -->
     <div class="app-card app-card-hover">
-      <div class="app-card-header">Quick Actions</div>
+      <div class="app-card-header">Introduction to Components in Angular</div>
 
       <div class="app-card-body app-content-row">
-        <button class="app-btn app-btn-primary">Create</button>
-        <button class="app-btn app-btn-dark">View</button>
-        <button class="app-btn app-btn-outline">Export</button>
+        <button
+          class="app-btn app-btn-primary"
+          (click)="onCreate()"
+        >
+          Create
+        </button>
+
+        <button
+          class="app-btn app-btn-dark"
+          (click)="onView()"
+        >
+          View
+        </button>
+
+        <button
+          class="app-btn app-btn-outline"
+          (click)="onExport()"
+        >
+          Export
+        </button>
       </div>
     </div>
 
     <!-- Recent Activity -->
     <div class="app-card">
-      <div class="app-card-header">Recent Activity</div>
+      <div class="app-card-header">Component Activity</div>
 
       <div class="app-card-body">
         <ul class="app-list">
-          <li>User John created a record</li>
-          <li>Order #1203 completed</li>
-          <li>Settings updated</li>
+          @for(item of activities; track item){
+            <li>{{ item }}</li>
+          }
         </ul>
       </div>
     </div>
