@@ -1,4 +1,5 @@
 using AngularApp.EndPoint.WebApi.Providers.Swagger;
+using AngularApp.ServiceDefaults;
 
 var builder = WebApplication.CreateBuilder(args);
 
