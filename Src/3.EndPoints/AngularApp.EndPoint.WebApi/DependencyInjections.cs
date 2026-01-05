@@ -1,6 +1,31 @@
-﻿namespace AngularApp.EndPoint.WebApi;
+﻿using AngularApp.Core.Application;
+using AngularApp.Core.Domain.Entities.Security;
+using AngularApp.Infra.Data;
+using AngularApp.Infra.Data.DataContext;
+using Microsoft.AspNetCore.Identity;
+
+namespace AngularApp.EndPoint.WebApi;
 
 public static class DependencyInjections
 {
+    public static IServiceCollection AddWebApi(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.AddInfrastructure(configuration);
+        services.AddApplication(configuration);
 
+        //  Register Identity
+        services
+            .AddIdentity<UserEntity, RoleEntity>(options =>
+            {
+                options.Password.RequireDigit = true;
+                options.Password.RequiredLength = 6;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.User.RequireUniqueEmail = true;
+            })
+            .AddEntityFrameworkStores<DatabaseContext>()
+            .AddDefaultTokenProviders();
+
+        return services;
+    }
 }
