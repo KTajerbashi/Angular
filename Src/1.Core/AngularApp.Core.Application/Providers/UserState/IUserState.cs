@@ -1,6 +1,8 @@
-﻿namespace AngularApp.Core.Application.Providers.UserState;
+﻿using AngularApp.Core.Application.Providers.ScrutorDI;
 
-public interface IUserState
+namespace AngularApp.Core.Application.Providers.UserState;
+
+public interface IUserState: IScopeLifeTime
 {
     long? UserId { get; }
 }
