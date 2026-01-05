@@ -1,19 +1,10 @@
 ﻿using AngularApp.Core.Domain.Entities.Security;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
 namespace AngularApp.Infra.Data.Common;
-
-public static class ShadowProperties
-{
-    public const string IsActive = "IsActive";
-    public const string IsDeleted = "IsDeleted";
-    public const string CreatedByUserId = "CreatedByUserId";
-    public const string UpdatedByUserId = "UpdatedByUserId";
-    public const string CreatedDate = "CreatedDate";
-    public const string UpdatedDate = "UpdatedDate";
-}
 
 public abstract class BaseDataContext : IdentityDbContext<
     UserEntity,
@@ -34,6 +25,8 @@ public abstract class BaseDataContext : IdentityDbContext<
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
+        // Ignore Identity passkey entity (fix migration error)
+        builder.Ignore<IdentityPasskeyData>();
 
         builder.HasDefaultSchema("Security");
 
@@ -75,7 +68,7 @@ public abstract class BaseDataContext : IdentityDbContext<
 
             builder.Entity(entityType.ClrType)
                 .Property<DateTime>(ShadowProperties.CreatedDate)
-                .HasDefaultValueSql("GETUTCDATE()");
+                .HasDefaultValueSql("GETDATE()");
 
             builder.Entity(entityType.ClrType)
                 .Property<DateTime?>(ShadowProperties.UpdatedDate);
