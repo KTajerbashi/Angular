@@ -1,4 +1,5 @@
 ﻿using AngularApp.Core.Application;
+using AngularApp.Core.Application.Extensions;
 using AngularApp.Core.Domain.Entities.Security;
 using AngularApp.Infra.Data;
 using AngularApp.Infra.Data.DataContext;
@@ -10,8 +11,9 @@ public static class DependencyInjections
 {
     public static IServiceCollection AddWebApi(this IServiceCollection services, IConfiguration configuration)
     {
+        var assemblies = ("AngularApp").GetAssemblies().ToArray();
         services.AddInfrastructure(configuration);
-        services.AddApplication(configuration);
+        services.AddApplication(configuration, assemblies);
 
         //  Register Identity
         services
