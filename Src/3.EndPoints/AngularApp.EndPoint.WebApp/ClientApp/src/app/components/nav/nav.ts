@@ -19,6 +19,7 @@ export class Nav implements OnInit {
     return [
       { Name: 'Dashboard', Link: '/dashboard', IsDeleted: false },
       { Name: 'Components', Link: '/components', IsDeleted: false },
+      { Name: 'Pipes', Link: '/pipes', IsDeleted: false },
       { Name: 'Modules', Link: '/modules', IsDeleted: false },
       { Name: 'Templates', Link: '/templates', IsDeleted: false },
       { Name: 'Input / Output', Link: '/input-output', IsDeleted: false },

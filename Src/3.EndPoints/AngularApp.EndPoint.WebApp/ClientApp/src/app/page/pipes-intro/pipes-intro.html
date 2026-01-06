@@ -1,0 +1,35 @@
+<div class="app-container">
+    <div class="app-content">
+        <mat-card appearance="outlined">
+            <mat-card-header>
+                <mat-card-title> {{title | uppercase}}</mat-card-title>
+                <mat-card-title> {{title | lowercase}}</mat-card-title>
+                <mat-card-subtitle>{{subTitle}}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <div>Today : {{today | date}}</div>
+                <div>Today : {{today | date:'fullDate'}}</div>
+                <div>Today : {{today | date:'dd/MM/yyyy'}}</div>
+                <div>Today : {{today | date:'dd/MMM/yyyy'}}</div>
+                <hr>
+                <div>Price : {{price | currency}}</div>
+                <div>Price : {{price | currency:'INR'}}</div>
+                <div>Price : {{price | currency:'EUR'}}</div>
+                <hr>
+                <div>Rating : {{rating | number}}</div>
+                <div>Rating : {{rating | number:'1.2-2'}}</div>
+                <hr>
+                <div>Salary : {{salary/100 | percent}}</div>
+                <hr>
+                <div>Object Data : {{_obj}}</div>
+                <div>Object Data : {{_obj | json}}</div>
+                <hr>
+                <div>Reversed Name : {{_obj.name | reverse}}</div>
+                <div>Reversed Name : {{title | reverse}}</div>
+                <div>Reversed Name : {{subTitle | reverse}}</div>
+            </mat-card-content>
+            <mat-card-actions>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>
