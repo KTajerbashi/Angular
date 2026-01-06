@@ -139,9 +139,10 @@ body {
 ========================================================= */
 .app-container {
   width: 100%;
-  max-width: 1280px;
   margin-inline: auto;
   padding: var(--space-6);
+  overflow: auto;
+  height: 850px;
 }
 /* =========================================================
    APP CONTENT (Layout Helper)
@@ -608,6 +609,193 @@ p {
 .app-modal-close:hover {
   color: var(--text-main);
 }
+/* ===============================
+   Base Reset
+================================ */
+.app-control *,
+.app-control *::before,
+.app-control *::after {
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+
+/* ===============================
+   Control Wrapper
+================================ */
+.app-control {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 12px 0;
+}
+
+/* ===============================
+   Label
+================================ */
+.app-control label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #111827;
+  cursor: pointer;
+}
+
+/* ===============================
+   Inputs (text-like)
+================================ */
+.app-control input:not([type='checkbox']):not([type='radio']),
+.app-control textarea,
+.app-control select {
+  width: 100%;
+  height: 38px;
+  padding: 8px 12px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  background-color: #fff;
+  color: #111827;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Textarea */
+.app-control textarea {
+  height: auto;
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* Select */
+.app-control select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 20 20' fill='none' stroke='%236b7280' stroke-width='2'%3E%3Cpath d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 14px;
+  padding-right: 36px;
+}
+
+/* ===============================
+   Focus
+================================ */
+.app-control input:focus,
+.app-control textarea:focus,
+.app-control select:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+}
+
+/* ===============================
+   Checkbox & Radio Layout
+================================ */
+.app-control:has(input[type='checkbox']),
+.app-control:has(input[type='radio']) {
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ===============================
+   Checkbox
+================================ */
+.app-control input[type='checkbox'] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 6px;
+  border: 2px solid #d1d5db;
+  background-color: #fff;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.app-control input[type='checkbox']:checked {
+  background-color: #3b82f6;
+  border-color: #3b82f6;
+}
+
+.app-control input[type='checkbox']:checked::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 7px;
+  width: 4px;
+  height: 8px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* ===============================
+   Radio
+================================ */
+.app-control input[type='radio'] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #d1d5db;
+  background-color: #fff;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.app-control input[type='radio']:checked {
+  border-color: #3b82f6;
+}
+
+.app-control input[type='radio']:checked::after {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  background-color: #3b82f6;
+  border-radius: 50%;
+}
+
+/* ===============================
+   File Input
+================================ */
+.app-control input[type='file'] {
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* ===============================
+   Range
+================================ */
+.app-control input[type='range'] {
+  accent-color: #3b82f6;
+  padding: 0;
+}
+
+/* ===============================
+   Disabled
+================================ */
+.app-control input:disabled,
+.app-control textarea:disabled,
+.app-control select:disabled {
+  background-color: #f3f4f6;
+  color: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* ===============================
+   Validation States
+================================ */
+.app-control.error input,
+.app-control.error textarea,
+.app-control.error select {
+  border-color: #ef4444;
+}
+
+.app-control.success input,
+.app-control.success textarea,
+.app-control.success select {
+  border-color: #22c55e;
+}
+
+
 /* =========================================================
    THEME VARIABLES
 ========================================================= */

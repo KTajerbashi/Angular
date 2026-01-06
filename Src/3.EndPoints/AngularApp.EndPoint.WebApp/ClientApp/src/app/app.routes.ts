@@ -7,12 +7,14 @@ import { ModuleIntro } from './page/module-intro/module-intro';
 import { TemplateIntro } from './page/template-intro/template-intro';
 import { InputOutput } from './page/input-output/input-output';
 import { PipesIntro } from './page/pipes-intro/pipes-intro';
+import { DataBinding } from './page/data-binding/data-binding';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: Dashboard },
   { path: 'components', component: ComponentIntro },
   { path: 'pipes', component: PipesIntro },
+  { path: 'data-binding', component: DataBinding },
   { path: 'modules', component: ModuleIntro },
   { path: 'templates', component: TemplateIntro },
   { path: 'input-output', component: InputOutput },
