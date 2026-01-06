@@ -1,12 +1,39 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import INavDTO from '../../models/INav.dto';
 
 @Component({
   selector: 'app-nav',
-  imports: [RouterLink,RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive],
   templateUrl: './nav.html',
   styleUrl: './nav.scss',
 })
-export class Nav {
+export class Nav implements OnInit {
+  menus: INavDTO[] = [];
 
+  ngOnInit(): void {
+    this.menus = this.loadMenus();
+  }
+
+  private loadMenus(): INavDTO[] {
+    return [
+      { Name: 'Dashboard', Link: '/dashboard', IsDeleted: false },
+      { Name: 'Components', Link: '/components', IsDeleted: false },
+      { Name: 'Modules', Link: '/modules', IsDeleted: false },
+      { Name: 'Templates', Link: '/templates', IsDeleted: false },
+      { Name: 'Input / Output', Link: '/input-output', IsDeleted: false },
+      { Name: 'Pipes', Link: '/pipes', IsDeleted: false },
+      { Name: 'Template Syntax', Link: '/template-syntax', IsDeleted: false },
+      { Name: 'Directives', Link: '/directives', IsDeleted: false },
+      { Name: 'Routing', Link: '/routing', IsDeleted: false },
+      { Name: 'Services', Link: '/services', IsDeleted: false },
+      { Name: 'Forms', Link: '/forms', IsDeleted: false },
+      { Name: 'HTTP', Link: '/http-client', IsDeleted: false },
+      { Name: 'RXJS', Link: '/rxjs', IsDeleted: false },
+      { Name: 'Signals', Link: '/signal', IsDeleted: false },
+      { Name: 'Observables', Link: '/observables', IsDeleted: false },
+      { Name: 'Users', Link: '/users', IsDeleted: false },
+      { Name: 'Settings', Link: '/settings', IsDeleted: false },
+    ];
+  }
 }

@@ -1,21 +1,7 @@
-<nav id="app-nav" class="flex gap-sm" style="flex-direction: column">
-  <a routerLink="/dashboard" [routerLinkActiveOptions]="{ exact: true }" routerLinkActive="active"
-    >Dashboard</a
-  >
-  <a routerLink="/components" routerLinkActive="active">Components</a>
-  <a routerLink="/modules" routerLinkActive="active">Modules</a>
-  <a routerLink="/templates" routerLinkActive="active">Templates</a>
-  <a routerLink="/input-output" routerLinkActive="active">Input/Output</a>
-  <a routerLink="/pipes" routerLinkActive="active">Pipes</a>
-  <a routerLink="/template-syntax" routerLinkActive="active">Template Syntax</a>
-  <a routerLink="/directives" routerLinkActive="active">Directives</a>
-  <a routerLink="/Routing" routerLinkActive="active">Routing</a>
-  <a routerLink="/services" routerLinkActive="active">Services</a>
-  <a routerLink="/forms" routerLinkActive="active">Forms</a>
-  <a routerLink="/http-client" routerLinkActive="active">HTTP</a>
-  <a routerLink="/RXJS" routerLinkActive="active">RXJS</a>
-  <a routerLink="/signal" routerLinkActive="active">Signal</a>
-  <a routerLink="/observables" routerLinkActive="active">Observables</a>
-  <a routerLink="/users" routerLinkActive="active">Users</a>
-  <a routerLink="/settings" routerLinkActive="active">Settings</a>
-</nav>
+@for (menu of menus; track menu.Link) {
+@if (!menu.IsDeleted) {
+<a [routerLink]="menu.Link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+  {{ menu.Name }}
+</a>
+}
+}
