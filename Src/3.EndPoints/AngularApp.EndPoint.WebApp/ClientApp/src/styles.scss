@@ -42,7 +42,7 @@ body {
 :root {
   --color-dark: #0f172a;
   --color-white: #ffffff;
-  --color-border: #ffffff;
+  --color-border: #c5c5c5;
 
   --color-primary: #2563eb;
   --color-primary-hover: #1d4ed8;
@@ -51,7 +51,7 @@ body {
   --color-success: #16a34a;
   --color-warning: #f59e0b;
   --color-muted: #6b7280;
-
+  --color-surface: #f3f3f3;
   --text-main: #111827;
   --text-secondary: #374151;
 
@@ -175,7 +175,7 @@ body {
   background: var(--color-surface);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-sm);
-  padding: var(--space-5);
+  padding: var(--space-2);
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
@@ -187,12 +187,16 @@ body {
   font-size: 1.1rem;
   font-weight: 600;
   color: var(--text-main);
+  padding: 8px 10px;
+  border-radius: 3px;
+  border-bottom: 1px solid var(--color-border);
 }
 
 /* Body */
 .app-card-body {
   flex: 1;
   color: var(--text-secondary);
+  padding: 8px 10px;
 }
 
 /* Footer */
@@ -200,6 +204,7 @@ body {
   margin-top: auto;
   padding-top: var(--space-3);
   border-top: 1px solid var(--color-border);
+  padding: 8px 10px;
 }
 
 /* Hoverable card */

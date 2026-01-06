@@ -1,0 +1,22 @@
+<div class="app-container">
+  <div class="app-content">
+    <div class="app-card">
+      <div class="app-card-header">Router</div>
+      <div class="app-card-body">Router</div>
+      <div class="app-card-footer">
+        <a routerLink="users" class="app-btn">UserDetails</a>
+        <a routerLink="roles" class="app-btn">Role Details</a>
+        <a [routerLink]="['profile', 23]" class="app-btn">Profile</a>
+      </div>
+    </div>
+    <div class="app-card">
+      <div>Get Data : {{ data }}</div>
+      <router-outlet></router-outlet>
+    </div>
+    <div class="app-card">
+      <div class="app-card-header">Router</div>
+      <div class="app-card-body">Content</div>
+      <div class="app-card-footer">Router</div>
+    </div>
+  </div>
+</div>
