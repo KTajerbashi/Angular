@@ -1,17 +1,14 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterOutlet, RouterLinkWithHref } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-user-details',
-  imports: [],
+  imports: [RouterOutlet, RouterLinkWithHref, FormsModule],
   templateUrl: './user-details.html',
   styleUrl: './user-details.scss',
 })
 export class UserDetails {
-  data: string = '';
-  constructor(private route: ActivatedRoute) {
-    this.route.paramMap.subscribe(param =>{
-      console.log("Pa",param.get('id'));
-    })
-  }
+  userKey: string = '';
+ 
 }

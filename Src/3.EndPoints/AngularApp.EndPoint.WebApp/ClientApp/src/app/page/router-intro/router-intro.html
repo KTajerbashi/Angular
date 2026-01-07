@@ -4,9 +4,10 @@
       <div class="app-card-header">Router</div>
       <div class="app-card-body">Router</div>
       <div class="app-card-footer">
-        <a routerLink="users" class="app-btn">UserDetails</a>
-        <a routerLink="roles" class="app-btn">Role Details</a>
-        <a [routerLink]="['profile', 23]" class="app-btn">Profile</a>
+        <a routerLink="users" class="app-btn app-bg-blue-4">UserDetails</a>
+        <a routerLink="roles" class="app-btn app-bg-red-4">Role Details ❌</a>
+        <a [routerLink]="['roles','career','100']" class="app-btn app-bg-orange-4">Role Details</a>
+        <a [routerLink]="['profile', 23]" class="app-btn app-bg-green-4">Profile</a>
       </div>
     </div>
     <div class="app-card">
@@ -14,9 +15,11 @@
       <router-outlet></router-outlet>
     </div>
     <div class="app-card">
-      <div class="app-card-header">Router</div>
+      <div class="app-card-header">Redirection</div>
       <div class="app-card-body">Content</div>
-      <div class="app-card-footer">Router</div>
+      <div class="app-card-footer">
+        <button class="app-btn app-btn-primary" (click)="redirect()">Redirect To Profile</button>
+      </div>
     </div>
   </div>
 </div>

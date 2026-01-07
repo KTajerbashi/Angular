@@ -12,6 +12,8 @@ import { RouterIntro } from './page/router-intro/router-intro';
 import { UserDetails } from './page/router-intro/user-details/user-details';
 import { RoleDetails } from './page/router-intro/role-details/role-details';
 import { UserProfile } from './page/router-intro/user-profile/user-profile';
+import { UserInfo } from './page/router-intro/user-details/user-info/user-info';
+import { NotFoundPage } from './page/common/not-found-page/not-found-page';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -24,8 +26,12 @@ export const routes: Routes = [
     path: 'router/:id',
     component: RouterIntro,
     children: [
-      { path: 'users', component: UserDetails },
-      { path: 'roles', component: RoleDetails },
+      {
+        path: 'users',
+        component: UserDetails,
+        children: [{ path: 'user/:key', component: UserInfo }],
+      },
+      { path: 'roles/:submenu/:id', component: RoleDetails },
       { path: 'profile/:id', component: UserProfile },
     ],
   },
@@ -33,5 +39,6 @@ export const routes: Routes = [
   { path: 'input-output', component: InputOutput },
   { path: 'users', component: User },
   { path: 'settings', component: Setting },
+  { path: 'not-found', component: NotFoundPage },
   { path: '**', redirectTo: 'not-found' },
 ];

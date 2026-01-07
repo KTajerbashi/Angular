@@ -22,7 +22,7 @@ export class Nav implements OnInit {
       { Name: 'Pipes', Link: '/pipes', IsDeleted: false },
       { Name: 'Data Binding', Link: '/data-binding', IsDeleted: false },
       { Name: 'Modules', Link: '/modules', IsDeleted: false },
-      { Name: 'Router', Link: '/router', IsDeleted: false },
+      { Name: 'Router', Link: '/router/10', IsDeleted: false },
       { Name: 'Templates', Link: '/templates', IsDeleted: false },
       { Name: 'Input / Output', Link: '/input-output', IsDeleted: false },
       { Name: 'Template Syntax', Link: '/template-syntax', IsDeleted: false },
