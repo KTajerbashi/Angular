@@ -14,6 +14,8 @@ import { RoleDetails } from './page/router-intro/role-details/role-details';
 import { UserProfile } from './page/router-intro/user-profile/user-profile';
 import { UserInfo } from './page/router-intro/user-details/user-info/user-info';
 import { NotFoundPage } from './page/common/not-found-page/not-found-page';
+import { GuardsIntro } from './page/guards-intro/guards-intro';
+import { authGuard } from './guards/auth-guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -35,6 +37,7 @@ export const routes: Routes = [
       { path: 'profile/:id', component: UserProfile },
     ],
   },
+  { path: 'guards', component: GuardsIntro, canActivate: [authGuard] },
   { path: 'templates', component: TemplateIntro },
   { path: 'input-output', component: InputOutput },
   { path: 'users', component: User },
