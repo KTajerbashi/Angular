@@ -21,6 +21,7 @@ import { GuardDetails } from './page/guards-intro/guard-details/guard-details';
 import { GuardAdd } from './page/guards-intro/guard-add/guard-add';
 import { GuardEdit } from './page/guards-intro/guard-edit/guard-edit';
 import { GuardCartable } from './page/guards-intro/guard-cartable/guard-cartable';
+import { canDeactivateGuard } from './guards/can-deactivate-guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -47,6 +48,7 @@ export const routes: Routes = [
     component: GuardsIntro,
     canActivate: [authGuard],
     canActivateChild: [childAuthGuard],
+    canDeactivate: [canDeactivateGuard],
     children: [
       { path: 'details', component: GuardDetails },
       { path: 'add', component: GuardAdd },
