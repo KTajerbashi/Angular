@@ -1,0 +1,42 @@
+<div class="app-container">
+    <div class="app-content">
+        <div class="app-card">
+            <h1>Copy Text</h1>
+            <app-copy-text>
+                <p>Click me to copy this paragraph text.</p>
+            </app-copy-text>
+
+            <app-copy-text copyText="Custom value to copy!">
+                <p>Click me!</p>
+            </app-copy-text>
+        </div>
+        <div class="app-card">
+            <h1>Change Background Color</h1>
+
+            <input class="app-input" type="text" appChangebgColor placeholder="Type here..." />
+            <br /><br />
+            <textarea class="app-input" appChangebgColor rows="5" cols="30" placeholder="Type here..."></textarea>
+            <!-- Normal input -->
+            <input type="text" class="app-input" placeholder="Enter your name" />
+
+            <!-- Disabled input -->
+            <input type="text" class="app-input" placeholder="Disabled" disabled />
+
+            <!-- Error input -->
+            <input type="text" class="app-input error" placeholder="Invalid input" />
+
+
+
+        </div>
+        <div class="app-card">
+            <h1>Minimal Text</h1>
+            <p appMinimalText [maxLength]="50">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque ac turpis sit amet ligula malesuada
+                sollicitudin. Integer eget suscipit justo. Sed a feugiat libero. Donec vehicula orci nec ex luctus, a
+                convallis velit pretium.
+            </p>
+            
+
+        </div>
+    </div>
+</div>

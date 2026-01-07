@@ -92,7 +92,7 @@ body {
   background: var(--color-bg);
   color: var(--text-main);
 }
-a{
+a {
   text-decoration: none;
 }
 /* =========================================================
@@ -619,6 +619,60 @@ p {
 .app-modal-close:hover {
   color: var(--text-main);
 }
+
+/* =========================================================
+   FORM CONTROLS
+========================================================= */
+.app-input {
+  width: 100%;                       /* Full width */
+  padding: 10px 14px;                /* Comfortable padding */
+  font-size: 14px;                    /* Readable font */
+  font-family: inherit;               /* Use page font */
+  border-radius: 8px;                 /* Rounded corners */
+  border: 1px solid #d1d5db;         /* Light gray border */
+  background-color: #ffffff;          /* White background */
+  color: #111827;                     /* Dark text color */
+  box-sizing: border-box;             /* Include padding in width */
+  transition: border 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease;
+}
+
+/* Focus state */
+.app-input:focus {
+  outline: none;                      /* Remove default outline */
+  border: 1px solid #6ca4ff;          /* Blue border */
+  box-shadow: 0 0 0 2px rgba(108, 164, 255, 0.2); /* Soft glow */
+}
+
+/* Hover state */
+.app-input:hover {
+  border-color: #9ca3af;              /* Slightly darker on hover */
+}
+
+/* Placeholder text */
+.app-input::placeholder {
+  color: #9ca3af;                     /* Gray placeholder */
+  opacity: 1;                          /* Ensure opacity consistent */
+}
+
+/* Disabled state */
+.app-input:disabled {
+  background-color: #f3f4f6;          /* Light gray background */
+  border-color: #d1d5db;
+  color: #9ca3af;                     /* Gray text */
+  cursor: not-allowed;
+}
+
+/* Error state (optional) */
+.app-input.error {
+  border-color: #ef4444;              /* Red border for error */
+  background-color: #fef2f2;          /* Light red background */
+}
+
+.app-input.error:focus {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
+}
+
 /* ===============================
    Base Reset
 ================================ */
@@ -811,53 +865,143 @@ p {
 /* ------------------------------
    BLUE 1–5
 ------------------------------ */
-.app-bg-blue-1 { background-color: #001732; color: #fff; }
-.app-bg-blue-2 { background-color: #002050; color: #fff; }
-.app-bg-blue-3 { background-color: #003585; color: #fff; }
-.app-bg-blue-4 { background-color: #3366cc; color: #fff; }
-.app-bg-blue-5 { background-color: #e6f0ff; color: #000; }
+.app-bg-blue-1 {
+  background-color: #001732;
+  color: #fff;
+}
+.app-bg-blue-2 {
+  background-color: #002050;
+  color: #fff;
+}
+.app-bg-blue-3 {
+  background-color: #003585;
+  color: #fff;
+}
+.app-bg-blue-4 {
+  background-color: #3366cc;
+  color: #fff;
+}
+.app-bg-blue-5 {
+  background-color: #e6f0ff;
+  color: #000;
+}
 
 /* ------------------------------
    RED 1–5
 ------------------------------ */
-.app-bg-red-1 { background-color: #4b0d0d; color: #fff; }
-.app-bg-red-2 { background-color: #7a1515; color: #fff; }
-.app-bg-red-3 { background-color: #b81f1f; color: #fff; }
-.app-bg-red-4 { background-color: #e63946; color: #fff; }
-.app-bg-red-5 { background-color: #fde8e8; color: #000; }
+.app-bg-red-1 {
+  background-color: #4b0d0d;
+  color: #fff;
+}
+.app-bg-red-2 {
+  background-color: #7a1515;
+  color: #fff;
+}
+.app-bg-red-3 {
+  background-color: #b81f1f;
+  color: #fff;
+}
+.app-bg-red-4 {
+  background-color: #e63946;
+  color: #fff;
+}
+.app-bg-red-5 {
+  background-color: #fde8e8;
+  color: #000;
+}
 
 /* ------------------------------
    GREEN 1–5
 ------------------------------ */
-.app-bg-green-1 { background-color: #08312b; color: #fff; }
-.app-bg-green-2 { background-color: #0f5147; color: #fff; }
-.app-bg-green-3 { background-color: #2a9d8f; color: #fff; }
-.app-bg-green-4 { background-color: #42c8b7; color: #000; }
-.app-bg-green-5 { background-color: #e3faf6; color: #000; }
+.app-bg-green-1 {
+  background-color: #08312b;
+  color: #fff;
+}
+.app-bg-green-2 {
+  background-color: #0f5147;
+  color: #fff;
+}
+.app-bg-green-3 {
+  background-color: #2a9d8f;
+  color: #fff;
+}
+.app-bg-green-4 {
+  background-color: #42c8b7;
+  color: #000;
+}
+.app-bg-green-5 {
+  background-color: #e3faf6;
+  color: #000;
+}
 
 /* ------------------------------
    ORANGE 1–5
 ------------------------------ */
-.app-bg-orange-1 { background-color: #4a2500; color: #fff; }
-.app-bg-orange-2 { background-color: #7a3a00; color: #fff; }
-.app-bg-orange-3 { background-color: #ff8c42; color: #fff; }
-.app-bg-orange-4 { background-color: #ffb679; color: #000; }
-.app-bg-orange-5 { background-color: #fff0e6; color: #000; }
+.app-bg-orange-1 {
+  background-color: #4a2500;
+  color: #fff;
+}
+.app-bg-orange-2 {
+  background-color: #7a3a00;
+  color: #fff;
+}
+.app-bg-orange-3 {
+  background-color: #ff8c42;
+  color: #fff;
+}
+.app-bg-orange-4 {
+  background-color: #ffb679;
+  color: #000;
+}
+.app-bg-orange-5 {
+  background-color: #fff0e6;
+  color: #000;
+}
 
 /* ------------------------------
    DARK 1–5
 ------------------------------ */
-.app-bg-dark-1 { background-color: #000000; color: #fff; }
-.app-bg-dark-2 { background-color: #111111; color: #fff; }
-.app-bg-dark-3 { background-color: #222222; color: #fff; }
-.app-bg-dark-4 { background-color: #333333; color: #fff; }
-.app-bg-dark-5 { background-color: #444444; color: #fff; }
+.app-bg-dark-1 {
+  background-color: #000000;
+  color: #fff;
+}
+.app-bg-dark-2 {
+  background-color: #111111;
+  color: #fff;
+}
+.app-bg-dark-3 {
+  background-color: #222222;
+  color: #fff;
+}
+.app-bg-dark-4 {
+  background-color: #333333;
+  color: #fff;
+}
+.app-bg-dark-5 {
+  background-color: #444444;
+  color: #fff;
+}
 
 /* ------------------------------
    LIGHT 1–5
 ------------------------------ */
-.app-bg-light-1 { background-color: #ffffff; color: #000; }
-.app-bg-light-2 { background-color: #f8f9fa; color: #000; }
-.app-bg-light-3 { background-color: #eeeeee; color: #000; }
-.app-bg-light-4 { background-color: #dddddd; color: #000; }
-.app-bg-light-5 { background-color: #cccccc; color: #000; }
+.app-bg-light-1 {
+  background-color: #ffffff;
+  color: #000;
+}
+.app-bg-light-2 {
+  background-color: #f8f9fa;
+  color: #000;
+}
+.app-bg-light-3 {
+  background-color: #eeeeee;
+  color: #000;
+}
+.app-bg-light-4 {
+  background-color: #dddddd;
+  color: #000;
+}
+.app-bg-light-5 {
+  background-color: #cccccc;
+  color: #000;
+}

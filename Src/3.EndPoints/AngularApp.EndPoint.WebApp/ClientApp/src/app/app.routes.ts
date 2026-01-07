@@ -22,6 +22,7 @@ import { GuardAdd } from './page/guards-intro/guard-add/guard-add';
 import { GuardEdit } from './page/guards-intro/guard-edit/guard-edit';
 import { GuardCartable } from './page/guards-intro/guard-cartable/guard-cartable';
 import { canDeactivateGuard } from './guards/can-deactivate-guard';
+import { DirectiveIntro } from './page/directive-intro/directive-intro';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -56,7 +57,13 @@ export const routes: Routes = [
       { path: 'cartable/:submenu/:key', component: GuardCartable },
     ],
   },
-  { path: 'templates', component: TemplateIntro },
+  {
+    path: 'templates',
+    loadComponent() {
+      return import('./page/template-intro/template-intro').then((x) => x.TemplateIntro);
+    },
+  },
+  { path: 'directives', component: DirectiveIntro },
   { path: 'input-output', component: InputOutput },
   { path: 'users', component: User },
   { path: 'settings', component: Setting },
