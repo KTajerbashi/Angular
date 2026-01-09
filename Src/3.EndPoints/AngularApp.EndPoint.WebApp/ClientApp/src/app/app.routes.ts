@@ -25,6 +25,7 @@ import { canDeactivateGuard } from './guards/can-deactivate-guard';
 import { DirectiveIntro } from './page/directive-intro/directive-intro';
 import { FormsIntro } from './page/forms-intro/forms-intro';
 import { ServiceIntro } from './page/service-intro/service-intro';
+import { HooksIntro } from './page/hooks-intro/hooks-intro';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -68,6 +69,7 @@ export const routes: Routes = [
   { path: 'directives', component: DirectiveIntro },
   { path: 'forms', component: FormsIntro },
   { path: 'service', component: ServiceIntro },
+  { path: 'hooks', component: HooksIntro },
 
   { path: 'input-output', component: InputOutput },
   { path: 'users', component: User },

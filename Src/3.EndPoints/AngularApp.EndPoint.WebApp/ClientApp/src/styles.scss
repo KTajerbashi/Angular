@@ -364,6 +364,20 @@ p {
   --btn-text: #fff;
 }
 
+.app-btn-default {
+  --btn-bg: #c5c6c9;
+  --btn-bg-hover: #1f2937;
+  --btn-bg-active: #565a6d;
+  --btn-text: #ffffff;
+}
+
+.app-btn-pupular {
+  --btn-bg: #5e00ac;
+  --btn-bg-hover: #1a0057;
+  --btn-bg-active: #4400c2;
+  --btn-text: #fff;
+}
+
 /* =========================================================
    OUTLINE VARIANTS
 ========================================================= */

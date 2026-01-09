@@ -27,6 +27,7 @@ export class Nav implements OnInit {
       { Name: 'Directives', Link: '/directives', IsDeleted: false },
       { Name: 'Forms', Link: '/forms', IsDeleted: false },
       { Name: 'Services', Link: '/service', IsDeleted: false },
+      { Name: 'Hooks', Link: '/hooks', IsDeleted: false },
 
       { Name: 'Templates', Link: '/templates', IsDeleted: false },
       { Name: 'Input / Output', Link: '/input-output', IsDeleted: false },
