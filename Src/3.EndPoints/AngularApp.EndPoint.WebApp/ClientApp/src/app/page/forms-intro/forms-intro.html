@@ -1,0 +1,175 @@
+<div class="app-container">
+  <div class="app-content">
+    <div>
+      <button
+        (click)="formsValue.TemplateDriven = !formsValue.TemplateDriven"
+        class="app-btn"
+        [ngClass]="formsValue.TemplateDriven ? 'app-btn-primary' : 'app-btn-info'"
+      >
+        Template-Driven Form
+        <span
+          class="app-badge"
+          [ngClass]="formsValue.TemplateDriven ? 'app-badge-success' : 'app-badge-danger'"
+        >
+          {{ formsValue.TemplateDriven ? 'Active' : 'Deactive' }}</span
+        >
+      </button>
+      <button
+        (click)="formsValue.Reactive = !formsValue.Reactive"
+        class="app-btn"
+        [ngClass]="formsValue.Reactive ? 'app-btn-primary' : 'app-btn-info'"
+      >
+        Reactive Form
+        <span
+          class="app-badge"
+          [ngClass]="formsValue.Reactive ? 'app-badge-success' : 'app-badge-danger'"
+        >
+          {{ formsValue.Reactive ? 'Active' : 'Deactive' }}</span
+        >
+      </button>
+
+      <button
+        (click)="formsValue.Validation = !formsValue.Validation"
+        class="app-btn"
+        [ngClass]="formsValue.Validation ? 'app-btn-primary' : 'app-btn-info'"
+      >
+        Validation Form
+        <span
+          class="app-badge"
+          [ngClass]="formsValue.Validation ? 'app-badge-success' : 'app-badge-danger'"
+        >
+          {{ formsValue.Validation ? 'Active' : 'Deactive' }}</span
+        >
+      </button>
+
+      <button
+        (click)="formsValue.Custom = !formsValue.Custom"
+        class="app-btn"
+        [ngClass]="formsValue.Custom ? 'app-btn-primary' : 'app-btn-info'"
+      >
+        Custom Form
+        <span
+          class="app-badge"
+          [ngClass]="formsValue.Custom ? 'app-badge-success' : 'app-badge-danger'"
+        >
+          {{ formsValue.Custom ? 'Active' : 'Deactive' }}</span
+        >
+      </button>
+
+      <button
+        (click)="formsValue.Dynamic = !formsValue.Dynamic"
+        class="app-btn"
+        [ngClass]="formsValue.Dynamic ? 'app-btn-primary' : 'app-btn-info'"
+      >
+        Dynamic Form
+        <span
+          class="app-badge"
+          [ngClass]="formsValue.Dynamic ? 'app-badge-success' : 'app-badge-danger'"
+        >
+          {{ formsValue.Dynamic ? 'Active' : 'Deactive' }}</span
+        >
+      </button>
+
+      <button
+        (click)="formsValue.Complete = !formsValue.Complete"
+        class="app-btn"
+        [ngClass]="formsValue.Complete ? 'app-btn-primary' : 'app-btn-info'"
+      >
+        Complete Form
+        <span
+          class="app-badge"
+          [ngClass]="formsValue.Complete ? 'app-badge-success' : 'app-badge-danger'"
+        >
+          {{ formsValue.Complete ? 'Active' : 'Deactive' }}</span
+        >
+      </button>
+    </div>
+    @if(formsValue.TemplateDriven){
+    <form>
+      <div class="app-card">
+        <div class="app-card-header">Sign In Form (Template-Driven Form)</div>
+        <div class="app-card-body">Content</div>
+        <div class="app-card-footer">Footer</div>
+      </div>
+    </form>
+    } @if (formsValue.Reactive) {
+    <form>
+      <div class="app-card">
+        <div class="app-card-header">Sign In Form (Reactive Form)</div>
+        <div class="app-card-body">Content</div>
+        <div class="app-card-footer">Footer</div>
+      </div>
+    </form>
+    } @if (formsValue.Validation) {
+    <div class="app-card">
+      <div class="app-card-header">Name Form (Validation Form)</div>
+      <div class="app-card-body">Content</div>
+      <div class="app-card-footer">Footer</div>
+    </div>
+    } @if (formsValue.Custom) {
+    <div class="app-card">
+      <div class="app-card-header">Name Form (Custom Form)</div>
+      <div class="app-card-body">Content</div>
+      <div class="app-card-footer">Footer</div>
+    </div>
+    } @if (formsValue.Dynamic) {
+    <div class="app-card">
+      <div class="app-card-header">Name Form (Dynamic Form)</div>
+      <div class="app-card-body">Content</div>
+      <div class="app-card-footer">Footer</div>
+    </div>
+    } @if (formsValue.Complete) {
+    <form #loginForm="ngForm" (ngSubmit)="loginSubmit(loginForm)">
+      <div class="app-card">
+        <div class="app-card-header">Login Form (Complete Form)</div>
+        <div class="app-card-body">
+          <div class="app-control">
+            <label for="username">Username</label>
+            <input
+              required
+              name="username"
+              #username="ngModel"
+              [(ngModel)]="_loginModel.Username"
+              type="text"
+              placeholder="Username ..."
+            />
+            @if (username.invalid && username.touched) {
+            <p>Username is required !!!</p>
+            }
+          </div>
+          <div class="app-control">
+            <label for="password">Password</label>
+            <input
+              required
+              name="password"
+              #password="ngModel"
+              [(ngModel)]="_loginModel.Password"
+              type="password"
+              placeholder="Password ..."
+            />
+            @if (password.invalid && password.touched) {
+            <p>Password is required !!!</p>
+            }
+          </div>
+          <div class="app-control">
+            <input
+              name="rememberMe"
+              #rememberMe="ngModel"
+              [(ngModel)]="_loginModel.RememberMe"
+              type="checkbox"
+            />
+            <label for="rememberMe">RememberMe</label>
+          </div>
+        </div>
+        <div class="app-card-footer">
+          <button type="submit" class="app-btn app-btn-primary">Login</button>
+          <button [disabled]="loginForm.invalid" type="submit" class="app-btn app-btn-primary">
+            Login
+          </button>
+          <button type="reset" class="app-btn app-btn-danger">Cancel</button>
+        </div>
+      </div>
+    </form>
+    }
+  </div>
+</div>
