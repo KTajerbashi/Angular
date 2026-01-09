@@ -19,8 +19,4 @@
 		<ProjectReference Include="..\AngularApp.ServiceDefaults\AngularApp.ServiceDefaults.csproj" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Controllers\Security\" />
-	</ItemGroup>
-
 </Project>

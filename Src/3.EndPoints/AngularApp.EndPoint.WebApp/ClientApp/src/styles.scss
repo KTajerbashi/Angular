@@ -275,6 +275,8 @@ p {
   border: 1px solid var(--btn-border);
   border-radius: var(--radius-sm);
   padding: var(--space-2) var(--space-3);
+  min-width: 100px;
+  margin: 2px;
   font-size: 0.95rem;
   font-weight: 500;
   cursor: pointer;
@@ -289,8 +291,6 @@ p {
 
   transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease,
     box-shadow 0.2s ease, transform 0.15s ease;
-
-  margin: 0 2px;
 }
 
 /* Hover */
@@ -624,48 +624,48 @@ p {
    FORM CONTROLS
 ========================================================= */
 .app-input {
-  width: 100%;                       /* Full width */
-  padding: 10px 14px;                /* Comfortable padding */
-  font-size: 14px;                    /* Readable font */
-  font-family: inherit;               /* Use page font */
-  border-radius: 8px;                 /* Rounded corners */
-  border: 1px solid #d1d5db;         /* Light gray border */
-  background-color: #ffffff;          /* White background */
-  color: #111827;                     /* Dark text color */
-  box-sizing: border-box;             /* Include padding in width */
+  width: 100%; /* Full width */
+  padding: 10px 14px; /* Comfortable padding */
+  font-size: 14px; /* Readable font */
+  font-family: inherit; /* Use page font */
+  border-radius: 8px; /* Rounded corners */
+  border: 1px solid #d1d5db; /* Light gray border */
+  background-color: #ffffff; /* White background */
+  color: #111827; /* Dark text color */
+  box-sizing: border-box; /* Include padding in width */
   transition: border 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease;
 }
 
 /* Focus state */
 .app-input:focus {
-  outline: none;                      /* Remove default outline */
-  border: 1px solid #6ca4ff;          /* Blue border */
+  outline: none; /* Remove default outline */
+  border: 1px solid #6ca4ff; /* Blue border */
   box-shadow: 0 0 0 2px rgba(108, 164, 255, 0.2); /* Soft glow */
 }
 
 /* Hover state */
 .app-input:hover {
-  border-color: #9ca3af;              /* Slightly darker on hover */
+  border-color: #9ca3af; /* Slightly darker on hover */
 }
 
 /* Placeholder text */
 .app-input::placeholder {
-  color: #9ca3af;                     /* Gray placeholder */
-  opacity: 1;                          /* Ensure opacity consistent */
+  color: #9ca3af; /* Gray placeholder */
+  opacity: 1; /* Ensure opacity consistent */
 }
 
 /* Disabled state */
 .app-input:disabled {
-  background-color: #f3f4f6;          /* Light gray background */
+  background-color: #f3f4f6; /* Light gray background */
   border-color: #d1d5db;
-  color: #9ca3af;                     /* Gray text */
+  color: #9ca3af; /* Gray text */
   cursor: not-allowed;
 }
 
 /* Error state (optional) */
 .app-input.error {
-  border-color: #ef4444;              /* Red border for error */
-  background-color: #fef2f2;          /* Light red background */
+  border-color: #ef4444; /* Red border for error */
+  background-color: #fef2f2; /* Light red background */
 }
 
 .app-input.error:focus {
@@ -1004,4 +1004,22 @@ p {
 .app-bg-light-5 {
   background-color: #cccccc;
   color: #000;
+}
+/* ------------------------------
+   Color Text
+------------------------------ */
+.app-text-primary {
+  color: #002050;
+}
+.app-text-info {
+  color: #00ddcb;
+}
+.app-text-warning {
+  color: #ff9214;
+}
+.app-text-danger {
+  color: #ff0000;
+}
+.app-text-success {
+  color: #00d11c;
 }

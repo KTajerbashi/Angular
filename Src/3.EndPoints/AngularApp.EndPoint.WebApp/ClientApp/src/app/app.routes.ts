@@ -23,6 +23,8 @@ import { GuardEdit } from './page/guards-intro/guard-edit/guard-edit';
 import { GuardCartable } from './page/guards-intro/guard-cartable/guard-cartable';
 import { canDeactivateGuard } from './guards/can-deactivate-guard';
 import { DirectiveIntro } from './page/directive-intro/directive-intro';
+import { FormsIntro } from './page/forms-intro/forms-intro';
+import { ServiceIntro } from './page/service-intro/service-intro';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -64,6 +66,9 @@ export const routes: Routes = [
     },
   },
   { path: 'directives', component: DirectiveIntro },
+  { path: 'forms', component: FormsIntro },
+  { path: 'service', component: ServiceIntro },
+
   { path: 'input-output', component: InputOutput },
   { path: 'users', component: User },
   { path: 'settings', component: Setting },

@@ -1,0 +1,134 @@
+<div class="app-container">
+  <div class="app-content">
+    <div class="app-card">
+      <form #loginForm="ngForm" (submit)="handleLogin(loginForm)">
+        <div class="app-card-header">Login</div>
+        <div class="app-card-body">
+          <div class="app-control">
+            <label for="username">Username</label>
+            <input
+              name="username"
+              #username="ngModel"
+              [(ngModel)]="_loginModel.Username"
+              type="text"
+              placeholder="Username ..."
+            />
+            @if (password.invalid) {
+            <p>Username is required !!!</p>
+            }
+          </div>
+
+          <div class="app-control">
+            <label for="password">Password</label>
+            <input
+              name="password"
+              #password="ngModel"
+              [(ngModel)]="_loginModel.Password"
+              type="password"
+              placeholder="Password ..."
+            />
+            @if (password.invalid) {
+            <p>Password is required !!!</p>
+            }
+          </div>
+        </div>
+        <div class="app-card-footer">
+          <button class="app-btn app-btn-primary" type="submit">Login</button>
+        </div>
+      </form>
+    </div>
+    <div class="app-card">
+      <form #loginForm="ngForm" (submit)="handleSignUp(loginForm)">
+        <div class="app-card-header">Sign Up</div>
+        <div class="app-card-body">
+          <div class="app-control">
+            <label for="firstName">First Name</label>
+            <input
+              name="firstName"
+              #firstName="ngModel"
+              [(ngModel)]="_signModel.FirstName"
+              type="text"
+              placeholder="FirstName ..."
+            />
+            @if (firstName.invalid) {
+            <p>FirstName is required !!!</p>
+            }
+          </div>
+
+          <div class="app-control">
+            <label for="LastName">Last Name</label>
+            <input
+              name="LastName"
+              #lastName="ngModel"
+              [(ngModel)]="_signModel.LastName"
+              type="text"
+              placeholder="LastName ..."
+            />
+            @if (lastName.invalid) {
+            <p>LastName is required !!!</p>
+            }
+          </div>
+
+          <div class="app-control">
+            <label for="Email">Email</label>
+            <input
+              name="Email"
+              #email="ngModel"
+              [(ngModel)]="_signModel.Email"
+              type="text"
+              placeholder="Email ..."
+            />
+            @if (email.invalid) {
+            <p>Email is required !!!</p>
+            }
+          </div>
+
+          <div class="app-control">
+            <label for="username">Username</label>
+            <input
+              name="username"
+              #username="ngModel"
+              [(ngModel)]="_signModel.Username"
+              type="text"
+              placeholder="Username ..."
+            />
+            @if (username.invalid) {
+            <p>Username is required !!!</p>
+            }
+          </div>
+
+          <div class="app-control">
+            <label for="phone">Phone</label>
+            <input
+              name="phone"
+              #phone="ngModel"
+              [(ngModel)]="_signModel.Phone"
+              type="text"
+              placeholder="Phone ..."
+            />
+            @if (phone.invalid) {
+            <p>Phone is required !!!</p>
+            }
+          </div>
+
+          <div class="app-control">
+            <label for="password">Password</label>
+            <input
+              name="password"
+              #password="ngModel"
+              [(ngModel)]="_signModel.Password"
+              type="password"
+              placeholder="Password ..."
+            />
+            @if (password.invalid) {
+            <p>Password is required !!!</p>
+            }
+          </div>
+        </div>
+        <div class="app-card-footer">
+          <button class="app-btn app-btn-primary" type="submit">Sign Up</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
