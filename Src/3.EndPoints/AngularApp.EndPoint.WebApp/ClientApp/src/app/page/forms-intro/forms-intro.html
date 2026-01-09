@@ -93,11 +93,34 @@
       </div>
     </form>
     } @if (formsValue.Reactive) {
-    <form>
+    <form [formGroup]="registerForm" (ngSubmit)="loginHandler()">
       <div class="app-card">
         <div class="app-card-header">Sign In Form (Reactive Form)</div>
-        <div class="app-card-body">Content</div>
-        <div class="app-card-footer">Footer</div>
+        <div class="app-card-body">
+          <div class="app-control">
+            <label for="firstName">FirstName</label>
+            <input type="text" placeholder="FirstName ..." formControlName="firstName" />
+          </div>
+          <div class="app-control">
+            <label for="lastName">LastName</label>
+            <input type="text" placeholder="LastName ..." formControlName="lastName" />
+          </div>
+          <div class="app-control">
+            <label for="username">Username</label>
+            <input type="text" placeholder="Username ..." formControlName="username" />
+          </div>
+          <div class="app-control">
+            <label for="email">Email</label>
+            <input type="email" placeholder="Email ..." formControlName="email" />
+          </div>
+          <div class="app-control">
+            <label for="Phone">Phone</label>
+            <input type="text" placeholder="Phone ..." formControlName="phone" />
+          </div>
+        </div>
+        <div class="app-card-footer">
+          <button class="app-btn app-btn-info">Submit</button>
+        </div>
       </div>
     </form>
     } @if (formsValue.Validation) {

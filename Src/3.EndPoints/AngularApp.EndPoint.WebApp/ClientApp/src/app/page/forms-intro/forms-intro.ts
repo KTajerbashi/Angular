@@ -1,15 +1,22 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import ILoginDTO from '../../models/ILogin.dto';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-forms-intro',
-  imports: [FormsModule, CommonModule],
+  imports: [ReactiveFormsModule, FormsModule, CommonModule],
   templateUrl: './forms-intro.html',
   styleUrl: './forms-intro.scss',
 })
 export class FormsIntro {
+  // Template Driven Form
   formsValue: {
     TemplateDriven: boolean;
     Reactive: boolean;
@@ -19,7 +26,7 @@ export class FormsIntro {
     Complete: boolean;
   } = {
     TemplateDriven: false,
-    Reactive: false,
+    Reactive: true,
     Validation: false,
     Custom: false,
     Dynamic: false,
@@ -40,4 +47,19 @@ export class FormsIntro {
       alert('Form Not Valid !!!');
     }
   }
+  // Template Driven Form Finishid
+
+  // Reactive Form
+  registerForm = new FormGroup({
+    firstName: new FormControl('', Validators.required),
+    lastName: new FormControl('', Validators.required),
+    username: new FormControl('', Validators.required),
+    email: new FormControl('', Validators.email),
+    phone: new FormControl('', [Validators.minLength(10), Validators.maxLength(10)]),
+  });
+  loginHandler() {
+    console.log('Form : ', this.registerForm);
+  }
+
+  // Reactive Form Finishid
 }
