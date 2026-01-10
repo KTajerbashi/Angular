@@ -773,6 +773,14 @@ p {
   cursor: pointer;
 }
 
+.app-control p {
+  font-size: 14px;
+  font-weight: 500;
+  color: #ff3c3c;
+  cursor: pointer;
+  text-align: right;
+}
+
 /* ===============================
    Inputs (text-like)
 ================================ */
@@ -814,8 +822,7 @@ p {
 .app-control textarea:focus,
 .app-control select:focus {
   outline: none;
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+  box-shadow: 0 2px 0 1px rgba(26, 114, 255, 0.3);
 }
 
 /* ===============================

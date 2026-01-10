@@ -17,7 +17,6 @@ import IRoleDTO from '../../models/IRole.dto';
   styleUrl: './forms-intro.scss',
 })
 export class FormsIntro {
-  // Template Driven Form
   formsValue: {
     TemplateDriven: boolean;
     Reactive: boolean;
@@ -26,29 +25,64 @@ export class FormsIntro {
     Dynamic: boolean;
     Complete: boolean;
   } = {
-    TemplateDriven: false,
-    Reactive: true,
+    TemplateDriven: true,
+    Reactive: false,
     Validation: false,
     Custom: false,
     Dynamic: false,
     Complete: false,
   };
 
-  _loginModel: ILoginDTO = {
-    Username: 'admin123',
-    Password: '@Admin',
-    RememberMe: false,
+  // Template Driven Form
+  templateModel: {
+    name: string;
+    family: string;
+    phone: string;
+    email: string;
+    address: string;
+    age: number;
+    type: boolean;
+  } = {
+    name: '',
+    family: '',
+    phone: '',
+    email: '',
+    address: '',
+    age: 0,
+    type: false,
   };
-
-  loginSubmit(form: any) {
+  templateDrivenMessage: string = '';
+  templateDrivenProcess(form: any) {
+    console.log('Form : ', form);
     if (form.valid) {
-      console.log('Login Form : ', form);
-      console.log('Model : ', this._loginModel);
+      this.templateDrivenMessage = 'اطلاعات فرم تکمیل استو برای سرویس مورد نظر ارسال شده است ...';
     } else {
-      alert('Form Not Valid !!!');
+      this.templateDrivenMessage =
+        'اطلاعات فرم تکمیل نیست و یا اشتباه است لطفا اطلاعات را مجدد بررسی کنید ...';
     }
+    setTimeout(() => {
+      this.templateDrivenMessage = '';
+    }, 5000);
   }
   // Template Driven Form Finishid
+
+  // #1 Template Driven Form Comment
+
+  // _loginModel: ILoginDTO = {
+  //   Username: 'admin123',
+  //   Password: '@Admin',
+  //   RememberMe: false,
+  // };
+
+  // loginSubmit(form: any) {
+  //   if (form.valid) {
+  //     console.log('Login Form : ', form);
+  //     console.log('Model : ', this._loginModel);
+  //   } else {
+  //     alert('Form Not Valid !!!');
+  //   }
+  // }
+  // #1 Finished
 
   // Reactive Form
   roles: IRoleDTO[] = [
@@ -63,8 +97,8 @@ export class FormsIntro {
     lastName: new FormControl('', Validators.required),
     gender: new FormControl('female', Validators.required),
     username: new FormControl('', Validators.required),
-    email: new FormControl('', [Validators.required,Validators.email]),
-    phone: new FormControl('', [Validators.required,Validators.minLength(10)]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    phone: new FormControl('', [Validators.required, Validators.minLength(10)]),
     roleKey: new FormControl('User', Validators.required),
     isRoleDefault: new FormControl(true, [Validators.required]),
   });
@@ -78,7 +112,6 @@ export class FormsIntro {
   }
 
   // Reactive Form Finishid
-
 
   // FormBuilder Form
   // FormBuilder Form Finishid
