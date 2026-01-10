@@ -29,6 +29,20 @@
       </button>
 
       <button
+        (click)="formsValue.FormBuilder = !formsValue.FormBuilder"
+        class="app-btn"
+        [ngClass]="formsValue.FormBuilder ? 'app-btn-primary' : 'app-btn-info'"
+      >
+        FormBuilder Form
+        <span
+          class="app-badge"
+          [ngClass]="formsValue.FormBuilder ? 'app-badge-success' : 'app-badge-danger'"
+        >
+          {{ formsValue.FormBuilder ? 'Active' : 'Deactive' }}</span
+        >
+      </button>
+
+      <button
         (click)="formsValue.Validation = !formsValue.Validation"
         class="app-btn"
         [ngClass]="formsValue.Validation ? 'app-btn-primary' : 'app-btn-info'"
@@ -87,17 +101,19 @@
     @if(formsValue.TemplateDriven){
     <form #templateForm="ngForm" (ngSubmit)="templateDrivenProcess(templateForm)">
       <div class="app-card">
-        <div class="app-card-header">Get User Information (Template-Driven Form)
-          <hr>
+        <div class="app-card-header">
+          Get User Information (Template-Driven Form)
+          <hr />
           @if(templateDrivenMessage.length > 1){
-            {{templateDrivenMessage}}
+          {{ templateDrivenMessage }}
           }
         </div>
         <div class="app-card-body">
           <div class="app-grid">
             <div class="app-width-1-4">
-              <div class="app-control"
-              [ngClass]="name.invalid && name.touched ? 'error' : 'success'"
+              <div
+                class="app-control"
+                [ngClass]="name.invalid && name.touched ? 'error' : 'success'"
               >
                 <label for="name">Name</label>
                 <input
@@ -308,6 +324,48 @@
           <button [disabled]="registerForm.invalid" type="submit" class="app-btn app-btn-info">
             Submit
           </button>
+        </div>
+      </div>
+    </form>
+    } @if (formsValue.FormBuilder) {
+    <form [formGroup]="_registerForm" (ngSubmit)="loginByFormBuilder()">
+      <div class="app-grid">
+        <div class="app-width-1-3">
+          <div class="app-card">
+            <div class="app-card-header">
+              Sign In Form (FormBuild Form) @if(formBuilderMessage.length > 0){
+              <hr />
+              <span
+                class="app-badge"
+                [ngClass]="_registerForm.valid ? 'app-badge-success' : 'app-badge-danger'"
+                >{{ formBuilderMessage }}</span
+              >
+              <span>1=>? {{_registerForm.valid }}</span>
+              }
+            </div>
+            <div class="app-card-body">
+              <div class="app-control">
+                <label for="username">Username</label>
+                <input formControlName="username" type="text" />
+              </div>
+              <div class="app-control">
+                <label for="password">Password</label>
+                <input formControlName="password" type="text" />
+              </div>
+              <div class="app-control">
+                <label for="rePassword">Re-Password</label>
+                <input formControlName="rePassword" type="text" />
+              </div>
+              <div class="app-control">
+                <input formControlName="isRemember" type="checkbox" />
+                <label for="isRemember">IsRemember ? </label>
+              </div>
+            </div>
+            <div class="app-card-footer">
+              <!-- [disabled]="_registerForm.invalid"  -->
+              <button type="submit" class="app-btn app-btn-info">Submit</button>
+            </div>
+          </div>
         </div>
       </div>
     </form>

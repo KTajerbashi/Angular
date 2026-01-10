@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {
+  FormBuilder,
   FormControl,
   FormGroup,
   FormsModule,
@@ -17,16 +18,35 @@ import IRoleDTO from '../../models/IRole.dto';
   styleUrl: './forms-intro.scss',
 })
 export class FormsIntro {
+  _registerForm: FormGroup;
+
+  constructor(private formBuilder: FormBuilder) {
+    this._registerForm = formBuilder.group({
+      username: formBuilder.control('', Validators.required),
+      password: formBuilder.control(
+        '',
+        Validators.compose([Validators.required, Validators.minLength(8)])
+      ),
+      rePassword: formBuilder.control(
+        '',
+        Validators.compose([Validators.required, Validators.minLength(8)])
+      ),
+      isRemember: formBuilder.control('', {}),
+    });
+  }
+
   formsValue: {
     TemplateDriven: boolean;
     Reactive: boolean;
     Validation: boolean;
+    FormBuilder: boolean;
     Custom: boolean;
     Dynamic: boolean;
     Complete: boolean;
   } = {
-    TemplateDriven: true,
+    TemplateDriven: false,
     Reactive: false,
+    FormBuilder: true,
     Validation: false,
     Custom: false,
     Dynamic: false,
@@ -114,5 +134,25 @@ export class FormsIntro {
   // Reactive Form Finishid
 
   // FormBuilder Form
+  formBuilderMessage: string = '';
+  loginByFormBuilder() {
+    const { username, password, rePassword, isRemember } = this._registerForm?.value;
+    if (this._registerForm.valid && password == rePassword) {
+      this.formBuilderMessage = 'اطلاعات فرم درست است و برای سرویس مورد نظر میتوانید ارسال کنید';
+    } else {
+      this.formBuilderMessage = 'اطلاعات سرویس اشتباه است لطفا مجدد بررسی کنید !!!';
+    }
+    setTimeout(() => {
+      this.formBuilderMessage = '';
+    }, 5000);
+    console.log('loginByFormBuilder : ', this._registerForm);
+    console.log('Values : ', username, password, rePassword, isRemember);
+    let loginParameters: ILoginDTO = {
+      Username: this._registerForm?.value.username as string,
+      Password: this._registerForm?.value.password as string,
+      RememberMe: this._registerForm?.value.isRemember as boolean,
+    };
+    console.log('Parameters : ', loginParameters);
+  }
   // FormBuilder Form Finishid
 }

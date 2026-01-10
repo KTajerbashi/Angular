@@ -170,12 +170,13 @@ a {
   gap: var(--space-5);
 }
 .app-grid {
-  border: 1px solid black;
+  border: 1px solid rgba(219, 219, 219, 0.281);
   padding: 10px;
   margin: 10px 0;
   border-radius: 5px;
   display: flex;
   flex-direction: row;
+  justify-content: center;
   gap: 5px;
 }
 .app-width-1-1 {
