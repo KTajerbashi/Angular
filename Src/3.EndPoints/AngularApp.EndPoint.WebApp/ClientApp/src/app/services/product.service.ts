@@ -10,5 +10,7 @@ export class ProductService extends EntityApiService<IProduct>
 {
   constructor(httpClient:HttpClient) {
     super(httpClient);
+    this.baseUrl = "Product";
+    console.log("Run Product Service ...");
   }
 }

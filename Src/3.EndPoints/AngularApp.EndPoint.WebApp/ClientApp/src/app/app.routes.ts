@@ -25,6 +25,7 @@ import { InputOutput } from './pages/input-output/input-output';
 import { User } from './pages/user/user';
 import { Setting } from './pages/setting/setting';
 import { NotFoundPage } from './pages/common/not-found-page/not-found-page';
+import { ProductDashboard } from './pages/product-dashboard/product-dashboard';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -69,6 +70,7 @@ export const routes: Routes = [
   { path: 'forms', component: FormsIntro },
   { path: 'service', component: ServiceIntro },
   { path: 'hooks', component: HooksIntro },
+  { path: 'products', component: ProductDashboard },
 
   { path: 'input-output', component: InputOutput },
   { path: 'users', component: User },

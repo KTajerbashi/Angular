@@ -938,6 +938,45 @@ p {
 }
 
 /* =========================================================
+   THEME TABLE
+========================================================= */
+.app-table {
+  border: 1px solid rgb(151, 151, 151);
+  width: 100%;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  text-align: center;
+}
+.app-table thead {
+  width: 100%;
+}
+.app-table thead tr {
+  width: 100%;
+}
+.app-table thead tr th {
+  background: rgb(15, 16, 54);
+  color: wheat;
+  outline: none;
+  padding: 5px 3px;
+}
+
+.app-table.app-table-hover tbody tr:hover {
+  background: rgba(163, 185, 182, 0.1);
+  cursor: pointer;
+}
+.app-table tbody {
+}
+.app-table tbody tr {
+}
+.app-table tbody tr td:nth-child(1) {
+  background: rgb(0, 22, 19);
+  color: wheat;
+}
+.app-table tbody tr td:last-child {
+  background: rgb(49, 155, 137);
+  width: 400px;
+}
+/* =========================================================
    THEME VARIABLES
 ========================================================= */
 /* ------------------------------
@@ -1103,8 +1142,18 @@ p {
 }
 /*  Padding   */
 /*  Margin   */
-.app-margin-t-1{margin-top: 0.5rem;}
-.app-margin-t-2{margin-top: 0.75rem;}
-.app-margin-t-3{margin-top: 1rem;}
-.app-margin-t-4{margin-top: 1.5rem;}
-.app-margin-t-5{margin-top: 2rem;}
+.app-margin-t-1 {
+  margin-top: 0.5rem;
+}
+.app-margin-t-2 {
+  margin-top: 0.75rem;
+}
+.app-margin-t-3 {
+  margin-top: 1rem;
+}
+.app-margin-t-4 {
+  margin-top: 1.5rem;
+}
+.app-margin-t-5 {
+  margin-top: 2rem;
+}

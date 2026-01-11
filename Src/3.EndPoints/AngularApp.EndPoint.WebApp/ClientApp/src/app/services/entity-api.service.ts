@@ -6,24 +6,23 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export abstract class EntityApiService<TEntity> extends BaseApiService {
-  controller: string = '';
   constructor(httpClient: HttpClient) {
     super(httpClient);
   }
 
-  onCreate<TEntity>(model: TEntity) {
-    return this.post<TEntity>(this.controller, model);
+  add<TEntity>(model: TEntity) {
+    return this.post<TEntity>('', model);
   }
-  onUpdate<TEntity>(model: TEntity) {
-    return this.put<TEntity>(this.controller, model);
+  update<TEntity>(model: TEntity) {
+    return this.put<TEntity>('', model);
   }
-  onDelete<TEntity>(id: number) {
-    return this.delete<TEntity>(`${this.controller}/${id}`);
+  remove<TEntity>(id: number) {
+    return this.delete<TEntity>(`${id}`);
   }
-  onGetAll<TEntity>() {
-    return this.get<TEntity>(`${this.controller}`);
+  getAll<TEntity>() {
+    return this.get<TEntity>(``);
   }
-  onGetById<TEntity>(id: number) {
-    return this.get<TEntity>(`${this.controller}/${id}`);
+  getById<TEntity>(id: number) {
+    return this.get<TEntity>(`${id}`);
   }
 }

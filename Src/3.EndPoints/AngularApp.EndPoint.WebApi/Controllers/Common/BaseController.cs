@@ -8,3 +8,7 @@ public abstract class BaseController : ControllerBase
 {
 
 }
+public abstract class AuthController : BaseController
+{
+
+}

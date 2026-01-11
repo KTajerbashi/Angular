@@ -1,1 +1,67 @@
-<p>product-dashboard works!</p>
+<div class="app-container">
+  <div class="app-content">
+    <div class="app-card">
+      <div class="app-card-header">Products</div>
+      <div class="app-card-body">
+        <table class="app-table app-table-hover">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Title</th>
+              <th>Price</th>
+              <th>Rate</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (item of datalist; track $index) {
+            <tr>
+              <td>{{ item.id }}</td>
+              <td>{{ item.title }}</td>
+              <td>{{ item.price }}</td>
+              <td>{{ item.rate }}</td>
+              <td>
+                <button (click)="onRemove(item)" class="app-btn app-btn-danger">Remove</button>
+                <button (click)="onUpdate(item)" class="app-btn app-btn-warning">Edit</button>
+                <button (click)="onGetById(item)" class="app-btn app-btn-info">Show</button>
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
+        <hr />
+        <table class="app-table app-table-hover">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Title</th>
+              <th>Price</th>
+              <th>Rate</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (item of _datalist(); track $index) {
+            <tr>
+              <td>{{ item.id }}</td>
+              <td>{{ item.title }}</td>
+              <td>{{ item.price }}</td>
+              <td>{{ item.rate }}</td>
+              <td>
+                <button (click)="onRemove(item)" class="app-btn app-btn-danger">Remove</button>
+                <button (click)="onUpdate(item)" class="app-btn app-btn-warning">Edit</button>
+                <button (click)="onGetById(item)" class="app-btn app-btn-info">Show</button>
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      <div class="app-card-footer">
+        <button class="app-btn app-btn-primary">Create New</button>
+        <button (click)="onGetAll()" class="app-btn app-btn-dark">GetAll</button>
+        <button (click)="onReload()" class="app-btn app-btn-dark">Reload</button>
+      </div>
+    </div>
+  </div>
+</div>
