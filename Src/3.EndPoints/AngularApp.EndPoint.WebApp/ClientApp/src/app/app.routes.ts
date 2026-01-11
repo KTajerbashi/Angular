@@ -1,31 +1,30 @@
 import { Routes } from '@angular/router';
-import { Dashboard } from './page/dashboard/dashboard';
-import { User } from './page/user/user';
-import { Setting } from './page/setting/setting';
-import { ComponentIntro } from './page/component-intro/component-intro';
-import { ModuleIntro } from './page/module-intro/module-intro';
-import { TemplateIntro } from './page/template-intro/template-intro';
-import { InputOutput } from './page/input-output/input-output';
-import { PipesIntro } from './page/pipes-intro/pipes-intro';
-import { DataBinding } from './page/data-binding/data-binding';
-import { RouterIntro } from './page/router-intro/router-intro';
-import { UserDetails } from './page/router-intro/user-details/user-details';
-import { RoleDetails } from './page/router-intro/role-details/role-details';
-import { UserProfile } from './page/router-intro/user-profile/user-profile';
-import { UserInfo } from './page/router-intro/user-details/user-info/user-info';
-import { NotFoundPage } from './page/common/not-found-page/not-found-page';
-import { GuardsIntro } from './page/guards-intro/guards-intro';
+import { Dashboard } from './pages/dashboard/dashboard';
+import { ComponentIntro } from './pages/component-intro/component-intro';
+import { PipesIntro } from './pages/pipes-intro/pipes-intro';
+import { DataBinding } from './pages/data-binding/data-binding';
+import { ModuleIntro } from './pages/module-intro/module-intro';
+import { RouterIntro } from './pages/router-intro/router-intro';
+import { UserDetails } from './pages/router-intro/user-details/user-details';
+import { UserInfo } from './pages/router-intro/user-details/user-info/user-info';
+import { RoleDetails } from './pages/router-intro/role-details/role-details';
+import { UserProfile } from './pages/router-intro/user-profile/user-profile';
+import { GuardsIntro } from './pages/guards-intro/guards-intro';
 import { authGuard } from './guards/auth-guard';
 import { childAuthGuard } from './guards/child-auth-guard';
-import { GuardDetails } from './page/guards-intro/guard-details/guard-details';
-import { GuardAdd } from './page/guards-intro/guard-add/guard-add';
-import { GuardEdit } from './page/guards-intro/guard-edit/guard-edit';
-import { GuardCartable } from './page/guards-intro/guard-cartable/guard-cartable';
 import { canDeactivateGuard } from './guards/can-deactivate-guard';
-import { DirectiveIntro } from './page/directive-intro/directive-intro';
-import { FormsIntro } from './page/forms-intro/forms-intro';
-import { ServiceIntro } from './page/service-intro/service-intro';
-import { HooksIntro } from './page/hooks-intro/hooks-intro';
+import { GuardDetails } from './pages/guards-intro/guard-details/guard-details';
+import { GuardAdd } from './pages/guards-intro/guard-add/guard-add';
+import { GuardEdit } from './pages/guards-intro/guard-edit/guard-edit';
+import { GuardCartable } from './pages/guards-intro/guard-cartable/guard-cartable';
+import { DirectiveIntro } from './pages/directive-intro/directive-intro';
+import { FormsIntro } from './pages/forms-intro/forms-intro';
+import { ServiceIntro } from './pages/service-intro/service-intro';
+import { HooksIntro } from './pages/hooks-intro/hooks-intro';
+import { InputOutput } from './pages/input-output/input-output';
+import { User } from './pages/user/user';
+import { Setting } from './pages/setting/setting';
+import { NotFoundPage } from './pages/common/not-found-page/not-found-page';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -63,7 +62,7 @@ export const routes: Routes = [
   {
     path: 'templates',
     loadComponent() {
-      return import('./page/template-intro/template-intro').then((x) => x.TemplateIntro);
+      return import('./pages/template-intro/template-intro').then((x) => x.TemplateIntro);
     },
   },
   { path: 'directives', component: DirectiveIntro },

@@ -5,11 +5,12 @@ import IApiJson from '../models/IApiJson.dto';
 @Injectable({
   providedIn: 'root',
 })
-export class BaseApiService {
-  constructor(private httpClient: HttpClient) {}
+export abstract class BaseApiService {
+  constructor(private httpClient: HttpClient) {
+  }
 
   post<T>(url: string, model: T) {
-    return this.httpClient.post(`api/${url}`, model);
+    return this.httpClient.post(`${url}`, model);
   }
   get<T>(url: string) {
     return this.httpClient.get(`api/${url}`);

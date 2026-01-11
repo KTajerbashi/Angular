@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import ILoginDTO from '../../models/ILogin.dto';
-import { LoginService } from '../../service/login.service';
+import { LoginService } from '../../services/login.service';
 import ISignUpDTO from '../../models/ISignUp.dto';
 
 @Component({
