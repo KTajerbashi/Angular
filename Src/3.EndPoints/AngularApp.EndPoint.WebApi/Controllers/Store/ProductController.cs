@@ -23,7 +23,8 @@ public class Database
 
     public static void Update(ProductDTO parameters)
     {
-        var index = Products.IndexOf(parameters);
+        var entity = Products.Single(item => item.Key == parameters.Key);
+        var index = Products.IndexOf(entity);
         Products[index] = parameters;
     }
     public static void Delete(Guid id)
@@ -66,6 +67,7 @@ public class ProductController : AuthController
     public async Task<IActionResult> GetAsync()
     {
         await Task.CompletedTask;
+        var headers = HttpContext.Request.Headers;
         return Ok(Database.Products.ToList());
     }
 
@@ -74,6 +76,7 @@ public class ProductController : AuthController
     {
         await Task.CompletedTask;
         Database data = new Database();
+        var headers = HttpContext.Request.Headers;
         return Ok(Database.Products.ToList());
     }
 

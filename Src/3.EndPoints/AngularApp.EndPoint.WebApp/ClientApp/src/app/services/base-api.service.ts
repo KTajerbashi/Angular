@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -18,7 +18,10 @@ export abstract class BaseApiService {
     return this.httpClient.post(this.getUrl(url), model);
   }
   get<T>(url: string) {
-    return this.httpClient.get(this.getUrl(url));
+    let _headers = new HttpHeaders().set('Tajerbashi', 'kamrantajerbashi@gmail.com');
+    return this.httpClient.get(this.getUrl(url), {
+      headers: _headers,
+    });
   }
   delete<T>(url: string) {
     return this.httpClient.delete(this.getUrl(url));
