@@ -349,7 +349,17 @@ p {
   transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease,
     box-shadow 0.2s ease, transform 0.15s ease;
 }
-
+.app-btn-icon{
+  background: rgba(255, 0, 0, 0);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 2rem;
+  margin: 3px;
+}
+.app-btn-icon:hover{
+  background: rgba(0, 0, 0, 0.5);
+}
 /* Hover */
 .app-btn:hover:not(:disabled) {
   background: var(--btn-bg-hover);
@@ -932,7 +942,7 @@ p {
 }
 
 .app-control.success input,
-.app-control.success textarea,
+.app-control.success textarea,app-btn
 .app-control.success select {
   border-color: #22c55e;
 }
@@ -973,8 +983,8 @@ p {
   color: wheat;
 }
 .app-table tbody tr td:last-child {
-  background: rgb(49, 155, 137);
-  width: 400px;
+  background: rgb(224, 224, 224);
+  width: 20%;
 }
 /* =========================================================
    THEME VARIABLES

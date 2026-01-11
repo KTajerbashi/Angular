@@ -1,8 +1,38 @@
 <div class="app-container">
   <div class="app-content">
+    <form [formGroup]="productForm" (ngSubmit)="onCreate()">
+      <div class="app-card">
+        <div class="app-card-body">
+          <div class="app-grid">
+            <div class="app-width-1-3">
+              <div class="app-control">
+                <label for="title">Title</label>
+                <input formControlName="title" type="text" placeholder="Title ..." />
+              </div>
+            </div>
+            <div class="app-width-1-3">
+              <div class="app-control">
+                <label for="price">Price</label>
+                <input formControlName="price" type="number" placeholder="Price ..." />
+              </div>
+            </div>
+            <div class="app-width-1-3">
+              <div class="app-control">
+                <label for="rate">Rate</label>
+                <input formControlName="rate" min="1" max="5" type="range" placeholder="Rate ..." />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+        <button type="submit" class="app-btn app-btn-primary">Submit</button>
+
+        </div>
+      </div>
+    </form>
     <div class="app-card">
       <div class="app-card-header">Products</div>
-      <div class="app-card-body">
+      <div style="height: 500px; overflow: auto" class="app-card-body">
         <table class="app-table app-table-hover">
           <thead>
             <tr>
@@ -16,14 +46,14 @@
           <tbody>
             @for (item of datalist; track $index) {
             <tr>
-              <td>{{ item.id }}</td>
+              <td>{{ $index + 1 }}</td>
               <td>{{ item.title }}</td>
               <td>{{ item.price }}</td>
               <td>{{ item.rate }}</td>
               <td>
-                <button (click)="onRemove(item)" class="app-btn app-btn-danger">Remove</button>
-                <button (click)="onUpdate(item)" class="app-btn app-btn-warning">Edit</button>
-                <button (click)="onGetById(item)" class="app-btn app-btn-info">Show</button>
+                <button title="Remove" (click)="onRemove(item)" class="app-btn-icon">🗑️</button>
+                <button title="Update" (click)="onUpdate(item)" class="app-btn-icon">📝</button>
+                <button title="Read" (click)="onGetById(item)" class="app-btn-icon">ℹ️</button>
               </td>
             </tr>
             }
@@ -43,14 +73,14 @@
           <tbody>
             @for (item of _datalist(); track $index) {
             <tr>
-              <td>{{ item.id }}</td>
+              <td>{{ $index + 1 }}</td>
               <td>{{ item.title }}</td>
               <td>{{ item.price }}</td>
               <td>{{ item.rate }}</td>
               <td>
-                <button (click)="onRemove(item)" class="app-btn app-btn-danger">Remove</button>
-                <button (click)="onUpdate(item)" class="app-btn app-btn-warning">Edit</button>
-                <button (click)="onGetById(item)" class="app-btn app-btn-info">Show</button>
+                <button title="Remove" (click)="onRemove(item)" class="app-btn-icon">🗑️</button>
+                <button title="Update" (click)="onUpdate(item)" class="app-btn-icon">📝</button>
+                <button title="Read" (click)="onGetById(item)" class="app-btn-icon">ℹ️</button>
               </td>
             </tr>
             }
@@ -58,9 +88,11 @@
         </table>
       </div>
       <div class="app-card-footer">
-        <button class="app-btn app-btn-primary">Create New</button>
         <button (click)="onGetAll()" class="app-btn app-btn-dark">GetAll</button>
         <button (click)="onReload()" class="app-btn app-btn-dark">Reload</button>
+        <button (click)="increase()" class="app-btn app-btn-dark">
+          Increase {{ requestCount }}
+        </button>
       </div>
     </div>
   </div>

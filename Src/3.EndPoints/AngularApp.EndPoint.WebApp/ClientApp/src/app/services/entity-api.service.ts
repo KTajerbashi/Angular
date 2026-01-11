@@ -16,13 +16,13 @@ export abstract class EntityApiService<TEntity> extends BaseApiService {
   update<TEntity>(model: TEntity) {
     return this.put<TEntity>('', model);
   }
-  remove<TEntity>(id: number) {
+  remove<TEntity>(id: string) {
     return this.delete<TEntity>(`${id}`);
   }
   getAll<TEntity>() {
     return this.get<TEntity>(``);
   }
-  getById<TEntity>(id: number) {
+  getById<TEntity>(id: string) {
     return this.get<TEntity>(`${id}`);
   }
 }

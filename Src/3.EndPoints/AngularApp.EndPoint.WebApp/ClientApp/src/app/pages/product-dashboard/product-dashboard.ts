@@ -1,27 +1,59 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, effect, inject, OnInit, signal } from '@angular/core';
 import { ProductService } from '../../services/product.service';
 import IProduct from '../../models/IProduct.dto';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-product-dashboard',
-  imports: [],
+  imports: [ReactiveFormsModule],
   templateUrl: './product-dashboard.html',
   styleUrl: './product-dashboard.scss',
 })
 export class ProductDashboard implements OnInit {
+  guidGenerator(): string {
+    return 'baf8e979-a4cb-4c8e-b711-9ed671ed639e';
+  }
   datalist: IProduct[] = [];
   _datalist = signal<IProduct[]>([]);
+  requestCount: number = 0;
   ngOnInit(): void {
     this.onReload();
   }
+  productForm: FormGroup;
+  constructor(private builder: FormBuilder) {
+    this.productForm = builder.group({
+      title: this.builder.control('', Validators.required),
+      price: this.builder.control(1, Validators.compose([Validators.required, Validators.min(1)])),
+      rate: this.builder.control(
+        1,
+        Validators.compose([Validators.required, Validators.min(1), Validators.max(5)])
+      ),
+    });
+  }
   productService = inject(ProductService);
 
+  updateList(data: any) {
+    this.datalist = data as IProduct[];
+    this._datalist.set(data as IProduct[]);
+  }
   onCreate() {
-    this.productService.add({}).subscribe({
+    console.log('Form : ', this.productForm);
+    if (!this.productForm.valid) {
+      alert('❌ Form is not valid ❗❗❗');
+      return;
+    }
+
+    let entity: IProduct = {
+      key: this.guidGenerator(),
+      title: this.productForm.value.title as string,
+      price: this.productForm.value.price as number,
+      rate: this.productForm.value.rate as number,
+    };
+    this.productService.add(entity).subscribe({
       next: (data) => {
         console.log('next => onCreate :', data);
-        this.datalist = data as IProduct[];
-        this._datalist.set(data as IProduct[]);
+        this.updateList(data);
+        this.productForm.reset()
       },
       error: (error) => {
         console.log('error => onCreate :', error);
@@ -32,11 +64,10 @@ export class ProductDashboard implements OnInit {
     });
   }
   onRemove(model: IProduct) {
-    this.productService.remove(model.id).subscribe({
+    this.productService.remove(model.key).subscribe({
       next: (data) => {
         console.log('next => onRemove :', data);
-        this.datalist = data as IProduct[];
-        this._datalist.set(data as IProduct[]);
+        this.updateList(data);
       },
       error: (error) => {
         console.log('error => onRemove :', error);
@@ -50,8 +81,7 @@ export class ProductDashboard implements OnInit {
     this.productService.update(model).subscribe({
       next: (data) => {
         console.log('next => onUpdate :', data);
-        this.datalist = data as IProduct[];
-        this._datalist.set(data as IProduct[]);
+        this.updateList(data);
       },
       error: (error) => {
         console.log('error => onUpdate :', error);
@@ -62,7 +92,7 @@ export class ProductDashboard implements OnInit {
     });
   }
   onGetById(model: IProduct) {
-    this.productService.getById(model.id).subscribe({
+    this.productService.getById(model.key).subscribe({
       next: (data) => {
         console.log('next => onGetById :', data);
       },
@@ -78,8 +108,7 @@ export class ProductDashboard implements OnInit {
     this.productService.getAll().subscribe({
       next: (data) => {
         console.log('next => Get All :', data);
-        this.datalist = data as IProduct[];
-        this._datalist.set(data as IProduct[]);
+        this.updateList(data);
       },
       error: (error) => {
         console.log('error => Get All :', error);
@@ -93,8 +122,7 @@ export class ProductDashboard implements OnInit {
     this.productService.get('Reload').subscribe({
       next: (data) => {
         console.log('next => onReload :', data);
-        this.datalist = data as IProduct[];
-        this._datalist.set(data as IProduct[]);
+        this.updateList(data);
       },
       error: (error) => {
         console.log('error => onReload :', error);
@@ -103,5 +131,9 @@ export class ProductDashboard implements OnInit {
         console.log('complete => onReload');
       },
     });
+  }
+
+  increase() {
+    this.requestCount += 10;
   }
 }

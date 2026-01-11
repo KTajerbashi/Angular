@@ -8,16 +8,16 @@ public class Database
     public Database()
     {
         Products = new List<ProductDTO>();
-        Products.Add(new ProductDTO(1, "IPhone X", 1000, 3));
-        Products.Add(new ProductDTO(2, "IPhone XS", 1100, 1));
-        Products.Add(new ProductDTO(3, "IPhone XS Max", 1200, 2));
-        Products.Add(new ProductDTO(4, "IPhone 11", 1300, 3));
-        Products.Add(new ProductDTO(5, "IPhone 11 Pro", 1400, 4));
-        Products.Add(new ProductDTO(6, "IPhone 11 Pro Max", 1500, 5));
-        Products.Add(new ProductDTO(7, "IPhone 12", 1600, 1));
-        Products.Add(new ProductDTO(8, "IPhone 12 Pro", 1700, 2));
-        Products.Add(new ProductDTO(9, "IPhone 12 Pro Max", 1800, 4));
-        Products.Add(new ProductDTO(10, "IPhone 13", 1900, 3));
+        Products.Add(new ProductDTO(Guid.NewGuid(), "IPhone X", 1000, 3));
+        Products.Add(new ProductDTO(Guid.NewGuid(), "IPhone XS", 1100, 1));
+        Products.Add(new ProductDTO(Guid.NewGuid(), "IPhone XS Max", 1200, 2));
+        Products.Add(new ProductDTO(Guid.NewGuid(), "IPhone 11", 1300, 3));
+        Products.Add(new ProductDTO(Guid.NewGuid(), "IPhone 11 Pro", 1400, 4));
+        Products.Add(new ProductDTO(Guid.NewGuid(), "IPhone 11 Pro Max", 1500, 5));
+        Products.Add(new ProductDTO(Guid.NewGuid(), "IPhone 12", 1600, 1));
+        Products.Add(new ProductDTO(Guid.NewGuid(), "IPhone 12 Pro", 1700, 2));
+        Products.Add(new ProductDTO(Guid.NewGuid(), "IPhone 12 Pro Max", 1800, 4));
+        Products.Add(new ProductDTO(Guid.NewGuid(), "IPhone 13", 1900, 3));
     }
     public static List<ProductDTO> Products { get; set; }
 
@@ -26,9 +26,9 @@ public class Database
         var index = Products.IndexOf(parameters);
         Products[index] = parameters;
     }
-    public static void Delete(long id)
+    public static void Delete(Guid id)
     {
-        var entity = Products.Single(i => i.Id == id);
+        var entity = Products.Single(i => i.Key == id);
         Products.Remove(entity);
     }
 }
@@ -41,15 +41,16 @@ public class ProductController : AuthController
     public async Task<IActionResult> CreateAsync(ProductDTO parameters)
     {
         await Task.CompletedTask;
-        Database.Products.Add(parameters);
+
+        Database.Products.Add(new(Guid.NewGuid(), parameters.Title, parameters.Price, parameters.Rate));
         return Ok(Database.Products.ToList());
     }
 
-    [HttpDelete("{id}")]
-    public async Task<IActionResult> RemoveAsync(long id)
+    [HttpDelete("{key}")]
+    public async Task<IActionResult> RemoveAsync(Guid key)
     {
         await Task.CompletedTask;
-        Database.Delete(id);
+        Database.Delete(key);
         return Ok(Database.Products.ToList());
     }
 
@@ -76,11 +77,11 @@ public class ProductController : AuthController
         return Ok(Database.Products.ToList());
     }
 
-    [HttpGet("{id}")]
-    public async Task<IActionResult> GetByIdAsync(long id)
+    [HttpGet("{key}")]
+    public async Task<IActionResult> GetByIdAsync(Guid key)
     {
         await Task.CompletedTask;
-        return Ok(Database.Products.Single(item => item.Id == id));
+        return Ok(Database.Products.Single(item => item.Key == key));
     }
 
 }
