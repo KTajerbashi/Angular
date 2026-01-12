@@ -349,7 +349,7 @@ p {
   transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease,
     box-shadow 0.2s ease, transform 0.15s ease;
 }
-.app-btn-icon{
+.app-btn-icon {
   background: rgba(255, 0, 0, 0);
   border: none;
   outline: none;
@@ -357,7 +357,7 @@ p {
   border-radius: 2rem;
   margin: 3px;
 }
-.app-btn-icon:hover{
+.app-btn-icon:hover {
   background: rgba(0, 0, 0, 0.5);
 }
 /* Hover */
@@ -701,6 +701,37 @@ p {
   color: var(--text-main);
 }
 
+.app-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  padding: 5px;
+}
+.app-list li {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  margin: 2px 0;
+  padding: 5px;
+  cursor: pointer;
+}
+.app-list li:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+.app-info {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  margin: 2px 0;
+  padding: 5px;
+
+}
+.app-info-title {
+  color: wheat;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid rgb(255, 166, 0);
+  border-radius: 5px;
+  margin: 2px 0;
+  padding: 5px;
+}
 /* =========================================================
    FORM CONTROLS
 ========================================================= */
@@ -942,8 +973,8 @@ p {
 }
 
 .app-control.success input,
-.app-control.success textarea,app-btn
-.app-control.success select {
+.app-control.success textarea,
+app-btn .app-control.success select {
   border-color: #22c55e;
 }
 
