@@ -30,14 +30,14 @@ export class Nav implements OnInit {
       { Name: 'Hooks', Link: '/hooks', IsDeleted: false },
       { Name: 'Signal', Link: '/signal', IsDeleted: false },
       { Name: 'Templates', Link: '/templates', IsDeleted: false },
+      { Name: 'RXJS', Link: '/rxjs', IsDeleted: false },
+      { Name: 'HTTP', Link: '/http-client', IsDeleted: false },
 
       { Name: 'Products', Link: '/products', IsDeleted: false },
 
       { Name: 'Input / Output', Link: '/input-output', IsDeleted: false },
       { Name: 'Template Syntax', Link: '/template-syntax', IsDeleted: false },
       { Name: 'Routing', Link: '/routing', IsDeleted: false },
-      { Name: 'HTTP', Link: '/http-client', IsDeleted: false },
-      { Name: 'RXJS', Link: '/rxjs', IsDeleted: false },
       { Name: 'Observables', Link: '/observables', IsDeleted: false },
       { Name: 'Users', Link: '/users', IsDeleted: false },
       { Name: 'Settings', Link: '/settings', IsDeleted: false },

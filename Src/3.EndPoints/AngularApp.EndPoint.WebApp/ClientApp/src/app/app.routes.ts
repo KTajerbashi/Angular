@@ -28,6 +28,8 @@ import { NotFoundPage } from './pages/common/not-found-page/not-found-page';
 import { ProductDashboard } from './pages/product-dashboard/product-dashboard';
 import { SignalIntro } from './pages/signal-intro/signal-intro';
 import { TemplateIntro } from './pages/template-intro/template-intro';
+import { RxjsIntro } from './pages/rxjs-intro/rxjs-intro';
+import { HttpIntro } from './pages/http-intro/http-intro';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -74,6 +76,8 @@ export const routes: Routes = [
   { path: 'hooks', component: HooksIntro },
   { path: 'signal', component: SignalIntro },
   { path: 'templates', component: TemplateIntro },
+  { path: 'rxjs', component: RxjsIntro },
+  { path: 'http-client', component: HttpIntro },
 
   { path: 'products', component: ProductDashboard },
   { path: 'input-output', component: InputOutput },
