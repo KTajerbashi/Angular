@@ -139,7 +139,6 @@
           <div class="app-info app-bg-red-2">This is Not Kamran : {{ dateTimeNow | date }}</div>
           }
         </div>
-        <hr />
         <div class="app-info">
           <div class="app-info-title">Idle</div>
           @defer (on idle){
@@ -150,28 +149,25 @@
           <div class="app-info app-bg-red-2">This is Not Idle : {{ dateTimeNow | date }}</div>
           }
         </div>
-        <hr />
         <div class="app-info">
-          <div class="app-info-title">Viewport</div>
+          <div class="app-info-title">Viewport timer(5s)</div>
           @defer(on viewport;on timer(5s)){
           <div class="app-info app-bg-blue-1">On View Port !!!</div>
           }@placeholder {
           <div class="app-info app-bg-blue-4">On View Port Place Holder ...</div>
           }
         </div>
-        <hr />
         <div class="app-info">
-          <div class="appp-info-title">Interaction => timer</div>
+          <div class="appp-info-title">Interaction => timer(5s)</div>
           @defer(on interaction;on timer(5s)){
           <div class="app-info app-bg-blue-1">On Interaction !!!</div>
           }@placeholder {
           <div class="app-info app-bg-blue-4">On Interaction Place Holder ...</div>
           }
         </div>
-        <hr />
         <div class="app-info">
           <div class="app-info-title">Header</div>
-          <h1 #header>Click or Hover On Me to Reaction !!!</h1>
+          <h4 #header>Click or Hover On Me to Reaction !!!</h4>
           @defer(on hover(header)){
           <div class="app-info app-bg-blue-1">On Hover !!!</div>
           }@placeholder {
@@ -184,33 +180,37 @@
           <div class="app-info app-bg-blue-4">On Intractive Place Holder ...</div>
           }
         </div>
-        <hr />
-        <button class="app-btn app-btn-dark" (click)="toggle()">
-          Toggle Loading ({{ counter }})
-          {{ isLoading ? 'Loading ...' : 'Loaded' }}
-        </button>
-        @defer(when isLoading){
-        <div class="app-info app-bg-blue-1">On When Loading !!!</div>
-        }@placeholder {
-        <div class="app-info app-bg-blue-4">On When Loading Place Holder ...</div>
-        } @defer(when counter > 3){
-        <div class="app-info app-bg-blue-1">On When Counter > 3 !!!</div>
-        }@placeholder {
-        <div class="app-info app-bg-blue-4">On When Counter > 3 Place Holder ...</div>
-        }@loading {
-        <div class="app-info app-bg-light-4">On Loading ❗</div>
-        }
+        <div class="app-info">
+          <div class="app-info-title">Defer PlaceHolder with Loading</div>
+          <button class="app-btn app-btn-dark" (click)="toggle()">
+            Toggle Loading ({{ counter }})
+            {{ isLoading ? 'Loading ...' : 'Loaded' }}
+          </button>
+          @defer(when isLoading){
+          <div class="app-info app-bg-blue-1">On When Loading !!!</div>
+          }@placeholder {
+          <div class="app-info app-bg-blue-4">On When Loading Place Holder ...</div>
+          } @defer(when counter > 3){
+          <div class="app-info app-bg-blue-1">On When Counter > 3 !!!</div>
+          }@placeholder {
+          <div class="app-info app-bg-blue-4">On When Counter > 3 Place Holder ...</div>
+          }@loading {
+          <div class="app-info app-bg-light-4">On Loading ❗</div>
+          }
+        </div>
 
-        <hr />
-        @defer(when counter > 3){
-        <div class="app-info app-bg-blue-1">On When Counter > 3 !!!</div>
-        }@placeholder {
-        <div class="app-info app-bg-blue-4">On When Counter > 3 Place Holder ...</div>
-        }@loading(after 100ms; minimum 2s) {
-        <div class="app-info app-bg-light-4">On Loading ❗</div>
-        }@error {
-        <div class="app-info app-bg-light-4">On Error Loading ❌</div>
-        }
+        <div class="app-info">
+          <div class="app-info-title">Defer PlaceHolder with Loading Error</div>
+          @defer(when counter > 3){
+          <div class="app-info app-bg-blue-1">On When Counter > 3 !!!</div>
+          }@placeholder {
+          <div class="app-info app-bg-blue-4">On When Counter > 3 Place Holder ...</div>
+          }@loading(after 100ms; minimum 2s) {
+          <div class="app-info app-bg-light-4">On Loading ❗</div>
+          }@error {
+          <div class="app-info app-bg-light-4">On Error Loading ❌</div>
+          }
+        </div>
       </div>
     </div>
     }
