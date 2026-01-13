@@ -95,9 +95,29 @@ body {
 a {
   text-decoration: none;
 }
+br {
+  padding: 0;
+  margin: 0;
+  color: red;
+}
+hr {
+  padding: 0;
+  margin: 0;
+  color: red;
+}
 /* =========================================================
    APP LAYOUT
 ========================================================= */
+.app-flex-col-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.app-flex-row-center {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
 .app-root {
   display: flex;
   flex-direction: column;
@@ -715,14 +735,13 @@ p {
   cursor: pointer;
 }
 .app-list li:hover {
-  background: rgba(0, 0, 0, 0.1);
+  background: #5e3500;
 }
 .app-info {
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   margin: 2px 0;
   padding: 5px;
-
 }
 .app-info-title {
   color: wheat;

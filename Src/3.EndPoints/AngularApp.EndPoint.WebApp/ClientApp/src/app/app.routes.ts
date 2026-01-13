@@ -27,6 +27,7 @@ import { Setting } from './pages/setting/setting';
 import { NotFoundPage } from './pages/common/not-found-page/not-found-page';
 import { ProductDashboard } from './pages/product-dashboard/product-dashboard';
 import { SignalIntro } from './pages/signal-intro/signal-intro';
+import { TemplateIntro } from './pages/template-intro/template-intro';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -72,6 +73,7 @@ export const routes: Routes = [
   { path: 'service', component: ServiceIntro },
   { path: 'hooks', component: HooksIntro },
   { path: 'signal', component: SignalIntro },
+  { path: 'templates', component: TemplateIntro },
 
   { path: 'products', component: ProductDashboard },
   { path: 'input-output', component: InputOutput },
