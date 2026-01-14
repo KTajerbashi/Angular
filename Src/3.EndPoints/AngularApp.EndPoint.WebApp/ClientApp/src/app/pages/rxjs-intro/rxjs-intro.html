@@ -2,7 +2,13 @@
   <div class="app-content">
     <div class="app-card">
       <div class="app-card-header">Observable</div>
-      <div class="app-card-body"></div>
+      <div class="app-card-body">
+        <ul class="app-list">
+          @for (item of zoneData$ | async; track $index) {
+          <li>{{ $index + 1 }} ) {{ item.title }} - {{ item.crateDate | date:'y/MM/dd'}}</li>
+          }
+        </ul>
+      </div>
     </div>
     <div class="app-card">
       <div class="app-card-header">Observer</div>
