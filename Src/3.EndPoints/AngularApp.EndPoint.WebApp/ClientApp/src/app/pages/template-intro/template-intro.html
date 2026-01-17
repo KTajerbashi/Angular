@@ -96,7 +96,7 @@
       <ul class="app-list">
         @for (item of players; track item;let i = $index;let c = $count;let e = $even;let o = $odd)
         {
-        <li class="app-margin-t-3" [ngClass]="e ? 'app-bg-blue-1' : 'app-bg-blue-2'">
+        <li class="app-mt-3" [ngClass]="e ? 'app-bg-blue-1' : 'app-bg-blue-2'">
           {{ i }} ) {{ item }} : {{ c }}: {{ e }}: {{ o }}
         </li>
         <li [ngClass]="{ 'app-bg-red-1': e, 'app-bg-red-2': o }">

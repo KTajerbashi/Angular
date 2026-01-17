@@ -1,0 +1,40 @@
+<div class="app-page">
+  <div class="app-page-title">View Child/Children</div>
+  <div class="app-container">
+    <div class="app-content">
+      <div class="app-info">
+        <div class="app-info-title">Can Ref Element and can Access to Elements of Point</div>
+        <p>ViewChild => Access to one Element of just selector slef</p>
+        <p>ViewChildren => Access to all Elements of selector</p>
+      </div>
+      <div class="app-card">
+        <div class="app-card-header">Fruits</div>
+        <div class="app-card-body">
+          <div class="app-flex-row-start">
+            <app-fruits />
+            <app-fruits />
+            <div class="app-control">
+              <label for="fruit">Fruit Name : ViewChild</label>
+              <input type="text" #fruitName />
+            </div>
+            <button (click)="onAddFruit(fruitName.value)" class="app-btn app-btn-success app-mt-4">
+              Add
+            </button>
+          </div>
+          <div class="app-flex-row-start">
+            <app-devices />
+            <app-devices />
+            <div class="app-control">
+              <label for="fruit">Device Name : ViewChildren</label>
+              <input type="text" #device />
+            </div>
+            <button (click)="onAddDevice(device.value)" class="app-btn app-btn-success app-mt-4">
+              Add
+            </button>
+          </div>
+        </div>
+        <div class="app-card-footer"></div>
+      </div>
+    </div>
+  </div>
+</div>

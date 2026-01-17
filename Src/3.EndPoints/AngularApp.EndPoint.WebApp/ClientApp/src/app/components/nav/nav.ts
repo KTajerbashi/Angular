@@ -29,6 +29,7 @@ export class Nav implements OnInit {
       { Name: 'Services', Link: '/service', IsDeleted: false },
       { Name: 'Hooks', Link: '/hooks', IsDeleted: false },
       { Name: 'Input / Output', Link: '/input-output', IsDeleted: false },
+      { Name: 'View Child/Children', Link: '/view-intro', IsDeleted: false },
       { Name: 'Signal', Link: '/signal', IsDeleted: false },
       { Name: 'Templates', Link: '/templates', IsDeleted: false },
       { Name: 'RXJS', Link: '/rxjs', IsDeleted: false },

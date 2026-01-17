@@ -30,6 +30,7 @@ import { SignalIntro } from './pages/signal-intro/signal-intro';
 import { TemplateIntro } from './pages/template-intro/template-intro';
 import { RxjsIntro } from './pages/rxjs-intro/rxjs-intro';
 import { HttpIntro } from './pages/http-intro/http-intro';
+import { ViewIntro } from './pages/view-intro/view-intro';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -75,6 +76,7 @@ export const routes: Routes = [
   { path: 'service', component: ServiceIntro },
   { path: 'hooks', component: HooksIntro },
   { path: 'input-output', component: InputOutput },
+  { path: 'view-intro', component: ViewIntro },
   { path: 'signal', component: SignalIntro },
   { path: 'templates', component: TemplateIntro },
   { path: 'rxjs', component: RxjsIntro },
