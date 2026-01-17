@@ -45,3 +45,9 @@ public abstract class AggregateRoot<TId> : AuditableEntity<TId>, IAggregate<TId>
     /// </summary>
     public void ClearEvents() => _events.Clear();
 }
+
+
+public abstract class AggregateRoot : AggregateRoot<long>
+{
+
+}

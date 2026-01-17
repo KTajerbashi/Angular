@@ -37,3 +37,8 @@ public abstract class AuditableEntity<TId> : Entity<TId>, IAuditableEntity<TId>
     }
 
 }
+
+public abstract class AuditableEntity : AuditableEntity<long>
+{
+
+}
