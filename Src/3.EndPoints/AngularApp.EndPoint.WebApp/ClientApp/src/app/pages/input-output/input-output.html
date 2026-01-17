@@ -1,21 +1,92 @@
-<div class="app-container">
-  <div class="app-content">
-    <!-- Quick Actions -->
-    <div class="app-card app-card-hover">
-      <div class="app-card-header">Introduction on Input/Output in Angular</div>
+<div class="app-page">
+  <div class="app-page-title">Introduction on Input/Output in Angular</div>
+  <div class="app-container">
+    <div class="app-content">
+      <!-- Recent Activity -->
+      <div class="app-card">
+        <div class="app-card-header">
+          Introduction <span class="app-text-primary">Parent</span> To
+          <span class="app-text-info">Child</span>
+          (<span class="app-badge app-badge-primary">Parent</span>
+          =>
+          <span class="app-badge app-badge-info">Child</span>)
+        </div>
+        <div class="app-card-body">
+          <div class="app-grid">
+            <div class="app-width-1-4">
+              <div class="app-control">
+                <label for="dataValue">This value passed to child</label>
+                <input
+                  type="text"
+                  [(ngModel)]="valueForPassDataToChild"
+                  placeholder="Enter Your Text For Pass To Child ..."
+                />
+              </div>
+            </div>
+            <div class="app-width-1-4 app-flex-row-center">
+              <button (click)="addCounter()" class="app-btn app-btn-auto app-btn-success">+</button>
+              <span class="app-badge app-badge-info">{{ counter }}</span>
+              <button (click)="removeCounter()" class="app-btn app-btn-auto app-btn-danger">
+                -
+              </button>
+            </div>
 
-      <div class="app-card-body app-content-row">
-        <app-child-to-parent></app-child-to-parent>
+            <div class="app-width-1-4">
+              <div class="app-control">
+                <label for="dataValue">Name</label>
+                <input
+                  type="text"
+                  [(ngModel)]="userInfo.name"
+                  placeholder="Enter Your Text For Pass To Child ..."
+                />
+              </div>
+            </div>
+            <div class="app-width-1-4">
+              <div class="app-control">
+                <label for="dataValue">Family</label>
+                <input
+                  type="text"
+                  [(ngModel)]="userInfo.family"
+                  placeholder="Enter Your Text For Pass To Child ..."
+                />
+              </div>
+            </div>
+          </div>
+          <app-parent-to-child
+            [Counter]="counter"
+            [UserState]="valueForPassDataToChild"
+            [UserInfo]="userInfo"
+          ></app-parent-to-child>
+        </div>
       </div>
-    </div>
 
-    <!-- Recent Activity -->
-    <div class="app-card">
-      <div class="app-card-header">Recent Activity</div>
+      <!-- Quick Actions -->
+      <div class="app-card app-card-hover">
+        <div class="app-card-header">
+          Introduction
+          <span class="app-text-info">Child</span>
+          To
+          <span class="app-text-primary">Parent</span>
+          (<span class="app-badge app-badge-info">Child</span>
+          =>
+          <span class="app-badge app-badge-primary">Parent</span>)
+        </div>
 
-      <div class="app-card-body">
-        <div class="app-content-row gap-sm">
-          <app-parent-to-child></app-parent-to-child>
+        <div class="app-card-body app-content-row">
+          <app-child-to-parent
+            [Type]="'$event'"
+            (Description)="readDescription($event)"
+          ></app-child-to-parent>
+          <hr />
+          <app-child-to-parent
+            [Type]="'string'"
+            (Description)="readDescription1($event)"
+          ></app-child-to-parent>
+        </div>
+        <div class="app-card-footer">
+          @if (description.length > 0) {
+          <div class="app-badge app-badge-primary">{{ description }}</div>
+          }
         </div>
       </div>
     </div>

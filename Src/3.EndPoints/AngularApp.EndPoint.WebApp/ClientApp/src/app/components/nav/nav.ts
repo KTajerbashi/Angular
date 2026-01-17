@@ -28,6 +28,7 @@ export class Nav implements OnInit {
       { Name: 'Forms', Link: '/forms', IsDeleted: false },
       { Name: 'Services', Link: '/service', IsDeleted: false },
       { Name: 'Hooks', Link: '/hooks', IsDeleted: false },
+      { Name: 'Input / Output', Link: '/input-output', IsDeleted: false },
       { Name: 'Signal', Link: '/signal', IsDeleted: false },
       { Name: 'Templates', Link: '/templates', IsDeleted: false },
       { Name: 'RXJS', Link: '/rxjs', IsDeleted: false },
@@ -35,7 +36,6 @@ export class Nav implements OnInit {
 
       { Name: 'Products', Link: '/products', IsDeleted: false },
 
-      { Name: 'Input / Output', Link: '/input-output', IsDeleted: false },
       { Name: 'Template Syntax', Link: '/template-syntax', IsDeleted: false },
       { Name: 'Routing', Link: '/routing', IsDeleted: false },
       { Name: 'Observables', Link: '/observables', IsDeleted: false },
