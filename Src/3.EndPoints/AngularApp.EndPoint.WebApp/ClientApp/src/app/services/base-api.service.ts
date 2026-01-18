@@ -19,9 +19,7 @@ export abstract class BaseApiService {
   }
   get<T>(url: string) {
     let _headers = new HttpHeaders().set('Tajerbashi', 'kamrantajerbashi@gmail.com');
-    return this.httpClient.get(this.getUrl(url), {
-      headers: _headers,
-    });
+    return this.httpClient.get(this.getUrl(url), { headers: _headers });
   }
   delete<T>(url: string) {
     return this.httpClient.delete(this.getUrl(url));

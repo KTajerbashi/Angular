@@ -1,4 +1,4 @@
-using RG.Coding.WebApp;
+using AngularApp.EndPoint.WebApp;
 
 var builder = WebApplication.CreateBuilder(args);
 

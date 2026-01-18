@@ -2,7 +2,7 @@
 using AngularApp.EndPoint.WebApi.Providers.Swagger;
 using AngularApp.ServiceDefaults;
 
-namespace RG.Coding.WebApp;
+namespace AngularApp.EndPoint.WebApp;
 
 public static class DependencyInjections
 {

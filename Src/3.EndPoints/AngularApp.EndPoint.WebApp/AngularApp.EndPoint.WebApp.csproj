@@ -11,8 +11,8 @@
 		<SpaProxyServerUrl>https://localhost:42500</SpaProxyServerUrl>
 		<SpaProxyLaunchCommand>npm start</SpaProxyLaunchCommand>
 		<!--#endif-->
-		<RootNamespace>RG.Coding.WebApp</RootNamespace>
-		<AssemblyName>RG.Coding.WebApp</AssemblyName>
+		<RootNamespace>AngularApp.EndPoint.WebApp</RootNamespace>
+		<AssemblyName>AngularApp.EndPoint.WebApp</AssemblyName>
 
 	</PropertyGroup>
 

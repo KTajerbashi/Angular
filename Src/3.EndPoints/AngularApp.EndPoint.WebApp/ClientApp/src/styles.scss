@@ -211,6 +211,7 @@ hr {
   border: 1px solid rgb(223, 223, 223);
   border-radius: 5px;
   height: 99%;
+  overflow: auto;
 }
 .app-content:hover {
   box-shadow: 5px 5px 2px 0px rgba(0, 0, 0, 0.5);
