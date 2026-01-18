@@ -31,60 +31,81 @@ import { TemplateIntro } from './pages/template-intro/template-intro';
 import { RxjsIntro } from './pages/rxjs-intro/rxjs-intro';
 import { HttpIntro } from './pages/http-intro/http-intro';
 import { ViewIntro } from './pages/view-intro/view-intro';
+import { AuthLayout } from './layouts/auth-layout/auth-layout';
+import { Login } from './pages/auth/login/login';
+import { Signup } from './pages/auth/signup/signup';
+import { Profile } from './pages/auth/profile/profile';
+import { MainLayout } from './layouts/main-layout/main-layout';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-  { path: 'dashboard', component: Dashboard },
-  { path: 'components', component: ComponentIntro },
-  { path: 'pipes', component: PipesIntro },
-  { path: 'data-binding', component: DataBinding },
-  { path: 'modules', component: ModuleIntro },
   {
-    path: 'router/:id',
-    component: RouterIntro,
+    path: 'auth',
+    component: AuthLayout,
     children: [
+      { path: 'login', component: Login },
+      { path: 'sign-up', component: Signup },
+      { path: 'profile', component: Profile },
+    ],
+  },
+  {
+    path: '',
+    component: MainLayout,
+    children: [
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      { path: 'dashboard', component: Dashboard },
+      { path: 'components', component: ComponentIntro },
+      { path: 'pipes', component: PipesIntro },
+      { path: 'data-binding', component: DataBinding },
+      { path: 'modules', component: ModuleIntro },
       {
-        path: 'users',
-        component: UserDetails,
-        children: [{ path: 'user/:key', component: UserInfo }],
+        path: 'router/:id',
+        component: RouterIntro,
+        children: [
+          {
+            path: 'users',
+            component: UserDetails,
+            children: [{ path: 'user/:key', component: UserInfo }],
+          },
+          { path: 'roles/:submenu/:id', component: RoleDetails },
+          { path: 'profile/:id', component: UserProfile },
+        ],
       },
-      { path: 'roles/:submenu/:id', component: RoleDetails },
-      { path: 'profile/:id', component: UserProfile },
-    ],
-  },
-  {
-    path: 'guards',
-    component: GuardsIntro,
-    canActivate: [authGuard],
-    canActivateChild: [childAuthGuard],
-    canDeactivate: [canDeactivateGuard],
-    children: [
-      { path: 'details', component: GuardDetails },
-      { path: 'add', component: GuardAdd },
-      { path: 'edit/:id', component: GuardEdit },
-      { path: 'cartable/:submenu/:key', component: GuardCartable },
-    ],
-  },
-  {
-    path: 'templates',
-    loadComponent() {
-      return import('./pages/template-intro/template-intro').then((x) => x.TemplateIntro);
-    },
-  },
-  { path: 'directives', component: DirectiveIntro },
-  { path: 'forms', component: FormsIntro },
-  { path: 'service', component: ServiceIntro },
-  { path: 'hooks', component: HooksIntro },
-  { path: 'input-output', component: InputOutput },
-  { path: 'view-intro', component: ViewIntro },
-  { path: 'signal', component: SignalIntro },
-  { path: 'templates', component: TemplateIntro },
-  { path: 'rxjs', component: RxjsIntro },
-  { path: 'http-client', component: HttpIntro },
+      {
+        path: 'guards',
+        component: GuardsIntro,
+        canActivate: [authGuard],
+        canActivateChild: [childAuthGuard],
+        canDeactivate: [canDeactivateGuard],
+        children: [
+          { path: 'details', component: GuardDetails },
+          { path: 'add', component: GuardAdd },
+          { path: 'edit/:id', component: GuardEdit },
+          { path: 'cartable/:submenu/:key', component: GuardCartable },
+        ],
+      },
+      {
+        path: 'templates',
+        loadComponent() {
+          return import('./pages/template-intro/template-intro').then((x) => x.TemplateIntro);
+        },
+      },
+      { path: 'directives', component: DirectiveIntro },
+      { path: 'forms', component: FormsIntro },
+      { path: 'service', component: ServiceIntro },
+      { path: 'hooks', component: HooksIntro },
+      { path: 'input-output', component: InputOutput },
+      { path: 'view-intro', component: ViewIntro },
+      { path: 'signal', component: SignalIntro },
+      { path: 'templates', component: TemplateIntro },
+      { path: 'rxjs', component: RxjsIntro },
+      { path: 'http-client', component: HttpIntro },
 
-  { path: 'products', component: ProductDashboard },
-  { path: 'users', component: User },
-  { path: 'settings', component: Setting },
-  { path: 'not-found', component: NotFoundPage },
+      { path: 'products', component: ProductDashboard },
+      { path: 'users', component: User },
+      { path: 'settings', component: Setting },
+      { path: 'not-found', component: NotFoundPage },
+    ],
+  },
+
   { path: '**', redirectTo: 'not-found' },
 ];

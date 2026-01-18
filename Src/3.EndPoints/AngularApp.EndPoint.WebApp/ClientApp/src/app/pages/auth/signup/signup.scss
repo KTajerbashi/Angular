@@ -1,0 +1,49 @@
+.app-signup-page {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+}
+
+.app-signup-page .app-card {
+  border: 1px solid rgb(255, 255, 255);
+  background: rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+}
+.app-signup-page .app-card .app-card-header{
+  text-align: center;
+  font-weight: bolder;
+  color: white;
+  width: 100%;
+}
+
+.app-signup-page .app-card .app-card-footer {
+  padding: 20px;
+  display: flex;
+}
+.app-card-footer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.app-signup-page .app-control label {
+  color: rgb(255, 255, 255);
+}
+
+.app-signup-page .app-control input {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  outline: none;
+  color: white;
+}
+.app-signup-page .app-control input::placeholder {
+  color: rgb(194, 194, 194);
+}

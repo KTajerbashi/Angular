@@ -233,12 +233,12 @@ hr {
   gap: var(--space-5);
 }
 .app-grid {
-  border: 1px solid rgba(219, 219, 219, 0.281);
+  border: 1px solid rgba(219, 219, 219, 0.1);
   border-radius: 5px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  padding: 0 10px;
+  padding: 0 5px;
   margin: 0;
 }
 .app-width-1-1 {
@@ -246,6 +246,7 @@ hr {
 }
 .app-width-1-2 {
   width: 50%;
+  padding: 5px;
 }
 .app-width-1-3 {
   width: 33%;
