@@ -1,0 +1,33 @@
+.app-layout {
+  border: 1px solid black;
+  height: 100vh;
+  background: linear-gradient(90deg, rgb(255, 255, 255), rgb(182, 216, 255), rgb(255, 255, 255));
+  padding: 10px;
+  overflow: auto;
+}
+.app-layout-content {
+  border: 1px solid rgb(163, 163, 163);
+  border-radius: 10px;
+  background: linear-gradient(
+    35deg,
+    rgba(0, 174, 255, 0.2),
+    rgba(234, 0, 255, 0.2),
+    rgba(0, 255, 157, 0.2)
+  );
+  backdrop-filter: blur(10px);
+  height: 100%;
+  padding: 10px;
+  overflow: auto;
+}
+.app-blur-button {
+  border: 1px solid black;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 10px 0;
+}
+.app-blur-button button {
+  border: 1px solid black;
+  background: rgba(0, 0, 0, 0.4);
+}
