@@ -1,10 +1,4 @@
-﻿using AngularApp.Core.Application.Providers;
-using AngularApp.Core.Application.Providers.ScrutorDI;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using System.Reflection;
-
-namespace AngularApp.Core.Application;
+﻿namespace AngularApp.Core.Application;
 
 public static class DependencyInjections
 {

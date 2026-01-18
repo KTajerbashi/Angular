@@ -40,7 +40,7 @@ public class AccountController : BaseController
         return Ok(new
         {
             Success = true,
-            Data = true,
+            Data = ProviderServices.UserState,
             Message = "با موفقیت انجام شده است ..."
         });
     }

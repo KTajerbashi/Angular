@@ -1,7 +1,4 @@
-﻿using Microsoft.Extensions.DependencyModel;
-using System.Reflection;
-
-namespace AngularApp.Core.Application.Extensions;
+﻿namespace AngularApp.Core.Application.Extensions;
 
 public static class AssemblyExtensions
 {
