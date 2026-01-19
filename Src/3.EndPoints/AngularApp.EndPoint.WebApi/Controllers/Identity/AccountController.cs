@@ -6,13 +6,12 @@ namespace AngularApp.EndPoint.WebApi.Controllers.Identity;
 
 public class AccountController : BaseController
 {
-    private readonly IIdentityFacade _identityFacade;
+    private readonly IIdentityService _identityServicea;
 
-    public AccountController(IIdentityFacade identityFacade)
+    public AccountController(IIdentityService identityService)
     {
-        _identityFacade = identityFacade;
+        _identityServicea = identityService;
     }
-
     [HttpPost("Login")]
     public async Task<IActionResult> Login(LoginRequest parameters)
     {
