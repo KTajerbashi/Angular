@@ -47,7 +47,6 @@ public class IdentityService : IIdentityService
             return new()
             {
                 IsSuccess = result.Succeeded,
-                Message = result.
             };
         }
         catch (Exception ex)
