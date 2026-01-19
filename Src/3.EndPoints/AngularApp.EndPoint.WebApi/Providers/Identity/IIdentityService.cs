@@ -1,5 +1,6 @@
 ﻿using AngularApp.Core.Application.Providers.ScrutorDI;
 using AngularApp.Core.Domain.Entities.Security;
+using AngularApp.EndPoint.WebApi.Exceptions;
 using AngularApp.EndPoint.WebApi.Models;
 
 namespace AngularApp.EndPoint.WebApi.Providers.Identity;
@@ -15,14 +16,14 @@ public interface IIdentityService : IScopeLifeTime
 
     Task<IdentityResponse> AddUserClaimsAsync(UserEntity user, CancellationToken cancellation);
     Task<IdentityResponse> RemoveUserClaimsAsync(UserEntity user, CancellationToken cancellation);
-    
+
     Task<IdentityResponse> AddUserTokenAsync(UserEntity user, CancellationToken cancellation);
     Task<IdentityResponse> RemoveUserTokenAsync(UserEntity user, CancellationToken cancellation);
-    
+
     Task<IdentityResponse> AddUserLoginAsync(UserEntity user, CancellationToken cancellation);
     Task<IdentityResponse> RemoveUserLoginAsync(UserEntity user, CancellationToken cancellation);
-    
-    Task<IdentityResponse> AddRoleClaimAsync(UserEntity user, CancellationToken cancellation);
+
+    Task<IdentityResponse> AddRoleClaimAsync(RoleEntity role, CancellationToken cancellation);
     Task<IdentityResponse> RemoveRoleClaimAsync(UserEntity user, CancellationToken cancellation);
 
     Task<IdentityResponse> AddRoleToUserAsync(UserEntity user, string roleName, CancellationToken cancellation);
@@ -38,9 +39,22 @@ public class IdentityService : IIdentityService
         _identityFacade = identityFacade;
     }
 
-    public Task<IdentityResponse> AddRoleClaimAsync(UserEntity user, CancellationToken cancellation)
+    public async Task<IdentityResponse> AddRoleClaimAsync(RoleEntity role, CancellationToken cancellation)
     {
-        throw new NotImplementedException();
+        try
+        {
+            var result = await _identityFacade.RoleManager.AddClaimAsync(role, new("", ""));
+            return new()
+            {
+                IsSuccess = result.Succeeded,
+                Message = result.
+            };
+        }
+        catch (Exception ex)
+        {
+
+            throw ex.ThrowApiException();
+        }
     }
 
     public Task<IdentityResponse> AddRoleToUserAsync(UserEntity user, string roleName, CancellationToken cancellation)
