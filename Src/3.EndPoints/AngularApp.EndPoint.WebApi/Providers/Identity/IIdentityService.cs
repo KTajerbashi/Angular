@@ -6,10 +6,27 @@ namespace AngularApp.EndPoint.WebApi.Providers.Identity;
 
 public interface IIdentityService : IScopeLifeTime
 {
-    //  Login
     Task<IdentityResponse> LoginByUsernameAsync(string username, string password, CancellationToken cancellation);
     Task<IdentityResponse> LoginByEmailAsync(string email, string password, CancellationToken cancellation);
     Task<IdentityResponse> LoginAsync(UserEntity user, CancellationToken cancellation);
+
+    Task<IdentityResponse> LogoutAsync(CancellationToken cancellation);
+
+
+    Task<IdentityResponse> AddUserClaimsAsync(UserEntity user, CancellationToken cancellation);
+    Task<IdentityResponse> RemoveUserClaimsAsync(UserEntity user, CancellationToken cancellation);
+    
+    Task<IdentityResponse> AddUserTokenAsync(UserEntity user, CancellationToken cancellation);
+    Task<IdentityResponse> RemoveUserTokenAsync(UserEntity user, CancellationToken cancellation);
+    
+    Task<IdentityResponse> AddUserLoginAsync(UserEntity user, CancellationToken cancellation);
+    Task<IdentityResponse> RemoveUserLoginAsync(UserEntity user, CancellationToken cancellation);
+    
+    Task<IdentityResponse> AddRoleClaimAsync(UserEntity user, CancellationToken cancellation);
+    Task<IdentityResponse> RemoveRoleClaimAsync(UserEntity user, CancellationToken cancellation);
+
+    Task<IdentityResponse> AddRoleToUserAsync(UserEntity user, string roleName, CancellationToken cancellation);
+
 }
 
 public class IdentityService : IIdentityService
@@ -19,6 +36,31 @@ public class IdentityService : IIdentityService
     public IdentityService(IIdentityFacade identityFacade)
     {
         _identityFacade = identityFacade;
+    }
+
+    public Task<IdentityResponse> AddRoleClaimAsync(UserEntity user, CancellationToken cancellation)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<IdentityResponse> AddRoleToUserAsync(UserEntity user, string roleName, CancellationToken cancellation)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<IdentityResponse> AddUserClaimsAsync(UserEntity user, CancellationToken cancellation)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<IdentityResponse> AddUserLoginAsync(UserEntity user, CancellationToken cancellation)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<IdentityResponse> AddUserTokenAsync(UserEntity user, CancellationToken cancellation)
+    {
+        throw new NotImplementedException();
     }
 
     public Task<IdentityResponse> LoginAsync(UserEntity user, CancellationToken cancellation)
@@ -32,6 +74,31 @@ public class IdentityService : IIdentityService
     }
 
     public Task<IdentityResponse> LoginByUsernameAsync(string username, string password, CancellationToken cancellation)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<IdentityResponse> LogoutAsync(CancellationToken cancellation)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<IdentityResponse> RemoveRoleClaimAsync(UserEntity user, CancellationToken cancellation)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<IdentityResponse> RemoveUserClaimsAsync(UserEntity user, CancellationToken cancellation)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<IdentityResponse> RemoveUserLoginAsync(UserEntity user, CancellationToken cancellation)
+    {
+        throw new NotImplementedException();
+    }
+
+    public Task<IdentityResponse> RemoveUserTokenAsync(UserEntity user, CancellationToken cancellation)
     {
         throw new NotImplementedException();
     }
