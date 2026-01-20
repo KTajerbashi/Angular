@@ -36,6 +36,7 @@ export class Nav implements OnInit {
       { Name: 'HTTP', Link: '/http-client', IsDeleted: false },
 
       { Name: 'Products', Link: '/products', IsDeleted: false },
+      { Name: 'NGRX', Link: '/ngrx', IsDeleted: false },
 
       { Name: 'Template Syntax', Link: '/template-syntax', IsDeleted: false },
       { Name: 'Routing', Link: '/routing', IsDeleted: false },

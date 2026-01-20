@@ -36,6 +36,7 @@ import { Login } from './pages/auth/login/login';
 import { Signup } from './pages/auth/signup/signup';
 import { Profile } from './pages/auth/profile/profile';
 import { MainLayout } from './layouts/main-layout/main-layout';
+import { NgrxIntro } from './pages/ngrx-intro/ngrx-intro';
 
 export const routes: Routes = [
   {
@@ -101,6 +102,7 @@ export const routes: Routes = [
       { path: 'http-client', component: HttpIntro },
 
       { path: 'products', component: ProductDashboard },
+      { path: 'ngrx', component: NgrxIntro },
       { path: 'users', component: User },
       { path: 'settings', component: Setting },
       { path: 'not-found', component: NotFoundPage },

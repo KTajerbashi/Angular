@@ -7,14 +7,18 @@ import { tokenInterceptor } from './interceptors/token-interceptor';
 import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
+import { ProductReducer } from './store/product/product.reducer.store';
+import { ProductEffect } from './store/product/product.effect.store';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
     provideHttpClient(withInterceptors([tokenInterceptor])),
-    provideStore(),
-    provideEffects(),
+    provideStore({
+      productStore: ProductReducer,
+    }),
+    provideEffects(ProductEffect),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
   ],
 };
