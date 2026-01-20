@@ -6,11 +6,10 @@ import IProduct from '../models/IProduct.dto';
 @Injectable({
   providedIn: 'root',
 })
-export class ProductService extends EntityApiService<IProduct>
-{
-  constructor(httpClient:HttpClient) {
+export class ProductService extends EntityApiService<IProduct> {
+  constructor(httpClient: HttpClient) {
     super(httpClient);
-    this.baseUrl = "Product";
-    console.log("Run Product Service ...");
+    this.baseUrl = 'Product';
+    console.log('Run Product Service ...');
   }
 }
