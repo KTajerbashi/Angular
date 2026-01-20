@@ -1,0 +1,13 @@
+<div class="app-container">
+  <div class="app-content">
+    <div class="app-card">
+      <button (click)="productStore.dispatch()" class="app-btn app-btn-primary">Dispatch</button>
+
+      <ul class="app-list app-list-hover">
+        @for (item of dataList(); track $index) {
+        <li>{{$index + 1}} : {{item.title}} - {{item.price}} - {{item.key}} - {{item.rate}}</li>
+        }
+      </ul>
+    </div>
+  </div>
+</div>
