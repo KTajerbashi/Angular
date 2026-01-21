@@ -1,7 +1,7 @@
 //  Step 3 Add Reducer
 
 import { createReducer, on } from '@ngrx/store';
-import { state } from '@angular/animations';
+// import { state } from '@angular/animations';
 import { ProductState } from './product.state.store';
 import { loadProductsFail, loadProductsSuccess } from './product.action.store';
 
