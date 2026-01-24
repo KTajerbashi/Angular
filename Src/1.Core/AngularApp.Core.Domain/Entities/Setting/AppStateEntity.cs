@@ -6,6 +6,9 @@ public class AppStateEntity : AggregateRoot
     public string Key { get; set; }
     public string Title { get; set; }
     public string Schema { get; set; }
+
+    private List<AppStateMenuEntity> _appStateMenuEntity = new();
+    public IReadOnlyCollection<AppStateMenuEntity> AppStateMenuEntity => _appStateMenuEntity;
 }
 
 

@@ -2,6 +2,7 @@
 using AngularApp.Core.Domain.Entities.Security.Privilege;
 using AngularApp.Core.Domain.Entities.Security.Role;
 using AngularApp.Core.Domain.Entities.Security.User;
+using AngularApp.Core.Domain.Entities.Setting;
 using AngularApp.Infra.Data.Common;
 using Microsoft.EntityFrameworkCore;
 
@@ -28,14 +29,15 @@ public class DatabaseContext : BaseDataContext
     public virtual DbSet<UserRolePrivilegeEntity> UserRolePrivilegeEntities => Set<UserRolePrivilegeEntity>();
     public virtual DbSet<RolePrivilegeEntity> RolePrivilegeEntities => Set<RolePrivilegeEntity>();
     public virtual DbSet<GroupPrivilegeEntity> GroupPrivilegeEntities => Set<GroupPrivilegeEntity>();
+    public virtual DbSet<MenuPrivilegeEntity> MenuPrivilegeEntities => Set<MenuPrivilegeEntity>();
 
 
     #endregion
 
     #region Setting
-    //public virtual DbSet<MenuEntity> MenuEntities => Set<MenuEntity>();
-    //public virtual DbSet<AppStateEntity> AppStateEntities => Set<AppStateEntity>();
-
+    public virtual DbSet<MenuEntity> MenuEntities => Set<MenuEntity>();
+    public virtual DbSet<AppStateEntity> AppStateEntities => Set<AppStateEntity>();
+    public virtual DbSet<AppStateMenuEntity> AppStateMenuEntities => Set<AppStateMenuEntity>();
     #endregion
 
     #region Store

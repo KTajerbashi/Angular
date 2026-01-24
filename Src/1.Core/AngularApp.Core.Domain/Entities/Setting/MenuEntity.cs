@@ -16,6 +16,9 @@ public class MenuEntity : AggregateRoot
 
     private List<MenuPrivilegeEntity> _menuPrivileges = new();
     public IReadOnlyCollection<MenuPrivilegeEntity> MenuPrivilegeEntity => _menuPrivileges;
+
+    private List<AppStateMenuEntity> _appStateMenuEntity = new();
+    public IReadOnlyCollection<AppStateMenuEntity> AppStateMenuEntity => _appStateMenuEntity;
 }
 
 
