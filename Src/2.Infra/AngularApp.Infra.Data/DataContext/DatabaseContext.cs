@@ -24,7 +24,8 @@ public class DatabaseContext : BaseDataContext
     public virtual DbSet<GroupEntity> GroupEntities => Set<GroupEntity>();
 
     public virtual DbSet<PrivilegeEntity> PrivilegeEntities => Set<PrivilegeEntity>();
-    //public virtual DbSet<UserPrivilegeEntity> UserPrivilegeEntities => Set<UserPrivilegeEntity>();
+    public virtual DbSet<UserPrivilegeEntity> UserPrivilegeEntities => Set<UserPrivilegeEntity>();
+    public virtual DbSet<UserRolePrivilegeEntity> UserRolePrivilegeEntities => Set<UserRolePrivilegeEntity>();
 
 
     #endregion

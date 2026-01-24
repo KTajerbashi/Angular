@@ -1,4 +1,6 @@
-﻿namespace AngularApp.Core.Domain.Entities.Security.Role;
+﻿using AngularApp.Core.Domain.Entities.Security.Privilege;
+
+namespace AngularApp.Core.Domain.Entities.Security.Role;
 
 [Table("Roles", Schema = "Security")]
 public class RoleEntity : IdentityRole<long>, IAggregate<long>
@@ -32,4 +34,7 @@ public class RoleEntity : IdentityRole<long>, IAggregate<long>
         IsActive = true;
         IsDeleted = false;
     }
+
+    private List<RolePrivilegeEntity> _rolePrivileges = new();
+    public IReadOnlyCollection<RolePrivilegeEntity> RolePrivileges => _rolePrivileges;
 }

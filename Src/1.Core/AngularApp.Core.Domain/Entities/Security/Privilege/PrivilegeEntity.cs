@@ -23,29 +23,14 @@ public class PrivilegeEntity : AggregateRoot
 
     private List<UserPrivilegeEntity> _userPrivileges = new();
     public IReadOnlyCollection<UserPrivilegeEntity> UserPrivileges => _userPrivileges;
-}
 
-[Table("UserPrivileges", Schema = "Security")]
-public class UserPrivilegeEntity : Entity<long>
-{
-    [ForeignKey(nameof(PrivilegeEntity))]
-    public long PrivilegeId { get; set; }
-    public PrivilegeEntity PrivilegeEntity { get; set; }
 
-    [ForeignKey(nameof(UserEntity))]
-    public long UserId { get; set; }
-    public UserEntity UserEntity { get; set; }
-}
+    private List<UserRolePrivilegeEntity> _userRolePrivileges = new();
+    public IReadOnlyCollection<UserRolePrivilegeEntity> UserRolePrivileges => _userRolePrivileges;
 
-[Table("UserRolePrivileges", Schema = "Security")]
-public class UserRolePrivilegeEntity : Entity<long>
-{
-
-}
-
-[Table("RolePrivileges", Schema = "Security")]
-public class RolePrivilegeEntity : Entity<long>
-{
+    
+    private List<RolePrivilegeEntity> _rolePrivileges = new();
+    public IReadOnlyCollection<RolePrivilegeEntity> RolePrivileges => _rolePrivileges;
 
 }
 
