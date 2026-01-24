@@ -1,4 +1,5 @@
 ﻿using AngularApp.Core.Domain.Entities.Security.Enums;
+using AngularApp.Core.Domain.Entities.Security.Group;
 using AngularApp.Core.Domain.Entities.Security.Role;
 using AngularApp.Core.Domain.Entities.Security.User;
 
@@ -27,16 +28,13 @@ public class PrivilegeEntity : AggregateRoot
 
     private List<UserRolePrivilegeEntity> _userRolePrivileges = new();
     public IReadOnlyCollection<UserRolePrivilegeEntity> UserRolePrivileges => _userRolePrivileges;
-    
+
     private List<RolePrivilegeEntity> _rolePrivileges = new();
     public IReadOnlyCollection<RolePrivilegeEntity> RolePrivileges => _rolePrivileges;
-    
+
     private List<GroupPrivilegeEntity> _groupPrivileges = new();
     public IReadOnlyCollection<GroupPrivilegeEntity> GroupPrivileges => _groupPrivileges;
-}
 
-[Table("MenuPrivileges", Schema = "Security")]
-public class MenuPrivilegeEntity : Entity<long>
-{
-
+    private List<MenuPrivilegeEntity> _menuPrivileges = new();
+    public IReadOnlyCollection<MenuPrivilegeEntity> MenuPrivilegeEntity => _menuPrivileges;
 }
