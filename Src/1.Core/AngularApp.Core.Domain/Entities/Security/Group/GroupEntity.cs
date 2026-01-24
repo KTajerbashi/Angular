@@ -11,4 +11,18 @@ public class GroupEntity : AggregateRoot
     private List<GroupPrivilegeEntity> _groupPrivileges = new();
     public IReadOnlyCollection<GroupPrivilegeEntity> GroupPrivileges => _groupPrivileges;
 
+    private List<UserRoleGroupEntity> _userRoleGroups = new();
+    public IReadOnlyCollection<UserRoleGroupEntity> UserRoleGroups => _userRoleGroups;
+
+
+}
+
+[Table("UserRoleGroups", Schema = "Security")]
+public class UserRoleGroupEntity : Entity<long>
+{
+    [ForeignKey(nameof(GroupEntity))]
+    public long GroupId { get; set; }
+    public GroupEntity GroupEntity { get; set; }
+
+    public long UserRoleId { get; set; }
 }
