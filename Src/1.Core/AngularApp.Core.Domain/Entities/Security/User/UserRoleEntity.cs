@@ -1,9 +1,9 @@
-﻿namespace AngularApp.Core.Domain.Entities.Security;
+﻿namespace AngularApp.Core.Domain.Entities.Security.User;
 
-[Table("RoleClaims", Schema = "Security")]
-[Description("Role Claim Entity Model")]
-public class RoleClaimEntity : IdentityRoleClaim<long>
+[Table("UserRoles", Schema = "Security")]
+public class UserRoleEntity : IdentityUserRole<long>, IAuditableEntity<long>
 {
+    public long Id { get; set; }
     public bool IsDeleted { get; set; }
 
     public bool IsActive { get; set; }

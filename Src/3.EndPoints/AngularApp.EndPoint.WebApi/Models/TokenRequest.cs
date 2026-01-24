@@ -1,4 +1,5 @@
-﻿using AngularApp.Core.Domain.Entities.Security;
+﻿using AngularApp.Core.Domain.Entities.Security.Role;
+using AngularApp.Core.Domain.Entities.Security.User;
 
 namespace AngularApp.EndPoint.WebApi.Models;
 

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AngularApp.Infra.Data.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20260124192001_InitialDatabase")]
-    partial class InitialDatabase
+    [Migration("20260124211645_Add_Privilege_Parent")]
+    partial class Add_Privilege_Parent
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,7 +26,122 @@ namespace AngularApp.Infra.Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("AngularApp.Core.Domain.Entities.Security.RoleClaimEntity", b =>
+            modelBuilder.Entity("AngularApp.Core.Domain.Entities.Security.Group.GroupEntity", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<long?>("CreatedByUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
+
+                    b.Property<Guid>("EntityId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<string>("Key")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long?>("UpdatedByUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Groups", "Security");
+                });
+
+            modelBuilder.Entity("AngularApp.Core.Domain.Entities.Security.Privilege.PrivilegeEntity", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("Action")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Command")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long?>("CreatedByUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
+
+                    b.Property<Guid>("EntityId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("EntityName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<byte>("Order")
+                        .HasColumnType("tinyint");
+
+                    b.Property<long?>("ParentId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte>("Type")
+                        .HasColumnType("tinyint");
+
+                    b.Property<long?>("UpdatedByUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ParentId");
+
+                    b.ToTable("Privileges", "Security");
+                });
+
+            modelBuilder.Entity("AngularApp.Core.Domain.Entities.Security.Role.RoleClaimEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -77,7 +192,7 @@ namespace AngularApp.Infra.Data.Migrations
                     b.ToTable("RoleClaims", "Security");
                 });
 
-            modelBuilder.Entity("AngularApp.Core.Domain.Entities.Security.RoleEntity", b =>
+            modelBuilder.Entity("AngularApp.Core.Domain.Entities.Security.Role.RoleEntity", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -134,7 +249,7 @@ namespace AngularApp.Infra.Data.Migrations
                     b.ToTable("Roles", "Security");
                 });
 
-            modelBuilder.Entity("AngularApp.Core.Domain.Entities.Security.UserClaimEntity", b =>
+            modelBuilder.Entity("AngularApp.Core.Domain.Entities.Security.User.UserClaimEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -185,7 +300,7 @@ namespace AngularApp.Infra.Data.Migrations
                     b.ToTable("UserClaims", "Security");
                 });
 
-            modelBuilder.Entity("AngularApp.Core.Domain.Entities.Security.UserEntity", b =>
+            modelBuilder.Entity("AngularApp.Core.Domain.Entities.Security.User.UserEntity", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -292,7 +407,7 @@ namespace AngularApp.Infra.Data.Migrations
                     b.ToTable("Users", "Security");
                 });
 
-            modelBuilder.Entity("AngularApp.Core.Domain.Entities.Security.UserLoginEntity", b =>
+            modelBuilder.Entity("AngularApp.Core.Domain.Entities.Security.User.UserLoginEntity", b =>
                 {
                     b.Property<string>("LoginProvider")
                         .HasColumnType("nvarchar(450)");
@@ -343,7 +458,7 @@ namespace AngularApp.Infra.Data.Migrations
                     b.ToTable("UserLogins", "Security");
                 });
 
-            modelBuilder.Entity("AngularApp.Core.Domain.Entities.Security.UserRoleEntity", b =>
+            modelBuilder.Entity("AngularApp.Core.Domain.Entities.Security.User.UserRoleEntity", b =>
                 {
                     b.Property<long>("UserId")
                         .HasColumnType("bigint");
@@ -388,7 +503,7 @@ namespace AngularApp.Infra.Data.Migrations
                     b.ToTable("UserRoles", "Security");
                 });
 
-            modelBuilder.Entity("AngularApp.Core.Domain.Entities.Security.UserTokenEntity", b =>
+            modelBuilder.Entity("AngularApp.Core.Domain.Entities.Security.User.UserTokenEntity", b =>
                 {
                     b.Property<long>("UserId")
                         .HasColumnType("bigint");
@@ -437,55 +552,69 @@ namespace AngularApp.Infra.Data.Migrations
                     b.ToTable("UserTokens", "Security");
                 });
 
-            modelBuilder.Entity("AngularApp.Core.Domain.Entities.Security.RoleClaimEntity", b =>
+            modelBuilder.Entity("AngularApp.Core.Domain.Entities.Security.Privilege.PrivilegeEntity", b =>
                 {
-                    b.HasOne("AngularApp.Core.Domain.Entities.Security.RoleEntity", null)
+                    b.HasOne("AngularApp.Core.Domain.Entities.Security.Privilege.PrivilegeEntity", "Parent")
+                        .WithMany("Children")
+                        .HasForeignKey("ParentId");
+
+                    b.Navigation("Parent");
+                });
+
+            modelBuilder.Entity("AngularApp.Core.Domain.Entities.Security.Role.RoleClaimEntity", b =>
+                {
+                    b.HasOne("AngularApp.Core.Domain.Entities.Security.Role.RoleEntity", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("AngularApp.Core.Domain.Entities.Security.UserClaimEntity", b =>
+            modelBuilder.Entity("AngularApp.Core.Domain.Entities.Security.User.UserClaimEntity", b =>
                 {
-                    b.HasOne("AngularApp.Core.Domain.Entities.Security.UserEntity", null)
+                    b.HasOne("AngularApp.Core.Domain.Entities.Security.User.UserEntity", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("AngularApp.Core.Domain.Entities.Security.UserLoginEntity", b =>
+            modelBuilder.Entity("AngularApp.Core.Domain.Entities.Security.User.UserLoginEntity", b =>
                 {
-                    b.HasOne("AngularApp.Core.Domain.Entities.Security.UserEntity", null)
+                    b.HasOne("AngularApp.Core.Domain.Entities.Security.User.UserEntity", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("AngularApp.Core.Domain.Entities.Security.UserRoleEntity", b =>
+            modelBuilder.Entity("AngularApp.Core.Domain.Entities.Security.User.UserRoleEntity", b =>
                 {
-                    b.HasOne("AngularApp.Core.Domain.Entities.Security.RoleEntity", null)
+                    b.HasOne("AngularApp.Core.Domain.Entities.Security.Role.RoleEntity", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("AngularApp.Core.Domain.Entities.Security.UserEntity", null)
+                    b.HasOne("AngularApp.Core.Domain.Entities.Security.User.UserEntity", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("AngularApp.Core.Domain.Entities.Security.UserTokenEntity", b =>
+            modelBuilder.Entity("AngularApp.Core.Domain.Entities.Security.User.UserTokenEntity", b =>
                 {
-                    b.HasOne("AngularApp.Core.Domain.Entities.Security.UserEntity", null)
+                    b.HasOne("AngularApp.Core.Domain.Entities.Security.User.UserEntity", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("AngularApp.Core.Domain.Entities.Security.Privilege.PrivilegeEntity", b =>
+                {
+                    b.Navigation("Children");
                 });
 #pragma warning restore 612, 618
         }

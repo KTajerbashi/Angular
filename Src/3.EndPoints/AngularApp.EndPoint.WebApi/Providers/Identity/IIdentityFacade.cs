@@ -1,5 +1,6 @@
 ﻿using AngularApp.Core.Application.Providers.ScrutorDI;
-using AngularApp.Core.Domain.Entities.Security;
+using AngularApp.Core.Domain.Entities.Security.Role;
+using AngularApp.Core.Domain.Entities.Security.User;
 using Microsoft.AspNetCore.Identity;
 
 namespace AngularApp.EndPoint.WebApi.Providers.Identity;

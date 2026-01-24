@@ -1,5 +1,6 @@
 ﻿using AngularApp.Core.Application.Providers.ScrutorDI;
-using AngularApp.Core.Domain.Entities.Security;
+using AngularApp.Core.Domain.Entities.Security.Role;
+using AngularApp.Core.Domain.Entities.Security.User;
 using AngularApp.EndPoint.WebApi.Exceptions;
 using AngularApp.EndPoint.WebApi.Models;
 

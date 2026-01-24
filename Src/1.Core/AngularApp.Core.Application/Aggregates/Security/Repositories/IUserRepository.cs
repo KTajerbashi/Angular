@@ -1,5 +1,6 @@
 ﻿using AngularApp.Core.Application.Common;
-using AngularApp.Core.Domain.Entities.Security;
+using AngularApp.Core.Domain.Entities.Security.Role;
+using AngularApp.Core.Domain.Entities.Security.User;
 
 namespace AngularApp.Core.Application.Aggregates.Security.Repositories;
 

@@ -1,7 +1,7 @@
-﻿namespace AngularApp.Core.Domain.Entities.Security;
+﻿namespace AngularApp.Core.Domain.Entities.Security.User;
 
-[Table("UserRoles", Schema = "Security")]
-public class UserRoleEntity : IdentityUserRole<long>, IAuditableEntity<long>
+[Table("UserTokens", Schema = "Security")]
+public class UserTokenEntity : IdentityUserToken<long>, IAuditableEntity<long>
 {
     public long Id { get; set; }
     public bool IsDeleted { get; set; }

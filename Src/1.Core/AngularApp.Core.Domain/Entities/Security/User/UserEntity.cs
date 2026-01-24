@@ -1,8 +1,14 @@
-﻿namespace AngularApp.Core.Domain.Entities.Security;
+﻿using AngularApp.Core.Domain.Entities.Security.Privilege;
 
-[Table("Roles", Schema = "Security")]
-public class RoleEntity : IdentityRole<long>, IAggregate<long>
+namespace AngularApp.Core.Domain.Entities.Security.User;
+
+[Table("Users", Schema = "Security")]
+public class UserEntity : IdentityUser<long>, IAggregate<long>
 {
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public string DisplayName { get; set; }
+
     public bool IsDeleted { get; set; }
 
     public bool IsActive { get; set; }
@@ -15,7 +21,7 @@ public class RoleEntity : IdentityRole<long>, IAggregate<long>
     /// های مربوطه را نگهداری می‌کند        
     /// </summary>
     private readonly List<IDomainEvent> _events;
-    protected RoleEntity() => _events = new();
+    protected UserEntity() => _events = new();
     protected void AddEvent(IDomainEvent @event) => _events.Add(@event);
     public void ClearEvents() => _events.Clear();
     public IEnumerable<IDomainEvent> GetEvents() => _events.AsEnumerable();
@@ -32,4 +38,10 @@ public class RoleEntity : IdentityRole<long>, IAggregate<long>
         IsActive = true;
         IsDeleted = false;
     }
+
+
+    private List<UserPrivilegeEntity> _userPrivileges = new();
+    public IReadOnlyCollection<UserPrivilegeEntity> UserPrivileges => _userPrivileges;
 }
+
+

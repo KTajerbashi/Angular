@@ -1,6 +1,7 @@
 ﻿using AngularApp.Core.Application;
 using AngularApp.Core.Application.Extensions;
-using AngularApp.Core.Domain.Entities.Security;
+using AngularApp.Core.Domain.Entities.Security.Role;
+using AngularApp.Core.Domain.Entities.Security.User;
 using AngularApp.Infra.Data;
 using AngularApp.Infra.Data.DataContext;
 using Microsoft.AspNetCore.Identity;

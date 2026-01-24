@@ -1,4 +1,4 @@
-﻿namespace AngularApp.Core.Domain.Entities.Security;
+﻿namespace AngularApp.Core.Domain.Entities.Security.User;
 
 [Table("UserLogins", Schema = "Security")]
 public class UserLoginEntity : IdentityUserLogin<long>, IAuditableEntity<long>
