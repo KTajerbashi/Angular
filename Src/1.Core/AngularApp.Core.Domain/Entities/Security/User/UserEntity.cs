@@ -1,5 +1,6 @@
 ﻿using AngularApp.Core.Domain.Entities.Security.Group;
 using AngularApp.Core.Domain.Entities.Security.Privilege;
+using AngularApp.Core.Domain.Entities.Security.User.Parameters;
 
 namespace AngularApp.Core.Domain.Entities.Security.User;
 
@@ -14,7 +15,7 @@ public class UserEntity : IdentityUser<long>, IAggregate<long>
 
     public bool IsActive { get; set; }
 
-    public Guid EntityId { get; set; }
+    public Guid EntityId { get; set; } = Guid.NewGuid();
 
     /// <summary>
     /// لیست 
@@ -40,6 +41,17 @@ public class UserEntity : IdentityUser<long>, IAggregate<long>
         IsDeleted = false;
     }
 
+    public UserEntity(UserCreateParameter parameter)
+    {
+        FirstName = parameter.FirstName;
+        LastName = parameter.LastName;
+        DisplayName = parameter.DisplayName;
+        UserName = parameter.UserName;
+        Email = parameter.Email;
+        PhoneNumber = parameter.PhoneNumber;
+        EmailConfirmed = parameter.EmailConfirmed;
+        PhoneNumberConfirmed = parameter.PhoneNumberConfirmed;
+    }
 
     private List<UserPrivilegeEntity> _userPrivileges = new();
     public IReadOnlyCollection<UserPrivilegeEntity> UserPrivileges => _userPrivileges;

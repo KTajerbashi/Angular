@@ -6,7 +6,7 @@ builder.AddWebApp();
 
 var app = builder.Build();
 
-app.UseWebApp();
+await app.UseWebApp();
 
 app.Run();
 

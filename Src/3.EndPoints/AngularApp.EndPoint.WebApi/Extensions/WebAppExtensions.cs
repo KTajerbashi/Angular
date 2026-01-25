@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System.Security.Claims;
 
 namespace AngularApp.EndPoint.WebApi.Extensions;
-
 public static class WebAppExtensions
 {
     public static ProviderServices GetProviderServices(this HttpContext context)

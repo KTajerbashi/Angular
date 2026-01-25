@@ -1,6 +1,8 @@
 ﻿using AngularApp.EndPoint.WebApi;
+using AngularApp.EndPoint.WebApi.Extensions;
 using AngularApp.EndPoint.WebApi.Providers.Swagger;
 using AngularApp.ServiceDefaults;
+using System.Threading.Tasks;
 
 namespace AngularApp.EndPoint.WebApp;
 
@@ -22,7 +24,7 @@ public static class DependencyInjections
 
         return builder;
     }
-    public static WebApplication UseWebApp(this WebApplication app)
+    public static async Task<WebApplication> UseWebApp(this WebApplication app)
     {
 
         app.MapDefaultEndpoints();
@@ -51,7 +53,12 @@ public static class DependencyInjections
         app.UseSwaggerApi();
 
         app.MapFallbackToFile("/index.html");
-        
+
+        if (app.Environment.IsDevelopment())
+        {
+            await app.InitialDatabaseWithSeedDataAsync();
+        }
+
         return app;
     }
 }

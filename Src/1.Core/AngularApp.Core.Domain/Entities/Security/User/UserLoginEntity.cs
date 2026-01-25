@@ -8,7 +8,7 @@ public class UserLoginEntity : IdentityUserLogin<long>, IAuditableEntity<long>
 
     public bool IsActive { get; set; }
 
-    public Guid EntityId { get; set; }
+    public Guid EntityId { get; set; } = Guid.NewGuid();
 
     public void Delete()
     {

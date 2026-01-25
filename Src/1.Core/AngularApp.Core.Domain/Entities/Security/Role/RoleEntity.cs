@@ -9,7 +9,7 @@ public class RoleEntity : IdentityRole<long>, IAggregate<long>
 
     public bool IsActive { get; set; }
 
-    public Guid EntityId { get; set; }
+    public Guid EntityId { get; set; } = Guid.NewGuid();
 
     /// <summary>
     /// لیست 
@@ -21,7 +21,10 @@ public class RoleEntity : IdentityRole<long>, IAggregate<long>
     protected void AddEvent(IDomainEvent @event) => _events.Add(@event);
     public void ClearEvents() => _events.Clear();
     public IEnumerable<IDomainEvent> GetEvents() => _events.AsEnumerable();
-
+    public RoleEntity(string name)
+    {
+        Name = name;
+    }
     public void Delete()
     {
         IsActive = false;

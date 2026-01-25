@@ -7,7 +7,7 @@ public class UserClaimEntity : IdentityUserClaim<long>, IAuditableEntity<int>
 
     public bool IsActive { get; set; }
 
-    public Guid EntityId { get; set; }
+    public Guid EntityId { get; set; } = Guid.NewGuid();
 
     public void Delete()
     {

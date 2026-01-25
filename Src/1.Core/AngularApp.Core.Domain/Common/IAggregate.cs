@@ -1,6 +1,5 @@
 ﻿namespace AngularApp.Core.Domain.Common;
 
-
 public interface IAggregate<TId> : IAuditableEntity<TId>
     where TId : struct,
           IComparable,

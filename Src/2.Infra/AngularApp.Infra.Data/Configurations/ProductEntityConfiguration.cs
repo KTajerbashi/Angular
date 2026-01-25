@@ -1,4 +1,5 @@
-﻿using AngularApp.Core.Domain.Entities.Store;
+﻿using AngularApp.Core.Domain.Entities.Security.User;
+using AngularApp.Core.Domain.Entities.Store;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -35,3 +36,9 @@ public class ProductDetailEntityConfiguration : IEntityTypeConfiguration<Product
             .HasMaxLength(500);
     }
 }
+//public class UserRoleEntityConfiguration : IEntityTypeConfiguration<UserRoleEntity>
+//{
+//    public void Configure(EntityTypeBuilder<UserRoleEntity> builder)
+//    {
+//    }
+//}

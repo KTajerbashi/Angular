@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AngularApp.Infra.Data.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20260124214353_Add_GroupPrivilege")]
-    partial class Add_GroupPrivilege
+    [Migration("20260125204107_Initial_Database")]
+    partial class Initial_Database
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -74,6 +74,154 @@ namespace AngularApp.Infra.Data.Migrations
                     b.ToTable("Groups", "Security");
                 });
 
+            modelBuilder.Entity("AngularApp.Core.Domain.Entities.Security.Group.GroupRoleEntity", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<long?>("CreatedByUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
+
+                    b.Property<Guid>("EntityId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<long>("GroupId")
+                        .HasColumnType("bigint");
+
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<long>("RoleId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("UpdatedByUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GroupId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("GroupRoles", "Security");
+                });
+
+            modelBuilder.Entity("AngularApp.Core.Domain.Entities.Security.Group.GroupUserEntity", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<long?>("CreatedByUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
+
+                    b.Property<Guid>("EntityId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<long>("GroupId")
+                        .HasColumnType("bigint");
+
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<long?>("UpdatedByUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("UserId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GroupId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("GroupUsers", "Security");
+                });
+
+            modelBuilder.Entity("AngularApp.Core.Domain.Entities.Security.Group.GroupUserRoleEntity", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<long?>("CreatedByUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
+
+                    b.Property<Guid>("EntityId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<long>("GroupId")
+                        .HasColumnType("bigint");
+
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<long?>("UpdatedByUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("UserRoleId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GroupId");
+
+                    b.ToTable("GroupUserRoles", "Security");
+                });
+
             modelBuilder.Entity("AngularApp.Core.Domain.Entities.Security.Privilege.GroupPrivilegeEntity", b =>
                 {
                     b.Property<long>("Id")
@@ -122,6 +270,56 @@ namespace AngularApp.Infra.Data.Migrations
                     b.HasIndex("PrivilegeId");
 
                     b.ToTable("GroupPrivileges", "Security");
+                });
+
+            modelBuilder.Entity("AngularApp.Core.Domain.Entities.Security.Privilege.MenuPrivilegeEntity", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<long?>("CreatedByUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
+
+                    b.Property<Guid>("EntityId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<long>("MenuId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("PrivilegeId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("UpdatedByUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MenuId");
+
+                    b.HasIndex("PrivilegeId");
+
+                    b.ToTable("MenuPrivileges", "Security");
                 });
 
             modelBuilder.Entity("AngularApp.Core.Domain.Entities.Security.Privilege.PrivilegeEntity", b =>
@@ -676,7 +874,10 @@ namespace AngularApp.Infra.Data.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
                     b.Property<bool>("IsActive")
                         .ValueGeneratedOnAdd()
@@ -750,6 +951,210 @@ namespace AngularApp.Infra.Data.Migrations
                     b.ToTable("UserTokens", "Security");
                 });
 
+            modelBuilder.Entity("AngularApp.Core.Domain.Entities.Setting.AppStateEntity", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<long?>("CreatedByUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
+
+                    b.Property<Guid>("EntityId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<string>("Key")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Schema")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long?>("UpdatedByUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AppStates", "Setting");
+                });
+
+            modelBuilder.Entity("AngularApp.Core.Domain.Entities.Setting.AppStateMenuEntity", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<long>("AppStateId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("CreatedByUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
+
+                    b.Property<Guid>("EntityId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<long>("MenuId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("UpdatedByUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppStateId");
+
+                    b.HasIndex("MenuId");
+
+                    b.ToTable("AppStateMenus", "Setting");
+                });
+
+            modelBuilder.Entity("AngularApp.Core.Domain.Entities.Setting.MenuEntity", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<long?>("CreatedByUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
+
+                    b.Property<Guid>("EntityId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsActive")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
+
+                    b.Property<bool>("IsDeleted")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<long?>("ParentId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Schema")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long?>("UpdatedByUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ParentId");
+
+                    b.ToTable("Menus", "Setting");
+                });
+
+            modelBuilder.Entity("AngularApp.Core.Domain.Entities.Security.Group.GroupRoleEntity", b =>
+                {
+                    b.HasOne("AngularApp.Core.Domain.Entities.Security.Group.GroupEntity", "GroupEntity")
+                        .WithMany("GroupRoles")
+                        .HasForeignKey("GroupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AngularApp.Core.Domain.Entities.Security.Role.RoleEntity", "RoleEntity")
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("GroupEntity");
+
+                    b.Navigation("RoleEntity");
+                });
+
+            modelBuilder.Entity("AngularApp.Core.Domain.Entities.Security.Group.GroupUserEntity", b =>
+                {
+                    b.HasOne("AngularApp.Core.Domain.Entities.Security.Group.GroupEntity", "GroupEntity")
+                        .WithMany("GroupUsers")
+                        .HasForeignKey("GroupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AngularApp.Core.Domain.Entities.Security.User.UserEntity", "UserEntity")
+                        .WithMany("GroupUsers")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("GroupEntity");
+
+                    b.Navigation("UserEntity");
+                });
+
+            modelBuilder.Entity("AngularApp.Core.Domain.Entities.Security.Group.GroupUserRoleEntity", b =>
+                {
+                    b.HasOne("AngularApp.Core.Domain.Entities.Security.Group.GroupEntity", "GroupEntity")
+                        .WithMany("GroupUserRoles")
+                        .HasForeignKey("GroupId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("GroupEntity");
+                });
+
             modelBuilder.Entity("AngularApp.Core.Domain.Entities.Security.Privilege.GroupPrivilegeEntity", b =>
                 {
                     b.HasOne("AngularApp.Core.Domain.Entities.Security.Group.GroupEntity", "GroupEntity")
@@ -765,6 +1170,25 @@ namespace AngularApp.Infra.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("GroupEntity");
+
+                    b.Navigation("PrivilegeEntity");
+                });
+
+            modelBuilder.Entity("AngularApp.Core.Domain.Entities.Security.Privilege.MenuPrivilegeEntity", b =>
+                {
+                    b.HasOne("AngularApp.Core.Domain.Entities.Setting.MenuEntity", "MenuEntity")
+                        .WithMany("MenuPrivilegeEntity")
+                        .HasForeignKey("MenuId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AngularApp.Core.Domain.Entities.Security.Privilege.PrivilegeEntity", "PrivilegeEntity")
+                        .WithMany("MenuPrivilegeEntity")
+                        .HasForeignKey("PrivilegeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("MenuEntity");
 
                     b.Navigation("PrivilegeEntity");
                 });
@@ -878,9 +1302,43 @@ namespace AngularApp.Infra.Data.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("AngularApp.Core.Domain.Entities.Setting.AppStateMenuEntity", b =>
+                {
+                    b.HasOne("AngularApp.Core.Domain.Entities.Setting.AppStateEntity", "AppStateEntity")
+                        .WithMany("AppStateMenuEntity")
+                        .HasForeignKey("AppStateId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("AngularApp.Core.Domain.Entities.Setting.MenuEntity", "MenuEntity")
+                        .WithMany("AppStateMenuEntity")
+                        .HasForeignKey("MenuId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppStateEntity");
+
+                    b.Navigation("MenuEntity");
+                });
+
+            modelBuilder.Entity("AngularApp.Core.Domain.Entities.Setting.MenuEntity", b =>
+                {
+                    b.HasOne("AngularApp.Core.Domain.Entities.Setting.MenuEntity", "Parent")
+                        .WithMany("Children")
+                        .HasForeignKey("ParentId");
+
+                    b.Navigation("Parent");
+                });
+
             modelBuilder.Entity("AngularApp.Core.Domain.Entities.Security.Group.GroupEntity", b =>
                 {
                     b.Navigation("GroupPrivileges");
+
+                    b.Navigation("GroupRoles");
+
+                    b.Navigation("GroupUserRoles");
+
+                    b.Navigation("GroupUsers");
                 });
 
             modelBuilder.Entity("AngularApp.Core.Domain.Entities.Security.Privilege.PrivilegeEntity", b =>
@@ -888,6 +1346,8 @@ namespace AngularApp.Infra.Data.Migrations
                     b.Navigation("Children");
 
                     b.Navigation("GroupPrivileges");
+
+                    b.Navigation("MenuPrivilegeEntity");
 
                     b.Navigation("RolePrivileges");
 
@@ -903,7 +1363,23 @@ namespace AngularApp.Infra.Data.Migrations
 
             modelBuilder.Entity("AngularApp.Core.Domain.Entities.Security.User.UserEntity", b =>
                 {
+                    b.Navigation("GroupUsers");
+
                     b.Navigation("UserPrivileges");
+                });
+
+            modelBuilder.Entity("AngularApp.Core.Domain.Entities.Setting.AppStateEntity", b =>
+                {
+                    b.Navigation("AppStateMenuEntity");
+                });
+
+            modelBuilder.Entity("AngularApp.Core.Domain.Entities.Setting.MenuEntity", b =>
+                {
+                    b.Navigation("AppStateMenuEntity");
+
+                    b.Navigation("Children");
+
+                    b.Navigation("MenuPrivilegeEntity");
                 });
 #pragma warning restore 612, 618
         }
