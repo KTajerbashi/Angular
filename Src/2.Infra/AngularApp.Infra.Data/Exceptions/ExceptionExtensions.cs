@@ -1,4 +1,4 @@
-﻿namespace AngularApp.Infra.Data.Exceptionsp;
+﻿namespace AngularApp.Infra.Data.Exceptions;
 
 public static class ExceptionExtensions
 {

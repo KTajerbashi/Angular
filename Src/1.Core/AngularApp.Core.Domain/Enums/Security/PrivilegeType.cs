@@ -1,4 +1,4 @@
-﻿namespace AngularApp.Core.Domain.Entities.Security.Enums;
+﻿namespace AngularApp.Core.Domain.Enums.Security;
 
 public enum PrivilegeType : byte
 {

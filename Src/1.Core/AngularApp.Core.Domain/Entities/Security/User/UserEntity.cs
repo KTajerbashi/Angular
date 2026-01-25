@@ -1,4 +1,5 @@
-﻿using AngularApp.Core.Domain.Entities.Security.Privilege;
+﻿using AngularApp.Core.Domain.Entities.Security.Group;
+using AngularApp.Core.Domain.Entities.Security.Privilege;
 
 namespace AngularApp.Core.Domain.Entities.Security.User;
 
@@ -42,6 +43,9 @@ public class UserEntity : IdentityUser<long>, IAggregate<long>
 
     private List<UserPrivilegeEntity> _userPrivileges = new();
     public IReadOnlyCollection<UserPrivilegeEntity> UserPrivileges => _userPrivileges;
+
+    private List<GroupUserEntity> _groupUsers = new();
+    public IReadOnlyCollection<GroupUserEntity> GroupUsers => _groupUsers;
 }
 
 

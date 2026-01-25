@@ -27,11 +27,13 @@ public class DatabaseContext : BaseDataContext
     public virtual DbSet<PrivilegeEntity> PrivilegeEntities => Set<PrivilegeEntity>();
     public virtual DbSet<UserPrivilegeEntity> UserPrivilegeEntities => Set<UserPrivilegeEntity>();
     public virtual DbSet<UserRolePrivilegeEntity> UserRolePrivilegeEntities => Set<UserRolePrivilegeEntity>();
-    public virtual DbSet<UserRoleGroupEntity> UserRoleGroupEntities => Set<UserRoleGroupEntity>();
+    public virtual DbSet<GroupUserRoleEntity> GroupUserRoleEntities => Set<GroupUserRoleEntity>();
     public virtual DbSet<RolePrivilegeEntity> RolePrivilegeEntities => Set<RolePrivilegeEntity>();
     public virtual DbSet<GroupPrivilegeEntity> GroupPrivilegeEntities => Set<GroupPrivilegeEntity>();
     public virtual DbSet<MenuPrivilegeEntity> MenuPrivilegeEntities => Set<MenuPrivilegeEntity>();
 
+    public virtual DbSet<GroupUserEntity> GroupUserEntities => Set<GroupUserEntity>();
+    public virtual DbSet<GroupRoleEntity> GroupRoleEntities => Set<GroupRoleEntity>();
 
     #endregion
 

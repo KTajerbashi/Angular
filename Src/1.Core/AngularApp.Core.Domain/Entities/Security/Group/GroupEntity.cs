@@ -1,4 +1,5 @@
 ﻿using AngularApp.Core.Domain.Entities.Security.Privilege;
+using AngularApp.Core.Domain.Entities.Security.User;
 
 namespace AngularApp.Core.Domain.Entities.Security.Group;
 
@@ -11,18 +12,12 @@ public class GroupEntity : AggregateRoot
     private List<GroupPrivilegeEntity> _groupPrivileges = new();
     public IReadOnlyCollection<GroupPrivilegeEntity> GroupPrivileges => _groupPrivileges;
 
-    private List<UserRoleGroupEntity> _userRoleGroups = new();
-    public IReadOnlyCollection<UserRoleGroupEntity> UserRoleGroups => _userRoleGroups;
-
-
-}
-
-[Table("UserRoleGroups", Schema = "Security")]
-public class UserRoleGroupEntity : Entity<long>
-{
-    [ForeignKey(nameof(GroupEntity))]
-    public long GroupId { get; set; }
-    public GroupEntity GroupEntity { get; set; }
-
-    public long UserRoleId { get; set; }
+    private List<GroupUserRoleEntity> _groupUserRoles = new();
+    public IReadOnlyCollection<GroupUserRoleEntity> GroupUserRoles => _groupUserRoles;
+  
+    private List<GroupUserEntity> _groupUsers = new();
+    public IReadOnlyCollection<GroupUserEntity> GroupUsers => _groupUsers;
+  
+    private List<GroupRoleEntity> _groupRoles = new();
+    public IReadOnlyCollection<GroupRoleEntity> GroupRoles => _groupRoles;
 }

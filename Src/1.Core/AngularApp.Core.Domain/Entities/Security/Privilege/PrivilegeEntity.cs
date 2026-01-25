@@ -1,7 +1,7 @@
-﻿using AngularApp.Core.Domain.Entities.Security.Enums;
-using AngularApp.Core.Domain.Entities.Security.Group;
+﻿using AngularApp.Core.Domain.Entities.Security.Group;
 using AngularApp.Core.Domain.Entities.Security.Role;
 using AngularApp.Core.Domain.Entities.Security.User;
+using AngularApp.Core.Domain.Enums.Security;
 
 namespace AngularApp.Core.Domain.Entities.Security.Privilege;
 

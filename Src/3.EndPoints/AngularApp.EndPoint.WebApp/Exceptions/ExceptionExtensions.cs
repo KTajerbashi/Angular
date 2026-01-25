@@ -1,4 +1,4 @@
-﻿namespace AngularApp.EndPoint.WebApi.Exceptions;
+﻿namespace AngularApp.EndPoint.WebApp.Exceptions;
 
 public static class ExceptionExtensions
 {
