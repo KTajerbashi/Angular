@@ -9,6 +9,7 @@ import { provideEffects } from '@ngrx/effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { ProductReducer } from './store/product/product.reducer.store';
 import { ProductEffect } from './store/product/product.effect.store';
+import { PrfileReducer, ProfileEffect } from './store/userState/userstate.flow.store';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -17,8 +18,9 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withInterceptors([tokenInterceptor])),
     provideStore({
       productStore: ProductReducer,
+      profileStore: PrfileReducer,
     }),
-    provideEffects(ProductEffect),
+    provideEffects(ProductEffect,ProfileEffect),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
   ],
 };
