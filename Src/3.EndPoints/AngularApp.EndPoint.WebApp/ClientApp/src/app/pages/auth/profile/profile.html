@@ -3,7 +3,7 @@
     <div class="app-grid">
       <div class="app-width-4-5">
         <div class="app-grid">
-          <div class="app-width-1-3">First Name</div>
+          <div class="app-width-1-3">First Name : {{model()?.user?.displayName}}</div>
           <div class="app-width-1-3">LastName Name</div>
           <div class="app-width-1-3">Display Name</div>
         </div>
@@ -36,6 +36,8 @@
     <div class="app-grid">
       <button class="app-btn app-btn-success">Save</button>
       <button class="app-btn app-btn-danger">Cancel</button>
+      <button (click)="dispatchProfile()" class="app-btn app-btn-primary">Dispatch</button>
+      <button (click)="selectProfile()" class="app-btn app-btn-info">Select</button>
     </div>
   </div>
 </div>

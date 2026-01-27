@@ -307,7 +307,7 @@
                 <label for="Phone">Roles</label>
                 <select formControlName="roleKey" name="roles" id="roles">
                   @for (item of roles; track $index) {
-                  <option [value]="item.Key">{{ item.Name }}</option>
+                  <option [value]="item.key">{{ item.name }}</option>
                   }
                 </select>
               </div>

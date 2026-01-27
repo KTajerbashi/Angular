@@ -25,11 +25,11 @@ export class FormsIntro {
       username: formBuilder.control('', Validators.required),
       password: formBuilder.control(
         '',
-        Validators.compose([Validators.required, Validators.minLength(8)])
+        Validators.compose([Validators.required, Validators.minLength(8)]),
       ),
       rePassword: formBuilder.control(
         '',
-        Validators.compose([Validators.required, Validators.minLength(8)])
+        Validators.compose([Validators.required, Validators.minLength(8)]),
       ),
       isRemember: formBuilder.control('', {}),
     });
@@ -106,10 +106,10 @@ export class FormsIntro {
 
   // Reactive Form
   roles: IRoleDTO[] = [
-    { Key: 'Admin', Name: 'Admin' },
-    { Key: 'User', Name: 'User' },
-    { Key: 'Customer', Name: 'Customer' },
-    { Key: 'Client', Name: 'Client' },
+    { key: 'Admin', name: 'Admin' },
+    { key: 'User', name: 'User' },
+    { key: 'Customer', name: 'Customer' },
+    { key: 'Client', name: 'Client' },
   ];
   registerForm = new FormGroup({
     // firstName: new FormControl({ value: '', disabled: true }, Validators.required),
