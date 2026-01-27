@@ -1,8 +1,8 @@
 export default interface ISignUpDTO {
-  FirstName: string;
-  LastName: string;
-  Username: string;
-  Email: string;
-  Phone: string;
-  Password: string;
+  firstName: string;
+  lastName: string;
+  username: string;
+  email: string;
+  phone: string;
+  password: string;
 }
