@@ -1,29 +1,26 @@
-import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { BaseApiService } from './base-api.service';
-import { HttpClient } from '@angular/common/http';
-import IProduct from '../models/IProduct.dto';
 
-@Injectable({
-  providedIn: 'root',
-})
-export abstract class EntityApiService<TEntity> extends BaseApiService {
-  constructor(httpClient: HttpClient) {
-    super(httpClient);
+export abstract class EntityApiService<TEntity, TKey = string>
+  extends BaseApiService {
+
+  getAll(): Observable<TEntity[]> {
+    return this.get<TEntity[]>();
   }
 
-  add<TEntity>(model: TEntity) {
-    return this.post<TEntity>('', model);
-  }
-  update<TEntity>(model: TEntity) {
-    return this.put<TEntity>('', model);
-  }
-  remove<TEntity>(id: string) {
-    return this.delete<TEntity>(`${id}`);
-  }
-  getAll<TEntity>() {
-    return this.get<TEntity>(``);
-  }
-  getById<TEntity>(id: string) {
+  getById(id: TKey): Observable<TEntity> {
     return this.get<TEntity>(`${id}`);
+  }
+
+  create(model: TEntity): Observable<TEntity> {
+    return this.post<TEntity, TEntity>(undefined, model);
+  }
+
+  update(id: TKey, model: TEntity): Observable<TEntity> {
+    return this.put<TEntity, TEntity>(`${id}`, model);
+  }
+
+  deleteById(id: TKey): Observable<void> {
+    return this.delete<void>(`${id}`);
   }
 }

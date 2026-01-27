@@ -4,13 +4,13 @@ import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { loadProducts, loadProductsFail, loadProductsSuccess } from './product.action.store';
 import { catchError, exhaustMap, map, of } from 'rxjs';
-import { ProductService } from '../../services/product.service';
+import { ProductApiService } from '../../services/product.service';
 import IProduct from '../../models/IProduct.dto';
 
 @Injectable()
 export class ProductEffect {
   actions$ = inject(Actions);
-  service = inject(ProductService);
+  service = inject(ProductApiService);
   // constructor(private action$: Actions, private service: ProductService) {}
 
   _loadProduct$ = createEffect(() =>

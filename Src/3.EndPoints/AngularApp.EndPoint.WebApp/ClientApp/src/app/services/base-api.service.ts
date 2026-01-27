@@ -1,30 +1,55 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject } from '@angular/core';
+import { Observable } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root',
-})
 export abstract class BaseApiService {
-  baseUrl: string = '';
-  constructor(private httpClient: HttpClient) {}
-  getUrl(url: string): string {
-    if (url.length > 0) {
-      return `api/${this.baseUrl}/${url}`;
-    } else {
-      return `api/${this.baseUrl}`;
-    }
+  protected readonly http = inject(HttpClient);
+
+  /** Must be defined by child services */
+  protected abstract endpoint: string;
+
+  protected buildUrl(path?: string): string {
+    return path ? `api/${this.endpoint}/${path}` : `api/${this.endpoint}`;
   }
-  post<T>(url: string, model: T) {
-    return this.httpClient.post(this.getUrl(url), model);
+
+  protected getWithParams<T>(params: Record<string, any>) {
+    return this.http.get<T>(this.buildUrl(), { params });
   }
-  get<T>(url: string) {
-    let _headers = new HttpHeaders().set('Tajerbashi', 'kamrantajerbashi@gmail.com');
-    return this.httpClient.get(this.getUrl(url), { headers: _headers });
+
+  protected getHeaders(): HttpHeaders {
+    return new HttpHeaders({
+      'Content-Type': 'application/json',
+      Tajerbashi: 'kamrantajerbashi@gmail.com',
+    });
   }
-  delete<T>(url: string) {
-    return this.httpClient.delete(this.getUrl(url));
+
+  protected get<T>(path?: string): Observable<T> {
+    return this.http.get<T>(this.buildUrl(path), {
+      headers: this.getHeaders(),
+    });
   }
-  put<T>(url: string, model: T) {
-    return this.httpClient.put(this.getUrl(url), model);
+
+  protected post<TRequest, TResponse>(
+    path: string | undefined,
+    body: TRequest
+  ): Observable<TResponse> {
+    return this.http.post<TResponse>(this.buildUrl(path), body, {
+      headers: this.getHeaders(),
+    });
+  }
+
+  protected put<TRequest, TResponse>(
+    path: string | undefined,
+    body: TRequest
+  ): Observable<TResponse> {
+    return this.http.put<TResponse>(this.buildUrl(path), body, {
+      headers: this.getHeaders(),
+    });
+  }
+
+  protected delete<TResponse>(path: string): Observable<TResponse> {
+    return this.http.delete<TResponse>(this.buildUrl(path), {
+      headers: this.getHeaders(),
+    });
   }
 }

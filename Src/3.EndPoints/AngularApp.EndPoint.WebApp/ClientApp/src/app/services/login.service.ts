@@ -9,20 +9,16 @@ import IApiJson from '../models/IApiJson.dto';
   providedIn: 'root',
 })
 export class LoginService extends BaseApiService {
-
-  constructor(httpClient: HttpClient) {
-    super(httpClient);
-    this.baseUrl = 'Account';
-  }
+  protected override endpoint = 'Account';
 
   login(model: ILoginDTO): Object {
-    return this.post<ILoginDTO>('Login', model).subscribe((response) => {
+    return this.post<ILoginDTO, IApiJson<ILoginDTO>>('Login', model).subscribe((response) => {
       console.log('Response : ', response);
       return response;
     });
   }
   signUp(model: ISignUpDTO): Object {
-    return this.post<ISignUpDTO>('SignUp', model).subscribe((response) => {
+    return this.post<ISignUpDTO,IApiJson<ISignUpDTO>>('SignUp', model).subscribe((response) => {
       console.log('Response : ', response);
       return response;
     });

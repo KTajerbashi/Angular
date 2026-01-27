@@ -1,7 +1,7 @@
 import { Component, effect, inject, OnInit, signal } from '@angular/core';
-import { ProductService } from '../../services/product.service';
 import IProduct from '../../models/IProduct.dto';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ProductApiService } from '../../services/product.service';
 
 @Component({
   selector: 'app-product-dashboard',
@@ -31,7 +31,7 @@ export class ProductDashboard implements OnInit {
       ),
     });
   }
-  productService = inject(ProductService);
+  productService = inject(ProductApiService);
 
   updateList(data: any) {
     this.datalist = data as IProduct[];
@@ -52,7 +52,7 @@ export class ProductDashboard implements OnInit {
       rate: this.productForm.value.rate as number,
     };
     if (key.length > 0) {
-      this.productService.update(entity).subscribe({
+      this.productService.update(entity.key,entity).subscribe({
         next: (data) => {
           console.log('next => onUpdate :', data);
           this.updateList(data);
@@ -65,7 +65,7 @@ export class ProductDashboard implements OnInit {
         },
       });
     } else {
-      this.productService.add(entity).subscribe({
+      this.productService.create(entity).subscribe({
         next: (data) => {
           console.log('next => onCreate :', data);
           this.updateList(data);
@@ -81,7 +81,7 @@ export class ProductDashboard implements OnInit {
     }
   }
   onRemove(model: IProduct) {
-    this.productService.remove(model.key).subscribe({
+    this.productService.deleteById(model.key).subscribe({
       next: (data) => {
         console.log('next => onRemove :', data);
         this.updateList(data);
@@ -130,7 +130,7 @@ export class ProductDashboard implements OnInit {
     });
   }
   onReload() {
-    this.productService.get('Reload').subscribe({
+    this.productService.getById('Reload').subscribe({
       next: (data) => {
         console.log('next => onReload :', data);
         this.updateList(data);

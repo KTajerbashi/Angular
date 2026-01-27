@@ -6,10 +6,6 @@ import IProduct from '../models/IProduct.dto';
 @Injectable({
   providedIn: 'root',
 })
-export class ProductService extends EntityApiService<IProduct> {
-  constructor(httpClient: HttpClient) {
-    super(httpClient);
-    this.baseUrl = 'Product';
-    console.log('Run Product Service ...');
-  }
+export class ProductApiService extends EntityApiService<IProduct, string> {
+  protected override endpoint = 'products';
 }
