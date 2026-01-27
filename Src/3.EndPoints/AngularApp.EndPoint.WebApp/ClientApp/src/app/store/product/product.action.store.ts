@@ -3,8 +3,8 @@ import { createAction, props } from '@ngrx/store';
 import IProduct from '../../models/IProduct.dto';
 
 export const LOAD_PRODUCTS = '[product] Load Products ℹ️';
-export const LOAD_PRODUCTS_SUCCESS = '[product] Load Products ✔️';
-export const LOAD_PRODUCTS_FAIL = '[product] Load Products ❌';
+export const LOAD_PRODUCTS_SUCCESS = '[product] Load Products Success ✔️';
+export const LOAD_PRODUCTS_FAIL = '[product] Load Products Faild ❌';
 
 export const loadProducts = createAction(LOAD_PRODUCTS);
 export const loadProductsSuccess = createAction(
