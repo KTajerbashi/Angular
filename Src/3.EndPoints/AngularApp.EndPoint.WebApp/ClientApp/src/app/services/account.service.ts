@@ -8,7 +8,7 @@ import IApiJson from '../models/IApiJson.dto';
 @Injectable({
   providedIn: 'root',
 })
-export class LoginService extends BaseApiService {
+export class AccountService extends BaseApiService {
   protected override endpoint = 'Account';
 
   login(model: ILoginDTO): Object {
@@ -23,7 +23,7 @@ export class LoginService extends BaseApiService {
       return response;
     });
   }
-  Singout() {
+  singout() {
     this.get('Signout').subscribe((response) => {
       const { message } = response as IApiJson<boolean>;
       console.log('Response : ', response);
@@ -31,5 +31,8 @@ export class LoginService extends BaseApiService {
       alert(message);
       return response;
     });
+  }
+  loadProfile(){
+    return this.get('Profile');
   }
 }

@@ -7,5 +7,5 @@ import IProduct from '../models/IProduct.dto';
   providedIn: 'root',
 })
 export class ProductApiService extends EntityApiService<IProduct, string> {
-  protected override endpoint = 'products';
+  protected override endpoint = 'Product';
 }

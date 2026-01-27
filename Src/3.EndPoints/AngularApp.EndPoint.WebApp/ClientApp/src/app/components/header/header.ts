@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LoginService } from '../../services/login.service';
+import { AccountService } from '../../services/account.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -10,13 +10,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class Header {
   constructor(
-    private _loginService: LoginService,
+    private _accountService: AccountService,
     private router: Router,
-    private activeRouter: ActivatedRoute
+    private activeRouter: ActivatedRoute,
   ) {}
 
   logout() {
-    this._loginService.Singout();
+    this._accountService.singout();
   }
   profile() {
     this.router.navigateByUrl('auth/profile');
