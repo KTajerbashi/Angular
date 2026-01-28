@@ -53,7 +53,7 @@ public sealed class AccountController : BaseController
             {
                 User = userEntity,
                 Role = new RoleEntity(RolesReference.Admin),
-                UserRole = new() { Id = 1, UserId = 1, RoleId = 1 },
+                UserRole = UserRoleEntity.CreateInstance(1,1,1),
                 TokenType = TokenType.JWE
             },
             cancellation);

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
+using System.Reflection;
 
 namespace AngularApp.Infra.Data.Common;
 
@@ -26,6 +27,7 @@ public abstract class BaseDataContext : IdentityDbContext<
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
+        builder.ApplyConfigurationsFromAssembly(Assembly.GetAssembly(typeof(BaseDataContext)));
         // Ignore Identity passkey entity (fix migration error)
         builder.Ignore<IdentityPasskeyData>();
 
@@ -41,6 +43,7 @@ public abstract class BaseDataContext : IdentityDbContext<
 
         AddShadowProperties(builder);
         AddSoftDeleteQueryFilters(builder);
+
     }
 
     // ----------------------------------------------------
