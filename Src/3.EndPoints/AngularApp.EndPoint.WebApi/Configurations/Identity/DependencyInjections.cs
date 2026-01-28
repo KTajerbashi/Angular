@@ -42,7 +42,7 @@ public static class DependencyInjections
             })
 
             // Cookie (Backend)
-            .AddCookie(IdentityConstants.ApplicationScheme, options =>
+            .AddCookie(options =>
             {
                 options.LoginPath = "/Account/Login";
                 options.AccessDeniedPath = "/Account/AccessDenied";
