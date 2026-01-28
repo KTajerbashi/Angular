@@ -6,10 +6,10 @@ namespace AngularApp.Core.Domain.Entities.Security.Group;
 public class GroupUserEntity : Entity<long>
 {
     [ForeignKey(nameof(GroupEntity))]
-    public long GroupId { get; set; }
-    public GroupEntity GroupEntity { get; set; }
+    public long GroupId { get; private set; }
+    public GroupEntity GroupEntity { get; private set; }
 
     [ForeignKey(nameof(UserEntity))]
-    public long UserId { get; set; }
-    public UserEntity UserEntity { get; set; }
+    public long UserId { get; private set; }
+    public UserEntity UserEntity { get; private set; }
 }

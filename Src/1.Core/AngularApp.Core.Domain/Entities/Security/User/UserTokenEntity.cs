@@ -3,12 +3,12 @@
 [Table("UserTokens", Schema = "Security")]
 public class UserTokenEntity : IdentityUserToken<long>, IAuditableEntity<long>
 {
-    public long Id { get; set; }
-    public bool IsDeleted { get; set; }
+    public long Id { get; private set; }
+    public bool IsDeleted { get; private set; }
 
-    public bool IsActive { get; set; }
+    public bool IsActive { get; private set; }
 
-    public Guid EntityId { get; set; } = Guid.NewGuid();
+    public Guid EntityId { get; private set; } = Guid.NewGuid();
 
     public void Delete()
     {

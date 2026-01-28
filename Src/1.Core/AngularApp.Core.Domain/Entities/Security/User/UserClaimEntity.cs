@@ -3,11 +3,11 @@
 [Table("UserClaims", Schema = "Security")]
 public class UserClaimEntity : IdentityUserClaim<long>, IAuditableEntity<int>
 {
-    public bool IsDeleted { get; set; }
+    public bool IsDeleted { get; private set; }
 
-    public bool IsActive { get; set; }
+    public bool IsActive { get; private set; }
 
-    public Guid EntityId { get; set; } = Guid.NewGuid();
+    public Guid EntityId { get; private set; } = Guid.NewGuid();
 
     public void Delete()
     {

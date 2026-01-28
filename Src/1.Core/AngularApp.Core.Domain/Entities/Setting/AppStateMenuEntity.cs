@@ -4,13 +4,13 @@
 public class AppStateMenuEntity : AggregateRoot
 {
     [ForeignKey(nameof(AppStateEntity))]
-    public long AppStateId { get; set; }
-    public AppStateEntity AppStateEntity { get; set; }
+    public long AppStateId { get; private set; }
+    public AppStateEntity AppStateEntity { get; private set; }
 
 
     [ForeignKey(nameof(MenuEntity))]
-    public long MenuId { get; set; }
-    public MenuEntity MenuEntity { get; set; }
+    public long MenuId { get; private set; }
+    public MenuEntity MenuEntity { get; private set; }
 }
 
 

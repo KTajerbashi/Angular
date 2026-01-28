@@ -6,11 +6,11 @@ namespace AngularApp.Core.Domain.Entities.Security.Group;
 public class GroupRoleEntity : Entity<long>
 {
     [ForeignKey(nameof(GroupEntity))]
-    public long GroupId { get; set; }
-    public GroupEntity GroupEntity { get; set; }
+    public long GroupId { get; private set; }
+    public GroupEntity GroupEntity { get; private set; }
 
 
     [ForeignKey(nameof(RoleEntity))]
-    public long RoleId { get; set; }
-    public RoleEntity RoleEntity{ get; set; }
+    public long RoleId { get; private set; }
+    public RoleEntity RoleEntity{ get; private set; }
 }

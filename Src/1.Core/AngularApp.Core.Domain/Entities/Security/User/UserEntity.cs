@@ -7,15 +7,16 @@ namespace AngularApp.Core.Domain.Entities.Security.User;
 [Table("Users", Schema = "Security")]
 public class UserEntity : IdentityUser<long>, IAggregate<long>
 {
-    public string FirstName { get; set; }
-    public string LastName { get; set; }
-    public string DisplayName { get; set; }
+    public string FirstName { get; private set; }
+    public string LastName { get; private set; }
+    public string DisplayName { get; private set; }
 
-    public bool IsDeleted { get; set; }
+    public bool IsDeleted { get; private set; }
 
-    public bool IsActive { get; set; }
+    public bool IsActive { get; private set; }
 
-    public Guid EntityId { get; set; } = Guid.NewGuid();
+    public Guid EntityId { get; private set; } = Guid.NewGuid();
+    public bool IsOnline { get; private set; }
 
     /// <summary>
     /// لیست 
@@ -54,10 +55,13 @@ public class UserEntity : IdentityUser<long>, IAggregate<long>
     }
 
     private List<UserPrivilegeEntity> _userPrivileges = new();
-    public IReadOnlyCollection<UserPrivilegeEntity> UserPrivileges => _userPrivileges;
+    public virtual IReadOnlyCollection<UserPrivilegeEntity> UserPrivileges => _userPrivileges;
+
+    private List<UserRoleEntity> _userRoles = new();
+    public virtual IReadOnlyCollection<UserRoleEntity> UserRoles => _userRoles;
 
     private List<GroupUserEntity> _groupUsers = new();
-    public IReadOnlyCollection<GroupUserEntity> GroupUsers => _groupUsers;
+    public virtual IReadOnlyCollection<GroupUserEntity> GroupUsers => _groupUsers;
 }
 
 

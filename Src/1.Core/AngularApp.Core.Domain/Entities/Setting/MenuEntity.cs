@@ -6,12 +6,12 @@ namespace AngularApp.Core.Domain.Entities.Setting;
 public class MenuEntity : AggregateRoot
 {
     [ForeignKey(nameof(MenuEntity))]
-    public long? ParentId { get; set; }
-    public virtual IReadOnlyCollection<MenuEntity> Children { get; set; }
-    public virtual MenuEntity Parent { get; set; }
+    public long? ParentId { get; private set; }
+    public virtual IReadOnlyCollection<MenuEntity> Children { get; private set; }
+    public virtual MenuEntity Parent { get; private set; }
 
-    public string Title { get; set; }
-    public string Schema { get; set; }
+    public string Title { get; private set; }
+    public string Schema { get; private set; }
 
 
     private List<MenuPrivilegeEntity> _menuPrivileges = new();

@@ -6,11 +6,11 @@ namespace AngularApp.Core.Domain.Entities.Security.Privilege;
 public class RolePrivilegeEntity : Entity<long>
 {
     [ForeignKey(nameof(PrivilegeEntity))]
-    public long PrivilegeId { get; set; }
-    public PrivilegeEntity PrivilegeEntity { get; set; }
+    public long PrivilegeId { get; private set; }
+    public PrivilegeEntity PrivilegeEntity { get; private set; }
 
 
     [ForeignKey(nameof(RoleEntity))]
-    public long RoleId { get; set; }
-    public RoleEntity RoleEntity { get; set; }
+    public long RoleId { get; private set; }
+    public RoleEntity RoleEntity { get; private set; }
 }

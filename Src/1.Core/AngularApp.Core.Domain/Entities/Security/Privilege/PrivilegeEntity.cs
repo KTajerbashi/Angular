@@ -9,19 +9,19 @@ namespace AngularApp.Core.Domain.Entities.Security.Privilege;
 public class PrivilegeEntity : AggregateRoot
 {
     [ForeignKey(nameof(PrivilegeEntity))]
-    public long? ParentId { get; set; }
+    public long? ParentId { get; private set; }
     // Navigation to parent
-    public PrivilegeEntity Parent { get; set; }
+    public PrivilegeEntity Parent { get; private set; }
 
     private List<PrivilegeEntity> _children = new();
     public IReadOnlyCollection<PrivilegeEntity> Children => _children;
 
-    public string EntityName { get; set; }
-    public string Action { get; set; }
-    public string Title { get; set; }
-    public PrivilegeType Type { get; set; }
-    public string Command { get; set; }
-    public byte Order { get; set; }
+    public string EntityName { get; private set; }
+    public string Action { get; private set; }
+    public string Title { get; private set; }
+    public PrivilegeType Type { get; private set; }
+    public string Command { get; private set; }
+    public byte Order { get; private set; }
 
     private List<UserPrivilegeEntity> _userPrivileges = new();
     public IReadOnlyCollection<UserPrivilegeEntity> UserPrivileges => _userPrivileges;
