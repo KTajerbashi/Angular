@@ -1,8 +1,9 @@
 ﻿using AngularApp.Core.Domain.Entities.Security.Role;
 using AngularApp.Core.Domain.Entities.Security.User;
+using AngularApp.EndPoint.WebApi.Providers.Identity.Interfaces;
 using Microsoft.AspNetCore.Identity;
 
-namespace AngularApp.EndPoint.WebApi.Providers.Identity;
+namespace AngularApp.EndPoint.WebApi.Providers.Identity.Services;
 
 public class IdentityFacade : IIdentityFacade
 {

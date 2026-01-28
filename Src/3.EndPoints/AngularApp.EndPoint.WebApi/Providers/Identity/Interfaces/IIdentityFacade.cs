@@ -3,7 +3,7 @@ using AngularApp.Core.Domain.Entities.Security.Role;
 using AngularApp.Core.Domain.Entities.Security.User;
 using Microsoft.AspNetCore.Identity;
 
-namespace AngularApp.EndPoint.WebApi.Providers.Identity;
+namespace AngularApp.EndPoint.WebApi.Providers.Identity.Interfaces;
 
 public interface IIdentityFacade : IScopeLifeTime
 {
