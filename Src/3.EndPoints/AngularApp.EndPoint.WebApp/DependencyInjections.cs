@@ -1,8 +1,8 @@
 ﻿using AngularApp.EndPoint.WebApi;
+using AngularApp.EndPoint.WebApi.Configurations.Identity;
 using AngularApp.EndPoint.WebApi.Extensions;
 using AngularApp.EndPoint.WebApi.Providers.Swagger;
 using AngularApp.ServiceDefaults;
-using System.Threading.Tasks;
 
 namespace AngularApp.EndPoint.WebApp;
 
@@ -18,8 +18,9 @@ public static class DependencyInjections
         builder.Services.AddOpenApi();  // <-- OpenAPI enabled
         builder.Services.AddRazorPages();
         builder.Services.AddSwaggerApi();
-        builder.Services.AddAuthentication();
-        builder.Services.AddAuthorization();
+
+        builder.Services.AddIdentityServices(configuration);
+
         builder.Services.AddWebApi(configuration);
 
         return builder;
@@ -46,8 +47,9 @@ public static class DependencyInjections
         app.UseAuthorization();
 
         app.MapControllers();
-        app.UseAuthentication();
-        app.UseAuthorization();
+
+        app.UseIdentityServices();
+
         app.MapStaticAssets();
         app.MapRazorPages().WithStaticAssets();
         app.UseSwaggerApi();
