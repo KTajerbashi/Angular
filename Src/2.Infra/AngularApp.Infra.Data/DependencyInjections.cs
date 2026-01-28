@@ -1,6 +1,7 @@
 ﻿using AngularApp.Core.Domain.Entities.Security;
 using AngularApp.Infra.Data.DataContext;
 using AngularApp.Infra.Data.DataContext.Interceptors;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -21,7 +22,9 @@ public static class DependencyInjections
             );
             options.AddInterceptors(new ShadowPropertySaveChangesInterceptor());
         });
-       
+
+        
+
         return services;
     }
 }
