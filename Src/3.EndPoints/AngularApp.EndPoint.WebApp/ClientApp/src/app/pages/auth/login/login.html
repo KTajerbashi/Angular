@@ -1,23 +1,55 @@
 <div class="app-login-page">
-  <div class="app-card">
-    <div class="app-card-header">Login</div>
-    <div class="app-card-body">
-      <div class="app-control">
-        <label for="username">Username</label>
-        <input type="text" placeholder="username ..." />
+  <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)">
+    <div class="app-card">
+      <div class="app-card-header">Login</div>
+
+      <!-- Loading state -->
+      <div *ngIf="loading$ | async" class="loading">
+        Logging in...
       </div>
-      <div class="app-control">
-        <label for="password">Password</label>
-        <input type="password" placeholder="password ..." />
+
+      <!-- Error message -->
+      <div *ngIf="error$ | async as error" class="error" style="color: red">
+        {{ error }}
+      </div>
+
+      <div class="app-card-body">
+        <div class="app-control">
+          <label for="username">Username</label>
+          <input
+            ngModel
+            id="username"
+            name="username"
+            type="text"
+            placeholder="username ..."
+            required
+          />
+        </div>
+
+        <div class="app-control">
+          <label for="password">Password</label>
+          <input
+            ngModel
+            id="password"
+            name="password"
+            type="password"
+            placeholder="password ..."
+            required
+          />
+        </div>
+      </div>
+
+      <div class="app-card-footer">
+        <button type="submit" class="app-btn app-btn-primary" [disabled]="loading$ | async">
+          Login
+        </button>
+
+        <div style="margin-top: 10px;">
+          <button type="button" (click)="onLoginSSO()" class="app-btn app-btn-info">Login As SSO</button>
+          <button type="button" (click)="onLoginGoogle()" class="app-btn app-btn-danger">Login As Google</button>
+          <button type="button" (click)="onLoginGithub()" class="app-btn app-btn-dark">Login As Github</button>
+        </div>
       </div>
     </div>
-    <div class="app-card-footer">
-      <button class="app-btn app-btn-primary">Login</button>
-      <div>
-        <button class="app-btn app-btn-info">Login As SSO</button>
-        <button class="app-btn app-btn-danger">Login As Google</button>
-        <button class="app-btn app-btn-dark">Login As Github</button>
-      </div>
-    </div>
-  </div>
+  </form>
 </div>

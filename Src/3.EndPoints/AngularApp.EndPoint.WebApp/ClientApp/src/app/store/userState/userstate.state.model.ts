@@ -1,6 +1,8 @@
 import IProfileDTO from '../../models/IUserProfile.dto';
 
 export interface IProfileStateModel {
-  data?: IProfileDTO;
-  errorMessage: string;
+  model: IProfileDTO;
+  isAuthenticated: boolean;
+  loading: boolean;
+  error: string | null;
 }

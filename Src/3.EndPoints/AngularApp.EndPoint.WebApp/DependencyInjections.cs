@@ -1,7 +1,7 @@
 ﻿using AngularApp.EndPoint.WebApi;
 using AngularApp.EndPoint.WebApi.Configurations.Identity;
+using AngularApp.EndPoint.WebApi.Configurations.Swagger;
 using AngularApp.EndPoint.WebApi.Extensions;
-using AngularApp.EndPoint.WebApi.Providers.Swagger;
 using AngularApp.ServiceDefaults;
 
 namespace AngularApp.EndPoint.WebApp;
@@ -14,12 +14,19 @@ public static class DependencyInjections
 
         builder.AddServiceDefaults();
 
-        builder.Services.AddControllers();
+        builder.Services.AddHttpContextAccessor();
+
+        builder.Services.AddControllers()
+            .AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
+                options.JsonSerializerOptions.MaxDepth = 64; // optional
+            });
         builder.Services.AddOpenApi();  // <-- OpenAPI enabled
         builder.Services.AddRazorPages();
         builder.Services.AddSwaggerApi();
 
-        builder.Services.AddIdentityServices(configuration);
+        builder.Services.AddIdentityServices(configuration, IdentityType.SessionBase);
 
         builder.Services.AddWebApi(configuration);
 
@@ -48,7 +55,7 @@ public static class DependencyInjections
 
         app.MapControllers();
 
-        app.UseIdentityServices();
+        app.UseIdentityServices(IdentityType.SessionBase);
 
         app.MapStaticAssets();
         app.MapRazorPages().WithStaticAssets();
