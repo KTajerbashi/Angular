@@ -1,6 +1,6 @@
 using AngularApp.Core.Application.Providers;
-using AngularApp.EndPoint.WebApi.Extensions;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace AngularApp.EndPoint.WebApi.Controllers.Common;
 
@@ -9,4 +9,17 @@ namespace AngularApp.EndPoint.WebApi.Controllers.Common;
 public abstract class BaseController : ControllerBase
 {
     protected ProviderServices ProviderServices => HttpContext.GetProviderServices();
+
+    //public override OkObjectResult Ok([ActionResultObjectValue] object? value)
+    //{
+    //    return Ok(ApiResult.Success(value));
+    //}
+
+
+    //protected ObjectResult FailResult(string message, int statusCode = StatusCodes.Status400BadRequest)
+    //{
+    //    return StatusCode(statusCode, ApiResult.Faild(message));
+    //}
+
+
 }
