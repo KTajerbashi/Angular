@@ -7,9 +7,11 @@ namespace AngularApp.EndPoint.WebApi.Providers.Identity.Interfaces;
 
 public interface IIdentityService : IScopeLifeTime
 {
+
     Task<IdentityResponse> LoginByUsernameAsync(string username, string password, CancellationToken cancellation);
     Task<IdentityResponse> LoginByEmailAsync(string email, string password, CancellationToken cancellation);
     Task<IdentityResponse> LoginAsync(UserEntity user, CancellationToken cancellation);
+    Task<IdentityResponse> LoginAsSessionAsync(string username, string password, CancellationToken cancellation);
 
     Task<IdentityResponse> LogoutAsync(CancellationToken cancellation);
 

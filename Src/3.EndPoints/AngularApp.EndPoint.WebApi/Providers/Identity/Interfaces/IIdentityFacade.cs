@@ -1,4 +1,5 @@
-﻿using AngularApp.Core.Application.Providers.ScrutorDI;
+﻿using AngularApp.Core.Application.Aggregates.Security.Repositories;
+using AngularApp.Core.Application.Providers.ScrutorDI;
 using AngularApp.Core.Domain.Entities.Security.Role;
 using AngularApp.Core.Domain.Entities.Security.User;
 using Microsoft.AspNetCore.Identity;
@@ -11,5 +12,7 @@ public interface IIdentityFacade : IScopeLifeTime
     SignInManager<UserEntity> SignInManager { get; }
     RoleManager<RoleEntity> RoleManager { get; }
     ITokenService TokenService { get; }
+    IUserRepository UserRepository { get; }
+    IRoleRepository RoleRepository { get; }
 
 }

@@ -1,36 +1,101 @@
-﻿namespace AngularApp.EndPoint.WebApi.Providers.UserState;
+﻿using AngularApp.EndPoint.WebApi.Configurations.Identity;
 
-public class UserState : IUserState
+namespace AngularApp.EndPoint.WebApi.Providers.UserState;
+
+public static class IdentityKeys
+{
+    public const string UserId = "UserId";
+    public const string RoleId = "RoleId";
+    public const string UserRoleId = "UserRoleId";
+    public const string DisplayName = "DisplayName";
+    public const string UserName = "UserName";
+    public const string Email = "Email";
+    public const string Phone = "Phone";
+    public const string NationalCode = "NationalCode";
+    public const string ApplicationState = "ApplicationState";
+    public const string UserRoles = "UserRoles";
+    public const string Groups = "Groups";
+    public const string State = "State";
+}
+
+public sealed class UserState : IUserState
 {
     private readonly IHttpContextAccessor _accessor;
+    private const IdentityType Type = IdentityType.SessionBase;
+
+    private HttpContext? Context => _accessor.HttpContext;
+
     public UserState(IHttpContextAccessor accessor)
     {
         _accessor = accessor;
     }
-    public long? UserId => _accessor.HttpContext?.User.GetClaim("UserId").ToLong() ?? default;
-    public string LocalIpAddress => _accessor.HttpContext?.Connection.LocalIpAddress?.ToString() ?? "";
-    public string LocalPort => _accessor.HttpContext?.Connection.LocalPort.ToString() ?? "";
-    public string RemoteIpAddress => _accessor.HttpContext?.Connection.RemoteIpAddress?.ToString() ?? "";
-    public string RemotePort => _accessor.HttpContext?.Connection.RemotePort.ToString() ?? "";
-    public string UserIp => _accessor.HttpContext?.Connection.RemoteIpAddress?.ToString() ?? "unknown-ip";
-    public string UserAgent => _accessor.HttpContext?.Request?.Headers["User-Agent"] ?? "";
 
-    public long? RoleId => _accessor.HttpContext?.User.GetClaim("RoleId").ToLong();
+    public long? UserId => GetLong(IdentityKeys.UserId);
+    public long? RoleId => GetLong(IdentityKeys.RoleId);
+    public long? UserRoleId => GetLong(IdentityKeys.UserRoleId);
 
-    public long? UserRoleId => _accessor.HttpContext?.User.GetClaim("UserRoleId").ToLong();
+    public string DisplayName => GetString(IdentityKeys.DisplayName);
+    public string UserName => GetString(IdentityKeys.UserName);
+    public string Email => GetString(IdentityKeys.Email);
+    public string Phone => GetString(IdentityKeys.Phone);
+    public string NationalCode => GetString(IdentityKeys.NationalCode);
+    public string ApplicationState => GetString(IdentityKeys.ApplicationState, "AppState");
+    public string State => GetString(IdentityKeys.State, "App");
 
-    public string DisplayName => _accessor.HttpContext?.User.GetClaim("DisplayName") ?? "";
+    public List<long> UserRoles => GetLongList(IdentityKeys.UserRoles);
+    public List<long> Groups => GetLongList(IdentityKeys.Groups);
 
-    public string NationalCode => _accessor.HttpContext?.User.GetClaim("NationalCode") ?? "";
+    public string UserAgent => Context?.Request.Headers["User-Agent"].ToString() ?? "";
 
-    public string Email => _accessor.HttpContext?.User.GetClaim("Email") ?? "";
+    public string UserIp =>
+        Context?.Connection.RemoteIpAddress?.ToString() ?? "unknown-ip";
 
-    public string Phone => _accessor.HttpContext?.User.GetClaim("Phone") ?? "";
+    public string LocalIpAddress =>
+        Context?.Connection.LocalIpAddress?.ToString() ?? "";
 
-    public string ApplicationState => _accessor.HttpContext?.User.GetClaim("ApplicationState") ?? "AppState";
+    public string LocalPort =>
+        Context?.Connection.LocalPort.ToString() ?? "";
 
-    public List<long> UserRoles => _accessor.HttpContext?.User.GetClaim("UserRoles")?.Replace("[", "").Replace("]", "").Split(",").Select(item => item.ToLong()).ToList() ?? [];
-    public List<long> Groups => _accessor.HttpContext?.User.GetClaim("Groups")?.Replace("[", "").Replace("]", "").Split(",").Select(item => item.ToLong()).ToList() ?? [];
+    public string RemoteIpAddress =>
+        Context?.Connection.RemoteIpAddress?.ToString() ?? "";
 
-    public string State => _accessor.HttpContext?.User.GetClaim("State") ?? "App";
+    public string RemotePort =>
+        Context?.Connection.RemotePort.ToString() ?? "";
+
+    // ================= helpers =================
+
+    private string GetString(string key, string defaultValue = "")
+    {
+        return Type switch
+        {
+            IdentityType.CookieBase or IdentityType.TokenBase
+                => Context?.User.GetClaim(key) ?? defaultValue,
+
+            IdentityType.SessionBase
+                => Context?.Session.GetString(key) ?? defaultValue,
+
+            _ => defaultValue
+        };
+    }
+
+    private long? GetLong(string key)
+    {
+        var value = GetString(key);
+        return long.TryParse(value, out var result) ? result : null;
+    }
+
+    private List<long> GetLongList(string key)
+    {
+        var value = GetString(key);
+        if (string.IsNullOrWhiteSpace(value))
+            return [];
+
+        return value
+            .Trim('[', ']')
+            .Split(',', StringSplitOptions.RemoveEmptyEntries)
+            .Select(v => long.TryParse(v.Trim(), out var r) ? r : (long?)null)
+            .Where(v => v.HasValue)
+            .Select(v => v!.Value)
+            .ToList();
+    }
 }

@@ -14,6 +14,10 @@ public static class WebAppExtensions
     {
         return userClaimsPrincipal.Claims?.FirstOrDefault((Claim x) => x.Type == claimType)?.Value;
     }
+    public static string GetSession(this HttpContext context,string sessionKey)
+    {
+        return context.Session.GetString(sessionKey);
+    }
     public static string GetClaim(this HttpContext context, string claimType)
     {
         return context.User.GetClaim(claimType);

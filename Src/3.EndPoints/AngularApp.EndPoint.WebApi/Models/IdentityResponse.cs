@@ -1,4 +1,5 @@
-﻿using AngularApp.Core.Domain.Entities.Security.User;
+﻿using AngularApp.Core.Domain.Entities.Security.Role;
+using AngularApp.Core.Domain.Entities.Security.User;
 using AngularApp.Core.Domain.Enums.Security;
 
 namespace AngularApp.EndPoint.WebApi.Models;
@@ -6,6 +7,10 @@ namespace AngularApp.EndPoint.WebApi.Models;
 public class IdentityResponse : BaseIdentityModel
 {
     public UserEntity User { get; set; }
+    public RoleEntity Role { get; set; }
+    public List<RoleEntity> Roles { get; set; }
+    public UserRoleEntity UserRole { get; set; }
+    public List<UserRoleEntity> UserRoles { get; set; }
 }
 
 

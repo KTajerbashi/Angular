@@ -4,6 +4,7 @@ using AngularApp.EndPoint.WebApi.Exceptions;
 using AngularApp.EndPoint.WebApi.Models;
 using AngularApp.EndPoint.WebApi.Providers.Identity.Interfaces;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 
 namespace AngularApp.EndPoint.WebApi.Providers.Identity.Services;
@@ -83,6 +84,100 @@ public sealed class IdentityService : IIdentityService
 
         return Success("Login successful");
     }
+
+    public async Task<IdentityResponse> LoginAsSessionAsync(string username, string password, CancellationToken cancellation)
+    {
+        try
+        {
+            if (username.IsValidString() && password.IsValidString())
+            {
+                var enity =
+                    await
+                    _identityFacade
+                    .UserManager
+                    .FindByNameAsync(username)
+                    ??
+                    await
+                    _identityFacade
+                    .UserManager
+                    .FindByEmailAsync(username)
+                    ??
+                    await
+                    _identityFacade
+                    .UserManager
+                    .FindByIdAsync(username)
+                    ;
+
+                if (enity is null)
+                {
+                    return new()
+                    {
+                        IsSuccess = false,
+                        Message = "Faild",
+                        ErrorMessages = [$"User ({username}) Not Found !!!"],
+                        User = { }
+                    };
+                }
+
+                var validationLogin = await _identityFacade
+                    .SignInManager
+                    .CheckPasswordSignInAsync(enity, password, false);
+
+                var userGraph = await _identityFacade.UserRepository.GetGraphAsync(enity, cancellation);
+                enity = await _identityFacade
+                    .UserRepository
+                    .Queryable
+                    .Include(x => x.UserRoles)
+                    .ThenInclude(x => x.Role)
+                    .SingleAsync(i => i.Id == enity.Id, cancellation);
+
+                var defaultUserRole = enity.UserRoles.Single(i => i.IsDefault);
+                var roles = enity.UserRoles.Select(i => i.Role);
+                var defaultRole = defaultUserRole.Role;
+                if (validationLogin.Succeeded)
+                {
+                    return new()
+                    {
+                        Id = enity.Id,
+                        EntityId = enity.EntityId,
+                        User = enity,
+                        UserRoles = enity.UserRoles.ToList(),
+                        UserRole = defaultUserRole,
+                        Role = defaultRole,
+                        Roles = roles.ToList(),
+                        IsSuccess = true,
+                        Message = "Login Success ...",
+                        ErrorMessages = []
+                    };
+                }
+                else
+                {
+                    return new()
+                    {
+                        IsSuccess = false,
+                        Message = "Login Faild",
+                        ErrorMessages = ["Username is not valid!", "Password is not valid!"],
+                        User = { }
+                    };
+                }
+            }
+            else
+            {
+                return new()
+                {
+                    IsSuccess = false,
+                    Message = "Faild",
+                    ErrorMessages = ["Username is not valid!", "Password is not valid!"],
+                    User = { }
+                };
+            }
+        }
+        catch (Exception ex)
+        {
+            throw ex.ThrowApiException();
+        }
+    }
+
 
     public async Task<IdentityResponse> LogoutAsync(CancellationToken cancellation)
     {
@@ -280,4 +375,6 @@ public sealed class IdentityService : IIdentityService
             IsSuccess = false,
             ErrorMessages = errors.Select(e => e.Description).ToList()
         };
+
+
 }
