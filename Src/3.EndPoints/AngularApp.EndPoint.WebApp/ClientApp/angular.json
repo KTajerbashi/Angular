@@ -13,7 +13,6 @@
         "@schematics/angular:component": {
           "style": "scss",
           "skipTests": true,
-          "prefix": "component",
           "addTypeToClassName": true,
           "standalone": true,
           "type": "component"

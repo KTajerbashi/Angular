@@ -1,38 +1,192 @@
-// Include theming for Angular Material with `mat.theme()`.
-// This Sass mixin will define CSS variables that are used for styling Angular Material
-// components according to the Material 3 design spec.
-// Learn more about theming and how to use it for your application's
-// custom components at https://material.angular.dev/guide/theming
 @use '@angular/material' as mat;
 
+/* --------------------------------------------------
+   Angular Material Theme
+-------------------------------------------------- */
 html {
   height: 100%;
-  @include mat.theme(
-    (
-      color: (
-        primary: mat.$azure-palette,
-        tertiary: mat.$blue-palette,
-      ),
-      typography: Roboto,
-      density: 0,
-    )
-  );
+
+  @include mat.theme((
+    color: (
+      primary: mat.$azure-palette,
+      tertiary: mat.$blue-palette,
+    ),
+    typography: Roboto,
+    density: 0,
+  ));
+}
+
+/* --------------------------------------------------
+   CSS Reset & Base
+-------------------------------------------------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 body {
-  // Default the application to a light color theme. This can be changed to
-  // `dark` to enable the dark color theme, or to `light dark` to defer to the
-  // user's system settings.
-  color-scheme: light;
+  height: 100%;
+  margin: 0;
 
-  // Set a default background, font and text colors for the application using
-  // Angular Material's system-level CSS variables. Learn more about these
-  // variables at https://material.angular.dev/guide/system-variables
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+
+  color-scheme: light;
   background-color: var(--mat-sys-surface);
   color: var(--mat-sys-on-surface);
-  font: var(--mat-sys-body-medium);
+}
 
-  // Reset the user agent margin.
-  margin: 0;
-  height: 100%;
+/* --------------------------------------------------
+   Typography Defaults
+-------------------------------------------------- */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 0 0.5rem 0;
+  font-weight: 500;
+}
+
+p {
+  margin: 0 0 1rem 0;
+}
+
+/* --------------------------------------------------
+   Links
+-------------------------------------------------- */
+a {
+  color: var(--mat-sys-primary);
+  text-decoration: none;
+  width: 100%;
+}
+
+
+/* --------------------------------------------------
+   Scrollbar (Optional – Modern Browsers)
+-------------------------------------------------- */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+ul {
+  list-style: none;  /* remove bullets */
+  padding: 0;        /* remove default padding */
+  margin: 0;         /* remove default margin */
+}
+
+
+/* --------------------------------------------------
+   Button Style
+-------------------------------------------------- */
+/* --------------------------------------------------
+   Base Button
+-------------------------------------------------- */
+.app-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  user-select: none;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.4);
+  }
+
+  &:active {
+    transform: translateY(1px);
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+/* --------------------------------------------------
+   Button Variants
+-------------------------------------------------- */
+$app-btn-colors: (
+  primary: #1976d2,
+  info: #0288d1,
+  secondary: #9e9e9e,
+  success: #2e7d32,
+  warning: #f9a825,
+  danger: #d32f2f,
+  dark: #424242
+);
+
+@each $name, $color in $app-btn-colors {
+  .app-btn-#{$name} {
+    background-color: $color;
+    color: white;
+
+    &:hover {
+      background-color: lighten($color, 8%);
+    }
+
+    &:active {
+      background-color: darken($color, 5%);
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 3px rgba($color, 0.4);
+    }
+  }
+}
+
+/* --------------------------------------------------
+   Outline Buttons
+-------------------------------------------------- */
+.app-btn-outline {
+  background-color: transparent;
+  border: 2px solid currentColor;
+
+  &.app-btn-primary { color: #1976d2; border-color: #1976d2; }
+  &.app-btn-info { color: #0288d1; border-color: #0288d1; }
+  &.app-btn-secondary { color: #9e9e9e; border-color: #9e9e9e; }
+  &.app-btn-success { color: #2e7d32; border-color: #2e7d32; }
+  &.app-btn-warning { color: #f9a825; border-color: #f9a825; }
+  &.app-btn-danger { color: #d32f2f; border-color: #d32f2f; }
+  &.app-btn-dark { color: #424242; border-color: #424242; }
+
+  &:hover {
+    background-color: currentColor;
+    color: white;
+  }
+}
+
+/* --------------------------------------------------
+   Small / Large Sizes
+-------------------------------------------------- */
+.app-btn-sm { padding: 0.25rem 0.5rem; font-size: 0.8rem; }
+.app-btn-lg { padding: 0.75rem 1.5rem; font-size: 1.1rem; }
+
+/* --------------------------------------------------
+   Icon Buttons
+-------------------------------------------------- */
+.app-btn-icon {
+  padding: 0.4rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  justify-content: center;
+  border-radius: 50%;
+
+  i, svg {
+    font-size: 1.1rem;
+  }
 }
