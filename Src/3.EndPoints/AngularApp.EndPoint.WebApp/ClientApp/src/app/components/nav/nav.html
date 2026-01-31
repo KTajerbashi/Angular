@@ -1,7 +1,0 @@
-@for (menu of menus; track menu.Link) {
-@if (!menu.IsDeleted) {
-<a [routerLink]="menu.Link" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-  {{ menu.Name }}
-</a>
-}
-}
