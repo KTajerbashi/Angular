@@ -1,0 +1,59 @@
+/* --------------------------------------------------
+   App Header
+-------------------------------------------------- */
+.app-header {
+  z-index: 100;
+  padding: .8rem;
+  width: 100%;
+  display: flex;
+}
+
+/* --------------------------------------------------
+   Header Content: Flex Layout
+-------------------------------------------------- */
+.app-header-content {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  align-items: center;
+}
+
+/* --------------------------------------------------
+   Application Name
+-------------------------------------------------- */
+.app-header-content h1 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+/* --------------------------------------------------
+   Action Buttons
+-------------------------------------------------- */
+.app-header-content div {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+
+/* --------------------------------------------------
+   Responsive
+-------------------------------------------------- */
+@media (max-width: 576px) {
+  .app-header-content h1 {
+    font-size: 1.2rem;
+  }
+
+  .app-header-content div {
+    gap: 0.5rem;
+  }
+
+  .app-header-content button {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+  }
+}

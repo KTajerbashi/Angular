@@ -1,0 +1,16 @@
+/* Hover effect for sidebar items (optional) */
+.app-layout-sidebar ul li {
+  border-radius: 8px;
+}
+.app-layout-sidebar ul li a {
+  display: flex;
+  padding: 5px 10px;
+  margin: 2px 0;
+  cursor: pointer;
+  transition: background 0.2s;
+  color: wheat;
+  width: 100%;
+}
+.app-layout-sidebar ul li:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
