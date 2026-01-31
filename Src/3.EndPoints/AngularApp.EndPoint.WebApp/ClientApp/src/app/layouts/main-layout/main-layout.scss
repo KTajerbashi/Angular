@@ -1,0 +1,137 @@
+/* --------------------------------------------------
+   App Layout Container
+-------------------------------------------------- */
+.app-layout-container {
+  display: grid;
+  grid-template-areas:
+    'header'
+    'content'
+    'footer';
+  grid-template-rows: 64px 1fr 48px;
+  height: 100vh;
+  width: 100%;
+  font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+  background-color: #f5f5f5; /* Light neutral background */
+  color: #333;
+}
+
+/* --------------------------------------------------
+   Header
+-------------------------------------------------- */
+.app-layout-header {
+  grid-area: header;
+  background-color: #06213b; /* Material Blue 700 */
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 500;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+/* --------------------------------------------------
+   Content Area (Sidebar + Main)
+-------------------------------------------------- */
+.app-layout-content {
+  grid-area: content;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  height: 100%;
+  overflow: hidden; /* Prevent parent scrolling */
+  background-color: #e3f2fd; /* Light Material Blue 50 */
+}
+
+/* --------------------------------------------------
+   Sidebar
+-------------------------------------------------- */
+.app-layout-sidebar {
+  background-color: #004883; /* Material Blue 500 */
+  color: white;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow-y: auto;
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+/* Hover effect for sidebar items (optional) */
+.app-layout-sidebar ul li {
+  border-radius: 8px;
+}
+.app-layout-sidebar ul li a {
+  display: flex;
+  padding: 5px 10px;
+  margin: 2px 0;
+  cursor: pointer;
+  transition: background 0.2s;
+  color: wheat;
+  width: 100%;
+}
+.app-layout-sidebar ul li:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* --------------------------------------------------
+   Main Content
+-------------------------------------------------- */
+.app-layout-main {
+  background-color: #ffffff;
+  padding: 2rem;
+  overflow-y: auto;
+  min-height: 0;
+  border-left: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.03);
+  border-radius: 8px 0 0 8px;
+}
+
+/* --------------------------------------------------
+   Footer
+-------------------------------------------------- */
+.app-layout-footer {
+  grid-area: footer;
+  background-color: #03192e; /* Material Blue 800 */
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  font-weight: 400;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* --------------------------------------------------
+   Responsive (Tablet & Mobile)
+-------------------------------------------------- */
+@media (max-width: 992px) {
+  .app-layout-content {
+    grid-template-columns: 1fr; /* Sidebar collapses */
+  }
+
+  .app-layout-sidebar {
+    display: none; /* Use drawer for mobile later */
+  }
+}
+
+@media (max-width: 576px) {
+  .app-layout-main {
+    padding: 1rem;
+  }
+
+  .app-layout-header {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+}
+
+.active-link {
+  font-weight: bolder;
+  outline: none;
+  border: 1px solid rgba(209, 209, 209, 0.4);
+  background: linear-gradient(
+    90deg,
+    rgb(0, 57, 131),
+    rgba(255, 0, 0, 0.212)
+  ); /* Material Blue 500 */
+  border-radius: 5px;
+}

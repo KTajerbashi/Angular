@@ -1,6 +1,19 @@
-<div class="app-container">
-  <div class="app-content">
-    Main Layout
-    <router-outlet/>
-  </div>
+<div class="app-layout-container">
+  <header class="app-layout-header">
+    <app-header/>
+  </header>
+
+  <main class="app-layout-content">
+    <aside class="app-layout-sidebar">
+      <app-aside/>
+    </aside>
+
+    <section class="app-layout-main">
+      <router-outlet />
+
+
+    </section>
+  </main>
+
+  <footer class="app-layout-footer">Footer</footer>
 </div>
