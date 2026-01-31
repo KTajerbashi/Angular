@@ -3,26 +3,17 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { tokenInterceptor } from './interceptors/token-interceptor';
 import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
-import { ProductReducer } from './store/product/product.reducer.store';
-import { ProductEffect } from './store/product/product.effect.store';
-import { UserStateReducer } from './store/userState/userstate.reducer.store';
-import { UserStateEffect } from './store/userState/userstate.effect.store';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
-    provideHttpClient(withInterceptors([tokenInterceptor])),
-    provideStore({
-      productStore: ProductReducer,
-      userStore: UserStateReducer,
-      // profileStore: ProfileReducer,
-    }),
-    provideEffects(ProductEffect,UserStateEffect),
+    provideHttpClient(withInterceptors([])),
+    provideStore({}),
+    provideEffects(),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
   ],
 };

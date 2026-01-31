@@ -1,0 +1,6 @@
+[
+  {
+    "layouts":"ng g c layouts/authLayout",
+    "features":" ng g c features/auth/pages/"
+  }
+]

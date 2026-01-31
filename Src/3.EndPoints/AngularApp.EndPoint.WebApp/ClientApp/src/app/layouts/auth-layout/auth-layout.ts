@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
-import { AccountService } from '../../services/account.service';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-auth-layout',
@@ -9,21 +8,5 @@ import { AccountService } from '../../services/account.service';
   styleUrl: './auth-layout.scss',
 })
 export class AuthLayout {
-  constructor(
-    private _acountService: AccountService,
-    private router: Router,
-    private activeRouter: ActivatedRoute
-  ) {}
-  logout() {
-    this._acountService.singout();
-  }
-  profile() {
-    this.router.navigateByUrl('auth/profile');
-  }
-  login() {
-    this.router.navigateByUrl('auth/login');
-  }
-  signup() {
-    this.router.navigateByUrl('auth/sign-up');
-  }
+
 }

@@ -12,7 +12,11 @@
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss",
-          "skipTests": true
+          "skipTests": true,
+          "prefix": "component",
+          "addTypeToClassName": true,
+          "standalone": true,
+          "type": "component"
         },
         "@schematics/angular:class": {
           "skipTests": true
@@ -21,7 +25,9 @@
           "skipTests": true
         },
         "@schematics/angular:guard": {
-          "skipTests": true
+          "skipTests": true,
+          "typeSeparator": ".",
+          "name": "guard"
         },
         "@schematics/angular:interceptor": {
           "skipTests": true
