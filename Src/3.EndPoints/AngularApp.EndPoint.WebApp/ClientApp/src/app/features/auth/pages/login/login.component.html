@@ -1,1 +1,65 @@
-<p>login works!</p>
+<div class="login-container">
+  <h2 class="login-title">Sign In</h2>
+  <p class="login-subtitle">Welcome back, please login</p>
+
+  <form (ngSubmit)="login()" #loginForm="ngForm">
+    <!-- Username -->
+    <div class="form-group">
+      <label>Username</label>
+      <input
+        type="text"
+        name="username"
+        [(ngModel)]="model.username"
+        required
+        placeholder="Enter username"
+      />
+    </div>
+
+    <!-- Password -->
+    <div class="form-group">
+      <label>Password</label>
+      <input
+        type="password"
+        name="password"
+        [(ngModel)]="model.password"
+        required
+        placeholder="Enter password"
+      />
+    </div>
+
+    <!-- Remember Me -->
+    <div class="form-options">
+      <label class="checkbox">
+        <input type="checkbox" [(ngModel)]="model.rememberMe" name="rememberMe" />
+        Remember me
+      </label>
+
+      <a class="forgot-link">Forgot password?</a>
+    </div>
+
+    <!-- Login Button -->
+    <button class="app-btn app-btn-primary app-btn-lg w-100" type="submit">Login</button>
+  </form>
+
+  <div class="login-create">
+    <a routerLink="/auth/sign-up" class="login-create-account">Create New Account</a>
+  </div>
+
+  <!-- Divider -->
+  <div class="divider">
+    <span>OR</span>
+  </div>
+
+  <!-- Social Logins -->
+  <div class="social-login">
+    <button class="app-btn app-btn-dark w-100" (click)="loginWithGoogle()">
+      Login with Google
+    </button>
+
+    <button class="app-btn app-btn-secondary w-100" (click)="loginWithGitHub()">
+      Login with GitHub
+    </button>
+
+    <button class="app-btn app-btn-info w-100" (click)="loginWithSSO()">Login with SSO</button>
+  </div>
+</div>
