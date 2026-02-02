@@ -1,1 +1,109 @@
-<p>sign-up works!</p>
+<div class="signup-container">
+  <h2 class="signup-title">Create Account</h2>
+  <p class="signup-subtitle">Join us and get started</p>
+
+  <form (ngSubmit)="signup()" #form="ngForm">
+
+    <!-- First & Last Name -->
+    <div class="row">
+      <div class="form-group">
+        <label>First Name</label>
+        <input
+          type="text"
+          name="firstName"
+          [(ngModel)]="model.firstName"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Last Name</label>
+        <input
+          type="text"
+          name="lastName"
+          [(ngModel)]="model.lastName"
+          required
+        />
+      </div>
+    </div>
+
+    <!-- Display Name -->
+    <div class="form-group">
+      <label>Display Name</label>
+      <input
+        type="text"
+        name="displayName"
+        [(ngModel)]="model.displayName"
+        required
+      />
+    </div>
+
+    <!-- Username -->
+    <div class="form-group">
+      <label>Username</label>
+      <input
+        type="text"
+        name="userName"
+        [(ngModel)]="model.userName"
+        required
+      />
+    </div>
+
+    <!-- Email -->
+    <div class="form-group">
+      <label>Email</label>
+      <input
+        type="email"
+        name="email"
+        [(ngModel)]="model.email"
+        required
+      />
+    </div>
+
+    <!-- Phone -->
+    <div class="form-group">
+      <label>Phone Number</label>
+      <input
+        type="tel"
+        name="phoneNumber"
+        [(ngModel)]="model.phoneNumber"
+      />
+    </div>
+
+    <!-- Password -->
+    <div class="row">
+      <div class="form-group">
+        <label>Password</label>
+        <input
+          type="password"
+          name="password"
+          [(ngModel)]="model.password"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label>Confirm Password</label>
+        <input
+          type="password"
+          name="confirmPassword"
+          [(ngModel)]="model.confirmPassword"
+          required
+        />
+      </div>
+    </div>
+
+    <!-- Submit -->
+    <button
+      class="app-btn app-btn-success app-btn-lg w-100"
+      type="submit"
+    >
+      Create Account
+    </button>
+  </form>
+
+  <p class="signin-link">
+    Already have an account?
+    <a routerLink="/auth/login">Sign in</a>
+  </p>
+</div>

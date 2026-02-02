@@ -1,0 +1,66 @@
+.signup-container {
+  width: 100%;
+  max-width: 420px;
+  color: #fff;
+  text-align: center;
+}
+
+.signup-title {
+  font-size: 1.9rem;
+  font-weight: 600;
+}
+
+.signup-subtitle {
+  font-size: 0.9rem;
+  opacity: 0.75;
+  margin-bottom: 2rem;
+}
+
+/* -----------------------------
+   Form
+----------------------------- */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin-bottom: 1rem;
+
+  label {
+    font-size: 0.8rem;
+    margin-bottom: 0.25rem;
+    opacity: 0.85;
+  }
+
+  input {
+    padding: 0.6rem 0.75rem;
+    border-radius: 6px;
+    border: none;
+    font-size: 0.9rem;
+    outline: none;
+  }
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.signin-link {
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+
+  a {
+    color: #4fc3f7;
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+}
+
+/* Utilities */
+.w-100 {
+  width: 100%;
+}
