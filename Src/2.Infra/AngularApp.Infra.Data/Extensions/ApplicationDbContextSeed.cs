@@ -1,5 +1,6 @@
 ﻿using AngularApp.Core.Domain.Entities.Security.Role;
 using AngularApp.Core.Domain.Entities.Security.User;
+using AngularApp.Core.Domain.Entities.Setting;
 using AngularApp.Infra.Data.DataContext;
 using AngularApp.Infra.Data.References;
 using Microsoft.AspNetCore.Identity;
@@ -49,8 +50,6 @@ public static class ApplicationDbContextSeed
             }
 
             //  User 
-
-
             var user = new UserEntity(new()
             {
                 FirstName = "Donald",
@@ -68,6 +67,20 @@ public static class ApplicationDbContextSeed
                 await userManager.AddToRoleAsync(user, RolesReference.User);
             }
 
+        }
+        if (!await context.MenuEntities.AnyAsync())
+        {
+            var settingEntity = MenuEntity.CreateInstance("Setting", "Setting", null);
+            settingEntity.AddChild("Menus");
+            await context.Set<MenuEntity>().AddAsync(settingEntity);
+
+            var securityEntity = MenuEntity.CreateInstance("Security", "Security", null);
+            securityEntity.AddChild("Users");
+            securityEntity.AddChild("Roles");
+            securityEntity.AddChild("Groups");
+            securityEntity.AddChild("Privileges");
+            await context.Set<MenuEntity>().AddAsync(securityEntity);
+            await context.SaveChangesAsync();
         }
     }
 }
