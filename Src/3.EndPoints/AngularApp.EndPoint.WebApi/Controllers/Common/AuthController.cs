@@ -1,7 +1,3 @@
-using AngularApp.EndPoint.WebApi.Exceptions;
-using AngularApp.EndPoint.WebApi.Models;
-using Microsoft.AspNetCore.Mvc;
-
 namespace AngularApp.EndPoint.WebApi.Controllers.Common;
 
 public abstract class AuthController : BaseController

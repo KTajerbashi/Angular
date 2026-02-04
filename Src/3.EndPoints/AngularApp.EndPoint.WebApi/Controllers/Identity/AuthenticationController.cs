@@ -4,6 +4,7 @@ using AngularApp.EndPoint.WebApi.Exceptions;
 using AngularApp.EndPoint.WebApi.Models;
 using AngularApp.EndPoint.WebApi.Providers.Identity.Interfaces;
 using AngularApp.EndPoint.WebApi.Providers.UserState;
+using AngularApp.Infra.Data.References;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AngularApp.EndPoint.WebApi.Controllers.Identity;
@@ -61,16 +62,15 @@ public sealed class AuthenticationController : BaseController
     [HttpGet("me")]
     public IActionResult Me()
     {
-        var userId = HttpContext.Session.GetString(IdentityKeys.UserId);
+        var userId = ProviderServices.UserState.UserId;
 
-        if (string.IsNullOrEmpty(userId))
+        if (!userId.HasValue)
             return Unauthorized("Not logged in");
 
         return Ok(new
         {
-            UserId = userId,
-            UserName = HttpContext.Session.GetString(IdentityKeys.UserName),
-            Roles = HttpContext.Session.GetString(IdentityKeys.UserRoles)?.Split(',')
+            UserInfo = ProviderServices.UserState,
+            //Roles = HttpContext.Session.GetString(IdentityKeys.UserRoles)?.Split(',')
         });
     }
 
@@ -81,7 +81,7 @@ public sealed class AuthenticationController : BaseController
             .GetString(IdentityKeys.UserRoles)?
             .Split(',') ?? Array.Empty<string>();
 
-        if (!roles.Contains("Admin"))
+        if (!roles.Contains(RolesReference.Admin))
             return Forbid();
 
         return Ok("Welcome Admin");
