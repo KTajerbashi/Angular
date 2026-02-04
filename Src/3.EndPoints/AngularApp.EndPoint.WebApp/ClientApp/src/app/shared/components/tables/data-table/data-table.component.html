@@ -1,0 +1,43 @@
+<div class="data-table">
+  @if (loading) {
+    <div class="loading">Loading...</div>
+  }
+  @if (!loading) {
+    <table>
+      <thead>
+        <tr>
+          @for (item of configOptions.columns; track $index) {
+            <th>{{ item.title }}</th>
+          }
+          <!-- <th *ngFor="let col of configOptions.columns">{{ col.title }}</th> -->
+
+          @if (configOptions.events?.length) {
+            <th>Actions</th>
+          }
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (row of data; track $index) {
+          <tr>
+            @for (col of configOptions.columns; track $index) {
+              <td>
+                {{ row[col.name] }}
+              </td>
+
+              @if (configOptions.events?.length) {
+                <td>
+                  @for (ev of configOptions.events; track $index) {
+                    <button (click)="onEvent(ev.name, row)">
+                      {{ ev.label }}
+                    </button>
+                  }
+                </td>
+              }
+            }
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+</div>
