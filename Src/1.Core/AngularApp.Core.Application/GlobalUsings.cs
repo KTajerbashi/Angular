@@ -1,5 +1,9 @@
-﻿global using AngularApp.Core.Application.Providers;
+﻿global using AngularApp.Core.Application.Common.BaseApplication.Models;
+global using AngularApp.Core.Application.Common.Mapper;
+global using AngularApp.Core.Application.Providers;
 global using AngularApp.Core.Application.Providers.ScrutorDI;
+global using AutoMapper;
+global using MediatR;
 global using Microsoft.Extensions.Configuration;
 global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.DependencyModel;

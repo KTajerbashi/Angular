@@ -1,18 +1,39 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net10.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net10.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.2" />
-    <PackageReference Include="Scrutor" Version="7.0.0" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="AutoMapper" Version="16.0.0" />
+		<PackageReference Include="FluentValidation" Version="12.1.1" />
+		<PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.1" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.2" />
+		<PackageReference Include="Scrutor" Version="7.0.0" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\AngularApp.Core.Domain\AngularApp.Core.Domain.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\AngularApp.Core.Domain\AngularApp.Core.Domain.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Aggregates\SampleStructure\Handlers\Add\" />
+		<Folder Include="Aggregates\SampleStructure\Handlers\ReadAll\" />
+		<Folder Include="Aggregates\SampleStructure\Handlers\ReadById\" />
+		<Folder Include="Aggregates\SampleStructure\Handlers\Remove\" />
+		<Folder Include="Aggregates\SampleStructure\Handlers\Update\" />
+		<Folder Include="Aggregates\SampleStructure\Repository\" />
+		<Folder Include="Aggregates\Security\Roles\Handlers\Add\" />
+		<Folder Include="Aggregates\Security\Roles\Handlers\Remove\" />
+		<Folder Include="Aggregates\Security\Roles\Handlers\Update\" />
+		<Folder Include="Aggregates\Security\Roles\Handlers\ReadById\" />
+		<Folder Include="Aggregates\Security\Roles\Handlers\ReadAll\" />
+		<Folder Include="Aggregates\Security\Users\Handlers\ReadAll\" />
+		<Folder Include="Aggregates\Security\Users\Handlers\ReadById\" />
+		<Folder Include="Aggregates\Security\Users\Handlers\Remove\" />
+		<Folder Include="Aggregates\Security\Users\Handlers\Update\" />
+	</ItemGroup>
 
 </Project>
