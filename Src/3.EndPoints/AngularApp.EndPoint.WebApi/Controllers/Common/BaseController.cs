@@ -1,7 +1,3 @@
-using AngularApp.Core.Application.Providers;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
-
 namespace AngularApp.EndPoint.WebApi.Controllers.Common;
 
 [ApiController]
@@ -21,5 +17,21 @@ public abstract class BaseController : ControllerBase
     //    return StatusCode(statusCode, ApiResult.Faild(message));
     //}
 
+    public virtual async Task<IActionResult> Command<TCommand>(TCommand command) 
+        where TCommand : ICommand
+
+    {
+        await ProviderServices.Mediator.Send(command);
+        return Ok();
+    }
+
+    public virtual async Task<IActionResult> Command<TCommand, TResponse>(TCommand command)
+        where TCommand : ICommand<TResponse>
+        => Ok(await ProviderServices.Mediator.Send(command));
+
+
+    public virtual async Task<IActionResult> Query<TQuery, TResponse>(TQuery query)
+        where TQuery : IQuery<TResponse>
+        => Ok(await ProviderServices.Mediator.Send(query));
 
 }
