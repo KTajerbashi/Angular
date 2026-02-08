@@ -2,6 +2,7 @@
 using AngularApp.EndPoint.WebApi.Configurations.Identity;
 using AngularApp.EndPoint.WebApi.Configurations.Swagger;
 using AngularApp.EndPoint.WebApi.Extensions;
+using AngularApp.EndPoint.WebApi.Middlewares.ExceptionsHandling;
 using AngularApp.ServiceDefaults;
 
 namespace AngularApp.EndPoint.WebApp;
@@ -36,10 +37,11 @@ public static class DependencyInjections
     {
 
         app.MapDefaultEndpoints();
+        app.UseExceptionsHandling();
 
         if (!app.Environment.IsDevelopment())
         {
-            app.UseExceptionHandler("/Error");
+            //app.UseExceptionHandler("/Error");
             app.UseHsts();
         }
 
