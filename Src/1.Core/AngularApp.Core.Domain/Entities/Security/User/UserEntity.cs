@@ -42,6 +42,19 @@ public class UserEntity : IdentityUser<long>, IAggregate<long>
         IsDeleted = false;
     }
 
+
+    public void Update(UserUpdateParameter parameter)
+    {
+        FirstName = parameter.FirstName;
+        LastName = parameter.LastName;
+        DisplayName = parameter.DisplayName;
+        UserName = parameter.UserName;
+        Email = parameter.Email;
+        PhoneNumber = parameter.PhoneNumber;
+        EmailConfirmed = parameter.EmailConfirmed;
+        PhoneNumberConfirmed = parameter.PhoneNumberConfirmed;
+    }
+
     public UserEntity(UserCreateParameter parameter)
     {
         FirstName = parameter.FirstName;

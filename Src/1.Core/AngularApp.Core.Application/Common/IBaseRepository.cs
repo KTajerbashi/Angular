@@ -2,7 +2,7 @@
 
 namespace AngularApp.Core.Application.Common;
 
-public interface IBaseRepository<TEntity, TId> : IScopeLifeTime
+public interface IBaseRepository<TEntity, TId> : IUnitOfWork, IScopeLifeTime
     where TEntity : IAggregate<TId>
     where TId : struct,
           IComparable,

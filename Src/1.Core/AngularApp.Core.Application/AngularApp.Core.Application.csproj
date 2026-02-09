@@ -30,10 +30,6 @@
 		<Folder Include="Aggregates\Security\Roles\Handlers\Update\" />
 		<Folder Include="Aggregates\Security\Roles\Handlers\ReadById\" />
 		<Folder Include="Aggregates\Security\Roles\Handlers\ReadAll\" />
-		<Folder Include="Aggregates\Security\Users\Handlers\ReadAll\" />
-		<Folder Include="Aggregates\Security\Users\Handlers\ReadById\" />
-		<Folder Include="Aggregates\Security\Users\Handlers\Remove\" />
-		<Folder Include="Aggregates\Security\Users\Handlers\Update\" />
 	</ItemGroup>
 
 </Project>

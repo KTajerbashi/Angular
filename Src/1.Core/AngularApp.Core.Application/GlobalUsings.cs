@@ -1,5 +1,8 @@
-﻿global using AngularApp.Core.Application.Common.BaseApplication.Models;
+﻿global using AngularApp.Core.Application.Common.BaseApplication.Mediator.Command;
+global using AngularApp.Core.Application.Common.BaseApplication.Mediator.Query;
+global using AngularApp.Core.Application.Common.BaseApplication.Models;
 global using AngularApp.Core.Application.Common.Mapper;
+global using AngularApp.Core.Application.Exceptions;
 global using AngularApp.Core.Application.Providers;
 global using AngularApp.Core.Application.Providers.ScrutorDI;
 global using AutoMapper;
