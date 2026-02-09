@@ -17,7 +17,7 @@ public abstract class BaseController : ControllerBase
     //    return StatusCode(statusCode, ApiResult.Faild(message));
     //}
 
-    public virtual async Task<IActionResult> Command<TCommand>(TCommand command) 
+    public virtual async Task<IActionResult> CommandAsync<TCommand>(TCommand command) 
         where TCommand : ICommand
 
     {
@@ -25,13 +25,17 @@ public abstract class BaseController : ControllerBase
         return Ok();
     }
 
-    public virtual async Task<IActionResult> Command<TCommand, TResponse>(TCommand command)
+    public virtual async Task<IActionResult> CommandAsync<TCommand, TResponse>(TCommand command)
         where TCommand : ICommand<TResponse>
         => Ok(await ProviderServices.Mediator.Send(command));
 
 
-    public virtual async Task<IActionResult> Query<TQuery, TResponse>(TQuery query)
+    public virtual async Task<IActionResult> QueryAsync<TQuery, TResponse>(TQuery query)
         where TQuery : IQuery<TResponse>
+        => Ok(await ProviderServices.Mediator.Send(query));
+
+    public virtual async Task<IActionResult> QueryListAsync<TQuery, TResponse>(TQuery query)
+        where TQuery : IQuery<List<TResponse>>
         => Ok(await ProviderServices.Mediator.Send(query));
 
 }
