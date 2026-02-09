@@ -17,12 +17,12 @@ public static class DependencyInjections
 
         builder.Services.AddHttpContextAccessor();
 
-        builder.Services.AddControllers()
-            .AddJsonOptions(options =>
-            {
-                options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
-                options.JsonSerializerOptions.MaxDepth = 64; // optional
-            });
+        builder.Services.AddControllers();
+            //.AddJsonOptions(options =>
+            //{
+            //    options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
+            //    options.JsonSerializerOptions.MaxDepth = 64; // optional
+            //});
         builder.Services.AddOpenApi();  // <-- OpenAPI enabled
         builder.Services.AddRazorPages();
         builder.Services.AddSwaggerApi();

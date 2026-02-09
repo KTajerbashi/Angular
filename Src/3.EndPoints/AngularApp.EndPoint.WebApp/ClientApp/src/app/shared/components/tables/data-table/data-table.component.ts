@@ -1,58 +1,71 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input } from '@angular/core';
+import { Component, effect, EventEmitter, Input, OnInit, Output, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { DataTableActionEvent, IDataTableConfig } from './IModel';
 
 @Component({
   selector: 'app-data-table',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './data-table.component.html',
   styleUrl: './data-table.component.scss',
 })
-export class DataTableComponent {
-  @Input({ required: true }) entityName!: string;
-  @Input({ required: true }) actionName!: string;
-  @Input({ required: true }) configOptions!: IDataTableConfig;
+export class DataTableComponent implements OnInit {
+  ngOnInit(): void {}
+  // Inputs as signals
+  private _entityName = signal<string>('');
+  private _actionName = signal<string>('');
 
-  data: any[] = [];
-  loading = false;
-
-  constructor(private http: HttpClient) {}
-
-  ngOnInit(): void {
-    this.loadData();
+  @Input({ required: true })
+  set entityName(value: string) {
+    this._entityName.set(value);
   }
 
-  private loadData(): void {
-    this.loading = true;
+  @Input()
+  set actionName(value: string) {
+    this._actionName.set(value || '');
+  }
 
-    const url = `/api/${this.entityName}/${this.actionName}`;
+  @Input({ required: true }) configOptions!: IDataTableConfig;
+
+  @Output() action = new EventEmitter<DataTableActionEvent>();
+
+  // state signals
+  data = signal<any[]>([]);
+  loading = signal<boolean>(false);
+  error = signal<any>(null);
+
+  constructor(private http: HttpClient) {
+    // 🔥 Auto load when entity/action changes
+    effect(() => {
+      const entity = this._entityName();
+      const action = this._actionName();
+      console.log('Effect');
+      if (!entity) return;
+
+      this.loadData(entity, action);
+    });
+  }
+
+  private loadData(entity: string, action: string): void {
+    this.loading.set(true);
+    this.error.set(null);
+
+    const url = `/api/${entity}/${action}`;
 
     this.http.get<any[]>(url).subscribe({
       next: (res) => {
-        this.data = res;
-        this.loading = false;
+        this.data.set(res);
+        this.loading.set(false);
       },
-      error: () => {
-        this.loading = false;
+      error: (err) => {
+        this.error.set(err);
+        this.loading.set(false);
       },
     });
   }
 
   onEvent(eventName: string, row: any): void {
-    console.log(`Event: ${eventName}`, row);
+    this.action.emit({ event: eventName, row });
   }
-}
-
-export interface IDataColumn {
-  name: string; // property name from API
-  title: string; // column header text
-  hasFilter?: boolean; // optional
-  sortable?: boolean; // optional
-}
-
-export interface IDataTableConfig {
-  columns: IDataColumn[];
-  events?: {
-    name: string; // edit | delete | view | custom
-    label: string;
-  }[];
 }

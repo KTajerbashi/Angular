@@ -1,15 +1,15 @@
 <div class="data-table">
-  @if (loading) {
+
+  @if (loading()) {
     <div class="loading">Loading...</div>
-  }
-  @if (!loading) {
+  } @else {
+
     <table>
       <thead>
         <tr>
-          @for (item of configOptions.columns; track $index) {
-            <th>{{ item.title }}</th>
+          @for (col of configOptions.columns; track col.name) {
+            <th>{{ col.title }}</th>
           }
-          <!-- <th *ngFor="let col of configOptions.columns">{{ col.title }}</th> -->
 
           @if (configOptions.events?.length) {
             <th>Actions</th>
@@ -18,26 +18,29 @@
       </thead>
 
       <tbody>
-        @for (row of data; track $index) {
+        @for (row of data(); track $index) {
           <tr>
-            @for (col of configOptions.columns; track $index) {
-              <td>
-                {{ row[col.name] }}
-              </td>
+            @for (col of configOptions.columns; track col.name) {
+              <td>{{ row[col.name] }}</td>
+            }
 
-              @if (configOptions.events?.length) {
-                <td>
-                  @for (ev of configOptions.events; track $index) {
-                    <button (click)="onEvent(ev.name, row)">
-                      {{ ev.label }}
-                    </button>
-                  }
-                </td>
-              }
+            @if (configOptions.events?.length) {
+              <td class="actions">
+                @for (ev of configOptions.events; track ev.name) {
+                  <button class="app-btn" [ngClass]="ev.cssClass" (click)="onEvent(ev.name, row)">
+                    {{ ev.label }}
+                  </button>
+                }
+              </td>
             }
           </tr>
         }
       </tbody>
     </table>
+
+    @if (!data().length) {
+      <div class="empty">No data found</div>
+    }
   }
+
 </div>

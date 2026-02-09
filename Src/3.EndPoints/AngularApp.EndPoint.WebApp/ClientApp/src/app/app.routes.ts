@@ -8,10 +8,10 @@ import { DashboardComponent } from './features/dashboard/dashboard/dashboard.com
 import { CartableComponent } from './features/dashboard/cartable/cartable.component';
 import { AboutComponent } from './features/dashboard/about/about.component';
 import { HistoryComponent } from './features/dashboard/history/history.component';
-import { UserComponent } from './features/security/user/user.component';
-import { RoleComponent } from './features/security/role/role.component';
-import { PrivilegeComponent } from './features/security/privilege/privilege.component';
-import { GroupComponent } from './features/security/group/group.component';
+import { UserComponent } from './features/security/pages/user/user.component';
+import { RoleComponent } from './features/security/pages/role/role.component';
+import { PrivilegeComponent } from './features/security/pages/privilege/privilege.component';
+import { GroupComponent } from './features/security/pages/group/group.component';
 import { MenuComponent } from './features/setting/menu/menu.component';
 export const routes: Routes = [
   {
