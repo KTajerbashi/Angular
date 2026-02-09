@@ -1,11 +1,77 @@
-﻿using AngularApp.Core.Application.Common;
-using AngularApp.Core.Domain.Common;
-using AngularApp.Infra.Data.DataContext;
-using Microsoft.EntityFrameworkCore;
+﻿namespace AngularApp.Infra.Data.Common;
 
-namespace AngularApp.Infra.Data.Common;
+public abstract class UnitOfWork : IUnitOfWork
+{
+    protected readonly DatabaseContext Context;
 
-public abstract class BaseRepository<TEntity, TId> : IBaseRepository<TEntity, TId>
+    protected UnitOfWork(DatabaseContext context)
+    {
+        Context = context;
+    }
+
+    public async Task BeginTransactionAsync(CancellationToken cancellation)
+    {
+        await Context.Database.BeginTransactionAsync(cancellation);
+    }
+
+    public async Task CommitTransactionAsync(CancellationToken cancellation)
+    {
+        await Context.Database.CommitTransactionAsync(cancellation);
+    }
+
+    public async Task RollbackTransactionAsync(CancellationToken cancellation)
+    {
+        await Context.Database.RollbackTransactionAsync(cancellation);
+    }
+
+    public async Task<int> SaveChangesAsync(CancellationToken cancellation)
+    {
+        return await Context.SaveChangesAsync(cancellation);
+    }
+
+    public async Task TransactionAsync(Func<Task> func, CancellationToken cancellationToken = default)
+    {
+        var strategy = Context.Database.CreateExecutionStrategy();
+        await strategy.ExecuteAsync(async () =>
+        {
+            await using var transaction = await Context.Database.BeginTransactionAsync(cancellationToken);
+            try
+            {
+                await func.Invoke(); // execute your business logic
+                await Context.SaveChangesAsync(cancellationToken);
+                await transaction.CommitAsync(cancellationToken);
+            }
+            catch
+            {
+                await transaction.RollbackAsync(cancellationToken);
+                throw;
+            }
+        });
+    }
+
+    public async Task<TResult> TransactionAsync<TResult>(Func<Task<TResult>> func, CancellationToken cancellationToken = default)
+    {
+        var strategy = Context.Database.CreateExecutionStrategy();
+        return await strategy.ExecuteAsync(async () =>
+        {
+            await using var transaction = await Context.Database.BeginTransactionAsync(cancellationToken);
+            try
+            {
+                var result = await func.Invoke(); // get your return result
+                await Context.SaveChangesAsync(cancellationToken);
+                await transaction.CommitAsync(cancellationToken);
+                return result;
+            }
+            catch
+            {
+                await transaction.RollbackAsync(cancellationToken);
+                throw;
+            }
+        });
+    }
+}
+
+public abstract class BaseRepository<TEntity, TId> : UnitOfWork, IBaseRepository<TEntity, TId>
     where TEntity : class, IAggregate<TId>
     where TId : struct,
           IComparable,
@@ -14,14 +80,14 @@ public abstract class BaseRepository<TEntity, TId> : IBaseRepository<TEntity, TI
           IEquatable<TId>,
           IFormattable
 {
-    protected readonly DatabaseContext Context;
     protected readonly DbSet<TEntity> Set;
 
-    protected BaseRepository(DatabaseContext context)
+    protected BaseRepository(DatabaseContext context) : base(context)
     {
-        Context = context ?? throw new ArgumentNullException(nameof(context));
         Set = Context.Set<TEntity>();
     }
+
+
 
     // ----------------------------------------------------
     // Queryable
