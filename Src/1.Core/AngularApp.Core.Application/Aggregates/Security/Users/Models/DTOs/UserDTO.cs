@@ -2,7 +2,7 @@
 
 namespace AngularApp.Core.Application.Aggregates.Security.Users.Models.DTOs;
 
-public class UserDTO : BaseDTO, IMapFrom<UserEntity>
+public class UserDTO : BaseDTO<UserEntity>
 {
     public string FirstName { get; set; }
     public string LastName { get; set; }
@@ -13,7 +13,7 @@ public class UserDTO : BaseDTO, IMapFrom<UserEntity>
     public bool IsActive { get; set; }
 
     public bool IsOnline { get; set; }
-    public void Mapping(Profile profile)
+    public override void Mapping(Profile profile)
     {
         profile.CreateMap<UserEntity, UserDTO>();
     }

@@ -2,14 +2,13 @@
 
 namespace AngularApp.Core.Application.Aggregates.Security.Users.Models.Views;
 
-public class UserView : BaseView, IMapFrom<UserEntity>
+public class UserView : BaseView<UserEntity>
 {
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string DisplayName { get; set; }
 
-    public void Mapping(Profile profile)
+    public override void Mapping(Profile profile)
     {
-        profile.CreateMap<UserEntity, UserView>();
     }
 }
