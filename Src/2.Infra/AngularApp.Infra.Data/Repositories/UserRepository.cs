@@ -1,4 +1,4 @@
-﻿using AngularApp.Core.Application.Aggregates.Security.Users.Repository;
+﻿using AngularApp.Core.Application.UseCases.Security.Users.Repository;
 using AngularApp.Core.Domain.Entities.Security.User;
 using AngularApp.Infra.Data.Common;
 using AngularApp.Infra.Data.DataContext;

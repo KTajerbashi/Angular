@@ -1,6 +1,6 @@
 ﻿using AngularApp.Core.Domain.Entities.Security.User;
 
-namespace AngularApp.Core.Application.Aggregates.Security.Users.Models.DTOs;
+namespace AngularApp.Core.Application.UseCases.Security.Users.Models.DTOs;
 
 public class UserDTO : BaseDTO<UserEntity>
 {

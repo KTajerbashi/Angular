@@ -1,7 +1,7 @@
-﻿using AngularApp.Core.Application.Aggregates.Security.Users.Repository;
+﻿using AngularApp.Core.Application.UseCases.Security.Users.Repository;
 using AngularApp.Core.Domain.Entities.Security.User;
 
-namespace AngularApp.Core.Application.Aggregates.Security.Users.Handlers.ReadById;
+namespace AngularApp.Core.Application.UseCases.Security.Users.Handlers.ReadById;
 
 public class ReadByIdQueryModel : BaseDTO<UserEntity>
 {

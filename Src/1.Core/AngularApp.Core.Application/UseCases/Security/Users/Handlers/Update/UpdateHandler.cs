@@ -1,8 +1,8 @@
-﻿using AngularApp.Core.Application.Aggregates.Security.Users.Repository;
+﻿using AngularApp.Core.Application.UseCases.Security.Users.Repository;
 using AngularApp.Core.Domain.Entities.Security.User;
 using AngularApp.Core.Domain.Entities.Security.User.Parameters;
 
-namespace AngularApp.Core.Application.Aggregates.Security.Users.Handlers.Update;
+namespace AngularApp.Core.Application.UseCases.Security.Users.Handlers.Update;
 
 public class UpdateCommand : ICommand
 {

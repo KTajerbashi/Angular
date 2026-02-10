@@ -1,6 +1,6 @@
-﻿using AngularApp.Core.Application.Aggregates.Security.Users.Repository;
+﻿using AngularApp.Core.Application.UseCases.Security.Users.Repository;
 
-namespace AngularApp.Core.Application.Aggregates.Security.Users.Handlers.Remove;
+namespace AngularApp.Core.Application.UseCases.Security.Users.Handlers.Remove;
 public class RemoveCommand : ICommand
 {
     public Guid EntityId { get; set; }
