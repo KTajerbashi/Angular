@@ -1,6 +1,6 @@
-﻿using AngularApp.Core.Application.Aggregates.Security.Roles.Repository;
-using AngularApp.Core.Application.Aggregates.Security.Users.Repository;
-using AngularApp.Core.Application.Providers.ScrutorDI;
+﻿using AngularApp.Core.Application.Providers.ScrutorDI;
+using AngularApp.Core.Application.UseCases.Security.Roles.Repository;
+using AngularApp.Core.Application.UseCases.Security.Users.Repository;
 using AngularApp.Core.Domain.Entities.Security.Role;
 using AngularApp.Core.Domain.Entities.Security.User;
 using Microsoft.AspNetCore.Identity;

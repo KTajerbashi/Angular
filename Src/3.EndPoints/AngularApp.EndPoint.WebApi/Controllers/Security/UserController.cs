@@ -1,8 +1,8 @@
-﻿using AngularApp.Core.Application.Aggregates.Security.Users.Handlers.Add;
-using AngularApp.Core.Application.Aggregates.Security.Users.Handlers.ReadAll;
-using AngularApp.Core.Application.Aggregates.Security.Users.Handlers.ReadById;
-using AngularApp.Core.Application.Aggregates.Security.Users.Handlers.Remove;
-using AngularApp.Core.Application.Aggregates.Security.Users.Handlers.Update;
+﻿using AngularApp.Core.Application.UseCases.Security.Users.Handlers.Add;
+using AngularApp.Core.Application.UseCases.Security.Users.Handlers.ReadAll;
+using AngularApp.Core.Application.UseCases.Security.Users.Handlers.ReadById;
+using AngularApp.Core.Application.UseCases.Security.Users.Handlers.Remove;
+using AngularApp.Core.Application.UseCases.Security.Users.Handlers.Update;
 
 namespace AngularApp.EndPoint.WebApi.Controllers.Security;
 
