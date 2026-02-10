@@ -1,5 +1,5 @@
 ﻿namespace AngularApp.Core.Application.Utilities.DataGrid;
-public static class Extensions
+public static class DataGridExtensions
 {
     private static List<Column> getColumns(Type type, IDictionary<string, IDictionary<string, string>> fields = null)
     {

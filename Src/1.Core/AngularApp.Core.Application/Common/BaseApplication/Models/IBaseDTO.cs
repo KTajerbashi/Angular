@@ -1,6 +1,6 @@
 ﻿namespace AngularApp.Core.Application.Common.BaseApplication.Models;
 
-public interface IBaseDTO<TModel> : IMapFrom<TModel>
+public interface IBaseDTO<TModel> : IBaseModel, IMapFrom<TModel>
     where TModel : class
 {
     Guid EntityId { get; set; }
