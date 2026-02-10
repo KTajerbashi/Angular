@@ -16,8 +16,8 @@ export default class BaseEntityService<TDto, TView> extends BaseApiService {
   }
 
   // ---------- GET Paging ----------
-  onPagingData(parameter: IPagingRequest): Observable<IJsonResult<IPagingModel<TView>>> {
-    return this.onPost<IPagingRequest, IPagingModel<TView>>('ReadPaging', parameter);
+  onPagingData(parameter: IDataGridQuery): Observable<IJsonResult<ITableData<TView>>> {
+    return this.onPost<IDataGridQuery, ITableData<TView>>('ReadPaging', parameter);
   }
 
   // ---------- GET BY ID ----------

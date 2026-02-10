@@ -1,6 +1,12 @@
-<app-data-table
+<!-- <app-data-table
   entityName="User"
-  actionName=""
   [configOptions]="tableConfig"
   (action)="handleAction($event)">
+</app-data-table> -->
+
+<app-data-table
+entityName="User"
+(action)="handleAction($event)"
+[config]="tableConfig"
+>
 </app-data-table>

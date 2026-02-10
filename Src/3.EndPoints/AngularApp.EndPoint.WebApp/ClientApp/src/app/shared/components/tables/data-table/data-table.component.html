@@ -1,46 +1,87 @@
 <div class="data-table">
-
   @if (loading()) {
     <div class="loading">Loading...</div>
   } @else {
-
-    <table>
-      <thead>
-        <tr>
-          @for (col of configOptions.columns; track col.name) {
-            <th>{{ col.title }}</th>
-          }
-
-          @if (configOptions.events?.length) {
-            <th>Actions</th>
-          }
-        </tr>
-      </thead>
-
-      <tbody>
-        @for (row of data(); track $index) {
+    @if (rows().length > 0) {
+      <table>
+        <thead>
           <tr>
-            @for (col of configOptions.columns; track col.name) {
-              <td>{{ row[col.name] }}</td>
+            @for (col of columns(); track col.field) {
+              <th style="text-align: center">
+                <span>{{ col.title }}</span>
+                @switch (col.columnType) {
+                  @case (columnType.String) {
+                    <input
+                      class="form-control"
+                      type="text"
+                      placeholder="Search..."
+                      (enter)="search(col, $any($event.target).value)"
+                    />
+                  }
+                  @case (columnType.Number) {
+                    <input
+                      type="number"
+                      class="form-control"
+                      (enter)="search(col, $any($event.target).value)"
+                    />
+                  }
+                  @case (columnType.Boolean) {
+                    <select (change)="search(col, $any($event.target).value)">
+                      <option value="">All</option>
+                      <option value="true">Yes</option>
+                      <option value="false">No</option>
+                    </select>
+                  }
+                  @case (columnType.DateTime) {
+                    <input
+                      class="form-control"
+                      type="date"
+                      (enter)="search(col, $any($event.target).value)"
+                    />
+                  }
+                  @default {
+                    <input
+                      class="form-control"
+                      type="text"
+                      (input)="search(col, $any($event.target).value)"
+                    />
+                  }
+                }
+              </th>
             }
 
-            @if (configOptions.events?.length) {
-              <td class="actions">
-                @for (ev of configOptions.events; track ev.name) {
-                  <button class="app-btn" [ngClass]="ev.cssClass" (click)="onEvent(ev.name, row)">
-                    {{ ev.label }}
-                  </button>
-                }
-              </td>
+            @if (events().length) {
+              <th>عملیات</th>
             }
           </tr>
-        }
-      </tbody>
-    </table>
+        </thead>
 
-    @if (!data().length) {
+        <tbody>
+          @for (row of rows(); track $index) {
+            <tr>
+              @for (col of columns(); track col.field) {
+                <td>{{ row[col.field] }}</td>
+              }
+
+              @if (events().length) {
+                <td class="actions">
+                  @for (ev of events(); track ev.name) {
+                    <button
+                      class="app-btn"
+                      [ngClass]="ev.cssClass"
+                      (click)="onAction(ev.name, row)"
+                    >
+                      {{ ev.label }}
+                    </button>
+                  }
+                </td>
+              }
+            </tr>
+          }
+        </tbody>
+      </table>
+    } @else {
       <div class="empty">No data found</div>
     }
   }
-
 </div>
