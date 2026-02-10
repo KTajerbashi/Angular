@@ -1,10 +1,9 @@
-﻿
-using AngularApp.Core.Application.Aggregates.Security.Users.Models.DTOs;
-using AngularApp.Core.Application.Aggregates.Security.Users.Repository;
+﻿using AngularApp.Core.Application.UseCases.Security.Users.Models.DTOs;
+using AngularApp.Core.Application.UseCases.Security.Users.Repository;
 using AngularApp.Core.Domain.Entities.Security.User.Parameters;
 using FluentValidation;
 
-namespace AngularApp.Core.Application.Aggregates.Security.Users.Handlers.Add;
+namespace AngularApp.Core.Application.UseCases.Security.Users.Handlers.Add;
 
 public record AddResponse(UserDTO User);
 public record AddCommand(

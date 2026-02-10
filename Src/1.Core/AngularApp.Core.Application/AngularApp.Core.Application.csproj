@@ -19,17 +19,17 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Aggregates\SampleStructure\Handlers\Add\" />
-		<Folder Include="Aggregates\SampleStructure\Handlers\ReadAll\" />
-		<Folder Include="Aggregates\SampleStructure\Handlers\ReadById\" />
-		<Folder Include="Aggregates\SampleStructure\Handlers\Remove\" />
-		<Folder Include="Aggregates\SampleStructure\Handlers\Update\" />
-		<Folder Include="Aggregates\SampleStructure\Repository\" />
-		<Folder Include="Aggregates\Security\Roles\Handlers\Add\" />
-		<Folder Include="Aggregates\Security\Roles\Handlers\Remove\" />
-		<Folder Include="Aggregates\Security\Roles\Handlers\Update\" />
-		<Folder Include="Aggregates\Security\Roles\Handlers\ReadById\" />
-		<Folder Include="Aggregates\Security\Roles\Handlers\ReadAll\" />
+		<Folder Include="UseCases\SampleStructure\Handlers\Add\" />
+		<Folder Include="UseCases\SampleStructure\Handlers\ReadAll\" />
+		<Folder Include="UseCases\SampleStructure\Handlers\ReadById\" />
+		<Folder Include="UseCases\SampleStructure\Handlers\Remove\" />
+		<Folder Include="UseCases\SampleStructure\Handlers\Update\" />
+		<Folder Include="UseCases\SampleStructure\Repository\" />
+		<Folder Include="UseCases\Security\Roles\Handlers\Add\" />
+		<Folder Include="UseCases\Security\Roles\Handlers\Remove\" />
+		<Folder Include="UseCases\Security\Roles\Handlers\Update\" />
+		<Folder Include="UseCases\Security\Roles\Handlers\ReadById\" />
+		<Folder Include="UseCases\Security\Roles\Handlers\ReadAll\" />
 	</ItemGroup>
 
 </Project>
