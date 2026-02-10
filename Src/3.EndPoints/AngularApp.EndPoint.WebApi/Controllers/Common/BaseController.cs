@@ -1,3 +1,7 @@
+using AngularApp.Core.Application.Common.BaseApplication.Models;
+using AngularApp.Core.Application.Utilities.DataGrid;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+
 namespace AngularApp.EndPoint.WebApi.Controllers.Common;
 
 [ApiController]
@@ -6,18 +10,18 @@ public abstract class BaseController : ControllerBase
 {
     protected ProviderServices ProviderServices => HttpContext.GetProviderServices();
 
-    //public override OkObjectResult Ok([ActionResultObjectValue] object? value)
-    //{
-    //    return Ok(ApiResult.Success(value));
-    //}
+    public override OkObjectResult Ok([ActionResultObjectValue] object? value)
+    {
+        return base.Ok(ApiResult.Success(value));
+    }
 
 
-    //protected ObjectResult FailResult(string message, int statusCode = StatusCodes.Status400BadRequest)
-    //{
-    //    return StatusCode(statusCode, ApiResult.Faild(message));
-    //}
+    protected ObjectResult FailResult(string message, int statusCode = StatusCodes.Status400BadRequest)
+    {
+        return StatusCode(statusCode, ApiResult.Faild(message));
+    }
 
-    public virtual async Task<IActionResult> CommandAsync<TCommand>(TCommand command) 
+    public virtual async Task<IActionResult> CommandAsync<TCommand>(TCommand command)
         where TCommand : ICommand
 
     {
@@ -36,6 +40,11 @@ public abstract class BaseController : ControllerBase
 
     public virtual async Task<IActionResult> QueryListAsync<TQuery, TResponse>(TQuery query)
         where TQuery : IQuery<List<TResponse>>
+        => Ok(await ProviderServices.Mediator.Send(query));
+
+    public virtual async Task<IActionResult> ReadDataGridAsync<TQuery, TResponse>(TQuery query)
+        where TQuery : DataGridQuery<TResponse>
+        where TResponse : BaseView
         => Ok(await ProviderServices.Mediator.Send(query));
 
 }

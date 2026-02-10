@@ -9,7 +9,7 @@ public class ApiResult
             Data = data,
             Error = null!,
             Message = "Success",
-            Success = true,
+            IsSuccess = true,
             Token = ""
         };
     }
@@ -28,7 +28,7 @@ public class ApiResult
             Data = data,
             Error = null!,
             Message = "Faild",
-            Success = false,
+            IsSuccess = false,
             Token = ""
         };
     }
@@ -39,14 +39,14 @@ public class ApiResult
             Data = false,
             Error = null!,
             Message = "Unauthorized access. Please log in.",
-            Success = false,
+            IsSuccess = false,
             Token = ""
         };
     }
 }
 public class ApiResult<T> : ApiResult
 {
-    public bool Success { get; set; }
+    public bool IsSuccess { get; set; }
     public T Data { get; set; }
     public string Message { get; set; }
     public Exception Error { get; set; }

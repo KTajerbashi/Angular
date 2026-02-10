@@ -1,6 +1,7 @@
 ﻿using AngularApp.Core.Application.UseCases.Security.Users.Handlers.Add;
 using AngularApp.Core.Application.UseCases.Security.Users.Handlers.ReadAll;
 using AngularApp.Core.Application.UseCases.Security.Users.Handlers.ReadById;
+using AngularApp.Core.Application.UseCases.Security.Users.Handlers.ReadDataGrid;
 using AngularApp.Core.Application.UseCases.Security.Users.Handlers.Remove;
 using AngularApp.Core.Application.UseCases.Security.Users.Handlers.Update;
 
@@ -11,7 +12,12 @@ public class UserController : AuthController
     [HttpGet]
     public async Task<IActionResult> Get()
         => await QueryListAsync<ReadAllQuery, ReadAllQueryModel>(new());
-    
+
+    [HttpPost("ReadDataGrid")]
+    public async Task<IActionResult> ReadDataGrid(ReadDataGridQuery query)
+        => await ReadDataGridAsync<ReadDataGridQuery, ReadDataGridView>(query);
+
+
     [HttpGet("{entityId}")]
     public async Task<IActionResult> Get(Guid entityId)
         => await QueryAsync<ReadByIdQuery, ReadByIdQueryModel>(new(entityId));
@@ -24,7 +30,7 @@ public class UserController : AuthController
     public async Task<IActionResult> Update(UpdateCommand command)
         => await CommandAsync<UpdateCommand>(command);
 
-    [HttpPost]
+    [HttpDelete]
     public async Task<IActionResult> Remove(RemoveCommand command)
     => await CommandAsync<RemoveCommand>(command);
 }
