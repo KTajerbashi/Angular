@@ -1,1 +1,11 @@
-<app-persian-datepicker></app-persian-datepicker>
+<app-persian-datepicker [lable]="'تاریخ شروع'" (getValue)="getValue($event,'startTime1')"/>
+<h1>تاریخ startTime1 => {{startTime1}}</h1>
+
+<app-persian-datepicker [lable]="'تاریخ شروع'" (getValue)="getValue($event,'startTime2')"/>
+<h1>تاریخ startTime2 => {{startTime2}}</h1>
+
+<app-persian-datepicker [lable]="'تاریخ شروع'" (getValue)="getValue($event,'startTime3')"/>
+<h1>تاریخ startTime3 => {{startTime3}}</h1>
+
+<app-persian-datepicker [lable]="'تاریخ شروع'" (getValue)="getValue($event,'startTime4')"/>
+<h1>تاریخ startTime4 => {{startTime4}}</h1>

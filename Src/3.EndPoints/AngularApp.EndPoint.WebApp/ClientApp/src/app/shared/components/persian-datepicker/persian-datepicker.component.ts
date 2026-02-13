@@ -1,69 +1,57 @@
-import { Component } from '@angular/core';
+import { MatDatepickerInputEvent, MatDatepickerModule } from '@angular/material/datepicker';
+import { Component, Input, input, Output, EventEmitter } from '@angular/core';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { DateAdapter, MAT_DATE_FORMATS, MatNativeDateModule } from '@angular/material/core';
+import { JalaliDateAdapter } from '../../../shared/components/persian-datepicker/jalali-date.adapter';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatDatepickerToggle } from '@angular/material/datepicker';
-import {
-  MomentDateAdapter,
-  MAT_MOMENT_DATE_ADAPTER_OPTIONS,
-} from '@angular/material-moment-adapter';
-import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
-import moment from 'moment-jalaali';
-
-// فرمت تاریخ شمسی
-export const PERSIAN_DATETIME_FORMATS = {
-  parse: { dateInput: 'jYYYY/jMM/jDD HH:mm' },
+import { Moment } from 'jalali-moment';
+export const JALALI_FORMATS = {
+  parse: {
+    dateInput: 'jYYYY/jMM/jDD',
+  },
   display: {
-    dateInput: 'jYYYY/jMM/jDD HH:mm',
-    monthYearLabel: 'jMMMM jYYYY',
-    dateA11yLabel: 'jYYYY/jMM/jDD HH:mm',
-    monthYearA11yLabel: 'jMMMM jYYYY',
+    dateInput: 'jYYYY/jMM/jDD',
+    monthYearLabel: 'jYYYY jMMMM',
+    dateA11yLabel: 'jYYYY/jMM/jDD',
+    monthYearA11yLabel: 'jYYYY jMMMM',
   },
 };
-
 @Component({
   selector: 'app-persian-datepicker',
-  standalone: true,
-  imports: [CommonModule, FormsModule, MatDatepickerModule, MatFormFieldModule, MatInputModule],
+  imports: [
+    FormsModule,
+    CommonModule,
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatNativeDateModule,
+  ],
   templateUrl: './persian-datepicker.component.html',
-  styleUrls: ['./persian-datepicker.component.scss'],
+  styleUrl: './persian-datepicker.component.scss',
   providers: [
-    { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS] },
-    { provide: MAT_DATE_FORMATS, useValue: PERSIAN_DATETIME_FORMATS },
-    { provide: MAT_DATE_LOCALE, useValue: 'fa-IR' },
+    { provide: DateAdapter, useClass: JalaliDateAdapter },
+    { provide: MAT_DATE_FORMATS, useValue: JALALI_FORMATS },
   ],
 })
 export class PersianDatepickerComponent {
-  private _selectedDate: Date | null = null;
+  @Input('lable') _label = 'تاریخ';
+  // @Input('Model') _model: string = '';
+  @Output('getValue') modelEvent = new EventEmitter<string>();
+  selectedDate: string | null = null;
+  dateControl = new FormControl();
+  onDateChange(event: MatDatepickerInputEvent<Moment>) {
+    if (event.value) {
+      this.selectedDate = event.value.format('jYYYY/jMM/jDD');
 
-  // خروجی شمسی
-  get selectedDate(): string {
-    return this._selectedDate ? moment(this._selectedDate).format('jYYYY/jMM/jDD HH:mm') : '';
-  }
-
-  // ورودی شمسی یا Date
-  set selectedDate(value: string | Date | null) {
-    if (!value) {
-      this._selectedDate = null;
-    } else if (typeof value === 'string') {
-      // تبدیل رشته شمسی به Date
-      const m = moment(value, 'jYYYY/jMM/jDD HH:mm');
-      this._selectedDate = m.isValid() ? m.toDate() : null;
-    } else {
-      this._selectedDate = value;
+      this.getValue(event.value.format('jYYYY/jMM/jDD'));
     }
   }
 
-  // ساعت و دقیقه به صورت جداگانه
-  hour = 0;
-  minute = 0;
-
-  updateTime() {
-    if (this._selectedDate) {
-      this._selectedDate.setHours(this.hour);
-      this._selectedDate.setMinutes(this.minute);
-    }
+  getValue(value: string) {
+    this.modelEvent.emit(value);
   }
 }
