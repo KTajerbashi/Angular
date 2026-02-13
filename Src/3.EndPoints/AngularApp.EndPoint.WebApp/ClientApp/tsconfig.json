@@ -13,7 +13,8 @@
     "experimentalDecorators": true,
     "importHelpers": true,
     "target": "ES2022",
-    "module": "preserve"
+    "module": "preserve",
+    "typeRoots": ["node_modules/@types", "src/app/shared/types"]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
