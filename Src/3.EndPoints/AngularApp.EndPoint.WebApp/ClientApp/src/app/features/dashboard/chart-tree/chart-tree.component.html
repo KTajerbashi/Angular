@@ -1,0 +1,51 @@
+<div class="app-container">
+  <div class="app-row">
+    <ul class="app-tree-chart">
+      @for (node of datasource(); track node) {
+        <ng-container>
+          <li>
+            <div class="app-tree-chart-node" (click)="toggle(node.id)">
+              <span class="toggle-icon">{{
+                node.children && node.children.length > 0 ? (isExpanded(node.id) ? '-' : '+') : ''
+              }}</span>
+              <span class="node-title">{{ node.title }}</span>
+            </div>
+            @if (isExpanded(node.id) && node.children && node.children.length > 0) {
+              <ul>
+                <ng-container *ngFor="let child of node.children">
+                  <li>
+                    <div class="app-tree-chart-node" (click)="toggle(child.id)">
+                      <span class="toggle-icon">{{
+                        child.children && child.children.length > 0
+                          ? isExpanded(child.id)
+                            ? '-'
+                            : '+'
+                          : ''
+                      }}</span>
+                      <span class="node-title">{{ child.title }}</span>
+                    </div>
+                    @if (isExpanded(child.id) && child.children && child.children.length > 0) {
+                      <ul>
+                        @for (subChild of child.children; track subChild) {
+                          <ng-container>
+                            <li>
+                              <div class="app-tree-chart-node">
+                                <!-- Leaf node, no toggle icon -->
+                                <span class="toggle-icon"></span>
+                                <span class="node-title">{{ subChild.title }}</span>
+                              </div>
+                            </li>
+                          </ng-container>
+                        }
+                      </ul>
+                    }
+                  </li>
+                </ng-container>
+              </ul>
+            }
+          </li>
+        </ng-container>
+      }
+    </ul>
+  </div>
+</div>

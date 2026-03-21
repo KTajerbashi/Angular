@@ -1,0 +1,67 @@
+<div class="app-container">
+  <div class="app-row">
+    <div class="app-col-12">
+      <table class="app-table-tree" border="1" cellpadding="8" width="100%">
+        <thead>
+          <tr>
+            <th>عنوان</th>
+            <th>عنوان</th>
+            <th>عنوان</th>
+            <th>عنوان</th>
+            <th>شناسه</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @for (node of datasource(); track node) {
+            <ng-container *ngTemplateOutlet="treeRow; context: { $implicit: node }"></ng-container>
+          }
+        </tbody>
+      </table>
+
+      <!-- Template گره درخت -->
+      <ng-template #treeRow let-node>
+        <tr>
+          <td>
+            @if (node.children?.length > 0) {
+              <span
+                class="toggle"
+                (click)="toggle(node.id)"
+                [ngClass]="isExpanded(node.id) ? 'app-text-danger' : 'app-text-primary'"
+              >
+                {{ isExpanded(node.id) ? '▼' : '▶' }}
+              </span>
+            }
+
+            <span [style.margin-left.px]="1 * 20">
+              {{ node.title }}
+            </span>
+          </td>
+
+          <td>
+            {{ node.title }}
+          </td>
+          <td>
+            {{ node.title }}
+          </td>
+          <td>
+            {{ node.title }}
+          </td>
+          <td style="max-width: 5rem; text-align: center">
+            <span (click)="onAddChild(node)" title="افزودن زیرگروه" class="app-icon">➕</span>
+            <span (click)="onUpdate(node)" title="ویرایش" class="app-icon">📝</span>
+            <span (click)="onRemove(node)" title="حذف" class="app-icon">🗑️</span>
+            <span (click)="onExtendedProperty(node)" title="ساختار داینامیک" class="app-icon">🔗</span>
+            <span (click)="onExcelFile(node)" title="دریافت فایل اکسل" class="app-icon">🗃️</span>
+            <span (click)="onOwner(node)" title="تعیین مالکیت" class="app-icon">🔑</span>
+          </td>
+        </tr>
+        @if (node.children?.length > 0 && isExpanded(node.id)) {
+          @for (child of node.children; track child) {
+            <ng-container *ngTemplateOutlet="treeRow; context: { $implicit: child }"></ng-container>
+          }
+        }
+      </ng-template>
+    </div>
+  </div>
+</div>

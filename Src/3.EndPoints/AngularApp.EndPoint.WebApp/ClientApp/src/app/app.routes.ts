@@ -13,6 +13,8 @@ import { RoleComponent } from './features/security/pages/role/role.component';
 import { PrivilegeComponent } from './features/security/pages/privilege/privilege.component';
 import { GroupComponent } from './features/security/pages/group/group.component';
 import { MenuComponent } from './features/setting/menu/menu.component';
+import { ChartTreeComponent } from './features/dashboard/chart-tree/chart-tree.component';
+import { TableTreeComponent } from './features/dashboard/table-tree/table-tree.component';
 export const routes: Routes = [
   {
     path: 'auth',
@@ -31,6 +33,8 @@ export const routes: Routes = [
     component: MainLayout,
     children: [
       { path: 'dashboard', component: DashboardComponent },
+      { path: 'chart-tree', component: ChartTreeComponent },
+      { path: 'table-tree', component: TableTreeComponent },
       { path: 'cartable', component: CartableComponent },
       { path: 'about', component: AboutComponent },
       { path: 'history', component: HistoryComponent },

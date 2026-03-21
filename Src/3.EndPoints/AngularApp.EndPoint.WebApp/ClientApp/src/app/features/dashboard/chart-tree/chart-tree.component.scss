@@ -1,0 +1,99 @@
+.app-tree-chart {
+  list-style: none;
+  padding-left: 0;
+
+  // Styles for nested lists (children)
+  ul {
+    list-style: none;
+    position: relative; // Needed for pseudo-elements if you add lines
+  }
+
+  li {
+    position: relative; // Crucial for positioning lines/connectors
+
+    // Style for the clickable node container
+    .app-tree-chart-node {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background-color 0.2s ease;
+      background-color: #ffffff; // Default background for nodes
+
+      &:hover {
+        background-color: #f0f8ff; // A subtle light blue on hover
+      }
+
+      .toggle-icon {
+        font-weight: bold;
+        color: #333; // Darker icon color
+        display: inline-block;
+        width: 25px; // Slightly wider for better spacing around the icon
+        text-align: center;
+        margin-right: 10px; // Space between icon and title
+        flex-shrink: 0; // Prevent icon from shrinking
+      }
+
+      .node-title {
+        flex-grow: 1; // Allow title to take available space
+      }
+    }
+
+    // Style for leaf nodes (nodes without children)
+    // If a node has no children, it shouldn't have a toggle icon.
+    // We can achieve this by checking if the span for the toggle icon exists.
+    // This requires the HTML structure to be robust.
+    .app-tree-chart-node:not(:has(.toggle-icon)) {
+        cursor: default; // No pointer cursor for leaf nodes
+        .toggle-icon {
+            // Ensure no space is taken if there's no icon
+            display: none;
+        }
+        &:hover {
+            background-color: transparent; // No hover effect for leaves if desired
+        }
+    }
+  }
+
+  // --- Optional: Add vertical and horizontal lines for a more tree-like appearance ---
+
+  // Vertical line for parent nodes
+  .app-tree-chart li::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0; // Aligns with the start of the padding-left of the UL
+    width: 1px;
+    height: 100%;
+    background-color: #ccc; // Light gray line
+    z-index: 1;
+  }
+
+  // Horizontal line connecting to the node
+  .app-tree-chart li::after {
+    content: '';
+    position: absolute;
+    top: 12px; // Adjust to vertically align with text center
+    left: 0; // Aligns with the start of the padding-left of the UL
+    width: 15px; // Length of the horizontal line
+    height: 1px;
+    background-color: #ccc; // Light gray line
+    z-index: 1;
+  }
+
+  // Remove lines for the root level and specific cases
+  .app-tree-chart > li::before,
+  .app-tree-chart > li::after {
+    display: none; // No lines for the very first level nodes
+  }
+
+  // Adjust lines for nodes that are not the last child in their list
+  .app-tree-chart li:not(:last-child)::before {
+    height: calc(100% - 8px); // Adjust height so it doesn't go past the next sibling's margin
+  }
+
+  // Ensure lines stop correctly for the last child
+  .app-tree-chart li:last-child::before {
+    height: 12px; // Stop the vertical line at the node's position
+  }
+}

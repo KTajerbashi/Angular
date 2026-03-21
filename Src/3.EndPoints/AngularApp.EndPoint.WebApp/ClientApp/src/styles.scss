@@ -56,6 +56,7 @@ html {
 *::before,
 *::after {
   box-sizing: border-box;
+  direction: rtl;
 }
 
 body {
@@ -131,7 +132,16 @@ $app-btn-colors: (
   //   box-shadow: 0 0 0 3px rgba($color, 0.4);
   // }
 }
-
+.app-icon {
+  cursor: pointer;
+  border: 1px solid rgb(231, 231, 231);
+  border-radius: 5px;
+  margin: 2px;
+  padding: 5px;
+}
+.app-icon:hover {
+  border: 1px solid rgb(190, 190, 190);
+}
 .app-btn {
   display: inline-flex;
   align-items: center;
@@ -287,3 +297,129 @@ label {
 .form-group {
   margin-bottom: 1rem;
 }
+.app-container {
+  border: 1px solid #898989;
+  box-shadow: 6px 6px 4px 0px #00000047;
+  padding: 10px;
+  margin: 0px;
+  border-radius: 3px;
+}
+.app-container-row {
+  border: 1px solid black;
+  padding: 0;
+  margin: 0;
+}
+
+// app-tree Started
+/* General table styling */
+.app-table-tree {
+  width: 100%;
+  border-collapse: collapse; /* Combines borders into a single border */
+  margin: 25px 0;
+  font-size: 0.9em;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-width: 400px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  border-radius: 5px 5px 0 0; /* Rounded corners for the top */
+  overflow: hidden; /* Ensures rounded corners clip content */
+}
+
+/* Table header styling */
+.app-table-tree thead tr {
+  background-color: #009879; /* A nice teal color */
+  color: #ffffff;
+  text-align: left;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Table header cells */
+.app-table-tree th {
+  padding: 12px 15px;
+}
+
+/* Table body styling */
+.app-table-tree tbody tr {
+  border-bottom: 1px solid #dddddd;
+  transition: background-color 0.2s ease-in-out; /* Smooth transition for hover effect */
+}
+
+/* Styling for rows on hover */
+.app-table-tree tbody tr:hover {
+  background-color: #f3f3f3; /* Light gray background on hover */
+}
+
+/* Styling for the last row of the table body */
+.app-table-tree tbody tr:last-of-type {
+  border-bottom: 2px solid #009879; /* Stronger border at the bottom */
+}
+
+/* Table data cells */
+.app-table-tree td {
+  padding: 12px 15px;
+}
+
+/* Optional: Add zebra-striping for better readability */
+.app-table-tree tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3; /* Lighter gray for even rows */
+}
+
+/* Optional: Styling for specific elements within cells, e.g., links */
+.app-table-tree td a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.app-table-tree td a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .app-table-tree {
+    box-shadow: none; /* Remove shadow on smaller screens */
+    border-radius: 0;
+  }
+  .app-table-tree thead {
+    display: none; /* Hide the table header on small screens */
+  }
+  .app-table-tree tbody tr {
+    border-bottom: none; /* Remove bottom border for rows */
+    display: block; /* Make rows block elements */
+    margin-bottom: 15px;
+    border: 1px solid #dddddd; /* Add border around each row */
+    border-radius: 5px;
+  }
+  .app-table-tree td {
+    display: block; /* Make cells block elements */
+    text-align: right; /* Align text to the right for RTL languages or better mobile view */
+    padding-left: 50%; /* Make space for the pseudo-element */
+    position: relative;
+  }
+  .app-table-tree td::before {
+    content: attr(data-label); /* Use data-label attribute for header text */
+    position: absolute;
+    left: 10px;
+    width: calc(50% - 20px);
+    padding-right: 10px;
+    white-space: nowrap;
+    font-weight: bold;
+    color: #333;
+    text-align: left; /* Align label text to the left */
+  }
+  .app-table-tree tbody tr:last-of-type {
+    border-bottom: 1px solid #dddddd; /* Reset bottom border */
+  }
+}
+
+.app-text-primary {
+  color: #004792;
+}
+.app-text-warning {
+  color: #ff9900;
+}
+.app-text-danger {
+  color: #ff1e00;
+}
+
+// app-tree Finished

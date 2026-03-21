@@ -14,3 +14,9 @@
 .app-layout-sidebar ul li:hover {
   background-color: rgba(255, 255, 255, 0.15);
 }
+.active-link {
+  border: 1px solid rgb(255 250 195 / 22%);
+  border-radius: 5px;
+  box-shadow: 0px 0px 8px 0px rgb(255 255 255 / 23%);
+  background: rgba(0, 0, 0, 0.2);
+}
