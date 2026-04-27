@@ -7,6 +7,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="UseCases\SampleStructure\**" />
+	  <EmbeddedResource Remove="UseCases\SampleStructure\**" />
+	  <None Remove="UseCases\SampleStructure\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="AutoMapper" Version="16.0.0" />
 		<PackageReference Include="FluentValidation" Version="12.1.1" />
 		<PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.1" />
@@ -19,12 +25,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="UseCases\SampleStructure\Handlers\Add\" />
-		<Folder Include="UseCases\SampleStructure\Handlers\ReadAll\" />
-		<Folder Include="UseCases\SampleStructure\Handlers\ReadById\" />
-		<Folder Include="UseCases\SampleStructure\Handlers\Remove\" />
-		<Folder Include="UseCases\SampleStructure\Handlers\Update\" />
-		<Folder Include="UseCases\SampleStructure\Repository\" />
 		<Folder Include="UseCases\Security\Roles\Handlers\Add\" />
 		<Folder Include="UseCases\Security\Roles\Handlers\Remove\" />
 		<Folder Include="UseCases\Security\Roles\Handlers\Update\" />

@@ -1,1 +1,196 @@
-<p>cartable works!</p>
+<!-- user-form.component.html -->
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <!-- Form Status Card -->
+      <div class="card mb-4">
+        <div class="card-body">
+          <div class="alert alert-dark mb-0">
+            <div class="d-flex justify-content-between align-items-center">
+              <strong>وضعیت فرم:</strong>
+              <div>
+                <span class="badge bg-success me-2" *ngIf="userForm.valid">✓ معتبر</span>
+                <span class="badge bg-danger" *ngIf="userForm.invalid">✗ نامعتبر</span>
+              </div>
+            </div>
+            <hr class="my-2">
+            <small class="text-muted">
+              ویرایش شده: {{ userForm.dirty ? 'بله' : 'خیر' }}
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Form -->
+      <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+          <h4 class="mb-0">فرم ثبت نام کاربر</h4>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="userForm" (ngSubmit)="onSubmit()" novalidate>
+            <!-- First Name Field -->
+            <div class="app-form-control">
+              <label class="app-form-label">نام</label>
+              <input
+                type="text"
+                class="app-form-input"
+                [class.is-invalid]="userForm.get('aggregateId')?.invalid && userForm.get('aggregateId')?.touched"
+                [class.is-valid]="userForm.get('aggregateId')?.valid && userForm.get('aggregateId')?.touched"
+                formControlName="aggregateId"
+                placeholder="نام خود را وارد کنید"
+              />
+              <div class="app-error-message" *ngIf="userForm.get('aggregateId')?.invalid && userForm.get('aggregateId')?.touched">
+                {{ getErrorMessage(userForm.get('aggregateId'), 'aggregateId') }}
+              </div>
+              <small class="app-help-text">فقط حروف و فاصله، ۲ تا ۵۰ کاراکتر</small>
+            </div>
+
+            <!-- Information Group -->
+            <div class="form-group-wrapper">
+              <div class="form-group-header">
+                <h5 class="mb-0">اطلاعات شخصی</h5>
+              </div>
+              <div class="form-group-body">
+                <div formGroupName="information">
+                  <!-- Name -->
+                  <div class="app-form-control">
+                    <label class="app-form-label">نام</label>
+                    <input
+                      type="text"
+                      class="app-form-input"
+                      [class.is-invalid]="userForm.get('information.name')?.invalid && userForm.get('information.name')?.touched"
+                      [class.is-valid]="userForm.get('information.name')?.valid && userForm.get('information.name')?.touched"
+                      formControlName="name"
+                      placeholder="نام را وارد کنید"
+                    />
+                    <div class="app-error-message" *ngIf="userForm.get('information.name')?.invalid && userForm.get('information.name')?.touched">
+                      {{ getErrorMessage(userForm.get('information.name'), 'name') }}
+                    </div>
+                    <small class="app-help-text">بین ۲ تا ۳۰ کاراکتر</small>
+                  </div>
+
+                  <!-- Family -->
+                  <div class="app-form-control">
+                    <label class="app-form-label">نام خانوادگی</label>
+                    <input
+                      type="text"
+                      class="app-form-input"
+                      [class.is-invalid]="userForm.get('information.family')?.invalid && userForm.get('information.family')?.touched"
+                      [class.is-valid]="userForm.get('information.family')?.valid && userForm.get('information.family')?.touched"
+                      formControlName="family"
+                      placeholder="نام خانوادگی را وارد کنید"
+                    />
+                    <div class="app-error-message" *ngIf="userForm.get('information.family')?.invalid && userForm.get('information.family')?.touched">
+                      {{ getErrorMessage(userForm.get('information.family'), 'family') }}
+                    </div>
+                    <small class="app-help-text">بین ۲ تا ۳۰ کاراکتر</small>
+                  </div>
+
+                  <!-- Email -->
+                  <div class="app-form-control">
+                    <label class="app-form-label">ایمیل</label>
+                    <input
+                      type="email"
+                      class="app-form-input"
+                      [class.is-invalid]="userForm.get('information.email')?.invalid && userForm.get('information.email')?.touched"
+                      [class.is-valid]="userForm.get('information.email')?.valid && userForm.get('information.email')?.touched"
+                      formControlName="email"
+                      placeholder="example@domain.com"
+                    />
+                    <div class="app-error-message" *ngIf="userForm.get('information.email')?.invalid && userForm.get('information.email')?.touched">
+                      {{ getErrorMessage(userForm.get('information.email'), 'email') }}
+                    </div>
+                    <small class="app-help-text">یک ایمیل معتبر وارد کنید</small>
+                  </div>
+
+                  <!-- Password -->
+                  <div class="app-form-control">
+                    <label class="app-form-label">رمز عبور</label>
+                    <input
+                      type="password"
+                      class="app-form-input"
+                      [class.is-invalid]="userForm.get('information.password')?.invalid && userForm.get('information.password')?.touched"
+                      [class.is-valid]="userForm.get('information.password')?.valid && userForm.get('information.password')?.touched"
+                      formControlName="password"
+                      placeholder="رمز عبور قوی وارد کنید"
+                    />
+                    <div class="app-error-message" *ngIf="userForm.get('information.password')?.invalid && userForm.get('information.password')?.touched">
+                      {{ getErrorMessage(userForm.get('information.password'), 'password') }}
+                    </div>
+                    <small class="app-help-text">
+                      حداقل ۶ کاراکتر، شامل حرف بزرگ، حرف کوچک و عدد
+                    </small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Address Group -->
+            <div class="form-group-wrapper">
+              <div class="form-group-header">
+                <h5 class="mb-0">اطلاعات آدرس</h5>
+              </div>
+              <div class="form-group-body">
+                <div formGroupName="address">
+                  <!-- Street -->
+                  <div class="app-form-control">
+                    <label class="app-form-label">خیابان</label>
+                    <input
+                      type="text"
+                      class="app-form-input"
+                      [class.is-invalid]="userForm.get('address.street')?.invalid && userForm.get('address.street')?.touched"
+                      [class.is-valid]="userForm.get('address.street')?.valid && userForm.get('address.street')?.touched"
+                      formControlName="street"
+                      placeholder="نام خیابان را وارد کنید"
+                    />
+                    <div class="app-error-message" *ngIf="userForm.get('address.street')?.invalid && userForm.get('address.street')?.touched">
+                      {{ getErrorMessage(userForm.get('address.street'), 'street') }}
+                    </div>
+                    <small class="app-help-text">بین ۳ تا ۱۰۰ کاراکتر</small>
+                  </div>
+
+                  <!-- Pelak -->
+                  <div class="app-form-control">
+                    <label class="app-form-label">پلاک</label>
+                    <input
+                      type="text"
+                      class="app-form-input"
+                      [class.is-invalid]="userForm.get('address.pelak')?.invalid && userForm.get('address.pelak')?.touched"
+                      [class.is-valid]="userForm.get('address.pelak')?.valid && userForm.get('address.pelak')?.touched"
+                      formControlName="pelak"
+                      placeholder="شماره پلاک"
+                    />
+                    <div class="app-error-message" *ngIf="userForm.get('address.pelak')?.invalid && userForm.get('address.pelak')?.touched">
+                      {{ getErrorMessage(userForm.get('address.pelak'), 'pelak') }}
+                    </div>
+                    <small class="app-help-text">فقط اعداد مجاز است</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Form Actions -->
+            <div class="form-actions">
+              <button type="submit" class="app-btn-primary" [disabled]="userForm.invalid && userForm.touched">
+                ثبت فرم
+              </button>
+              <button type="button" class="app-btn-secondary" (click)="resetForm()">
+                reset form
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Form Value Display -->
+      <div class="card mt-4" *ngIf="userForm.touched">
+        <div class="card-header bg-info text-white">
+          <small>مقدار فرم (مشاهده)</small>
+        </div>
+        <div class="card-body">
+          <pre class="mb-0 small">{{ userForm.value | json }}</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

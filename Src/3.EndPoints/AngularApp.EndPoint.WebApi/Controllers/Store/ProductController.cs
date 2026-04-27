@@ -39,6 +39,7 @@ public class ProductController : AuthController
     public ProductController()
     {
     }
+
     [HttpPost]
     public async Task<IActionResult> CreateAsync(ProductDTO parameters)
     {
